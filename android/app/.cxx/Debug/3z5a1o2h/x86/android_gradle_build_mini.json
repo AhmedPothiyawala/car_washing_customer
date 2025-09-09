@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/ahmedpothiyawala/Downloads/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/ahmedpothiyawala/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/ahmedpothiyawala/AndroidStudioProjects/car_washing/android/app/.cxx/Debug/3z5a1o2h/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/ahmedpothiyawala/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/ahmedpothiyawala/AndroidStudioProjects/car_washing/android/app/.cxx/Debug/3z5a1o2h/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

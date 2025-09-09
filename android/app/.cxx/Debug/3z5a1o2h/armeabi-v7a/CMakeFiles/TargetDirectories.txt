@@ -1,0 +1,2 @@
+/Users/ahmedpothiyawala/AndroidStudioProjects/car_washing/android/app/.cxx/Debug/3z5a1o2h/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/ahmedpothiyawala/AndroidStudioProjects/car_washing/android/app/.cxx/Debug/3z5a1o2h/armeabi-v7a/CMakeFiles/rebuild_cache.dir

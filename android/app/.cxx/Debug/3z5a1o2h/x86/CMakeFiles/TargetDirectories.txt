@@ -1,0 +1,2 @@
+/Users/ahmedpothiyawala/AndroidStudioProjects/car_washing/android/app/.cxx/Debug/3z5a1o2h/x86/CMakeFiles/edit_cache.dir
+/Users/ahmedpothiyawala/AndroidStudioProjects/car_washing/android/app/.cxx/Debug/3z5a1o2h/x86/CMakeFiles/rebuild_cache.dir
