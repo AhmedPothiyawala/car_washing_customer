@@ -10,7 +10,6 @@ import '../../data/storage_key.dart';
 import '../../services/storage_services/storage_services.dart';
 import '../authentication/controllers/auth_controller.dart';
 
-
 class Custome_Webview extends StatefulWidget {
   final String url;
   bool paymentURL = false;

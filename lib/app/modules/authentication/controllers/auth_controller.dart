@@ -1,20 +1,14 @@
 import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inapp_purchase/flutter_inapp_purchase.dart';
 import 'package:get/get.dart';
-import 'package:go_burble_new/app/widgets/update_alert_dialog.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import '../../../data/global_constant.dart';
 import '../../../data/storage_key.dart';
 import '../../../data/utils.dart';
@@ -139,8 +133,6 @@ class AuthController extends GetxController {
 
   // app_developer3
   // 12345678
-
-
 
   Future thrivePopupStatusUpdate() async {
     loading(show: true, title: "Loading...");
