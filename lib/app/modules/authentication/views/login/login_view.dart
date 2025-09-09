@@ -40,9 +40,9 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     FlutterNativeSplash.remove();
 
-    if (widget.isNotLogged == null) {
-      authController.normalLogout();
-    }
+    // if (widget.isNotLogged == null) {
+    //   authController.normalLogout();
+    // }
 
     super.initState();
   }

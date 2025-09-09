@@ -24,7 +24,7 @@ import '../../webview/custom_webview.dart';
 class AuthController extends GetxController {
   final _apiService = Get.find<ApiServices>();
   final _storageService = Get.find<StorageService>();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final Rx<UserModel> _userData = UserModel().obs;
   final Rx<CheckSubscriptionModel> _checkSubscriptionModel =
@@ -602,9 +602,11 @@ class AuthController extends GetxController {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-      return userCredential.user;
+      // final UserCredential userCredential =
+      //     await _auth.signInWithCredential(credential);
+      // return userCredential.user;
+
+      return null;
     } catch (e) {
       return null;
     }

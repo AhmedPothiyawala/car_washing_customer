@@ -25,7 +25,7 @@ void main() async {
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
   await initAllServices();
-  init();
+  // init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(const MyApp()));
 }
