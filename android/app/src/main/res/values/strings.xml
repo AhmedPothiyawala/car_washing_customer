@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">681354473477071</string>
+    <string name="fb_login_protocol_scheme">fb681354473477071</string>
+    <string name="facebook_client_token">f64689fbc2eb48f0efb0e3dd3ae56fa8</string>
+    <string name="app_name">Go Burble</string>
+</resources>
