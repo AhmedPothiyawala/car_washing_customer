@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.carwashing.customer">
+    package="com.pickupmycar.customer">
     xmlns:tools="http://schemas.android.com/tools">
     <queries>
         <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
@@ -30,7 +30,7 @@
     </queries>
 
     <application
-        android:label="Go burble"
+        android:label="PickupMyCar"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data

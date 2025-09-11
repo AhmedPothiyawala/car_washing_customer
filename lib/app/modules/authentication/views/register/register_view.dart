@@ -8,6 +8,7 @@ import 'package:go_burble_new/app/data/app_colors.dart';
 import 'package:go_burble_new/app/data/app_images.dart';
 import 'package:go_burble_new/app/modules/authentication/controllers/auth_controller.dart';
 import 'package:go_burble_new/app/routes/app_pages.dart';
+import 'package:go_burble_new/app/widgets/custom_drop_down_form_field.dart';
 
 import '../../../../data/text_styles.dart';
 import '../../../../data/utils.dart';
@@ -24,15 +25,21 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   final authController = Get.find<AuthController>();
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
+  final nameController = TextEditingController();
+  final genderController = TextEditingController();
+  final phoneController = TextEditingController();
   final emailController = TextEditingController();
   // final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final phoneNumberController = TextEditingController();
-  final FocusNode passwordFocusNode = FocusNode();
-  final FocusNode confirmPasswordFocusNode = FocusNode();
+  final nameFocusNode = FocusNode();
+  final genderFocusNode = FocusNode();
+  final emailFocusNode = FocusNode();
+  final phoneFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+  final usernmaeFormKey = GlobalKey<FormState>();
+  final passwordFormKey = GlobalKey<FormState>();
   final globalFormKey = GlobalKey<FormState>();
 
   @override
@@ -50,477 +57,298 @@ class _RegisterViewState extends State<RegisterView> {
           return SafeArea(
             child: GestureDetector(
               onTap: () {
-                passwordFocusNode.unfocus();
-                confirmPasswordFocusNode.unfocus();
-                authController.update();
+
               },
-              child: Scaffold(
-                backgroundColor: AppColors.appBackgroundColor,
+              child:  Scaffold(
+                backgroundColor: AppColors.secondaryColor,
                 body: Obx(
-                  () {
+                      () {
                     return SingleChildScrollView(
-                      child: Column(
+                      child: Stack(
                         children: [
-                          Center(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 15, bottom: 15.0),
-                              child: Image.asset(
-                                AppImages.burbleNewLogo,
-                                width: 225,
-                              ),
+
+                          Container(
+                            height: kHeight*0.3,
+                            width:kWidth,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(image: AssetImage(AppImages.mainBg),fit: BoxFit.fill)
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: InkWell(
+                                    onTap: (){
+                                      Get.back();
+                                    },
+                                    child: const Align(
+                                        alignment: Alignment.topLeft,
+                                        child: Icon(Icons.arrow_back,color: AppColors.appBackgroundColor,)),
+                                  ),
+                                ),
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(image: AssetImage(AppImages.appIcon))
+                                  ),
+                                ),
+                                const SizedBox(height: 20,),
+                                Text("signUpTitle".tr,style: sfProBoldTextstyle,),
+                                const SizedBox(height: 20,),
+                                Text("signUpSubTitle".tr,style: sfProMediumTextstyle,),
+                                const SizedBox(height: 20,),
+                              ],
+
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(
-                                left: 20, right: 20, bottom: 20),
-                            // padding: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                                color: AppColors.appLightColor,
-                                border: Border.all(color: AppColors.whiteColor),
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Form(
-                              key: globalFormKey,
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 10, bottom: 10),
-                                    child: Text(
-                                      "Registration",
-                                      style: comfortaaTextstyle.copyWith(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w900,
-                                          color: AppColors.headingColor),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, bottom: 5, right: 10),
-                                    child: CustomTextFormField(
-                                      onChanged: (v) {
-                                        passwordFocusNode.unfocus();
-                                        confirmPasswordFocusNode.unfocus();
-                                        authController.update();
-                                      },
-                                      hintText: "First Name",
-                                      controller: firstNameController,
-                                      fillColor: Colors.transparent,
-                                      textInputAction: TextInputAction.next,
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return "firstIsRequired".tr;
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, bottom: 5, right: 10, top: 5),
-                                    child: CustomTextFormField(
-                                      onChanged: (v) {
-                                        passwordFocusNode.unfocus();
-                                        confirmPasswordFocusNode.unfocus();
-                                        authController.update();
-                                      },
-                                      hintText: "Last Name",
-                                      controller: lastNameController,
-                                      fillColor: Colors.transparent,
-                                      textInputAction: TextInputAction.next,
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return "lastIsRequired".tr;
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, bottom: 5, right: 10, top: 5),
-                                    child: CustomTextFormField(
-                                      onChanged: (v) {
-                                        passwordFocusNode.unfocus();
-                                        confirmPasswordFocusNode.unfocus();
-                                        authController.update();
-                                      },
-                                      hintText: "Email",
-                                      controller: emailController,
-                                      fillColor: Colors.transparent,
-                                      textInputAction: TextInputAction.next,
-                                      validator: (value) =>
-                                          validateEmail(emailController.text),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, bottom: 5, right: 10, top: 5),
-                                    child: CustomTextFormField(
-                                      onTapOutside: (a) {
-                                        passwordFocusNode.unfocus();
-                                        authController.update();
-                                      },
-                                      onFieldSubmitted: (v) {
-                                        passwordFocusNode.unfocus();
-                                        confirmPasswordFocusNode.requestFocus();
-                                        authController.update();
-                                      },
-                                      onSaved: (v) {
-                                        passwordFocusNode.unfocus();
-                                        confirmPasswordFocusNode.requestFocus();
-                                        authController.update();
-                                      },
-                                      onEditingComplete: () {
-                                        passwordFocusNode.unfocus();
-                                        authController.update();
-                                      },
-                                      hintText: "Choose a password",
-                                      controller: passwordController,
-                                      fillColor: Colors.transparent,
-                                      focusNode: passwordFocusNode,
-                                      validator: (password) => validatePassword(
-                                          passwordController.text),
-                                      textInputAction: TextInputAction.next,
-                                      suffixIcon: GestureDetector(
-                                        onTap: () async {
-                                          authController
-                                                  .isRegisterPasswordObscureText
-                                                  .value =
-                                              !authController
-                                                  .isRegisterPasswordObscureText
-                                                  .value;
-                                        },
-                                        child: Icon(
-                                          authController
-                                                  .isRegisterPasswordObscureText
-                                                  .value
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
-                                          color:
-                                              AppColors.buttonBackgroundColor,
-                                        ),
-                                      ),
-                                      obscureText: authController
-                                          .isRegisterPasswordObscureText.value,
-                                    ),
-                                  ),
-                                  if (passwordController.text.isNotEmpty &&
-                                      passwordFocusNode.hasPrimaryFocus == true)
-                                    Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10,
-                                            bottom: 5,
-                                            right: 10,
-                                            top: 5),
-                                        child: buildValidationList(
-                                            passwordController)),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, bottom: 5, right: 10, top: 5),
-                                    child: CustomTextFormField(
-                                      focusNode: confirmPasswordFocusNode,
-                                      hintText: "Confirm your password",
-                                      controller: confirmPasswordController,
-                                      fillColor: Colors.transparent,
-                                      textInputAction: TextInputAction.next,
-                                      validator: (password) {
-                                        if (confirmPasswordController
-                                            .text.isEmpty) {
-                                          return "confirmpasswordIsRequired".tr;
-                                        }
-                                        if (passwordController.text !=
-                                            confirmPasswordController.text) {
-                                          return "Password & Confirm Password must be same";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      onChanged: (v) {
-                                        passwordFocusNode.unfocus();
-                                        authController.update();
-                                      },
-                                      onTapOutside: (a) {
-                                        confirmPasswordFocusNode.unfocus();
-                                        authController.update();
-                                      },
-                                      onFieldSubmitted: (v) {
-                                        confirmPasswordFocusNode.unfocus();
 
-                                        authController.update();
-                                      },
-                                      onSaved: (v) {
-                                        confirmPasswordFocusNode.unfocus();
-                                        authController.update();
-                                      },
-                                      onEditingComplete: () {
-                                        confirmPasswordFocusNode.unfocus();
-                                        authController.update();
-                                      },
-                                      suffixIcon: GestureDetector(
-                                        onTap: () async {
-                                          authController
-                                                  .isRegisterConfirmPasswordObscureText
-                                                  .value =
-                                              !authController
-                                                  .isRegisterConfirmPasswordObscureText
-                                                  .value;
-                                        },
-                                        child: Icon(
-                                          authController
-                                                  .isRegisterConfirmPasswordObscureText
-                                                  .value
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
-                                          color:
-                                              AppColors.buttonBackgroundColor,
+
+
+                          Padding(
+                            padding:  EdgeInsets.only(top: kHeight*0.25),
+                            child: Center(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Container(
+
+
+                                  width: kWidth*0.9,
+
+                                  decoration: BoxDecoration(
+                                      color: AppColors.appBackgroundColor,
+
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Form(
+                                    key: globalFormKey,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(height: 20,),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 20.0),
+                                          child: Text("name".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2,)),
                                         ),
-                                      ),
-                                      obscureText: authController
-                                          .isRegisterConfirmPasswordObscureText
-                                          .value,
-                                    ),
-                                  ),
-                                  if (confirmPasswordController
-                                          .text.isNotEmpty &&
-                                      confirmPasswordFocusNode
-                                              .hasPrimaryFocus ==
-                                          true)
-                                    Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10,
-                                            bottom: 5,
-                                            right: 10,
-                                            top: 5),
-                                        child: buildValidationList(
-                                            confirmPasswordController)),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.only(left: 10, bottom: 0, right: 10, top: 5),
-                                  //   child: CustomTextFormField(
-                                  //     onChanged: (v) {
-                                  //       passwordFocusNode.unfocus();
-                                  //       confirmPasswordFocusNode.unfocus();
-                                  //       authController.update();
-                                  //     },
-                                  //     hintText: "Phone Number",
-                                  //     controller: phoneNumberController,
-                                  //     maxLength: 10,
-                                  //     keyboardType: TextInputType.number,
-                                  //     fillColor: Colors.transparent,
-                                  //     textInputAction: TextInputAction.done,
-                                  //     onFieldSubmitted: (v) => RegisterSubmit(),
-                                  //     validator: (value) {
-                                  //       if (value == null || value.isEmpty) {
-                                  //         return "phonenumber".tr;
-                                  //       }
-                                  //       if (value.length < 10) {
-                                  //         return "phonenumberdigit".tr;
-                                  //       }
-                                  //       return null;
-                                  //     },
-                                  //   ),
-                                  // ),
-                                  CustomButton(
-                                    onPressed: () => RegisterSubmit(),
-                                    padding: const EdgeInsets.only(
-                                        left: 30,
-                                        top: 10,
-                                        bottom: 10,
-                                        right: 30),
-                                    borderRadius: BorderRadius.circular(20),
-                                    childWidget: Text(
-                                      "REGISTER",
-                                      style: customButtonTextstyle,
-                                    ),
-                                  ),
-                                  Container(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      alignment: Alignment.center,
-                                      child: const Text("OR",
-                                          style: TextStyle(
-                                              color: AppColors.headingColor,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 28))),
-                                  Platform.isIOS
-                                      ? CustomIconButton(
-                                          onPressed: () async {
-                                            authController.loginWithApple();
-                                          },
-                                          bgColor: AppColors.appLightColor,
-                                          iconWidget: Image.asset(
-                                              AppImages.appleIcon,
-                                              height: 25),
-                                          margin: const EdgeInsets.only(
-                                              bottom: 10, top: 0),
-                                          padding: const EdgeInsets.only(
-                                              left: 28,
-                                              top: 10,
-                                              bottom: 10,
-                                              right: 28),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          // iconData:  Image.asset(AppImages.googleIcon, height: 30),
-                                          borderColor: AppColors.subtitleColor,
-                                          childWidget: Text(
-                                              "\tContinue with Apple   ",
-                                              style: customButtonTextstyle
-                                                  .copyWith(
-                                                      color: AppColors
-                                                          .subtitleColor)),
-                                        )
-                                      : const SizedBox.shrink(),
-                                  CustomIconButton(
-                                    onPressed: () async {
-                                      User? user = await authController
-                                          .signInWithGoogle();
-                                      if (user != null) {
-                                        await authController
-                                            .register_new_account(
-                                                firstname: user.displayName
-                                                    .toString()
-                                                    .split(" ")
-                                                    .first
-                                                    .toString(),
-                                                lastname: user.displayName
-                                                    .toString()
-                                                    .split(" ")
-                                                    .last
-                                                    .toString(),
-                                                email: user.email.toString(),
-                                                phone:
-                                                    user.phoneNumber.toString(),
-                                                // username: user.email.toString(),
-                                                password: "",
-                                                type: socialMediaType
-                                                    .google.name);
-                                      }
-                                    },
-                                    bgColor: AppColors.appLightColor,
-                                    iconWidget: Image.asset(
-                                        AppImages.googleIcon,
-                                        height: 25),
-                                    margin: const EdgeInsets.only(
-                                        bottom: 10, top: 0),
-                                    padding: const EdgeInsets.only(
-                                        left: 34,
-                                        top: 10,
-                                        bottom: 10,
-                                        right: 34),
-                                    borderRadius: BorderRadius.circular(20),
-                                    // iconData:  Image.asset(AppImages.googleIcon, height: 30),
-                                    borderColor: AppColors.subtitleColor,
-                                    childWidget: Text("Continue with Google",
-                                        style: customButtonTextstyle.copyWith(
-                                            color: AppColors.subtitleColor)),
-                                  ),
-                                  // CustomIconButton(
-                                  //   onPressed: () async {
-                                  //     authController.loginWithFacebook();
-                                  //   },
-                                  //   bgColor: AppColors.appLightColor,
-                                  //   iconWidget: Image.asset(AppImages.facebookIcon, height: 25),
-                                  //   margin: const EdgeInsets.only(bottom: 10, top: 0),
-                                  //   padding: const EdgeInsets.only(left: 30, top: 10, bottom: 10, right: 30),
-                                  //   borderRadius: BorderRadius.circular(20),
-                                  //   // iconData:  Image.asset(AppImages.googleIcon, height: 30),
-                                  //   borderColor: AppColors.subtitleColor,
-                                  //   childWidget:
-                                  //       Text("Continue with Facebook", style: customButtonTextstyle.copyWith(color: AppColors.subtitleColor)),
-                                  // ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 15,
-                                        right: 15,
-                                        bottom: 15,
-                                        top: 15),
-                                    child: RichText(
-                                        textAlign: TextAlign.center,
-                                        text: TextSpan(
-                                          text:
-                                              'By tapping Continue, Register or logging into an existing burble account, you agree to our ',
-                                          style: const TextStyle(
-                                              color: AppColors.headingColor,
-                                              fontSize: 14),
+                                        const SizedBox(height: 5,),
+                                        Center(
+                                          child: CustomTextFormField(
+                                            textInputAction: TextInputAction.next,
+                                            width: kWidth*0.8,
+                                            hintText: "name".tr,
+                                            borderRadiusAll: const BorderRadius.all(Radius.circular(12)),
+                                            focusNode: nameFocusNode,
+                                            controller: nameController,
+                                            fillColor: AppColors.appBackgroundColor,
+                                            borderColor:nameFocusNode.hasFocus?AppColors.primaryColor:AppColors.appWhiteGreyColor,
+                                            validator: (string) {
+                                              if (string == null || string.isEmpty) {
+                                                return "nameIsRequired".tr;
+                                              }
+                                              return null;
+                                            },
+                                            onFieldSubmitted: (value) {
+                                              usernmaeFormKey.currentState!.validate();
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20,),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 20.0),
+                                          child: Text("gender".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2,)),
+                                        ),
+                                        const SizedBox(height: 5,),
+                                        Center(
+                                          child: CustomDropDownFormField(
+                                            textInputAction: TextInputAction.next,
+                                            width: kWidth*0.8,
+                                            hintText: "gender".tr,
+                                            borderRadiusAll: const BorderRadius.all(Radius.circular(12)),
+                                            focusNode: genderFocusNode,
+                                            controller: genderController,
+                                            fillColor: AppColors.appBackgroundColor,
+                                            items: ['Male', 'Female']
+                                                .map((option) => DropdownMenuItem(
+                                              value: option,
+                                              child: Text(option),
+                                            ))
+                                                .toList(),
+                                            onChanged: (value){},
+                                            borderColor:genderFocusNode.hasFocus?AppColors.primaryColor:AppColors.appWhiteGreyColor,
+                                            validator: (string) {
+                                              if (string == null ) {
+                                                return "genderIsRequired".tr;
+                                              }
+                                              return null;
+                                            },
+                                            onFieldSubmitted: (value) {
+                                              usernmaeFormKey.currentState!.validate();
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20,),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 20.0),
+                                          child: Text("email".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2,)),
+                                        ),
+                                        const SizedBox(height: 5,),
+                                        Center(
+                                          child: CustomTextFormField(
+                                            textInputAction: TextInputAction.next,
+                                            width: kWidth*0.8,
+                                            hintText: "email".tr,
+                                            borderRadiusAll: const BorderRadius.all(Radius.circular(12)),
+                                            focusNode: emailFocusNode,
+                                            controller: emailController,
+                                            fillColor: AppColors.appBackgroundColor,
+                                            borderColor: emailFocusNode.hasFocus?AppColors.primaryColor:AppColors.appWhiteGreyColor,
+                                            validator: (string) {
+                                              if (string == null || string.isEmpty) {
+                                                return "emailIsRequired".tr;
+                                              }
+                                              return null;
+                                            },
+                                            onFieldSubmitted: (value) {
+                                              usernmaeFormKey.currentState!.validate();
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20,),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 20.0),
+                                          child: Text("phone".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2,)),
+                                        ),
+                                        const SizedBox(height: 5,),
+                                        Center(
+                                          child: CustomTextFormField(
+                                            textInputAction: TextInputAction.next,
+                                            width: kWidth*0.8,
+                                            keyboardType: TextInputType.number,
+                                            hintText: "phone".tr,
+                                            borderRadiusAll: const BorderRadius.all(Radius.circular(12)),
+                                            focusNode: phoneFocusNode,
+                                            controller: phoneController,
+                                            fillColor: AppColors.appBackgroundColor,
+                                            borderColor:phoneFocusNode.hasFocus?AppColors.primaryColor:AppColors.appWhiteGreyColor,
+                                            validator: (string) {
+                                              if (string == null || string.isEmpty) {
+                                                return "phoneIsRequired".tr;
+                                              }
+                                              return null;
+                                            },
+                                            onFieldSubmitted: (value) {
+                                              usernmaeFormKey.currentState!.validate();
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20,),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 20.0),
+                                          child: Text("password".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2,)),
+                                        ),
+                                        const SizedBox(height: 5,),
+                                        Center(
+                                          child: CustomTextFormField(
+                                            hintText: "password".tr,
+                                            width: kWidth*0.8,
+                                            focusNode: passwordFocusNode,
+                                            borderRadiusAll: const BorderRadius.all(Radius.circular(12)),
+                                            controller: passwordController,
+                                            fillColor: AppColors.appBackgroundColor,
+                                            borderColor: passwordFocusNode.hasFocus?AppColors.primaryColor:AppColors.appWhiteGreyColor,
+                                            validator: (string) {
+                                              if (string == null || string.isEmpty) {
+                                                return "passwordIsRequired".tr;
+                                              }
+                                              return null;
+                                            },
+                                            suffixIcon: GestureDetector(
+                                              onTap: () async {
+                                                authController
+                                                    .isLoginPasswordObscureText.value =
+                                                !authController
+                                                    .isLoginPasswordObscureText.value;
+                                              },
+                                              child: Icon(
+                                                authController
+                                                    .isLoginPasswordObscureText.value
+                                                    ? Icons.visibility_outlined
+                                                    : Icons.visibility_off_outlined,
+                                                color: AppColors.blackColor,
+                                              ),
+                                            ),
+                                            obscureText: authController
+                                                .isLoginPasswordObscureText.value,
+                                          )
+                                        ),
+                                        const SizedBox(height: 20,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            TextSpan(
-                                                text: 'Terms & Conditions',
-                                                style: const TextStyle(
-                                                  color: AppColors.headingColor,
-                                                  decoration:
-                                                      TextDecoration.underline,
-                                                ),
-                                                recognizer:
-                                                    TapGestureRecognizer()
-                                                      ..onTap = () => Get.to(
-                                                          () => Custome_Webview(
-                                                                url:
-                                                                    'https://goburble.com/terms',
-                                                                paymentURL:
-                                                                    false,
-                                                              ))),
-                                            const TextSpan(
-                                              text:
-                                                  ' and acknowledge that you have read our ',
+                                            const SizedBox(width: 20,),
+                                            Container(
+                                              height: 19,
+                                              width: 19,
+                                              child: Checkbox(
+                                                  activeColor: AppColors.primaryColor,
+                                                  checkColor: AppColors.appBackgroundColor,
+                                                  value: authController
+                                                  .isTermsCondition.value, onChanged: (value){
+                                                authController
+                                                    .isTermsCondition(value);
+                                              }),
                                             ),
-                                            TextSpan(
-                                                text: 'Privacy Policy',
-                                                style: const TextStyle(
-                                                  color: AppColors.headingColor,
-                                                  decoration:
-                                                      TextDecoration.underline,
-                                                ),
-                                                recognizer:
-                                                    TapGestureRecognizer()
-                                                      ..onTap = () => Get.to(
-                                                          () => Custome_Webview(
-                                                                url:
-                                                                    'https://goburble.com/privacy',
-                                                                paymentURL:
-                                                                    false,
-                                                              ))),
-                                            const TextSpan(
-                                              text:
-                                                  ', which explains how to opt out of offers and promos.',
-                                            ),
+                                            const SizedBox(width: 5,),
+                                            Text(
+                                                "agreeWith".tr,
+                                                style: sfProMediumTextstyle.copyWith(color: AppColors.blackColor,fontSize: 12)),
+                                           const SizedBox(width: 5,),
+                                            Text(
+                                                "termsCondition".tr,
+                                                style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2,fontSize: 12,decoration: TextDecoration.underline,decorationColor:AppColors.appWhiteGreyColor2 )),
+                                             Spacer(),
+                                            Text("forgotPassword".tr,style: sfProSemiBoldTextstyle.copyWith(color: AppColors.primaryColor,fontSize: 12),),
+                                            const SizedBox(width: 20,)
                                           ],
-                                        )),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(top: 10, left: 10),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text('Need an account?',
-                                          style: TextStyle(
-                                              color: AppColors.subtitleColor,
-                                              fontSize: 16)),
+                                        ),
+                                        const SizedBox(height: 20,),
+                                        Center(
+                                          child: CustomButton(
+                                            onPressed: () => RegisterSubmit(),
+                                            height: 50,
+                                            width: kWidth*0.8,
+                                            borderRadius: BorderRadius.circular(12),
+                                            bgColor: AppColors.primaryColor,
+                                            childWidget:
+                                            Center(child: Text("signUp".tr, style: sfProMediumTextstyle.copyWith(fontSize: 16))),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text("alreadyHaveAccount".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2),),
+                                            const SizedBox(width: 10,),
+                                            InkWell(
+                                                onTap: (){
+                                                  Get.toNamed(Routes.LOGIN);
+                                                },
+                                                child: Text("signIn".tr,style: sfProSemiBoldTextstyle.copyWith(color: AppColors.primaryColor),)),
+                                          ],
+                                        ),
+
+
+                                        const SizedBox(height: 20,),
+
+
+                                      ],
                                     ),
                                   ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: CustomButton(
-                                      bgColor: AppColors.appLightColor,
-                                      borderColor: AppColors.headingColor,
-                                      onPressed: () {
-                                        Get.offAllNamed(Routes.LOGIN);
-                                      },
-                                      margin: const EdgeInsets.only(
-                                          bottom: 20, top: 5),
-                                      padding: const EdgeInsets.only(
-                                          left: 25,
-                                          top: 10,
-                                          bottom: 10,
-                                          right: 20),
-                                      borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(20),
-                                          bottomRight: Radius.circular(20)),
-                                      childWidget: Text(
-                                        "LOGIN",
-                                        style: customButtonTextstyle.copyWith(
-                                            color: AppColors.subtitleColor),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
                           ),
@@ -584,16 +412,8 @@ class _RegisterViewState extends State<RegisterView> {
 
     if (formkey) {
       ///login endpoint
-      await authController
-          .register_new_account(
-              firstname: firstNameController.text.trim(),
-              lastname: lastNameController.text.trim(),
-              email: emailController.text.trim(),
-              phone: phoneNumberController.text.trim(),
-              // username: usernameController.text.trim(),
-              password: passwordController.text.trim(),
-              type: socialMediaType.manuel.toString())
-          .then((_) {});
+    Get.toNamed(Routes.OTP_VIEW);
+
     }
   }
 

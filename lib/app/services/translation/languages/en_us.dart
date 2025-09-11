@@ -1,16 +1,31 @@
 Map<String, String> enUS = {
   "dubFeed": "DubFeed",
+
+
+  //******************************************************************************************
+  //SPLASH
+  //******************************************************************************************
+  "pickupMyCar": "Pick Up My Car, Hol-Bring-Service für",
+  "pickupMyCar2": "Privat- und Geschäftskunden ",
+  "splashSubtitle": "Vereinfachter Service für Autokunden",
+
+
+
+
+
   //******************************************************************************************
   //LOGIN
   //******************************************************************************************
 
-  "helloAgain": "Hello Again!",
-  "welcomeBackMessage": "Welcome back you’ve been missed!",
-  "loginWithFaceID": "Login with Face ID",
-  "loginWithXBOX": "Login with XBOX",
-  "notAMember": "Not a member? ",
-  "registerNow": "Register now",
-  "login": "Login",
+  "loginTitle": "Sign in to your Account",
+  "loginSubTitle": "Enter your email and password to log in ",
+  "googleLogin": "Continue with Google",
+  "appleLogin": "Continue with Apple",
+  "loginWith": "Or login with",
+  "forgotPassword": "Forgot Password ?",
+  "signIn": "Sign In",
+  "notHaveAnAccount": "Don’t have an account?",
+  "signUp": "Sign Up",
   "email": "Email",
   "password": "Password",
   "confirmPassword": "Confirm Password",
@@ -18,9 +33,8 @@ Map<String, String> enUS = {
   "enterconfimpassword": "Confirm Password is required",
   "phonenumber": "Phone Number is required",
   "phonenumberdigit": "10 digit mobile number is required",
-  "usernameIsRequired": "Username is required",
-  "emailIsRequired": "Email is required",
   "nameIsRequired": "Name is required",
+  "emailIsRequired": "Email is required",
   "msgIsRequired": "Message is required",
   "enterValidEmail": "Please enter valid email",
   "passwordIsRequired": "Password is required",
@@ -35,16 +49,18 @@ Map<String, String> enUS = {
   //******************************************************************************************
   //SIGNUP
   //******************************************************************************************
-
-  "XBOXUser": "XBOX User",
-  "nonXBOX": "Non XBOX",
-  "letsStart": "Lets Start!",
+  "signUpTitle": "Create Account",
+  "signUpSubTitle": "Create an account or log in to explore about our app",
+  "name": "Name",
+  "gender": "Gender",
+  "phone": "Phone",
   "userName": "Username",
-  "yourUserName": "Your username",
-  "yourEmail": "Your Email",
+  "agreeWith": "Agree with",
+  "termsCondition": "Terms & Condition",
   "yourPassword": "Your Password",
   "letsStartMessage": "Start your journey with us.",
-
+  "genderIsRequired": "Gender is required",
+  "phoneIsRequired": "Phone is required",
   "signUpWithXBOX": "Sign up with XBOX",
   "createAccount": "Create Account",
   "loginHere": "Login Here",
@@ -56,16 +72,37 @@ Map<String, String> enUS = {
       "Confirm Password should be more than or equal to 6 characters",
   "passwordMismatch": "Password and confirm password doesn't match",
 
+
+
+  //******************************************************************************************
+  //OTP
+  //******************************************************************************************
+  "otpTitle": "OTP Verification",
+  "otpSubTitle": "Secure your access in one step",
+  "verifyCode": "Verify Code",
+  "otpSubTitle2": "Please enter the code we just sent to email",
+  "notReceiveTheOtp": "Didn’t receive the OTP?",
+  "resendOtp": "Resend OTP",
+  "Verify": "Verify",
+
+
+
   //******************************************************************************************
   //FORGOT_PASSWORD
   //******************************************************************************************
 
-  "forgotPassword": "Forgot Password",
+  "forgotPasswordTitle": "Forgot Your Password",
+  "forgotPasswordSubTitle": "Your new password must be different",
+  "forgotPasswordSubTitle2": "from previously used password",
   "forgotPasswordMessage":
       "Enter the email address with your account and we'll send an email with confirmation to reset your password.",
   // "yourEmail": "Your Email",
 
-  "sendCode": "Send Code",
+  "submit": "Submit",
+
+
+
+
 
   //******************************************************************************************
   //FORGOT_PASSWORD_OTP
@@ -78,14 +115,14 @@ Map<String, String> enUS = {
   "otpRequired": "OTP Required",
   "enterValidOTP": "Enter valid OTP",
   //******************************************************************************************
-  //CREATE_NEW_PASSWORD
+  //CHANGE_PASSWPRD
   //******************************************************************************************
 
+  "changePasswordTitle": "New Password",
+  "changePasswordSubTitle": "Your new password must be different",
+  "changePasswordSubTitle2": "from previously used password",
   "createNewPassword": "Create New Password",
-  "resetPassword": "Reset Password",
-  "newPasswordPrompt":
-      "This password should different from the previous password.",
-  // "confirmPassword" : "Confirm Password",
+  //"confirmPassword" : "Confirm Password",
   // "yourPassword" : "Your password",
 
   "logout": "Logout",

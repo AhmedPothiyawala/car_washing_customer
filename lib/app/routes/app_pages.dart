@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/modules/authentication/bindings/auth_binding.dart';
 import 'package:go_burble_new/app/modules/authentication/views/forgot_password/forgot_password_view.dart';
-import 'package:go_burble_new/app/modules/authentication/views/forgot_username/forgot_username_view.dart';
 import 'package:go_burble_new/app/modules/authentication/views/login/login_view.dart';
 import 'package:go_burble_new/app/modules/authentication/views/register/register_view.dart';
 import 'package:go_burble_new/app/modules/authentication/views/splash_view.dart';
+
+import '../modules/authentication/views/change_password_view/change_password_view.dart';
+import '../modules/authentication/views/otp_view/otp_view.dart';
 
 part 'app_routes.dart';
 
@@ -37,8 +39,13 @@ class AppPages {
       binding: AuthBinding(),
     ),
     GetPage(
-      name: _Paths.FORGOT_USERNAME,
-      page: () => const ForgotUsernameView(),
+      name: _Paths.CHANGE_PASSWORD,
+      page: () => const ChangePasswordView(),
+      binding: AuthBinding(),
+    ),
+    GetPage(
+      name: _Paths.OTP_VIEW,
+      page: () => const OtpView(),
       binding: AuthBinding(),
     ),
   ];

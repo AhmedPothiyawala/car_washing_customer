@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/app_colors.dart';
+import '../data/text_styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final InputBorder? focusedBorder, enabledBorder, errorBorder;
@@ -26,7 +27,7 @@ class CustomTextFormField extends StatelessWidget {
   final BorderRadius? borderRadiusAll;
   final EdgeInsets? contentPadding;
   final ContentInsertionConfiguration? contentInsertionConfiguration;
-
+  final double? width;
   const CustomTextFormField(
       {super.key,
       this.hintText,
@@ -59,93 +60,90 @@ class CustomTextFormField extends StatelessWidget {
       this.borderRadiusAll,
       this.contentInsertionConfiguration,
       this.contentPadding,
+        this.width,
       this.readOnly});
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      maxLength: maxLength,
-      minLines: null,
-      onTapOutside: onTapOutside,
-      controller: controller,
-      focusNode: focusNode,
-      onChanged: onChanged,
-      onSaved: onSaved,
-      validator: validator,
-      readOnly: readOnly ?? false,
-      onFieldSubmitted: onFieldSubmitted,
-      onEditingComplete: onEditingComplete,
-      cursorColor: cursorColor ?? AppColors.subtitleColor,
-      style: textStyle ??
-          const TextStyle(
-            color: AppColors.subtitleColor,
-            decoration: TextDecoration.none,
-            decorationThickness: 0,
-          ),
-      keyboardType: keyboardType,
-      autovalidateMode: autoValidateMode,
-      textInputAction: textInputAction,
+    return Container(
+      width: width,
+      child: TextFormField(
+        maxLength: maxLength,
+        minLines: null,
+        onTapOutside: onTapOutside,
+        controller: controller,
+        focusNode: focusNode,
+        onChanged: onChanged,
+        onSaved: onSaved,
+        validator: validator,
+        readOnly: readOnly ?? false,
+        onFieldSubmitted: onFieldSubmitted,
+        onEditingComplete: onEditingComplete,
+        cursorColor: cursorColor ?? AppColors.subtitleColor,
+        style: textStyle ??
+            sfProRegularTextstyle.copyWith(fontSize: 16,color: AppColors.blackColor),
+        keyboardType: keyboardType,
+        autovalidateMode: autoValidateMode,
+        textInputAction: textInputAction,
 
-      obscureText: obscureText ?? false,
-      contentInsertionConfiguration: contentInsertionConfiguration,
+        obscureText: obscureText ?? false,
+        contentInsertionConfiguration: contentInsertionConfiguration,
 
-      maxLines: maxLines ?? (obscureText ?? false ? 1 : null),
-      // Allow unlimited number of lines for multiline input
-      decoration: decoration ??
-          InputDecoration(
-            // contentPadding: EdgeInsets.all(8.0),
-            contentPadding: contentPadding ??
-                const EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-            enabledBorder: enabledBorder ??
-                OutlineInputBorder(
-                  borderRadius: borderRadiusAll ??
-                      const BorderRadius.all(Radius.circular(20)),
-                  borderSide: BorderSide(
-                      color: borderColor ?? AppColors.buttonBackgroundColor,
-                      width: 2),
-                ),
-            focusedBorder: focusedBorder ??
-                OutlineInputBorder(
-                  borderRadius: borderRadiusAll ??
-                      const BorderRadius.all(Radius.circular(20)),
-                  borderSide: BorderSide(
-                      color: borderColor ?? AppColors.buttonBackgroundColor,
-                      width: 2),
-                ),
-            errorBorder: errorBorder ??
-                OutlineInputBorder(
-                  borderRadius: borderRadiusAll ??
-                      const BorderRadius.all(Radius.circular(20)),
-                  borderSide: const BorderSide(color: Colors.red, width: 2),
-                ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: borderRadiusAll ??
-                  const BorderRadius.all(Radius.circular(20)),
-              borderSide:
-                  BorderSide(color: borderColor ?? Colors.red, width: 1),
+        maxLines: maxLines ?? (obscureText ?? false ? 1 : null),
+        // Allow unlimited number of lines for multiline input
+        decoration: decoration ??
+            InputDecoration(
+              // contentPadding: EdgeInsets.all(8.0),
+
+              enabledBorder: enabledBorder ??
+                  OutlineInputBorder(
+                    borderRadius: borderRadiusAll ??
+                        const BorderRadius.all(Radius.circular(20)),
+                    borderSide: BorderSide(
+                        color: borderColor ?? AppColors.buttonBackgroundColor,
+                        width: 2),
+                  ),
+              focusedBorder: focusedBorder ??
+                  OutlineInputBorder(
+                    borderRadius: borderRadiusAll ??
+                        const BorderRadius.all(Radius.circular(20)),
+                    borderSide: BorderSide(
+                        color: borderColor ?? AppColors.buttonBackgroundColor,
+                        width: 2),
+                  ),
+              errorBorder: errorBorder ??
+                  OutlineInputBorder(
+                    borderRadius: borderRadiusAll ??
+                        const BorderRadius.all(Radius.circular(20)),
+                    borderSide: const BorderSide(color: Colors.red, width: 2),
+                  ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: borderRadiusAll ??
+                    const BorderRadius.all(Radius.circular(20)),
+                borderSide:
+                    BorderSide(color: borderColor ?? Colors.red, width: 1),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: borderRadiusAll ??
+                    const BorderRadius.all(Radius.circular(20)),
+                borderSide:
+                    BorderSide(color: borderColor ?? Colors.red, width: 1),
+              ),
+              errorMaxLines: 2,
+              errorStyle: const TextStyle(
+                  color: Colors.red, fontSize: 12, fontWeight: FontWeight.bold),
+
+              prefixIcon: prefixIcon,
+              suffixIcon: suffixIcon,
+
+              // errorStyle: poppinsTextStyle.copyWith(fontSize: 10, color: AppColors.errorColor),
+              hintText: hintText,
+              hintStyle:
+                  hintStyle ??  sfProRegularTextstyle.copyWith(fontSize: 16,color: AppColors.appWhiteGreyColor),
+              fillColor: fillColor,
+              filled: filled ?? true,
             ),
-            border: OutlineInputBorder(
-              borderRadius: borderRadiusAll ??
-                  const BorderRadius.all(Radius.circular(20)),
-              borderSide:
-                  BorderSide(color: borderColor ?? Colors.red, width: 1),
-            ),
-            errorMaxLines: 2,
-            errorStyle: const TextStyle(
-                color: Colors.red, fontSize: 12, fontWeight: FontWeight.bold),
-
-            prefixIcon: prefixIcon,
-            suffixIcon: suffixIcon,
-
-            // errorStyle: poppinsTextStyle.copyWith(fontSize: 10, color: AppColors.errorColor),
-            hintText: hintText,
-            hintStyle:
-                hintStyle ?? const TextStyle(color: AppColors.subtitleColor),
-            fillColor: fillColor,
-            filled: filled ?? true,
-          ),
+      ),
     );
   }
 }

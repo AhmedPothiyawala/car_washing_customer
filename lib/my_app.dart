@@ -76,7 +76,7 @@ class MyAppState extends State<MyApp> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        dialogTheme: const DialogTheme().copyWith(
+        dialogTheme: const DialogThemeData().copyWith(
           backgroundColor: AppColors.appBackgroundColor,
         ),
         fontFamily: 'Comfortaa',

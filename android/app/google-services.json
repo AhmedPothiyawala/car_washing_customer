@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1013801564077",
+    "project_id": "pickupmycar-c01db",
+    "storage_bucket": "pickupmycar-c01db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013801564077:android:94b6fb3bacde1be8bf1324",
+        "android_client_info": {
+          "package_name": "com.car.washing.car_washing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX1BPYzzx9keyCePfdysMXS79KgnTbUuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

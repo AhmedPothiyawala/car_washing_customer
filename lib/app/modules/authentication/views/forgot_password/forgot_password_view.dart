@@ -7,6 +7,7 @@ import '../../../../data/app_images.dart';
 import '../../../../data/text_styles.dart';
 import '../../../../data/utils.dart';
 // import '../../../../widgets/custom_text_form_field.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../../widgets/custom_button.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import '../../controllers/auth_controller.dart';
@@ -19,123 +20,149 @@ class ForgotPasswordView extends StatefulWidget {
 }
 
 class _ForgotPasswordViewState extends State<ForgotPasswordView> {
-  final _emailController = TextEditingController();
+  final phoneController = TextEditingController();
   final authController = Get.find<AuthController>();
-  final emailFormKey = GlobalKey<FormState>();
-
+  final globalFormKey = GlobalKey<FormState>();
+  final phoneFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.appBackgroundColor,
+        backgroundColor: AppColors.secondaryColor,
         body: SingleChildScrollView(
-          child: Column(
+          child: Stack(
             children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 25, top: 20),
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      color: AppColors.whiteColor,
-                    ),
-                  ),
+
+              Container(
+                height: kHeight*0.3,
+                width:kWidth,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(image: AssetImage(AppImages.mainBg),fit: BoxFit.fill)
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, bottom: 20, top: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: Center(
-                        child: Image.asset(
-                          AppImages.burbleNewLogo,
-                          width: 200,
-                        ),
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: InkWell(
+                        onTap: (){
+                          Get.back();
+                        },
+                        child: const Align(
+                            alignment: Alignment.topLeft,
+                            child: Icon(Icons.arrow_back,color: AppColors.appBackgroundColor,)),
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.all(20),
-                      padding: const EdgeInsets.all(20),
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(image: AssetImage(AppImages.appIcon))
+                      ),
+                    ),
+                    const SizedBox(height: 20,),
+                    Text("forgotPasswordTitle".tr,style: sfProBoldTextstyle,),
+                    const SizedBox(height: 20,),
+                    Text("forgotPasswordSubTitle".tr,style: sfProMediumTextstyle,),
+                    const SizedBox(height: 20,),
+                    Text("forgotPasswordSubTitle2".tr,style: sfProMediumTextstyle,),
+                    const SizedBox(height: 20,),
+                  ],
+
+                ),
+              ),
+
+
+
+              Padding(
+                padding:  EdgeInsets.only(top: kHeight*0.28),
+                child: Center(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Container(
+
+
+                      width: kWidth*0.9,
+
                       decoration: BoxDecoration(
-                          color: AppColors.appLightColor,
-                          border: Border.all(color: AppColors.whiteColor),
-                          borderRadius: BorderRadius.circular(20)),
+                          color: AppColors.appBackgroundColor,
+
+                          borderRadius: BorderRadius.circular(10)),
                       child: Form(
-                        key: emailFormKey,
+                        key: globalFormKey,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Time to Reset Your Password",
-                                softWrap: true,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: AppColors.headingColor,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w900)),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 20),
-                              child: Text(
-                                  "Oh no! It happens to the best of us. No worries, we've got your back. Please enter the email associated with your account, and we'll send you a link to rest your password.",
-                                  softWrap: true,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: AppColors.subtitleColor,
-                                      fontSize: 16)),
-                            ),
+                            const SizedBox(height: 20,),
+
+
+
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20, bottom: 20),
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: Text("phone".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2,)),
+                            ),
+                            const SizedBox(height: 5,),
+                            Center(
                               child: CustomTextFormField(
-                                hintText: "email",
-                                controller: _emailController,
-                                fillColor: Colors.transparent,
-                                validator: (value) =>
-                                    validateEmail(_emailController.text),
-                                onFieldSubmitted: (value) => submit(),
-                                hintStyle: const TextStyle(color: Colors.grey),
+                                textInputAction: TextInputAction.next,
+                                width: kWidth*0.8,
+                                keyboardType: TextInputType.number,
+                                hintText: "phone".tr,
+                                borderRadiusAll: const BorderRadius.all(Radius.circular(12)),
+                                focusNode: phoneFocusNode,
+                                controller: phoneController,
+                                fillColor: AppColors.appBackgroundColor,
+                                borderColor:phoneFocusNode.hasFocus?AppColors.primaryColor:AppColors.appWhiteGreyColor,
+                                validator: (string) {
+                                  if (string == null || string.isEmpty) {
+                                    return "phoneIsRequired".tr;
+                                  }
+                                  return null;
+                                },
+                                onFieldSubmitted: (value) {
+
+                                },
                               ),
                             ),
-                            CustomButton(
-                              onPressed: () => submit(),
-                              padding: const EdgeInsets.only(
-                                  left: 30, top: 10, bottom: 10, right: 30),
-                              borderRadius: BorderRadius.circular(20),
-                              childWidget: Text(
-                                "SEND",
-                                style: customButtonTextstyle,
+                            const SizedBox(height: 20,),
+                            Center(
+                              child: CustomButton(
+                                onPressed: () => submit(),
+                                height: 50,
+                                width: kWidth*0.8,
+                                borderRadius: BorderRadius.circular(12),
+                                bgColor: AppColors.primaryColor,
+                                childWidget:
+                                Center(child: Text("submit".tr, style: sfProMediumTextstyle.copyWith(fontSize: 16))),
                               ),
                             ),
+
+
+                            const SizedBox(height: 20,),
+
+
                           ],
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ],
           ),
-        ),
+        )
       ),
     );
   }
 
   Future<void> submit() async {
-    bool isEmailValid = emailFormKey.currentState!.validate();
+    bool isMobileValid = globalFormKey.currentState!.validate();
 
-    if (isEmailValid) {
-      await authController
-          .forgotPassword(
-            email: _emailController.text.trim(),
-          )
-          .then((_) {});
+    if (isMobileValid) {
+      Get.toNamed(Routes.OTP_VIEW);
+
     }
   }
 }

@@ -51,24 +51,20 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCHP_kNKVVVlQyiZSAjU5gJP8qYmnsSseA',
-    appId: '1:500250036137:android:e027878a579021ddb6a6b8',
-    messagingSenderId: '500250036137',
-    projectId: 'burble-life-e6801',
-    storageBucket: 'burble-life-e6801.firebasestorage.app',
+    apiKey: 'AIzaSyBX1BPYzzx9keyCePfdysMXS79KgnTbUuE',
+    appId: '1:1013801564077:android:94b6fb3bacde1be8bf1324',
+    messagingSenderId: '1013801564077',
+    projectId: 'pickupmycar-c01db',
+    storageBucket: 'pickupmycar-c01db.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDYuRDdhMQC4bLLvoOt4zqZ2boQKfNTCQE',
-    appId: '1:500250036137:ios:4c1cffc6c55095eab6a6b8',
-    messagingSenderId: '500250036137',
-    projectId: 'burble-life-e6801',
-    storageBucket: 'burble-life-e6801.firebasestorage.app',
-    androidClientId:
-        '500250036137-3ohqa7gc4hv0eu67je664jt55vvnnknh.apps.googleusercontent.com',
-    iosClientId:
-        '500250036137-0u3as5ffski3nb8qe4mnvq7ph9jn6g7r.apps.googleusercontent.com',
-    iosBundleId: 'com.burblelife.app',
+    apiKey: 'AIzaSyCg4osiXRPddFSIQxgY2Nz8O4DbLSuIo-k',
+    appId: '1:1013801564077:ios:5afdfa67f5148c2abf1324',
+    messagingSenderId: '1013801564077',
+    projectId: 'pickupmycar-c01db',
+    storageBucket: 'pickupmycar-c01db.firebasestorage.app',
+    iosBundleId: 'com.pickupmycar.customer',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
