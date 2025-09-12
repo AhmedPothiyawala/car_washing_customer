@@ -1,17 +1,12 @@
 Map<String, String> enUS = {
   "dubFeed": "DubFeed",
 
-
   //******************************************************************************************
   //SPLASH
   //******************************************************************************************
   "pickupMyCar": "Pick Up My Car, Hol-Bring-Service für",
   "pickupMyCar2": "Privat- und Geschäftskunden ",
   "splashSubtitle": "Vereinfachter Service für Autokunden",
-
-
-
-
 
   //******************************************************************************************
   //LOGIN
@@ -72,8 +67,6 @@ Map<String, String> enUS = {
       "Confirm Password should be more than or equal to 6 characters",
   "passwordMismatch": "Password and confirm password doesn't match",
 
-
-
   //******************************************************************************************
   //OTP
   //******************************************************************************************
@@ -84,8 +77,6 @@ Map<String, String> enUS = {
   "notReceiveTheOtp": "Didn’t receive the OTP?",
   "resendOtp": "Resend OTP",
   "Verify": "Verify",
-
-
 
   //******************************************************************************************
   //FORGOT_PASSWORD
@@ -99,10 +90,6 @@ Map<String, String> enUS = {
   // "yourEmail": "Your Email",
 
   "submit": "Submit",
-
-
-
-
 
   //******************************************************************************************
   //FORGOT_PASSWORD_OTP

@@ -60,12 +60,12 @@ class CustomTextFormField extends StatelessWidget {
       this.borderRadiusAll,
       this.contentInsertionConfiguration,
       this.contentPadding,
-        this.width,
+      this.width,
       this.readOnly});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       child: TextFormField(
         maxLength: maxLength,
@@ -81,7 +81,8 @@ class CustomTextFormField extends StatelessWidget {
         onEditingComplete: onEditingComplete,
         cursorColor: cursorColor ?? AppColors.subtitleColor,
         style: textStyle ??
-            sfProRegularTextstyle.copyWith(fontSize: 16,color: AppColors.blackColor),
+            sfProRegularTextstyle.copyWith(
+                fontSize: 16, color: AppColors.blackColor),
         keyboardType: keyboardType,
         autovalidateMode: autoValidateMode,
         textInputAction: textInputAction,
@@ -138,8 +139,9 @@ class CustomTextFormField extends StatelessWidget {
 
               // errorStyle: poppinsTextStyle.copyWith(fontSize: 10, color: AppColors.errorColor),
               hintText: hintText,
-              hintStyle:
-                  hintStyle ??  sfProRegularTextstyle.copyWith(fontSize: 16,color: AppColors.appWhiteGreyColor),
+              hintStyle: hintStyle ??
+                  sfProRegularTextstyle.copyWith(
+                      fontSize: 16, color: AppColors.appWhiteGreyColor),
               fillColor: fillColor,
               filled: filled ?? true,
             ),

@@ -40,8 +40,7 @@ class AuthController extends GetxController {
 
   final RxBool _isRegisterConfirmPasswordObscureText = true.obs;
   final RxBool _isTermsCondition = false.obs;
-  RxBool get isTermsCondition =>
-      _isTermsCondition;
+  RxBool get isTermsCondition => _isTermsCondition;
   RxBool get isRegisterConfirmPasswordObscureText =>
       _isRegisterConfirmPasswordObscureText;
 

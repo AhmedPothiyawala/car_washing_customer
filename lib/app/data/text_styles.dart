@@ -19,12 +19,11 @@ TextStyle poppinsRegularTextstyle = const TextStyle(
   fontFamily: "Poppins",
 );
 
-TextStyle poppinsSemiboldTextstyle =  const TextStyle(
-  color: AppColors.splashHeadingColor,
-  fontSize: 22,
-  fontFamily: "Poppins",
-  fontWeight: FontWeight.w600
-);
+TextStyle poppinsSemiboldTextstyle = const TextStyle(
+    color: AppColors.splashHeadingColor,
+    fontSize: 22,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w600);
 
 TextStyle sfProBoldTextstyle = const TextStyle(
   color: AppColors.appBackgroundColor,
@@ -37,9 +36,7 @@ TextStyle sfProSemiBoldTextstyle = const TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w600,
   fontFamily: "SfPro",
-
 );
-
 
 TextStyle sfProRegularTextstyle = const TextStyle(
   color: AppColors.appBackgroundColor,
@@ -54,4 +51,3 @@ TextStyle sfProMediumTextstyle = const TextStyle(
   fontFamily: "SfPro",
   fontWeight: FontWeight.w500,
 );
-

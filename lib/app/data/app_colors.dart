@@ -19,5 +19,4 @@ class AppColors {
   static const splashHeadingColor = Color(0XFF242424);
   static const blackColor = Color(0XFF000000);
   static const iconButtonBorderColor = Color(0XFFEFF0F6);
-
 }

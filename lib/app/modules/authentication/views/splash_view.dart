@@ -42,82 +42,83 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: AppColors.appBackgroundColor,
-      body:Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 40,),
-          Center(
-            child: Container(
-              height: 220,
-              width: kWidth*0.9,
-              decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage(AppImages.pickupMyCar),fit: BoxFit.fill)
+    return Scaffold(
+        backgroundColor: AppColors.appBackgroundColor,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 40,
+            ),
+            Center(
+              child: Container(
+                height: 220,
+                width: kWidth * 0.9,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(AppImages.pickupMyCar),
+                        fit: BoxFit.fill)),
               ),
             ),
-          ),
-    const SizedBox(height: 20,),
-
-    Center(
-      child: SizedBox(
-        width: kWidth*0.95,
-        child: RichText(
-          textAlign: TextAlign.center,
-        text: TextSpan(
-        text: "pickupMyCar".tr,
-        style: poppinsSemiboldTextstyle,
-        children:  [
-          const WidgetSpan(
-            child: SizedBox(width: 5),
-          ),
-        TextSpan(
-        text:"pickupMyCar2".tr,
-        style: poppinsSemiboldTextstyle.copyWith(color: AppColors.primaryColor)),
-
-        ],
-        ),
-        ),
-      ),
-    ),
-          Container(
-            width: kWidth*0.95,
-            alignment: Alignment.bottomRight,
-            child:  SvgPicture.asset(AppImages.splashVectorImage),
-          ),
-
-          const SizedBox(height: 10,),
-
-
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Text("splashSubtitle".tr,style: poppinsRegularTextstyle,),
-          ),
-
-          const Spacer(),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Container(
-                height: 350,
-                width: kWidth*0.8,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(image: AssetImage(AppImages.splashCarImage),fit: BoxFit.fill)
+            const SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: SizedBox(
+                width: kWidth * 0.95,
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    text: "pickupMyCar".tr,
+                    style: poppinsSemiboldTextstyle,
+                    children: [
+                      const WidgetSpan(
+                        child: SizedBox(width: 5),
+                      ),
+                      TextSpan(
+                          text: "pickupMyCar2".tr,
+                          style: poppinsSemiboldTextstyle.copyWith(
+                              color: AppColors.primaryColor)),
+                    ],
+                  ),
                 ),
-              )
-            ],
-          ),
-
-          const SizedBox(height: 20,),
-
-
-
-
-        ],
-      )
-    );
+              ),
+            ),
+            Container(
+              width: kWidth * 0.95,
+              alignment: Alignment.bottomRight,
+              child: SvgPicture.asset(AppImages.splashVectorImage),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Text(
+                "splashSubtitle".tr,
+                style: poppinsRegularTextstyle,
+              ),
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  height: 350,
+                  width: kWidth * 0.8,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(AppImages.splashCarImage),
+                          fit: BoxFit.fill)),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ));
   }
 }

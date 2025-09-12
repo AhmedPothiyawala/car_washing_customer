@@ -27,56 +27,56 @@ class CustomDropDownFormField extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final ContentInsertionConfiguration? contentInsertionConfiguration;
   final double? width;
-  final  List<DropdownMenuItem<dynamic>>? items;
+  final List<DropdownMenuItem<dynamic>>? items;
   const CustomDropDownFormField(
       {super.key,
-        this.hintText,
-        required this.controller,
-        this.focusNode,
-        this.onTapOutside,
-        this.onChanged,
-        this.prefixIcon,
-        this.suffixIcon,
-        this.focusedBorder,
-        this.enabledBorder,
-        this.errorBorder,
-        this.decoration,
-        this.fillColor,
-        this.filled,
-        this.cursorColor,
-        this.borderColor,
-        this.textStyle,
-        this.hintStyle,
-        this.obscureText,
-        this.keyboardType,
-        this.validator,
-        this.onSaved,
-        this.onFieldSubmitted,
-        this.onEditingComplete,
-        this.autoValidateMode,
-        this.maxLines,
-        this.maxLength,
-        this.textInputAction,
-        this.borderRadiusAll,
-        this.contentInsertionConfiguration,
-        this.contentPadding,
-        this.width,
-        this.readOnly,
-        this.items
-      });
+      this.hintText,
+      required this.controller,
+      this.focusNode,
+      this.onTapOutside,
+      this.onChanged,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.focusedBorder,
+      this.enabledBorder,
+      this.errorBorder,
+      this.decoration,
+      this.fillColor,
+      this.filled,
+      this.cursorColor,
+      this.borderColor,
+      this.textStyle,
+      this.hintStyle,
+      this.obscureText,
+      this.keyboardType,
+      this.validator,
+      this.onSaved,
+      this.onFieldSubmitted,
+      this.onEditingComplete,
+      this.autoValidateMode,
+      this.maxLines,
+      this.maxLength,
+      this.textInputAction,
+      this.borderRadiusAll,
+      this.contentInsertionConfiguration,
+      this.contentPadding,
+      this.width,
+      this.readOnly,
+      this.items});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       child: DropdownButtonFormField<dynamic>(
-
         focusNode: focusNode,
         onChanged: onChanged,
         onSaved: onSaved,
         validator: validator,
-        icon: const Icon(Icons.keyboard_arrow_down,color: AppColors.blackColor,),
-
+        icon: const Icon(
+          Icons.keyboard_arrow_down,
+          color: AppColors.blackColor,
+        ),
 
         style: textStyle ??
             const TextStyle(
@@ -118,13 +118,13 @@ class CustomDropDownFormField extends StatelessWidget {
                 borderRadius: borderRadiusAll ??
                     const BorderRadius.all(Radius.circular(20)),
                 borderSide:
-                BorderSide(color: borderColor ?? Colors.red, width: 1),
+                    BorderSide(color: borderColor ?? Colors.red, width: 1),
               ),
               border: OutlineInputBorder(
                 borderRadius: borderRadiusAll ??
                     const BorderRadius.all(Radius.circular(20)),
                 borderSide:
-                BorderSide(color: borderColor ?? Colors.red, width: 1),
+                    BorderSide(color: borderColor ?? Colors.red, width: 1),
               ),
               errorMaxLines: 2,
               errorStyle: const TextStyle(
@@ -136,10 +136,11 @@ class CustomDropDownFormField extends StatelessWidget {
               // errorStyle: poppinsTextStyle.copyWith(fontSize: 10, color: AppColors.errorColor),
               hintText: hintText,
               hintStyle:
-              hintStyle ?? const TextStyle(color: AppColors.subtitleColor),
+                  hintStyle ?? const TextStyle(color: AppColors.subtitleColor),
               fillColor: fillColor,
               filled: filled ?? true,
-            ), items: items,
+            ),
+        items: items,
       ),
     );
   }

@@ -1,23 +1,15 @@
-import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/app_colors.dart';
 import 'package:go_burble_new/app/data/app_images.dart';
 import 'package:go_burble_new/app/modules/authentication/controllers/auth_controller.dart';
 import 'package:go_burble_new/app/routes/app_pages.dart';
-import 'package:go_burble_new/app/widgets/custom_drop_down_form_field.dart';
 
 import '../../../../data/text_styles.dart';
 import '../../../../data/utils.dart';
 import '../../../../widgets/custom_button.dart';
-import '../../../../widgets/custom_text_form_field.dart';
-import '../../../webview/custom_webview.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
-
-
 
 class OtpView extends StatefulWidget {
   const OtpView({super.key});
@@ -48,7 +40,6 @@ class _OtpViewState extends State<OtpView> {
 
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -56,21 +47,19 @@ class _OtpViewState extends State<OtpView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: GestureDetector(
-        onTap: () {
-
-        },
-        child:  Scaffold(
+        onTap: () {},
+        child: Scaffold(
             backgroundColor: AppColors.secondaryColor,
-            body:     SingleChildScrollView(
+            body: SingleChildScrollView(
               child: Stack(
                 children: [
-
                   Container(
-                    height: kHeight*0.3,
-                    width:kWidth,
+                    height: kHeight * 0.3,
+                    width: kWidth,
                     decoration: const BoxDecoration(
-                        image: DecorationImage(image: AssetImage(AppImages.mainBg),fit: BoxFit.fill)
-                    ),
+                        image: DecorationImage(
+                            image: AssetImage(AppImages.mainBg),
+                            fit: BoxFit.fill)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,46 +67,53 @@ class _OtpViewState extends State<OtpView> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: InkWell(
-                            onTap: (){
+                            onTap: () {
                               Get.back();
                             },
                             child: const Align(
                                 alignment: Alignment.topLeft,
-                                child: Icon(Icons.arrow_back,color: AppColors.appBackgroundColor,)),
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: AppColors.appBackgroundColor,
+                                )),
                           ),
                         ),
                         Container(
                           height: 50,
                           width: 50,
                           decoration: const BoxDecoration(
-                              image: DecorationImage(image: AssetImage(AppImages.appIcon))
-                          ),
+                              image: DecorationImage(
+                                  image: AssetImage(AppImages.appIcon))),
                         ),
-                        const SizedBox(height: 20,),
-                        Text("otpTitle".tr,style: sfProBoldTextstyle,),
-                        const SizedBox(height: 20,),
-                        Text("otpSubTitle".tr,style: sfProMediumTextstyle,),
-                        const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "otpTitle".tr,
+                          style: sfProBoldTextstyle,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "otpSubTitle".tr,
+                          style: sfProMediumTextstyle,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
                       ],
-
                     ),
                   ),
-
-
-
                   Padding(
-                    padding:  EdgeInsets.only(top: kHeight*0.25),
+                    padding: EdgeInsets.only(top: kHeight * 0.25),
                     child: Center(
                       child: Align(
                         alignment: Alignment.center,
                         child: Container(
-
-
-                          width: kWidth*0.9,
-
+                          width: kWidth * 0.9,
                           decoration: BoxDecoration(
                               color: AppColors.appBackgroundColor,
-
                               borderRadius: BorderRadius.circular(10)),
                           child: Form(
                             key: globalFormKey,
@@ -125,32 +121,48 @@ class _OtpViewState extends State<OtpView> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const SizedBox(height: 20,),
+                                const SizedBox(
+                                  height: 20,
+                                ),
                                 Container(
                                   height: 64,
                                   width: 64,
                                   decoration: const BoxDecoration(
-                                      image: DecorationImage(image: AssetImage(AppImages.otpMobileImage))
-                                  ),
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              AppImages.otpMobileImage))),
                                 ),
-                                const SizedBox(height: 20,),
-                                Text("verifyCode".tr,style: sfProBoldTextstyle.copyWith(color: AppColors.blackColor,fontSize: 18)),
-                                const SizedBox(height: 20,),
-                                Text("otpSubTitle2".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.blackColor,fontSize: 12)),
-                                const SizedBox(height: 10,),
-                                Text("+41 9090909090".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.primaryColor,fontSize: 12)),
-                                const SizedBox(height: 20,),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Text("verifyCode".tr,
+                                    style: sfProBoldTextstyle.copyWith(
+                                        color: AppColors.blackColor,
+                                        fontSize: 18)),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Text("otpSubTitle2".tr,
+                                    style: sfProMediumTextstyle.copyWith(
+                                        color: AppColors.blackColor,
+                                        fontSize: 12)),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text("+41 9090909090".tr,
+                                    style: sfProMediumTextstyle.copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 12)),
+                                const SizedBox(
+                                  height: 20,
+                                ),
 
                                 ///  Otp pin Controller
 
-
-
                                 Center(
-                                  child: Container(
-                                    width: kWidth*0.8,
+                                  child: SizedBox(
+                                    width: kWidth * 0.8,
                                     child: OtpPinField(
-
-
                                       ///in case you want to enable autoFill
                                       autoFillEnable: false,
 
@@ -160,28 +172,22 @@ class _OtpViewState extends State<OtpView> {
                                       ///in case you want to change the action of keyboard
                                       /// to clear the Otp pin Controller
                                       onSubmit: (text) {
-
-
                                         /// return the entered pin
                                       },
                                       onChange: (text) {
-
-
                                         /// return the entered pin
                                       },
-                                      onCodeChanged: (code) {
-
-                                      },
+                                      onCodeChanged: (code) {},
 
                                       /// to decorate your Otp_Pin_Field
                                       otpPinFieldStyle: const OtpPinFieldStyle(
-                                           fieldBorderRadius: 12,
-                                           filledFieldBorderColor: AppColors.primaryColor,
-                                           activeFieldBorderColor: AppColors.appWhiteGreyColor,
-                                           defaultFieldBorderColor: AppColors.appWhiteGreyColor
-
-
-                                      ),
+                                          fieldBorderRadius: 12,
+                                          filledFieldBorderColor:
+                                              AppColors.primaryColor,
+                                          activeFieldBorderColor:
+                                              AppColors.appWhiteGreyColor,
+                                          defaultFieldBorderColor:
+                                              AppColors.appWhiteGreyColor),
                                       maxLength: 4,
 
                                       /// no of pin field
@@ -189,8 +195,6 @@ class _OtpViewState extends State<OtpView> {
 
                                       /// bool to show cursor in pin field or not
                                       cursorColor: AppColors.primaryColor,
-
-
 
                                       ///bool which manage to show custom keyboard
 
@@ -201,50 +205,66 @@ class _OtpViewState extends State<OtpView> {
 
                                       /// to select cursor width
 
-
                                       /// place otp pin field according to yourself
-
 
                                       /// predefine decorate of pinField use  OtpPinFieldDecoration.defaultPinBoxDecoration||OtpPinFieldDecoration.underlinedPinBoxDecoration||OtpPinFieldDecoration.roundedPinBoxDecoration
                                       ///use OtpPinFieldDecoration.custom  (by using this you can make Otp_Pin_Field according to yourself like you can give fieldBorderRadius,fieldBorderWidth and etc things)
                                       otpPinFieldDecoration:
-                                      OtpPinFieldDecoration.defaultPinBoxDecoration,
+                                          OtpPinFieldDecoration
+                                              .defaultPinBoxDecoration,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 20,),
+                                const SizedBox(
+                                  height: 20,
+                                ),
                                 Center(
                                   child: CustomButton(
                                     onPressed: () => RegisterSubmit(),
                                     height: 50,
-                                    width: kWidth*0.8,
+                                    width: kWidth * 0.8,
                                     borderRadius: BorderRadius.circular(12),
                                     bgColor: AppColors.primaryColor,
-                                    childWidget:
-                                    Center(child: Text("Verify".tr, style: sfProMediumTextstyle.copyWith(fontSize: 16))),
+                                    childWidget: Center(
+                                        child: Text("Verify".tr,
+                                            style: sfProMediumTextstyle
+                                                .copyWith(fontSize: 16))),
                                   ),
                                 ),
-                                const SizedBox(height: 20,),
+                                const SizedBox(
+                                  height: 20,
+                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    SizedBox(width: 20,),
-                                    Text("notReceiveTheOtp".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2),),
-                                    Spacer(),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      "notReceiveTheOtp".tr,
+                                      style: sfProMediumTextstyle.copyWith(
+                                          color: AppColors.appWhiteGreyColor2),
+                                    ),
+                                    const Spacer(),
                                     InkWell(
-                                        onTap: (){
-
-                                        },
-                                        child: Text("resendOtp".tr,style: sfProSemiBoldTextstyle.copyWith(color: AppColors.primaryColor),)),
-                                    SizedBox(width: 20,),
+                                        onTap: () {},
+                                        child: Text(
+                                          "resendOtp".tr,
+                                          style:
+                                              sfProSemiBoldTextstyle.copyWith(
+                                                  color:
+                                                      AppColors.primaryColor),
+                                        )),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
                                   ],
                                 ),
 
-
-                                const SizedBox(height: 20,),
-
-
+                                const SizedBox(
+                                  height: 20,
+                                ),
                               ],
                             ),
                           ),
@@ -254,8 +274,7 @@ class _OtpViewState extends State<OtpView> {
                   ),
                 ],
               ),
-            )
-        ),
+            )),
       ),
     );
   }
@@ -310,7 +329,6 @@ class _OtpViewState extends State<OtpView> {
     if (formkey) {
       ///login endpoint
       Get.toNamed(Routes.CHANGE_PASSWORD);
-
     }
   }
 

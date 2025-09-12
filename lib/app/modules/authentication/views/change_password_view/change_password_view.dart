@@ -32,17 +32,17 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
       child: Scaffold(
         backgroundColor: AppColors.secondaryColor,
         body: Obx(
-              () {
+          () {
             return SingleChildScrollView(
               child: Stack(
                 children: [
-
                   Container(
-                    height: kHeight*0.3,
-                    width:kWidth,
+                    height: kHeight * 0.3,
+                    width: kWidth,
                     decoration: const BoxDecoration(
-                        image: DecorationImage(image: AssetImage(AppImages.mainBg),fit: BoxFit.fill)
-                    ),
+                        image: DecorationImage(
+                            image: AssetImage(AppImages.mainBg),
+                            fit: BoxFit.fill)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,48 +50,60 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: InkWell(
-                            onTap: (){
+                            onTap: () {
                               Get.back();
                             },
                             child: const Align(
                                 alignment: Alignment.topLeft,
-                                child: Icon(Icons.arrow_back,color: AppColors.appBackgroundColor,)),
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: AppColors.appBackgroundColor,
+                                )),
                           ),
                         ),
                         Container(
                           height: 50,
                           width: 50,
                           decoration: const BoxDecoration(
-                              image: DecorationImage(image: AssetImage(AppImages.appIcon))
-                          ),
+                              image: DecorationImage(
+                                  image: AssetImage(AppImages.appIcon))),
                         ),
-                        const SizedBox(height: 20,),
-                        Text("changePasswordTitle".tr,style: sfProBoldTextstyle,),
-                        const SizedBox(height: 20,),
-                        Text("changePasswordSubTitle".tr,style: sfProMediumTextstyle,),
-                        const SizedBox(height: 20,),
-                        Text("changePasswordSubTitle2".tr,style: sfProMediumTextstyle,),
-                        const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "changePasswordTitle".tr,
+                          style: sfProBoldTextstyle,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "changePasswordSubTitle".tr,
+                          style: sfProMediumTextstyle,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "changePasswordSubTitle2".tr,
+                          style: sfProMediumTextstyle,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
                       ],
-
                     ),
                   ),
-
-
-
                   Padding(
-                    padding:  EdgeInsets.only(top: kHeight*0.28),
+                    padding: EdgeInsets.only(top: kHeight * 0.28),
                     child: Center(
                       child: Align(
                         alignment: Alignment.center,
                         child: Container(
-
-
-                          width: kWidth*0.9,
-
+                          width: kWidth * 0.9,
                           decoration: BoxDecoration(
                               color: AppColors.appBackgroundColor,
-
                               borderRadius: BorderRadius.circular(10)),
                           child: Form(
                             key: globalFormKey,
@@ -99,109 +111,127 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const SizedBox(height: 20,),
-
-
-
+                                const SizedBox(
+                                  height: 20,
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20.0),
-                                  child: Text("password".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2,)),
+                                  child: Text("password".tr,
+                                      style: sfProMediumTextstyle.copyWith(
+                                        color: AppColors.appWhiteGreyColor2,
+                                      )),
                                 ),
-                                const SizedBox(height: 5,),
+                                const SizedBox(
+                                  height: 5,
+                                ),
                                 Center(
                                     child: CustomTextFormField(
-                                      hintText: "password".tr,
-                                      width: kWidth*0.8,
-                                      focusNode: passwordFocusNode,
-                                      borderRadiusAll: const BorderRadius.all(Radius.circular(12)),
-                                      controller: passwordController,
-                                      fillColor: AppColors.appBackgroundColor,
-                                      borderColor: passwordFocusNode.hasFocus?AppColors.primaryColor:AppColors.appWhiteGreyColor,
-                                      validator: (string) {
-                                        if (string == null || string.isEmpty) {
-                                          return "passwordIsRequired".tr;
-                                        }
-                                        return null;
-                                      },
-                                      suffixIcon: GestureDetector(
-                                        onTap: () async {
-                                          authController
-                                              .isLoginPasswordObscureText.value =
+                                  hintText: "password".tr,
+                                  width: kWidth * 0.8,
+                                  focusNode: passwordFocusNode,
+                                  borderRadiusAll: const BorderRadius.all(
+                                      Radius.circular(12)),
+                                  controller: passwordController,
+                                  fillColor: AppColors.appBackgroundColor,
+                                  borderColor: passwordFocusNode.hasFocus
+                                      ? AppColors.primaryColor
+                                      : AppColors.appWhiteGreyColor,
+                                  validator: (string) {
+                                    if (string == null || string.isEmpty) {
+                                      return "passwordIsRequired".tr;
+                                    }
+                                    return null;
+                                  },
+                                  suffixIcon: GestureDetector(
+                                    onTap: () async {
+                                      authController.isLoginPasswordObscureText
+                                              .value =
                                           !authController
                                               .isLoginPasswordObscureText.value;
-                                        },
-                                        child: Icon(
-                                          authController
+                                    },
+                                    child: Icon(
+                                      authController
                                               .isLoginPasswordObscureText.value
-                                              ? Icons.visibility_outlined
-                                              : Icons.visibility_off_outlined,
-                                          color: AppColors.blackColor,
-                                        ),
-                                      ),
-                                      obscureText: authController
-                                          .isLoginPasswordObscureText.value,
-                                    )
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined,
+                                      color: AppColors.blackColor,
+                                    ),
+                                  ),
+                                  obscureText: authController
+                                      .isLoginPasswordObscureText.value,
+                                )),
+                                const SizedBox(
+                                  height: 20,
                                 ),
-                                const SizedBox(height: 20,),
-
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20.0),
-                                  child: Text("confirmPassword".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.appWhiteGreyColor2,)),
+                                  child: Text("confirmPassword".tr,
+                                      style: sfProMediumTextstyle.copyWith(
+                                        color: AppColors.appWhiteGreyColor2,
+                                      )),
                                 ),
-                                const SizedBox(height: 5,),
+                                const SizedBox(
+                                  height: 5,
+                                ),
                                 Center(
                                     child: CustomTextFormField(
-                                      hintText: "confirmPassword".tr,
-                                      width: kWidth*0.8,
-                                      focusNode: confirmPasswordFocusNode,
-                                      borderRadiusAll: const BorderRadius.all(Radius.circular(12)),
-                                      controller: confirmPasswordController,
-                                      fillColor: AppColors.appBackgroundColor,
-                                      borderColor: confirmPasswordFocusNode.hasFocus?AppColors.primaryColor:AppColors.appWhiteGreyColor,
-                                      validator: (string) {
-                                        if (string == null || string.isEmpty) {
-                                          return "confirmpasswordIsRequired".tr;
-                                        }
+                                  hintText: "confirmPassword".tr,
+                                  width: kWidth * 0.8,
+                                  focusNode: confirmPasswordFocusNode,
+                                  borderRadiusAll: const BorderRadius.all(
+                                      Radius.circular(12)),
+                                  controller: confirmPasswordController,
+                                  fillColor: AppColors.appBackgroundColor,
+                                  borderColor: confirmPasswordFocusNode.hasFocus
+                                      ? AppColors.primaryColor
+                                      : AppColors.appWhiteGreyColor,
+                                  validator: (string) {
+                                    if (string == null || string.isEmpty) {
+                                      return "confirmpasswordIsRequired".tr;
+                                    }
 
-                                        return null;
-                                      },
-                                      suffixIcon: GestureDetector(
-                                        onTap: () async {
-                                          authController
-                                              .isRegisterConfirmPasswordObscureText.value =
+                                    return null;
+                                  },
+                                  suffixIcon: GestureDetector(
+                                    onTap: () async {
+                                      authController
+                                              .isRegisterConfirmPasswordObscureText
+                                              .value =
                                           !authController
-                                              .isRegisterConfirmPasswordObscureText.value;
-                                        },
-                                        child: Icon(
-                                          authController
-                                              .isRegisterConfirmPasswordObscureText.value
-                                              ? Icons.visibility_outlined
-                                              : Icons.visibility_off_outlined,
-                                          color: AppColors.blackColor,
-                                        ),
-                                      ),
-                                      obscureText: authController
-                                          .isLoginPasswordObscureText.value,
-                                    )
+                                              .isRegisterConfirmPasswordObscureText
+                                              .value;
+                                    },
+                                    child: Icon(
+                                      authController
+                                              .isRegisterConfirmPasswordObscureText
+                                              .value
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined,
+                                      color: AppColors.blackColor,
+                                    ),
+                                  ),
+                                  obscureText: authController
+                                      .isLoginPasswordObscureText.value,
+                                )),
+                                const SizedBox(
+                                  height: 20,
                                 ),
-                                const SizedBox(height: 20,),
-
                                 Center(
                                   child: CustomButton(
                                     onPressed: () => submit(),
                                     height: 50,
-                                    width: kWidth*0.8,
+                                    width: kWidth * 0.8,
                                     borderRadius: BorderRadius.circular(12),
                                     bgColor: AppColors.primaryColor,
-                                    childWidget:
-                                    Center(child: Text("createNewPassword".tr, style: sfProMediumTextstyle.copyWith(fontSize: 16))),
+                                    childWidget: Center(
+                                        child: Text("createNewPassword".tr,
+                                            style: sfProMediumTextstyle
+                                                .copyWith(fontSize: 16))),
                                   ),
                                 ),
-
-
-                                const SizedBox(height: 20,),
-
-
+                                const SizedBox(
+                                  height: 20,
+                                ),
                               ],
                             ),
                           ),
@@ -221,8 +251,6 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   Future<void> submit() async {
     bool formkey = globalFormKey.currentState!.validate();
 
-    if (formkey) {
-
-    }
+    if (formkey) {}
   }
 }
