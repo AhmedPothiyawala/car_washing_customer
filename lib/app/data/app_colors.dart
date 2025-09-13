@@ -12,6 +12,7 @@ class AppColors {
   static const subtitleColor = Color(0XFF414C57);
   static const appWhiteColor = Color(0xFFF8F8F8);
   static const appWhiteGreyColor = Color(0xFFEDF1F3);
+  static const appWhiteGreyColor3 = Color(0xFFA2A2A2);
   static const appWhiteGreyColor2 = Color(0xFF6C7278);
   static const appWhiteColor2 = Color(0xFFD9D9D9);
   static const buttonBackgroundColor = Color(0XFFA1C6D3);
@@ -19,4 +20,20 @@ class AppColors {
   static const splashHeadingColor = Color(0XFF242424);
   static const blackColor = Color(0XFF000000);
   static const iconButtonBorderColor = Color(0XFFEFF0F6);
+  static const bottomAppBarIconColor = Color(0XFFABB7C2);
+  static const pickUpMyCarColor = Color(0XFFE8F3FB);
+  static const pickMeupColor = Color(0XFFFFEDE1);
+  static const offerSectionColor = Color(0XFFAEDDFF);
+
+  //greyShade
+  static const greyShadeOne = Color(0XFFF0F0F0);
+  static const greyShadeTwo = Color(0XFFEDEDF3);
+  static const greyShadeThree = Color(0XFFEEEEEE);
+  static const greyShadeFour = Color(0XFF747882);
+  //skyShade
+  static const skyShadeOne = Color(0XFFC7DEF9);
+  static const skyShadeTwo = Color(0XFFE2EDFB);
+  //blackShade
+  static const blackShadeTwo = Color(0XFF070707);
+  static const whiteShadeTwo = Color(0XFFFEFEFE);//
 }

@@ -4,9 +4,15 @@ import 'package:go_burble_new/app/modules/authentication/views/forgot_password/f
 import 'package:go_burble_new/app/modules/authentication/views/login/login_view.dart';
 import 'package:go_burble_new/app/modules/authentication/views/register/register_view.dart';
 import 'package:go_burble_new/app/modules/authentication/views/splash_view.dart';
+import 'package:go_burble_new/app/modules/bottomnavigationbar/bindings/bottom_nav_bar_binding.dart';
+import 'package:go_burble_new/app/modules/bottomnavigationbar/views/bottom_nav_bar_view.dart';
 
 import '../modules/authentication/views/change_password_view/change_password_view.dart';
 import '../modules/authentication/views/otp_view/otp_view.dart';
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/home_view.dart';
+import '../modules/pickmeup/views/pick_me_up_view.dart';
+import '../modules/pickmeup/views/select_rider.dart';
 
 part 'app_routes.dart';
 
@@ -48,5 +54,26 @@ class AppPages {
       page: () => const OtpView(),
       binding: AuthBinding(),
     ),
+
+    GetPage(
+      name: _Paths.BOTTOM_APP_BAR_VIEW,
+      page: () =>  BottomNavBarView(),
+      binding: BottomNavBarBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME_VIEW,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.PICK_ME_UP_VIEW,
+      page: () => const PickMeUpView(),
+
+    ),
+  GetPage(
+  name: _Paths.SELECT_RIDER_VIEW,
+  page: () => const SelectRiderView(),
+
+  ),
   ];
 }

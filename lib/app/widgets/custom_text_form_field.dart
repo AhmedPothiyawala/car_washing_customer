@@ -141,7 +141,7 @@ class CustomTextFormField extends StatelessWidget {
               hintText: hintText,
               hintStyle: hintStyle ??
                   sfProRegularTextstyle.copyWith(
-                      fontSize: 16, color: AppColors.appWhiteGreyColor),
+                      fontSize: 16, color: AppColors.blackColor),
               fillColor: fillColor,
               filled: filled ?? true,
             ),

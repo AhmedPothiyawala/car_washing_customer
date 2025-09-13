@@ -11,7 +11,7 @@ class CustomDropDownFormField extends StatelessWidget {
   final bool? filled, obscureText, readOnly;
   final TextStyle? textStyle, hintStyle;
   final TextInputType? keyboardType;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final FocusNode? focusNode;
   final Function(PointerDownEvent)? onTapOutside;
   final ValueChanged<Object?>? onChanged;
@@ -27,11 +27,12 @@ class CustomDropDownFormField extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final ContentInsertionConfiguration? contentInsertionConfiguration;
   final double? width;
+  final double? height;
   final List<DropdownMenuItem<dynamic>>? items;
   const CustomDropDownFormField(
       {super.key,
       this.hintText,
-      required this.controller,
+       this.controller,
       this.focusNode,
       this.onTapOutside,
       this.onChanged,
@@ -62,11 +63,14 @@ class CustomDropDownFormField extends StatelessWidget {
       this.contentPadding,
       this.width,
       this.readOnly,
-      this.items});
+      this.items,
+      this.height
+      });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      height: height,
       width: width,
       child: DropdownButtonFormField<dynamic>(
         focusNode: focusNode,

@@ -46,9 +46,7 @@ class _Custome_WebviewState extends State<Custome_Webview> {
             }
           },
           onProgress: (progress) {
-            setState(() {
-              this.progress = progress / 100;
-            });
+
           },
         ),
       )

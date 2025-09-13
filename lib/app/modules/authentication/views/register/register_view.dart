@@ -11,6 +11,7 @@ import '../../../../data/text_styles.dart';
 import '../../../../data/utils.dart';
 import '../../../../widgets/custom_button.dart';
 import '../../../../widgets/custom_text_form_field.dart';
+import 'package:flutter/services.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -42,6 +43,7 @@ class _RegisterViewState extends State<RegisterView> {
   void initState() {
     passwordController.addListener(updateWidget);
     confirmPasswordController.addListener(updateWidget);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.initState();
   }
 
@@ -50,466 +52,464 @@ class _RegisterViewState extends State<RegisterView> {
     return GetBuilder<AuthController>(
         init: Get.find<AuthController>(),
         builder: (controller) {
-          return SafeArea(
-            child: GestureDetector(
-              onTap: () {},
-              child: Scaffold(
-                backgroundColor: AppColors.secondaryColor,
-                body: Obx(
-                  () {
-                    return SingleChildScrollView(
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: kHeight * 0.3,
-                            width: kWidth,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(AppImages.mainBg),
-                                    fit: BoxFit.fill)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  child: InkWell(
-                                    onTap: () {
-                                      Get.back();
-                                    },
-                                    child: const Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Icon(
-                                          Icons.arrow_back,
-                                          color: AppColors.appBackgroundColor,
-                                        )),
-                                  ),
+          return GestureDetector(
+            onTap: () {},
+            child: Scaffold(
+              backgroundColor: AppColors.secondaryColor,
+              body: Obx(
+                () {
+                  return SingleChildScrollView(
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: kHeight * 0.3,
+                          width: kWidth,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(AppImages.mainBg),
+                                  fit: BoxFit.fill)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: const Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Icon(
+                                        Icons.arrow_back,
+                                        color: AppColors.appBackgroundColor,
+                                      )),
                                 ),
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          image:
-                                              AssetImage(AppImages.appIcon))),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  "signUpTitle".tr,
-                                  style: sfProBoldTextstyle,
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  "signUpSubTitle".tr,
-                                  style: sfProMediumTextstyle,
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                              ],
-                            ),
+                              ),
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image:
+                                            AssetImage(AppImages.appIcon))),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "signUpTitle".tr,
+                                style: sfProBoldTextstyle,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "signUpSubTitle".tr,
+                                style: sfProMediumTextstyle,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(top: kHeight * 0.25),
-                            child: Center(
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Container(
-                                  width: kWidth * 0.9,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.appBackgroundColor,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Form(
-                                    key: globalFormKey,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20.0),
-                                          child: Text("name".tr,
-                                              style:
-                                                  sfProMediumTextstyle.copyWith(
-                                                color: AppColors
-                                                    .appWhiteGreyColor2,
-                                              )),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Center(
-                                          child: CustomTextFormField(
-                                            textInputAction:
-                                                TextInputAction.next,
-                                            width: kWidth * 0.8,
-                                            hintText: "name".tr,
-                                            borderRadiusAll:
-                                                const BorderRadius.all(
-                                                    Radius.circular(12)),
-                                            focusNode: nameFocusNode,
-                                            controller: nameController,
-                                            fillColor:
-                                                AppColors.appBackgroundColor,
-                                            borderColor: nameFocusNode.hasFocus
-                                                ? AppColors.primaryColor
-                                                : AppColors.appWhiteGreyColor,
-                                            validator: (string) {
-                                              if (string == null ||
-                                                  string.isEmpty) {
-                                                return "nameIsRequired".tr;
-                                              }
-                                              return null;
-                                            },
-                                            onFieldSubmitted: (value) {
-                                              usernmaeFormKey.currentState!
-                                                  .validate();
-                                            },
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20.0),
-                                          child: Text("gender".tr,
-                                              style:
-                                                  sfProMediumTextstyle.copyWith(
-                                                color: AppColors
-                                                    .appWhiteGreyColor2,
-                                              )),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Center(
-                                          child: CustomDropDownFormField(
-                                            textInputAction:
-                                                TextInputAction.next,
-                                            width: kWidth * 0.8,
-                                            hintText: "gender".tr,
-                                            borderRadiusAll:
-                                                const BorderRadius.all(
-                                                    Radius.circular(12)),
-                                            focusNode: genderFocusNode,
-                                            controller: genderController,
-                                            fillColor:
-                                                AppColors.appBackgroundColor,
-                                            items: ['Male', 'Female']
-                                                .map((option) =>
-                                                    DropdownMenuItem(
-                                                      value: option,
-                                                      child: Text(option),
-                                                    ))
-                                                .toList(),
-                                            onChanged: (value) {},
-                                            borderColor: genderFocusNode
-                                                    .hasFocus
-                                                ? AppColors.primaryColor
-                                                : AppColors.appWhiteGreyColor,
-                                            validator: (string) {
-                                              if (string == null) {
-                                                return "genderIsRequired".tr;
-                                              }
-                                              return null;
-                                            },
-                                            onFieldSubmitted: (value) {
-                                              usernmaeFormKey.currentState!
-                                                  .validate();
-                                            },
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20.0),
-                                          child: Text("email".tr,
-                                              style:
-                                                  sfProMediumTextstyle.copyWith(
-                                                color: AppColors
-                                                    .appWhiteGreyColor2,
-                                              )),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Center(
-                                          child: CustomTextFormField(
-                                            textInputAction:
-                                                TextInputAction.next,
-                                            width: kWidth * 0.8,
-                                            hintText: "email".tr,
-                                            borderRadiusAll:
-                                                const BorderRadius.all(
-                                                    Radius.circular(12)),
-                                            focusNode: emailFocusNode,
-                                            controller: emailController,
-                                            fillColor:
-                                                AppColors.appBackgroundColor,
-                                            borderColor: emailFocusNode.hasFocus
-                                                ? AppColors.primaryColor
-                                                : AppColors.appWhiteGreyColor,
-                                            validator: (string) {
-                                              if (string == null ||
-                                                  string.isEmpty) {
-                                                return "emailIsRequired".tr;
-                                              }
-                                              return null;
-                                            },
-                                            onFieldSubmitted: (value) {
-                                              usernmaeFormKey.currentState!
-                                                  .validate();
-                                            },
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20.0),
-                                          child: Text("phone".tr,
-                                              style:
-                                                  sfProMediumTextstyle.copyWith(
-                                                color: AppColors
-                                                    .appWhiteGreyColor2,
-                                              )),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Center(
-                                          child: CustomTextFormField(
-                                            textInputAction:
-                                                TextInputAction.next,
-                                            width: kWidth * 0.8,
-                                            keyboardType: TextInputType.number,
-                                            hintText: "phone".tr,
-                                            borderRadiusAll:
-                                                const BorderRadius.all(
-                                                    Radius.circular(12)),
-                                            focusNode: phoneFocusNode,
-                                            controller: phoneController,
-                                            fillColor:
-                                                AppColors.appBackgroundColor,
-                                            borderColor: phoneFocusNode.hasFocus
-                                                ? AppColors.primaryColor
-                                                : AppColors.appWhiteGreyColor,
-                                            validator: (string) {
-                                              if (string == null ||
-                                                  string.isEmpty) {
-                                                return "phoneIsRequired".tr;
-                                              }
-                                              return null;
-                                            },
-                                            onFieldSubmitted: (value) {
-                                              usernmaeFormKey.currentState!
-                                                  .validate();
-                                            },
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20.0),
-                                          child: Text("password".tr,
-                                              style:
-                                                  sfProMediumTextstyle.copyWith(
-                                                color: AppColors
-                                                    .appWhiteGreyColor2,
-                                              )),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Center(
-                                            child: CustomTextFormField(
-                                          hintText: "password".tr,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: kHeight * 0.25),
+                          child: Center(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Container(
+                                width: kWidth * 0.9,
+                                decoration: BoxDecoration(
+                                    color: AppColors.appBackgroundColor,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Form(
+                                  key: globalFormKey,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20.0),
+                                        child: Text("name".tr,
+                                            style:
+                                                sfProMediumTextstyle.copyWith(
+                                              color: AppColors
+                                                  .appWhiteGreyColor2,
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Center(
+                                        child: CustomTextFormField(
+                                          textInputAction:
+                                              TextInputAction.next,
                                           width: kWidth * 0.8,
-                                          focusNode: passwordFocusNode,
+                                          hintText: "name".tr,
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
-                                          controller: passwordController,
+                                          focusNode: nameFocusNode,
+                                          controller: nameController,
                                           fillColor:
                                               AppColors.appBackgroundColor,
-                                          borderColor:
-                                              passwordFocusNode.hasFocus
-                                                  ? AppColors.primaryColor
-                                                  : AppColors.appWhiteGreyColor,
+                                          borderColor: nameFocusNode.hasFocus
+                                              ? AppColors.primaryColor
+                                              : AppColors.appWhiteGreyColor,
                                           validator: (string) {
                                             if (string == null ||
                                                 string.isEmpty) {
-                                              return "passwordIsRequired".tr;
+                                              return "nameIsRequired".tr;
                                             }
                                             return null;
                                           },
-                                          suffixIcon: GestureDetector(
-                                            onTap: () async {
-                                              authController
-                                                      .isLoginPasswordObscureText
-                                                      .value =
-                                                  !authController
-                                                      .isLoginPasswordObscureText
-                                                      .value;
-                                            },
-                                            child: Icon(
-                                              authController
-                                                      .isLoginPasswordObscureText
-                                                      .value
-                                                  ? Icons.visibility_outlined
-                                                  : Icons
-                                                      .visibility_off_outlined,
-                                              color: AppColors.blackColor,
-                                            ),
-                                          ),
-                                          obscureText: authController
-                                              .isLoginPasswordObscureText.value,
-                                        )),
-                                        const SizedBox(
-                                          height: 20,
+                                          onFieldSubmitted: (value) {
+                                            usernmaeFormKey.currentState!
+                                                .validate();
+                                          },
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            const SizedBox(
-                                              width: 20,
-                                            ),
-                                            SizedBox(
-                                              height: 19,
-                                              width: 19,
-                                              child: Checkbox(
-                                                  activeColor:
-                                                      AppColors.primaryColor,
-                                                  checkColor: AppColors
-                                                      .appBackgroundColor,
-                                                  value: authController
-                                                      .isTermsCondition.value,
-                                                  onChanged: (value) {
-                                                    authController
-                                                        .isTermsCondition(
-                                                            value);
-                                                  }),
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text("agreeWith".tr,
-                                                style: sfProMediumTextstyle
-                                                    .copyWith(
-                                                        color: AppColors
-                                                            .blackColor,
-                                                        fontSize: 12)),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text("termsCondition".tr,
-                                                style: sfProMediumTextstyle
-                                                    .copyWith(
-                                                        color: AppColors
-                                                            .appWhiteGreyColor2,
-                                                        fontSize: 12,
-                                                        decoration:
-                                                            TextDecoration
-                                                                .underline,
-                                                        decorationColor: AppColors
-                                                            .appWhiteGreyColor2)),
-                                            const Spacer(),
-                                            Text(
-                                              "forgotPassword".tr,
-                                              style: sfProSemiBoldTextstyle
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20.0),
+                                        child: Text("gender".tr,
+                                            style:
+                                                sfProMediumTextstyle.copyWith(
+                                              color: AppColors
+                                                  .appWhiteGreyColor2,
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Center(
+                                        child: CustomDropDownFormField(
+                                          textInputAction:
+                                              TextInputAction.next,
+                                          width: kWidth * 0.8,
+                                          hintText: "gender".tr,
+                                          borderRadiusAll:
+                                              const BorderRadius.all(
+                                                  Radius.circular(12)),
+                                          focusNode: genderFocusNode,
+                                          controller: genderController,
+                                          fillColor:
+                                              AppColors.appBackgroundColor,
+                                          items: ['Male', 'Female']
+                                              .map((option) =>
+                                                  DropdownMenuItem(
+                                                    value: option,
+                                                    child: Text(option),
+                                                  ))
+                                              .toList(),
+                                          onChanged: (value) {},
+                                          borderColor: genderFocusNode
+                                                  .hasFocus
+                                              ? AppColors.primaryColor
+                                              : AppColors.appWhiteGreyColor,
+                                          validator: (string) {
+                                            if (string == null) {
+                                              return "genderIsRequired".tr;
+                                            }
+                                            return null;
+                                          },
+                                          onFieldSubmitted: (value) {
+                                            usernmaeFormKey.currentState!
+                                                .validate();
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20.0),
+                                        child: Text("email".tr,
+                                            style:
+                                                sfProMediumTextstyle.copyWith(
+                                              color: AppColors
+                                                  .appWhiteGreyColor2,
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Center(
+                                        child: CustomTextFormField(
+                                          textInputAction:
+                                              TextInputAction.next,
+                                          width: kWidth * 0.8,
+                                          hintText: "email".tr,
+                                          borderRadiusAll:
+                                              const BorderRadius.all(
+                                                  Radius.circular(12)),
+                                          focusNode: emailFocusNode,
+                                          controller: emailController,
+                                          fillColor:
+                                              AppColors.appBackgroundColor,
+                                          borderColor: emailFocusNode.hasFocus
+                                              ? AppColors.primaryColor
+                                              : AppColors.appWhiteGreyColor,
+                                          validator: (string) {
+                                            if (string == null ||
+                                                string.isEmpty) {
+                                              return "emailIsRequired".tr;
+                                            }
+                                            return null;
+                                          },
+                                          onFieldSubmitted: (value) {
+                                            usernmaeFormKey.currentState!
+                                                .validate();
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20.0),
+                                        child: Text("phone".tr,
+                                            style:
+                                                sfProMediumTextstyle.copyWith(
+                                              color: AppColors
+                                                  .appWhiteGreyColor2,
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Center(
+                                        child: CustomTextFormField(
+                                          textInputAction:
+                                              TextInputAction.next,
+                                          width: kWidth * 0.8,
+                                          keyboardType: TextInputType.number,
+                                          hintText: "phone".tr,
+                                          borderRadiusAll:
+                                              const BorderRadius.all(
+                                                  Radius.circular(12)),
+                                          focusNode: phoneFocusNode,
+                                          controller: phoneController,
+                                          fillColor:
+                                              AppColors.appBackgroundColor,
+                                          borderColor: phoneFocusNode.hasFocus
+                                              ? AppColors.primaryColor
+                                              : AppColors.appWhiteGreyColor,
+                                          validator: (string) {
+                                            if (string == null ||
+                                                string.isEmpty) {
+                                              return "phoneIsRequired".tr;
+                                            }
+                                            return null;
+                                          },
+                                          onFieldSubmitted: (value) {
+                                            usernmaeFormKey.currentState!
+                                                .validate();
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20.0),
+                                        child: Text("password".tr,
+                                            style:
+                                                sfProMediumTextstyle.copyWith(
+                                              color: AppColors
+                                                  .appWhiteGreyColor2,
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Center(
+                                          child: CustomTextFormField(
+                                        hintText: "password".tr,
+                                        width: kWidth * 0.8,
+                                        focusNode: passwordFocusNode,
+                                        borderRadiusAll:
+                                            const BorderRadius.all(
+                                                Radius.circular(12)),
+                                        controller: passwordController,
+                                        fillColor:
+                                            AppColors.appBackgroundColor,
+                                        borderColor:
+                                            passwordFocusNode.hasFocus
+                                                ? AppColors.primaryColor
+                                                : AppColors.appWhiteGreyColor,
+                                        validator: (string) {
+                                          if (string == null ||
+                                              string.isEmpty) {
+                                            return "passwordIsRequired".tr;
+                                          }
+                                          return null;
+                                        },
+                                        suffixIcon: GestureDetector(
+                                          onTap: () async {
+                                            authController
+                                                    .isLoginPasswordObscureText
+                                                    .value =
+                                                !authController
+                                                    .isLoginPasswordObscureText
+                                                    .value;
+                                          },
+                                          child: Icon(
+                                            authController
+                                                    .isLoginPasswordObscureText
+                                                    .value
+                                                ? Icons.visibility_outlined
+                                                : Icons
+                                                    .visibility_off_outlined,
+                                            color: AppColors.blackColor,
+                                          ),
+                                        ),
+                                        obscureText: authController
+                                            .isLoginPasswordObscureText.value,
+                                      )),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
+                                          SizedBox(
+                                            height: 19,
+                                            width: 19,
+                                            child: Checkbox(
+                                                activeColor:
+                                                    AppColors.primaryColor,
+                                                checkColor: AppColors
+                                                    .appBackgroundColor,
+                                                value: authController
+                                                    .isTermsCondition.value,
+                                                onChanged: (value) {
+                                                  authController
+                                                      .isTermsCondition(
+                                                          value);
+                                                }),
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text("agreeWith".tr,
+                                              style: sfProMediumTextstyle
                                                   .copyWith(
                                                       color: AppColors
-                                                          .primaryColor,
-                                                      fontSize: 12),
-                                            ),
-                                            const SizedBox(
-                                              width: 20,
-                                            )
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Center(
-                                          child: CustomButton(
-                                            onPressed: () => RegisterSubmit(),
-                                            height: 50,
-                                            width: kWidth * 0.8,
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            bgColor: AppColors.primaryColor,
-                                            childWidget: Center(
-                                                child: Text("signUp".tr,
-                                                    style: sfProMediumTextstyle
-                                                        .copyWith(
-                                                            fontSize: 16))),
+                                                          .blackColor,
+                                                      fontSize: 12)),
+                                          const SizedBox(
+                                            width: 5,
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "alreadyHaveAccount".tr,
-                                              style:
-                                                  sfProMediumTextstyle.copyWith(
+                                          Text("termsCondition".tr,
+                                              style: sfProMediumTextstyle
+                                                  .copyWith(
                                                       color: AppColors
-                                                          .appWhiteGreyColor2),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            InkWell(
-                                                onTap: () {
-                                                  Get.toNamed(Routes.LOGIN);
-                                                },
-                                                child: Text(
-                                                  "signIn".tr,
-                                                  style: sfProSemiBoldTextstyle
+                                                          .appWhiteGreyColor2,
+                                                      fontSize: 12,
+                                                      decoration:
+                                                          TextDecoration
+                                                              .underline,
+                                                      decorationColor: AppColors
+                                                          .appWhiteGreyColor2)),
+                                          const Spacer(),
+                                          Text(
+                                            "forgotPassword".tr,
+                                            style: sfProSemiBoldTextstyle
+                                                .copyWith(
+                                                    color: AppColors
+                                                        .primaryColor,
+                                                    fontSize: 12),
+                                          ),
+                                          const SizedBox(
+                                            width: 20,
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Center(
+                                        child: CustomButton(
+                                          onPressed: () => RegisterSubmit(),
+                                          height: 50,
+                                          width: kWidth * 0.8,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          bgColor: AppColors.primaryColor,
+                                          childWidget: Center(
+                                              child: Text("signUp".tr,
+                                                  style: sfProMediumTextstyle
                                                       .copyWith(
-                                                          color: AppColors
-                                                              .primaryColor),
-                                                )),
-                                          ],
+                                                          fontSize: 16))),
                                         ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "alreadyHaveAccount".tr,
+                                            style:
+                                                sfProMediumTextstyle.copyWith(
+                                                    color: AppColors
+                                                        .appWhiteGreyColor2),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          InkWell(
+                                              onTap: () {
+                                                Get.toNamed(Routes.LOGIN);
+                                              },
+                                              child: Text(
+                                                "signIn".tr,
+                                                style: sfProSemiBoldTextstyle
+                                                    .copyWith(
+                                                        color: AppColors
+                                                            .primaryColor),
+                                              )),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           );

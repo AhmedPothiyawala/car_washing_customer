@@ -45,237 +45,235 @@ class _OtpViewState extends State<OtpView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () {},
-        child: Scaffold(
-            backgroundColor: AppColors.secondaryColor,
-            body: SingleChildScrollView(
-              child: Stack(
-                children: [
-                  Container(
-                    height: kHeight * 0.3,
-                    width: kWidth,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(AppImages.mainBg),
-                            fit: BoxFit.fill)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: InkWell(
-                            onTap: () {
-                              Get.back();
-                            },
-                            child: const Align(
-                                alignment: Alignment.topLeft,
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: AppColors.appBackgroundColor,
-                                )),
-                          ),
+    return GestureDetector(
+      onTap: () {},
+      child: Scaffold(
+          backgroundColor: AppColors.secondaryColor,
+          body: SingleChildScrollView(
+            child: Stack(
+              children: [
+                Container(
+                  height: kHeight * 0.3,
+                  width: kWidth,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(AppImages.mainBg),
+                          fit: BoxFit.fill)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: const Align(
+                              alignment: Alignment.topLeft,
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: AppColors.appBackgroundColor,
+                              )),
                         ),
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(AppImages.appIcon))),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "otpTitle".tr,
-                          style: sfProBoldTextstyle,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "otpSubTitle".tr,
-                          style: sfProMediumTextstyle,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                      ],
-                    ),
+                      ),
+                      Container(
+                        height: 50,
+                        width: 50,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(AppImages.appIcon))),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "otpTitle".tr,
+                        style: sfProBoldTextstyle,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "otpSubTitle".tr,
+                        style: sfProMediumTextstyle,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: kHeight * 0.25),
-                    child: Center(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                          width: kWidth * 0.9,
-                          decoration: BoxDecoration(
-                              color: AppColors.appBackgroundColor,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Form(
-                            key: globalFormKey,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Container(
-                                  height: 64,
-                                  width: 64,
-                                  decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              AppImages.otpMobileImage))),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Text("verifyCode".tr,
-                                    style: sfProBoldTextstyle.copyWith(
-                                        color: AppColors.blackColor,
-                                        fontSize: 18)),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Text("otpSubTitle2".tr,
-                                    style: sfProMediumTextstyle.copyWith(
-                                        color: AppColors.blackColor,
-                                        fontSize: 12)),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text("+41 9090909090".tr,
-                                    style: sfProMediumTextstyle.copyWith(
-                                        color: AppColors.primaryColor,
-                                        fontSize: 12)),
-                                const SizedBox(
-                                  height: 20,
-                                ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: kHeight * 0.25),
+                  child: Center(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        width: kWidth * 0.9,
+                        decoration: BoxDecoration(
+                            color: AppColors.appBackgroundColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Form(
+                          key: globalFormKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                height: 64,
+                                width: 64,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            AppImages.otpMobileImage))),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text("verifyCode".tr,
+                                  style: sfProBoldTextstyle.copyWith(
+                                      color: AppColors.blackColor,
+                                      fontSize: 18)),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text("otpSubTitle2".tr,
+                                  style: sfProMediumTextstyle.copyWith(
+                                      color: AppColors.blackColor,
+                                      fontSize: 12)),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text("+41 9090909090".tr,
+                                  style: sfProMediumTextstyle.copyWith(
+                                      color: AppColors.primaryColor,
+                                      fontSize: 12)),
+                              const SizedBox(
+                                height: 20,
+                              ),
 
-                                ///  Otp pin Controller
+                              ///  Otp pin Controller
 
-                                Center(
-                                  child: SizedBox(
-                                    width: kWidth * 0.8,
-                                    child: OtpPinField(
-                                      ///in case you want to enable autoFill
-                                      autoFillEnable: false,
+                              Center(
+                                child: SizedBox(
+                                  width: kWidth * 0.8,
+                                  child: OtpPinField(
+                                    ///in case you want to enable autoFill
+                                    autoFillEnable: false,
 
-                                      ///for Ios it is not needed as the SMS autofill is provided by default, but not for Android, that's where this key is useful.
-                                      textInputAction: TextInputAction.done,
+                                    ///for Ios it is not needed as the SMS autofill is provided by default, but not for Android, that's where this key is useful.
+                                    textInputAction: TextInputAction.done,
 
-                                      ///in case you want to change the action of keyboard
-                                      /// to clear the Otp pin Controller
-                                      onSubmit: (text) {
-                                        /// return the entered pin
-                                      },
-                                      onChange: (text) {
-                                        /// return the entered pin
-                                      },
-                                      onCodeChanged: (code) {},
+                                    ///in case you want to change the action of keyboard
+                                    /// to clear the Otp pin Controller
+                                    onSubmit: (text) {
+                                      /// return the entered pin
+                                    },
+                                    onChange: (text) {
+                                      /// return the entered pin
+                                    },
+                                    onCodeChanged: (code) {},
 
-                                      /// to decorate your Otp_Pin_Field
-                                      otpPinFieldStyle: const OtpPinFieldStyle(
-                                          fieldBorderRadius: 12,
-                                          filledFieldBorderColor:
-                                              AppColors.primaryColor,
-                                          activeFieldBorderColor:
-                                              AppColors.appWhiteGreyColor,
-                                          defaultFieldBorderColor:
-                                              AppColors.appWhiteGreyColor),
-                                      maxLength: 4,
+                                    /// to decorate your Otp_Pin_Field
+                                    otpPinFieldStyle: const OtpPinFieldStyle(
+                                        fieldBorderRadius: 12,
+                                        filledFieldBorderColor:
+                                            AppColors.primaryColor,
+                                        activeFieldBorderColor:
+                                            AppColors.appWhiteGreyColor,
+                                        defaultFieldBorderColor:
+                                            AppColors.appWhiteGreyColor),
+                                    maxLength: 4,
 
-                                      /// no of pin field
-                                      showCursor: true,
+                                    /// no of pin field
+                                    showCursor: true,
 
-                                      /// bool to show cursor in pin field or not
-                                      cursorColor: AppColors.primaryColor,
+                                    /// bool to show cursor in pin field or not
+                                    cursorColor: AppColors.primaryColor,
 
-                                      ///bool which manage to show custom keyboard
+                                    ///bool which manage to show custom keyboard
 
-                                      /// Widget which help you to show your own custom keyboard in place if default custom keyboard
-                                      // customKeyboard: Container(),
-                                      ///bool which manage to show default OS keyboard
-                                      // showDefaultKeyboard: true,
+                                    /// Widget which help you to show your own custom keyboard in place if default custom keyboard
+                                    // customKeyboard: Container(),
+                                    ///bool which manage to show default OS keyboard
+                                    // showDefaultKeyboard: true,
 
-                                      /// to select cursor width
+                                    /// to select cursor width
 
-                                      /// place otp pin field according to yourself
+                                    /// place otp pin field according to yourself
 
-                                      /// predefine decorate of pinField use  OtpPinFieldDecoration.defaultPinBoxDecoration||OtpPinFieldDecoration.underlinedPinBoxDecoration||OtpPinFieldDecoration.roundedPinBoxDecoration
-                                      ///use OtpPinFieldDecoration.custom  (by using this you can make Otp_Pin_Field according to yourself like you can give fieldBorderRadius,fieldBorderWidth and etc things)
-                                      otpPinFieldDecoration:
-                                          OtpPinFieldDecoration
-                                              .defaultPinBoxDecoration,
-                                    ),
+                                    /// predefine decorate of pinField use  OtpPinFieldDecoration.defaultPinBoxDecoration||OtpPinFieldDecoration.underlinedPinBoxDecoration||OtpPinFieldDecoration.roundedPinBoxDecoration
+                                    ///use OtpPinFieldDecoration.custom  (by using this you can make Otp_Pin_Field according to yourself like you can give fieldBorderRadius,fieldBorderWidth and etc things)
+                                    otpPinFieldDecoration:
+                                        OtpPinFieldDecoration
+                                            .defaultPinBoxDecoration,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 20,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Center(
+                                child: CustomButton(
+                                  onPressed: () => RegisterSubmit(),
+                                  height: 50,
+                                  width: kWidth * 0.8,
+                                  borderRadius: BorderRadius.circular(12),
+                                  bgColor: AppColors.primaryColor,
+                                  childWidget: Center(
+                                      child: Text("Verify".tr,
+                                          style: sfProMediumTextstyle
+                                              .copyWith(fontSize: 16))),
                                 ),
-                                Center(
-                                  child: CustomButton(
-                                    onPressed: () => RegisterSubmit(),
-                                    height: 50,
-                                    width: kWidth * 0.8,
-                                    borderRadius: BorderRadius.circular(12),
-                                    bgColor: AppColors.primaryColor,
-                                    childWidget: Center(
-                                        child: Text("Verify".tr,
-                                            style: sfProMediumTextstyle
-                                                .copyWith(fontSize: 16))),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const SizedBox(
+                                    width: 20,
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text(
-                                      "notReceiveTheOtp".tr,
-                                      style: sfProMediumTextstyle.copyWith(
-                                          color: AppColors.appWhiteGreyColor2),
-                                    ),
-                                    const Spacer(),
-                                    InkWell(
-                                        onTap: () {},
-                                        child: Text(
-                                          "resendOtp".tr,
-                                          style:
-                                              sfProSemiBoldTextstyle.copyWith(
-                                                  color:
-                                                      AppColors.primaryColor),
-                                        )),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                  ],
-                                ),
+                                  Text(
+                                    "notReceiveTheOtp".tr,
+                                    style: sfProMediumTextstyle.copyWith(
+                                        color: AppColors.appWhiteGreyColor2),
+                                  ),
+                                  const Spacer(),
+                                  InkWell(
+                                      onTap: () {},
+                                      child: Text(
+                                        "resendOtp".tr,
+                                        style:
+                                            sfProSemiBoldTextstyle.copyWith(
+                                                color:
+                                                    AppColors.primaryColor),
+                                      )),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                ],
+                              ),
 
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                              ],
-                            ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
-            )),
-      ),
+                ),
+              ],
+            ),
+          )),
     );
   }
 

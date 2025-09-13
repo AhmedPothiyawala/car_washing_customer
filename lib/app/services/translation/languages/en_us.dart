@@ -120,6 +120,63 @@ Map<String, String> enUS = {
   "biometricsAuthSuccess": "Authenticated Successfully",
   "biometricsAuthDisable": "Biometrics option is disabled now.",
 
+
+  //******************************************************************************************
+  //BOTTOMNAVBAR
+  //******************************************************************************************
+
+  "home": "Home",
+  "rides": "Rides",
+  "fav": "Favorite",
+  "myAccount": "My Account",
+
+
+  //******************************************************************************************
+  //HOME
+  //******************************************************************************************
+
+  "currentLocation": "Current Location",
+  "address": "Rain, Switzerland",
+  "bannerTitle": "Hol- und Bringservice",
+  "bannerSubTitle": "Einfach, bequem und zeitsparend – exklusiv für Sie",
+  "favoriteDriver": "Favorite Driver",
+  "upcomingBooking": "Upcoming Booking",
+  "upcomingBookingTitle": "Grand Tour of Switzerland",
+  "upcomingBookingSubTitle": "10 mint away from your location",
+  "ourServices": "Our Services",
+  "pickUpMyCar": "PickUpMyCar",
+  "pickMeUp": "PickMeUp",
+  "todaysOffers": "Today’s offers",
+  "viewAll": "View All",
+  "offerTitle": "Luxury Drive,Affordable Price",
+  "offerSubTitle": "Nur bis 30.09. Auf ausgewählte BMW Modelle",
+  "bookNow": "Aktion entdecken",
+
+
+  //******************************
+  //PICKMEUP
+  //******************************
+  "location": "Location",
+  "bookPickUpMyCar":"Book PickUpMyCar",
+  "selectDate":"Select Date",
+  "currentAddress":"Current Address",
+  "rainSwitzerland":"Rain, Switzerland",
+  "dropOff":"Drop off",
+  "arbedoCastioneSwitzerland":"Arbedo-Castione, Switzerland",
+  "transferType":"Transfer Type",
+  "singleRide":"Single Ride / Return (new transfer)",
+  "continueBooking":"Continue booking",
+
+  //******************************
+  //SELECTRIDER
+  //******************************
+  "selectRider":"Select a Rider",
+  "monday7September":"Monday, Sep 22 at 9:00 AM",
+  "estArrivalTime":"Est. arrival at 11:24 AM.5km.",
+  "totalAmount":"Total Amount :",
+  "chf448":"CHF448.00",
+  "pickUPMyCarFirst2":"We take over your vehicle and drive it to your desired...",
+
   //******************************************************************************************
   //PROFILE_VIEW
   //******************************************************************************************
