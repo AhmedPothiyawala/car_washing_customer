@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import '../../../flavors/build_config.dart';
 import '../../data/global_constant.dart';
@@ -144,14 +145,17 @@ class ApiServices extends GetxService {
 
   Future<dioResp.Response?> post({
     required String endPoint,
-    Object? reqData,
+  Map<String, dynamic>? reqData,
     Map<String, dynamic>? extraHeaders,
   }) async {
     try {
       if (_networkController.isConnected.value) {
         final url = "$_burble_life_url$endPoint";
         final storage = Get.find<StorageService>();
-        var token = await storage.readString('token');
+
+
+        List<int> stringBytes = utf8.encode("JnBpY2t1cCojMjA0MA:QHNja3FuUHM2cGlja3Vw");
+        var token = base64.encode(stringBytes);
         final Map<String, dynamic> headers = {
           "accept": "text/plain",
           "content-type": "application/json",
@@ -162,7 +166,7 @@ class ApiServices extends GetxService {
         }
         final response = await dio.post(
           url,
-          data: reqData,
+          queryParameters: reqData,
           options: Options(
             headers: headers,
           ),

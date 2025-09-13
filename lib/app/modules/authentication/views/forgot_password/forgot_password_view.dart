@@ -184,7 +184,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
     bool isMobileValid = globalFormKey.currentState!.validate();
 
     if (isMobileValid) {
-      Get.toNamed(Routes.OTP_VIEW);
+      authController.forgot_password(username: phoneController.text, forgotpassword: true);
     }
   }
 }

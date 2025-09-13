@@ -11,6 +11,8 @@ import '../../../../data/utils.dart';
 import '../../../../widgets/custom_button.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
 
+import '../../../../widgets/custom_snackbar.dart';
+
 class OtpView extends StatefulWidget {
   const OtpView({super.key});
 
@@ -37,7 +39,7 @@ class _OtpViewState extends State<OtpView> {
   final passwordFormKey = GlobalKey<FormState>();
   final globalFormKey = GlobalKey<FormState>();
   final _otpPinFieldController = GlobalKey<OtpPinFieldState>();
-
+  final args = Get.arguments as Map;
   @override
   void initState() {
     super.initState();
@@ -148,7 +150,7 @@ class _OtpViewState extends State<OtpView> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text("+41 9090909090".tr,
+                              Text(args['username'],
                                   style: sfProMediumTextstyle.copyWith(
                                       color: AppColors.primaryColor,
                                       fontSize: 12)),
@@ -160,10 +162,14 @@ class _OtpViewState extends State<OtpView> {
 
                               Center(
                                 child: SizedBox(
-                                  width: kWidth * 0.8,
+                                  width: kWidth * 0.9,
                                   child: OtpPinField(
                                     ///in case you want to enable autoFill
                                     autoFillEnable: false,
+                                    key: _otpPinFieldController,
+
+
+
 
                                     ///for Ios it is not needed as the SMS autofill is provided by default, but not for Android, that's where this key is useful.
                                     textInputAction: TextInputAction.done,
@@ -187,7 +193,7 @@ class _OtpViewState extends State<OtpView> {
                                             AppColors.appWhiteGreyColor,
                                         defaultFieldBorderColor:
                                             AppColors.appWhiteGreyColor),
-                                    maxLength: 4,
+                                    maxLength: 6,
 
                                     /// no of pin field
                                     showCursor: true,
@@ -219,7 +225,7 @@ class _OtpViewState extends State<OtpView> {
                               ),
                               Center(
                                 child: CustomButton(
-                                  onPressed: () => RegisterSubmit(),
+                                  onPressed: () => OtpSubmit(),
                                   height: 50,
                                   width: kWidth * 0.8,
                                   borderRadius: BorderRadius.circular(12),
@@ -247,7 +253,9 @@ class _OtpViewState extends State<OtpView> {
                                   ),
                                   const Spacer(),
                                   InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        authController.resend_otp(username: args['username']);
+                                      },
                                       child: Text(
                                         "resendOtp".tr,
                                         style:
@@ -321,13 +329,18 @@ class _OtpViewState extends State<OtpView> {
     );
   }
 
-  Future<void> RegisterSubmit() async {
-    bool formkey = globalFormKey.currentState!.validate();
+  Future<void> OtpSubmit() async {
+   if(_otpPinFieldController.currentState!.controller.text.isEmpty)
+{
+  CustomSnackBar.errorSnackBar(message: "otpRequired".tr);
+}
 
-    if (formkey) {
-      ///login endpoint
-      Get.toNamed(Routes.CHANGE_PASSWORD);
-    }
+   else{
+     authController.validate_otp(username: args['username'], otp: _otpPinFieldController.currentState!.controller.text, forgotpassword: args['forgotpassword']).then((value){
+       _otpPinFieldController.currentState!.controller.clear();
+     });
+   }
+
   }
 
   void updateWidget() {

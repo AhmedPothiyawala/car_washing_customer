@@ -77,6 +77,7 @@ class CustomDropDownFormField extends StatelessWidget {
         onChanged: onChanged,
         onSaved: onSaved,
         validator: validator,
+
         icon: const Icon(
           Icons.keyboard_arrow_down,
           color: AppColors.blackColor,

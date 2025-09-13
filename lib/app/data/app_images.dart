@@ -21,6 +21,8 @@ class AppImages {
   static const String errorImage = "assets/images/error_icon.png";
   static const String bmwImage = "assets/images/bmw_image.png";
   static const String whiteBmw = "assets/images/white_bmw.png";
+  static const String flagImage = "assets/images/flag.png";
+  static const String moduloImage = "assets/images/modulo_Image.png";
   //Icons
   static const String errorInfo = "assets/icons/error_info.svg";
   static const String successIcon = "assets/icons/success_Icon.svg";

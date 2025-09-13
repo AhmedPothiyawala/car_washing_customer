@@ -26,6 +26,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   final confirmPasswordController = TextEditingController();
   final passwordFocusNode = FocusNode();
   final confirmPasswordFocusNode = FocusNode();
+  final args = Get.arguments as Map;
   @override
   void initState() {
 
@@ -255,6 +256,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   Future<void> submit() async {
     bool formkey = globalFormKey.currentState!.validate();
 
-    if (formkey) {}
+    if (formkey) {
+      authController.change_password(username: args['username'], password:passwordController.text , confirm_password: confirmPasswordController.text);
+    }
   }
 }

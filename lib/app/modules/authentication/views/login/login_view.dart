@@ -110,7 +110,9 @@ class _LoginViewState extends State<LoginView> {
                               child: CustomIconButton(
                                   height: 50,
                                   width: kWidth * 0.8,
-                                  onPressed: () async {},
+                                  onPressed: () async {
+                                    authController.signInWithGoogle();
+                                  },
                                   bgColor: AppColors.appBackgroundColor,
                                   borderRadius: BorderRadius.circular(12),
                                   // iconData:  Image.asset(AppImages.googleIcon, height: 30),
@@ -374,25 +376,16 @@ class _LoginViewState extends State<LoginView> {
     if (isEmailValid && isPasswordValid) {
       userFocusNode.unfocus();
       passwordFocusNode.unfocus();
-      Get.toNamed(Routes.BOTTOM_APP_BAR_VIEW);
-      // await authController
-      //     .loginWithEmailPassword(
-      //   username: userNameController.text.trim(),
-      //   password: passwordController.text,
-      // )
-      //     .then((_) {
-      //
-      //   if (userNameController.text.isEmpty) {
-      //     usernmaeFormKey.currentState?.reset();
-      //     userNameController.text = "";
-      //   }
-      //   if (passwordController.text.isEmpty) {
-      //     passwordController.text = "";
-      //     passwordFormKey.currentState?.reset();
-      //   }
-      // });
-    }
-  }
+
+      await authController
+          .loginWithEmailPassword(
+        username: userNameController.text.trim(),
+        password: passwordController.text,
+      ).then((val){
+
+      });
+
+  }}
 
   @override
   void dispose() {

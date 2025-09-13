@@ -7,12 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1013801564077:android:94b6fb3bacde1be8bf1324",
+        "mobilesdk_app_id": "1:1013801564077:android:409a1ac99377d82bbf1324",
         "android_client_info": {
-          "package_name": "com.car.washing.car_washing"
+          "package_name": "com.pickupmycar.customer"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1013801564077-ojk2f5fb411tnftgu7j510vcd87oes7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pickupmycar.customer",
+            "certificate_hash": "f23fb3dd14d53e4c71e2ac7ef1e509fbb644193d"
+          }
+        },
+        {
+          "client_id": "1013801564077-0ihtbce7vl4urt418cd2j4mre87dajpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBX1BPYzzx9keyCePfdysMXS79KgnTbUuE"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013801564077-0ihtbce7vl4urt418cd2j4mre87dajpn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1013801564077-5m0v93m2ui9ukqhb60p6r12ubi2jlpcg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carwashing.customer"
+              }
+            }
+          ]
         }
       }
     }

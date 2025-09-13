@@ -11,6 +11,8 @@ import '../modules/authentication/views/change_password_view/change_password_vie
 import '../modules/authentication/views/otp_view/otp_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/pickmeup/views/customer_detail_view.dart';
+import '../modules/pickmeup/views/order_summary_view.dart';
 import '../modules/pickmeup/views/pick_me_up_view.dart';
 import '../modules/pickmeup/views/select_rider.dart';
 
@@ -75,5 +77,13 @@ class AppPages {
   page: () => const SelectRiderView(),
 
   ),
+    GetPage(
+      name: _Paths.ORDER_SUMMARY_VIEW,
+      page: () =>  OrderSummaryView(),
+    ),
+    GetPage(
+      name: _Paths.CUSTOMER_DETAIL_VIEW,
+      page: () =>  CustomerDetailView(),
+    ),
   ];
 }

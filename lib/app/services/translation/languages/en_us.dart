@@ -66,7 +66,7 @@ Map<String, String> enUS = {
   "confirmPasswordMinLength":
       "Confirm Password should be more than or equal to 6 characters",
   "passwordMismatch": "Password and confirm password doesn't match",
-
+  "termsRequired": "Please Agree Terms & Condition",
   //******************************************************************************************
   //OTP
   //******************************************************************************************
@@ -100,6 +100,7 @@ Map<String, String> enUS = {
   "sendCodeAgain": "Send code again",
   "verification": "Verification",
   "otpRequired": "OTP Required",
+
   "enterValidOTP": "Enter valid OTP",
   //******************************************************************************************
   //CHANGE_PASSWPRD
@@ -177,6 +178,83 @@ Map<String, String> enUS = {
   "chf448":"CHF448.00",
   "pickUPMyCarFirst2":"We take over your vehicle and drive it to your desired...",
 
+  //******************************
+  //CUSTOMDETAILVIEW
+  //******************************
+  "customerDetail":"Customer Detail",
+  "enterName":"name is required",
+  "john":"John",
+  "doe":"Doe",
+  "surName":"Surname",
+  "emailIs":"info@pickupmycar.ch",
+  "countryCode":"+41",
+  "phoneNumber":"9090909090",
+  "remark":"Remark",
+  "remarkParagraph":"Our Team is arranging the driver and vehicle as per your requirement",
+  "billingAddress":"Billing Address",
+  "companyName":"Company Name",
+  "pickUpMyCarGmbh":"PickUpMyCar Gmbh",
+  "supplement":"Supplement",
+  "staldenBachStrasse":"Staldenbachstrasse",
+  "streetNumber":"Street and No.",
+  "streetNumberIs":"30",
+  "place":"Place",
+  "addressText":"Address",
+  "addresssStaldenbachstrasse":"Staldenbachstrasse 30 8808 Pfäffikon SZ",
+  "canton":"Canton",
+  "pfäffikonSZ":"Pfäffikon SZ",
+  "postalCode":"Postal Code",
+  "postalCodeIs":"8808",
+  "land":"Land",
+  "switzerland":"Switzerland",
+  "dispatcherDetail":"Dispatcher Detail",
+  "dispatcherName":"Dispatcher Name",
+  "dispatcherNameIs":"Roy",
+  "dispatcherPhone":"Dispatcher Phone",
+  "orderNumber":"Order Number",
+  "oneToNine":"#123456789",
+  "customerName":"Customer Name",
+  "customerPhone":"Customer Phone",
+  "bookingOverView":"Booking overview",
+  "dispatcherNumber":"+41 9090909090",
+  "paymentSummary":"Payment Summary",
+  "subTotal":"Subtotal",
+  "promotion":"Promotion",
+  "points":"Points 0",
+  "texes&otherFee":"Texes & Other fees",
+  "chf0":"CHF0.00",
+  "totalChf":"CHF440.00",
+  "total":"Total",
+  "promotionApplied":"Promotion applied",
+  "earnPoints":"You’ll earn 20 loyalty points after booking this service.",
+
+
+
+
+  //******************************************************************************************
+  //ORDERSUMMARY
+  //******************************************************************************************
+  "orderSummery":"Order Summery",
+  "orderTimeDateDay":"Monday, Sep 22 at 9:00 AM",
+  "orderId":"Order Id #12346789",
+  "pickUpMyCarFirst":"Pick-Up My Car – FIRST",
+  "dropOffToday":"Drop-off today at 15:24",
+  "transferTrip":"Transfer trip",
+  "kilometer":"151 km",
+  "time":"1 h 43 m",
+  "service":"Service",
+  "drivingRoute":"Driving route",
+  "estimatedTravelTime":"Estimated travel time",
+  "pickUpLocation":"Pickup Location",
+  "customerDetail":"Customer Detail",
+  "companyName":"Company Name",
+  "addition":"Addition",
+  "dummyText":"Dummy Text",
+  "customerEmail":"E-mail",
+  "phoneNumber41":"+41 9090909090",
+  "billingAddress":"Billing Address",
+  "companyLocation":"Company Location",
+  "companyLocationName":"Staldenbachstrasse 308808 Pfäffikon SZ",
   //******************************************************************************************
   //PROFILE_VIEW
   //******************************************************************************************

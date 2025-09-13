@@ -14,7 +14,8 @@ abstract class Routes {
   static const BOTTOM_APP_BAR_VIEW = _Paths.BOTTOM_APP_BAR_VIEW;
   static const PICK_ME_UP_VIEW = _Paths.PICK_ME_UP_VIEW;
   static const SELECT_RIDER_VIEW = _Paths.SELECT_RIDER_VIEW;
-
+  static const ORDER_SUMMARY_VIEW = _Paths.ORDER_SUMMARY_VIEW;
+  static const CUSTOMER_DETAIL_VIEW = _Paths.CUSTOMER_DETAIL_VIEW;
 }
 
 abstract class _Paths {
@@ -30,4 +31,6 @@ abstract class _Paths {
   static const BOTTOM_APP_BAR_VIEW = '/bottom-app-bar-view';
   static const PICK_ME_UP_VIEW = '/pick-me-up-view';
   static const SELECT_RIDER_VIEW = '/select-riders-view';
+  static const ORDER_SUMMARY_VIEW = '/order-summary-view';
+  static const CUSTOMER_DETAIL_VIEW = '/customer-detail-view';
 }

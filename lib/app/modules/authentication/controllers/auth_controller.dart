@@ -5,6 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_burble_new/app/models/change_password_model.dart';
+import 'package:go_burble_new/app/models/forgot_password_model.dart';
+import 'package:go_burble_new/app/models/otp_verfiy_model.dart';
+import 'package:go_burble_new/app/models/register_model.dart';
+import 'package:go_burble_new/app/models/resend_otp_model.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -13,6 +18,7 @@ import '../../../data/global_constant.dart';
 import '../../../data/storage_key.dart';
 import '../../../data/utils.dart';
 import '../../../models/check_subscription_model.dart';
+import '../../../models/login_model.dart'as loginmodel;
 import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../services/api_services/api_services.dart';
@@ -27,10 +33,23 @@ class AuthController extends GetxController {
   // final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final Rx<UserModel> _userData = UserModel().obs;
+  final Rx<loginmodel.LoginModel> _loginData = loginmodel.LoginModel().obs;
+  final Rx<RegisterModel> _registerData = RegisterModel().obs;
+  final Rx<OtpVerfiyModel> _otpData = OtpVerfiyModel().obs;
+  final Rx<ResendOtpModel> _resendData = ResendOtpModel().obs;
+  final Rx<ForgotPasswordModel> _forgotPasswordData = ForgotPasswordModel().obs;
+  final Rx<ChangePasswordModel> _changePasswordData = ChangePasswordModel().obs;
   final Rx<CheckSubscriptionModel> _checkSubscriptionModel =
       CheckSubscriptionModel().obs;
 
   Rx<UserModel> get userData => _userData;
+  Rx<loginmodel.LoginModel> get loginData => _loginData;
+  Rx<RegisterModel> get registerData => _registerData;
+  Rx<OtpVerfiyModel> get otpData => _otpData;
+  Rx<ResendOtpModel> get resendData => _resendData;
+  Rx<ForgotPasswordModel> get forgotPasswordData => _forgotPasswordData;
+  Rx<ChangePasswordModel> get changePasswordData => _changePasswordData;
+
   Rx<CheckSubscriptionModel> get checkSubscriptionModel =>
       _checkSubscriptionModel;
 
@@ -55,60 +74,48 @@ class AuthController extends GetxController {
 
   Future<void> loginWithEmailPassword({
     required String username,
-    required String password,
+     String? password,
+     String? logintype
+
   }) async {
     loading(show: true, title: "Authenticating...");
     try {
-      String? tokenFirebase = await FirebaseMessaging.instance.getToken();
-      await FirebaseMessaging.instance.setAutoInitEnabled(true);
-      await FirebaseMessaging.instance.subscribeToTopic('allriders');
-      await FirebaseMessaging.instance.subscribeToTopic('allusers');
 
-      var data = dio.FormData.fromMap({
+      var data =
+      logintype!=null?
+      {
+        'username': username,
+        'usertype':"customer",
+        'login_type':logintype
+      }
+          :
+      {
         'username': username,
         'password': password,
-        'device_id': tokenFirebase
-      });
+        'usertype':"customer"
 
-      final response = await _apiService.postWithoutToken(
+      };
+
+      final response = await _apiService.post(
           endPoint: ApiEndpoints.login, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-          String jsonString = response.data;
-          Map<String, dynamic> jsonMap = jsonDecode(jsonString);
 
-          if (jsonMap['status'] == 200) {
-            _userData.value = UserModel.fromJson(jsonMap);
+          Map<String, dynamic> jsonMap = response.data;
+
+          if (jsonMap['status'] == true) {
+            _loginData.value = loginmodel.LoginModel.fromJson(jsonMap);
             await setUserData(data: jsonMap).then((value) async {
               if (value = true) {
-                // final dailyBurbleController = Get.find<DailyBurbleController>();
-                // dailyBurbleController.dailyBurbleController(
-                //     userid: userData.value.userData!.id.toString());
-                Get.offAllNamed(Routes.HOME_VIEW);
-                if (_userData.value.userData!.isNew!) {
-                  await Future.delayed(const Duration(milliseconds: 500),
-                      () async {
-                    // Get.to(() => const SubscribeView1());
 
-                    Get.to(() => Custome_Webview(
-                          url: 'https://goburble.com/welcome',
-                          paymentURL: false,
-                        ));
-                  });
+               Get.offAllNamed(Routes.BOTTOM_APP_BAR_VIEW);
 
-                  // Get.to(() => const SubscribeView1());
-                } else if (!_userData.value.userData!.membershipActive!) {
-                  await Future.delayed(const Duration(milliseconds: 500),
-                      () async {
-                    // Get.to(() => const SubscribeView1());
-                  });
-                }
               }
             });
 
-            CustomSnackBar.successSnackBar(message: jsonMap['message']);
+            CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
           } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message']);
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
           }
 
           loading(show: false);
@@ -119,7 +126,7 @@ class AuthController extends GetxController {
       if (ex.response != null) {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
-            message: data['message'] ?? "somethingWentWrong".tr);
+            message: data['message_en'] ?? "somethingWentWrong".tr);
       } else {
         CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
       }
@@ -177,77 +184,102 @@ class AuthController extends GetxController {
   }
 
   Future<void> register_new_account({
-    required String firstname,
-    required String lastname,
+    required String name,
+    required String gender,
     required String email,
     // required String username,
-    required String password,
     required String phone,
-    String? type,
+    required String password,
+
+
   }) async {
-    await Permission.notification.request();
-    loading(show: true, title: "Saving...");
+
+    loading(show: true, title: "Sending Otp");
     try {
-      String? tokenFirebase = await FirebaseMessaging.instance.getToken();
-      await FirebaseMessaging.instance.setAutoInitEnabled(true);
-      await FirebaseMessaging.instance.subscribeToTopic('allriders');
-      await FirebaseMessaging.instance.subscribeToTopic('allusers');
-      var data = dio.FormData.fromMap({
-        'firstname': firstname,
-        'lastname': lastname,
-        'email': email,
-        'username': email,
+
+      var data = {
+        'name': name,
+        'gender': gender.toString().toLowerCase(),
+        'email':email,
+        'phone': phone,
         'password': password,
         'confirm_password': password,
-        'phone': phone,
-        'device_id': tokenFirebase,
-        'type': type ?? socialMediaType.manuel.name.toString()
-      });
-      final response = await _apiService.postWithoutToken(
+        'usertype':"1"
+      };
+      final response = await _apiService.post(
           endPoint: ApiEndpoints.registration, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-          String jsonString = response.data;
-          Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-          if (jsonMap['status'] == 200) {
-            if (jsonMap['is_loggedin'] == true) {
-              _userData.value = UserModel.fromJson(jsonMap);
-              await setUserData(data: jsonMap).then((value) async {
-                if (value = true) {
-                  // final dailyBurbleController =
-                  //     Get.find<DailyBurbleController>();
-                  // dailyBurbleController.dailyBurbleController(
-                  //     userid: userData.value.userData!.id.toString());
-                  Get.offAllNamed(Routes.HOME_VIEW);
-                  if (_userData.value.userData!.isNew!) {
-                    await Future.delayed(const Duration(milliseconds: 500),
-                        () async {
-                      // Get.to(() => const SubscribeView1());
-                      Get.to(() => Custome_Webview(
-                            url: 'https://goburble.com/welcome',
-                            paymentURL: false,
-                          ));
 
-                      // Get.to(() => const SubscribeView1());
-                    });
-                  } else if (!_userData.value.userData!.membershipActive!) {
-                    await Future.delayed(const Duration(milliseconds: 500),
-                        () async {
-                      // Get.to(() => const SubscribeView1());
-                    });
-                  }
-                }
-              });
-            } else {
-              Get.offAllNamed(Routes.LOGIN);
-              showDialog(
-                context: Get.context!,
-                builder: (context) => const CustomeDialog(),
-              );
-            }
-            CustomSnackBar.successSnackBar(message: jsonMap['message']);
+          Map<String, dynamic> jsonMap = response.data;
+          if (jsonMap['status'] == true) {
+            _registerData.value = RegisterModel.fromJson(jsonMap);
+            Get.toNamed(Routes.OTP_VIEW,arguments: {
+              'username': phone,
+              'forgotpassword':false
+
+            } );
+            CustomSnackBar.successSnackBar(message: "Otp Send Successfully");
           } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message']);
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
+          }
+          loading(show: false);
+        }
+      }
+    } on dio.DioException catch (ex) {
+      loading(show: false);
+      if (ex.response != null) {
+        final data = ex.response!.data;
+        print(data);
+        CustomSnackBar.errorSnackBar(
+            message: data['message_en'] ?? "somethingWentWrong".tr);
+      } else {
+        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
+      }
+    } finally {
+      loading(show: false);
+    }
+  }
+
+  Future<void> validate_otp({
+    required String username,
+    required String otp,
+    required bool forgotpassword,
+
+
+
+  }) async {
+
+    loading(show: true, title: "Verifying");
+    try {
+
+      var data = {
+        'username': username,
+        'otp': otp
+
+      };
+      final response = await _apiService.post(
+          endPoint: ApiEndpoints.validateOtp, reqData: data);
+      if (response != null) {
+        if (response.statusCode == 200) {
+
+          Map<String, dynamic> jsonMap = response.data;
+          if (jsonMap['status'] == true) {
+            _otpData.value = OtpVerfiyModel.fromJson(jsonMap);
+            if(forgotpassword==true)
+              {
+                Get.toNamed(Routes.CHANGE_PASSWORD,arguments: {
+                  'username': username,
+
+
+                } );
+              }
+           else{
+              Get.offAllNamed(Routes.LOGIN);
+            }
+            CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
+          } else {
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
           }
           loading(show: false);
         }
@@ -257,7 +289,53 @@ class AuthController extends GetxController {
       if (ex.response != null) {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
-            message: data['message'] ?? "somethingWentWrong".tr);
+            message: data['message_en'] ?? "somethingWentWrong".tr);
+      } else {
+        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
+      }
+    } finally {
+      loading(show: false);
+    }
+  }
+
+  Future<void> resend_otp({
+    required String username,
+
+
+
+
+  }) async {
+
+    loading(show: true, title: "sending otp");
+    try {
+
+      var data = {
+        'username': username
+
+
+      };
+      final response = await _apiService.post(
+          endPoint: ApiEndpoints.resendOtp, reqData: data);
+      if (response != null) {
+        if (response.statusCode == 200) {
+
+          Map<String, dynamic> jsonMap = response.data;
+          if (jsonMap['status'] == true) {
+            _resendData.value = ResendOtpModel.fromJson(jsonMap);
+
+            CustomSnackBar.successSnackBar(message:jsonMap['message_en']);
+          } else {
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
+          }
+          loading(show: false);
+        }
+      }
+    } on dio.DioException catch (ex) {
+      loading(show: false);
+      if (ex.response != null) {
+        final data = ex.response!.data;
+        CustomSnackBar.errorSnackBar(
+            message: data['message_en'] ?? "somethingWentWrong".tr);
       } else {
         CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
       }
@@ -273,7 +351,7 @@ class AuthController extends GetxController {
       if (token != null && token.isNotEmpty) {
         String? s;
         s = await _storageService.readString(StorageKey.userData);
-        _userData.value = UserModel.fromJson(jsonDecode(s!));
+        _loginData.value = loginmodel.LoginModel.fromJson(jsonDecode(s!));
         return true;
       } else {
         return false;
@@ -324,25 +402,43 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> forgotPassword({
-    required String email,
-  }) async {
-    loading(show: true, title: "Loading...");
-    try {
-      var data = dio.FormData.fromMap({'email': email});
 
-      final response = await _apiService.postWithoutToken(
+  Future<void> forgot_password({
+    required String username,
+
+    required bool forgotpassword,
+
+
+
+  }) async {
+
+    loading(show: true, title: "Loding...");
+    try {
+
+      var data = {
+        'username': username,
+
+
+      };
+      final response = await _apiService.post(
           endPoint: ApiEndpoints.forgotPassword, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-          String jsonString = response.data;
-          Map<String, dynamic> jsonMap = jsonDecode(jsonString);
 
-          if (jsonMap['status'] == 200) {
-            Get.offAllNamed(Routes.LOGIN);
-            CustomSnackBar.successSnackBar(message: jsonMap['message']);
+          Map<String, dynamic> jsonMap = response.data;
+          if (jsonMap['status'] == true) {
+            _forgotPasswordData.value = ForgotPasswordModel.fromJson(jsonMap);
+
+              Get.toNamed(Routes.OTP_VIEW,arguments: {
+              'username': username,
+              'forgotpassword':true
+
+              });
+
+
+            CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
           } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message']);
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
           }
           loading(show: false);
         }
@@ -352,19 +448,14 @@ class AuthController extends GetxController {
       if (ex.response != null) {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
-            message: data['message'] ?? "somethingWentWrong".tr);
+            message: data['message_en'] ?? "somethingWentWrong".tr);
       } else {
         CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
       }
-    } catch (e) {
-      loading(show: false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      appLogger.e(e.toString());
     } finally {
       loading(show: false);
     }
   }
-
   Future<void> validateAPI({
     required String token,
   }) async {
@@ -457,40 +548,53 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> updatePassword({required String password, userid}) async {
-    loading(show: true, title: "Loading...");
+  Future<void> change_password({
+    required String username,
+    required String password,
+    required String confirm_password,
+
+
+
+
+  }) async {
+
+    loading(show: true, title: "Loding...");
     try {
-      var data = dio.FormData.fromMap({
-        'userid': userid,
+
+      var data = {
+        'username': username,
         'password': password,
-        'confirmPassword': password,
-      });
-      final response = await _apiService.postWithoutToken(
-          endPoint: ApiEndpoints.Resetpassword, reqData: data);
+        'confirm_password':confirm_password
+
+      };
+      final response = await _apiService.post(
+          endPoint: ApiEndpoints.Changepassword, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-          String jsonString = response.data;
-          Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-          if (int.parse(jsonMap['status'].toString()) == 200) {
-            Get.back();
-            update();
-            CustomSnackBar.successSnackBar(message: jsonMap['message']);
+
+          Map<String, dynamic> jsonMap = response.data;
+          if (jsonMap['status'] == true) {
+            _changePasswordData.value = ChangePasswordModel.fromJson(jsonMap);
+
+            Get.toNamed(Routes.LOGIN);
+
+
+            CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
           } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message']);
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
           }
+          loading(show: false);
         }
       }
     } on dio.DioException catch (ex) {
+      loading(show: false);
       if (ex.response != null) {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
-            message: data['message'] ?? "somethingWentWrong".tr);
+            message: data['message_en'] ?? "somethingWentWrong".tr);
       } else {
         CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
       }
-    } catch (e) {
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      appLogger.e(e.toString());
     } finally {
       loading(show: false);
     }
@@ -541,10 +645,10 @@ class AuthController extends GetxController {
     required data,
   }) async {
     _storageService.writeString(
-        key: StorageKey.userId, value: userData.value.userData!.id.toString());
+        key: StorageKey.userId, value: loginData.value.user!.id.toString());
     _storageService.writeBool(key: StorageKey.isLogin, value: true);
     _storageService.writeString(
-        key: StorageKey.userData, value: jsonEncode(userData.value));
+        key: StorageKey.userData, value: jsonEncode(loginData.value));
 
     return true;
   }
@@ -593,25 +697,48 @@ class AuthController extends GetxController {
 
   Future<User?> signInWithGoogle() async {
     try {
+
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+
       if (googleUser == null) {
+
         return null;
       }
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      // final UserCredential userCredential =
-      //     await _auth.signInWithCredential(credential);
-      // return userCredential.user;
 
-      return null;
+      final UserCredential userCredential =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      final user = userCredential.user;
+      if (user != null) {
+
+
+
+        await loginWithEmailPassword(
+          username: user.email!,
+          logintype: "google",
+        );
+
+        return user;
+      } else {
+
+        return null;
+      }
     } catch (e) {
+
+      CustomSnackBar.errorSnackBar(message: "Google sign-in failed.");
       return null;
     }
   }
+
 
   // Future<void> aloginWithFacebook() async {
   //   try {
@@ -660,13 +787,7 @@ class AuthController extends GetxController {
     final result =
         await FirebaseAuth.instance.signInWithCredential(oauthCredential);
     if (result.user!.email!.isNotEmpty) {
-      register_new_account(
-          firstname: result.user!.displayName.toString(),
-          lastname: "",
-          email: result.user!.email.toString(),
-          phone: result.user!.phoneNumber.toString(),
-          password: result.user!.uid.toString(),
-          type: socialMediaType.apple.name);
+
     }
   }
 }

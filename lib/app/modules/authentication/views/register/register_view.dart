@@ -10,6 +10,7 @@ import 'package:go_burble_new/app/widgets/custom_drop_down_form_field.dart';
 import '../../../../data/text_styles.dart';
 import '../../../../data/utils.dart';
 import '../../../../widgets/custom_button.dart';
+import '../../../../widgets/custom_snackbar.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import 'package:flutter/services.dart';
 
@@ -213,7 +214,9 @@ class _RegisterViewState extends State<RegisterView> {
                                                     child: Text(option),
                                                   ))
                                               .toList(),
-                                          onChanged: (value) {},
+                                          onChanged: (value) {
+                                            genderController.text=value.toString();
+                                          },
                                           borderColor: genderFocusNode
                                                   .hasFocus
                                               ? AppColors.primaryColor
@@ -565,8 +568,24 @@ class _RegisterViewState extends State<RegisterView> {
 
     if (formkey) {
       ///login endpoint
-      Get.toNamed(Routes.OTP_VIEW);
-    }
+
+      if(authController.isTermsCondition.value!=true)
+        {
+          CustomSnackBar.errorSnackBar(message: "termsRequired".tr);
+        }
+      else {
+        await authController
+            .register_new_account(
+            name: nameController.text,
+            gender: genderController.text,
+            email: emailController.text,
+            phone: phoneController.text,
+            password: passwordController.text
+        ).then((val) {
+
+
+        });
+      } }
   }
 
   void updateWidget() {

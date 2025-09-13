@@ -65,9 +65,9 @@ void loading({required bool show, String title = "Loading.."}) {
       /// custom style
       ..loadingStyle = EasyLoadingStyle.custom
       ..progressColor = AppColors.headingColor
-      ..indicatorColor = AppColors.headingColor
+      ..indicatorColor = AppColors.primaryColor
       ..backgroundColor = AppColors.appLightColor
-      ..textColor = Colors.black
+      ..textColor = AppColors.blackColor
 
       ///
       ..userInteractions = false

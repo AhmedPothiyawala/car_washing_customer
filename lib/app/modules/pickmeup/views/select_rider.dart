@@ -5,6 +5,7 @@ import 'package:go_burble_new/app/data/utils.dart';
 import '../../../data/app_colors.dart';
 import '../../../data/app_images.dart';
 import '../../../data/text_styles.dart';
+import '../../../routes/app_pages.dart';
 import '../../../widgets/custom_button.dart';
 
 class SelectRiderView extends StatelessWidget {
@@ -263,7 +264,7 @@ class SelectRiderView extends StatelessWidget {
                 Center(
                   child: CustomButton(
                     onPressed: () {
-
+                      Get.toNamed(Routes.CUSTOMER_DETAIL_VIEW);
                     },
                     height: 50,
                     width: kWidth * 0.8,
