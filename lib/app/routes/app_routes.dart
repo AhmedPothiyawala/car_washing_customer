@@ -28,6 +28,6 @@ abstract class _Paths {
   static const HOME_VIEW = '/home-view';
   static const OTP_VIEW = '/otp-view';
   static const BOTTOM_APP_BAR_VIEW = '/bottom-app-bar-view';
-  static const PICK_ME_UP_VIEW = '/pick-me-up-views';
-  static const SELECT_RIDER_VIEW = '/pick-me-up-views';
+  static const PICK_ME_UP_VIEW = '/pick-me-up-view';
+  static const SELECT_RIDER_VIEW = '/select-riders-view';
 }
