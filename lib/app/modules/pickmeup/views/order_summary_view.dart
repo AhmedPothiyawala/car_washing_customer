@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:go_burble_new/app/data/utils.dart';
@@ -18,7 +19,7 @@ class OrderSummaryView extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         surfaceTintColor: AppColors.appBackgroundColor,
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.appBackgroundColor,
         flexibleSpace: Padding(
           padding: const EdgeInsets.only(top: 45.0),
           child: Row(
@@ -60,7 +61,7 @@ class OrderSummaryView extends StatelessWidget {
                   SizedBox(
                      width: kWidth * 0.4,
                       child: Text("orderTimeDateDay".tr,style: sfProRegularTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),)),
-          
+
                   SizedBox(
                       width: kWidth * 0.4,
                       child: Text("orderId".tr,style: sfProRegularTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),)),
@@ -140,7 +141,7 @@ class OrderSummaryView extends StatelessWidget {
                         ),
                       ),
                       const Icon(Icons.location_on,color: AppColors.primaryColor,),
-          
+
                     ],
                   ),
                   const SizedBox(width: 20,),
@@ -166,11 +167,11 @@ class OrderSummaryView extends StatelessWidget {
                       Text("arbedoCastioneSwitzerland".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.blackColor),),
                       const SizedBox(height: 20,),
                       const SizedBox(height: 10,),
-          
-          
+
+
                     ],
                   ),
-          
+
                 ],
               ),
               const SizedBox(height: 20,),
@@ -204,7 +205,7 @@ class OrderSummaryView extends StatelessWidget {
                       children : [
                         Text("addition".tr,style: sfProRegularTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
                         Text("dummyText".tr,style: sfProRegularTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),),
-          
+
                       ]
                   ),
                   const SizedBox(width: 20,),
@@ -241,7 +242,7 @@ class OrderSummaryView extends StatelessWidget {
                       children : [
                         Text("phone".tr,style: sfProRegularTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
                         Text("phoneNumber41".tr,style: sfProRegularTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),),
-          
+
                       ]
                   ),
                   const SizedBox(width: 10,),
@@ -515,7 +516,7 @@ class OrderSummaryView extends StatelessWidget {
                     //Get.toNamed(Routes.SELECT_RIDER_VIEW);
                   },
                   height: 50,
-                  width: kWidth * 0.8,
+                  width: kWidth * 0.9,
                   borderRadius: BorderRadius.circular(12),
                   bgColor: AppColors.primaryColor,
                   childWidget: Center(
@@ -525,7 +526,7 @@ class OrderSummaryView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20,),
-              const SizedBox(height: 40,),
+
 
             ],
                 ),

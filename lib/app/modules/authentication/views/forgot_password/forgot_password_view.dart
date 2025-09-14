@@ -41,7 +41,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
           child: Stack(
             children: [
               Container(
-                height: kHeight * 0.3,
+                height: kHeight * 0.35,
                 width: kWidth,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -52,7 +52,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20.0,top: 30),
+                      padding: const EdgeInsets.only(left: 20.0,top: 10),
                       child: InkWell(
                         onTap: () {
                           Get.back();
@@ -75,21 +75,59 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "forgotPasswordTitle".tr,
-                      style: sfProBoldTextstyle,
+                    Center(
+                      child: Container(
+                        width: kWidth*0.9,
+                        child: Column(
+                          children: [
+                            Text(
+                              "forgotPasswordTitle".tr,
+                              style: sfProBoldTextstyle,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "forgotPasswordSubTitle".tr,
-                      style: sfProMediumTextstyle,
+                    Center(
+                      child: Container(
+                        width: kWidth*0.9,
+
+                        child: Column(
+
+                          children: [
+                            Center(
+                              child: Text(
+                                "forgotPasswordSubTitle".tr,
+                                style: sfProMediumTextstyle,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                 
-                    Text(
-                      "forgotPasswordSubTitle2".tr,
-                      style: sfProMediumTextstyle,
+
+                    Center(
+                      child: Container(
+                        width: kWidth*0.9,
+
+                        child: Column(
+
+                          children: [
+                            Center(
+                              child: Text(
+                                "forgotPasswordSubTitle2".tr,
+                                style: sfProMediumTextstyle,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -98,7 +136,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: kHeight * 0.28),
+                padding: EdgeInsets.only(top: kHeight * 0.3),
                 child: Center(
                   child: Align(
                     alignment: Alignment.center,
@@ -140,12 +178,12 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                 borderColor: phoneFocusNode.hasFocus
                                     ? AppColors.primaryColor
                                     : AppColors.appWhiteGreyColor,
-                                validator: (string) {
-                                  if (string == null || string.isEmpty) {
-                                    return "phoneIsRequired".tr;
-                                  }
-                                  return null;
-                                },
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                    RegExp( r'\+?[0-9\s\-()]*'),
+                                  ),
+                                ],
+                                validator: validatePhone,
                                 onFieldSubmitted: (value) {},
                               ),
                             ),

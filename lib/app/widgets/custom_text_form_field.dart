@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../data/app_colors.dart';
 import '../data/text_styles.dart';
@@ -28,6 +29,7 @@ class CustomTextFormField extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final ContentInsertionConfiguration? contentInsertionConfiguration;
   final double? width;
+  final List<TextInputFormatter>? inputFormatters;
   const CustomTextFormField(
       {super.key,
       this.hintText,
@@ -61,7 +63,9 @@ class CustomTextFormField extends StatelessWidget {
       this.contentInsertionConfiguration,
       this.contentPadding,
       this.width,
-      this.readOnly});
+      this.readOnly,
+      this.inputFormatters
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +74,7 @@ class CustomTextFormField extends StatelessWidget {
       child: TextFormField(
         maxLength: maxLength,
         minLines: null,
+        inputFormatters: inputFormatters,
         onTapOutside: onTapOutside,
         controller: controller,
         focusNode: focusNode,
@@ -90,11 +95,11 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: obscureText ?? false,
         contentInsertionConfiguration: contentInsertionConfiguration,
 
-        maxLines: maxLines ?? (obscureText ?? false ? 1 : null),
+        maxLines: maxLines ??1,
         // Allow unlimited number of lines for multiline input
         decoration: decoration ??
             InputDecoration(
-              // contentPadding: EdgeInsets.all(8.0),
+               contentPadding: contentPadding,
 
               enabledBorder: enabledBorder ??
                   OutlineInputBorder(
@@ -102,7 +107,7 @@ class CustomTextFormField extends StatelessWidget {
                         const BorderRadius.all(Radius.circular(20)),
                     borderSide: BorderSide(
                         color: borderColor ?? AppColors.buttonBackgroundColor,
-                        width: 2),
+                        width: 1),
                   ),
               focusedBorder: focusedBorder ??
                   OutlineInputBorder(

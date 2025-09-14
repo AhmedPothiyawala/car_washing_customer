@@ -30,28 +30,69 @@ String postCacheKey({required String id}) {
   return "post_$id".toLowerCase();
 }
 
-String? validateEmail(String value) {
+String? validateEmail(String? value) {
   String pattern =
       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$";
   RegExp regex = RegExp(pattern);
-  if (value.isEmpty) {
-    return 'Please enter an email';
+  if (value!.isEmpty) {
+    return 'emailIsRequired'.tr;
   } else if (!regex.hasMatch(value)) {
-    return 'Enter a valid email address';
+    return 'enterValidEmail'.tr;
   } else {
     return null;
   }
 }
 
 String? validatePassword(String? value) {
-  if (value == null || value.isEmpty) {
-    return 'Please enter a password';
-  }
   String pattern =
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$'
+  ;
   RegExp regex = RegExp(pattern);
-  if (!regex.hasMatch(value)) {
-    return 'Password must be 8 characters, uppercase, lowercase, number & special character';
+  if (value == null || value.isEmpty) {
+    return 'passwordIsRequired'.tr;
+  }
+
+ else if (value.length<6) {
+    return 'passwordMinLength'.tr;
+  }
+  else if (!regex.hasMatch(value)) {
+    return 'enterValidPassword'.tr;
+  }
+  return null;
+}
+
+String? validateConfirmPassword(String? value,String? value2) {
+
+  String pattern =
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$';
+  RegExp regex = RegExp(pattern);
+  if (value == null || value.isEmpty) {
+    return 'enterconfimpassword'.tr;
+  }
+
+ else if (value.length<8) {
+    return 'passwordMinLength'.tr;
+  }
+  else if (!regex.hasMatch(value)) {
+    return 'enterValidPassword'.tr;
+  }
+  else if (value!=value2) {
+    return 'passwordMismatch'.tr;
+  }
+  return null;
+}
+
+String? validatePhone(String? value) {
+
+  String pattern = r'^\+?[0-9\s\-()]*$';
+  RegExp regex = RegExp(pattern);
+  if (value == null || value.isEmpty) {
+    return 'phonenumber'.tr;
+  }
+
+
+  else if (!regex.hasMatch(value)) {
+    return 'enterValidMobile'.tr;
   }
   return null;
 }

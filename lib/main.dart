@@ -23,9 +23,9 @@ void main() async {
     envType: Environment.development,
     envConfig: devConfig,
   );
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   await initAllServices();
   // init();
 

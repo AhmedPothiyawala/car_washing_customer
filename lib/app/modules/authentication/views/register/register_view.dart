@@ -98,17 +98,43 @@ class _RegisterViewState extends State<RegisterView> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              Text(
-                                "signUpTitle".tr,
-                                style: sfProBoldTextstyle,
+
+                              Center(
+                                child: Container(
+                                  width: kWidth*0.9,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "signUpTitle".tr,
+                                        style: sfProBoldTextstyle,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                               const SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
-                              Text(
-                                "signUpSubTitle".tr,
-                                style: sfProMediumTextstyle,
+                              Center(
+                                child: Container(
+                                  width: kWidth*0.9,
+
+                                  child: Column(
+
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          "signUpSubTitle".tr,
+                                          style: sfProMediumTextstyle,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
+
                               const SizedBox(
                                 height: 20,
                               ),
@@ -255,6 +281,11 @@ class _RegisterViewState extends State<RegisterView> {
                                               TextInputAction.next,
                                           width: kWidth * 0.8,
                                           hintText: "email".tr,
+                                          inputFormatters: [
+                                            FilteringTextInputFormatter.allow(
+                                              RegExp(r'[a-zA-Z0-9@._\-+]'),
+                                            ),
+                                          ],
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
@@ -265,13 +296,7 @@ class _RegisterViewState extends State<RegisterView> {
                                           borderColor: emailFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
-                                          validator: (string) {
-                                            if (string == null ||
-                                                string.isEmpty) {
-                                              return "emailIsRequired".tr;
-                                            }
-                                            return null;
-                                          },
+                                          validator: validateEmail,
                                           onFieldSubmitted: (value) {
                                             usernmaeFormKey.currentState!
                                                 .validate();
@@ -301,6 +326,11 @@ class _RegisterViewState extends State<RegisterView> {
                                           width: kWidth * 0.8,
                                           keyboardType: TextInputType.number,
                                           hintText: "phone".tr,
+                                          inputFormatters: [
+                                            FilteringTextInputFormatter.allow(
+                                              RegExp( r'\+?[0-9\s\-()]*'), // allow digits, spaces, +, -, (, )
+                                            ),
+                                          ],
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
@@ -311,13 +341,7 @@ class _RegisterViewState extends State<RegisterView> {
                                           borderColor: phoneFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
-                                          validator: (string) {
-                                            if (string == null ||
-                                                string.isEmpty) {
-                                              return "phoneIsRequired".tr;
-                                            }
-                                            return null;
-                                          },
+                                          validator: validatePhone,
                                           onFieldSubmitted: (value) {
                                             usernmaeFormKey.currentState!
                                                 .validate();
@@ -355,13 +379,7 @@ class _RegisterViewState extends State<RegisterView> {
                                             passwordFocusNode.hasFocus
                                                 ? AppColors.primaryColor
                                                 : AppColors.appWhiteGreyColor,
-                                        validator: (string) {
-                                          if (string == null ||
-                                              string.isEmpty) {
-                                            return "passwordIsRequired".tr;
-                                          }
-                                          return null;
-                                        },
+                                        validator: validatePassword,
                                         suffixIcon: GestureDetector(
                                           onTap: () async {
                                             authController

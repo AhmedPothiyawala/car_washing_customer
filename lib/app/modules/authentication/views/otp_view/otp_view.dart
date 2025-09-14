@@ -89,16 +89,42 @@ class _OtpViewState extends State<OtpView> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Text(
-                        "otpTitle".tr,
-                        style: sfProBoldTextstyle,
+
+                      Center(
+                        child: Container(
+                          width: kWidth*0.9,
+                          child: Column(
+                            children: [
+                              Text(
+                                "otpTitle".tr,
+                                style: sfProBoldTextstyle,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
-                      Text(
-                        "otpSubTitle".tr,
-                        style: sfProMediumTextstyle,
+
+                      Center(
+                        child: Container(
+                          width: kWidth*0.9,
+
+                          child: Column(
+
+                            children: [
+                              Center(
+                                child: Text(
+                                  "otpSubTitle".tr,
+                                  style: sfProMediumTextstyle,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       const SizedBox(
                         height: 20,
@@ -239,34 +265,52 @@ class _OtpViewState extends State<OtpView> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    "notReceiveTheOtp".tr,
-                                    style: sfProMediumTextstyle.copyWith(
-                                        color: AppColors.appWhiteGreyColor2),
-                                  ),
-                                  const Spacer(),
-                                  InkWell(
-                                      onTap: () {
-                                        authController.resend_otp(username: args['username']);
-                                      },
-                                      child: Text(
-                                        "resendOtp".tr,
-                                        style:
-                                            sfProSemiBoldTextstyle.copyWith(
-                                                color:
-                                                    AppColors.primaryColor),
-                                      )),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                ],
+
+
+                              Obx(
+                               () {
+                                  return authController.isResendOtpDisabled.value?
+                                  Center(
+                                    child: Text(
+                                      authController.resendOtpTimer.value.toString(),
+                                      style:
+                                      sfProSemiBoldTextstyle.copyWith(
+                                          color:
+                                          AppColors.primaryColor),
+                                    ),
+                                  )
+                                      :
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        "notReceiveTheOtp".tr,
+                                        style: sfProMediumTextstyle.copyWith(
+                                            color: AppColors.appWhiteGreyColor2),
+                                      ),
+                                      const Spacer(),
+
+                                      InkWell(
+                                          onTap: () {
+                                            authController.resend_otp(username: args['username']);
+                                          },
+                                          child: Text(
+                                            "resendOtp".tr,
+                                            style:
+                                                sfProSemiBoldTextstyle.copyWith(
+                                                    color:
+                                                        AppColors.primaryColor),
+                                          )),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                    ],
+                                  );
+                                }
                               ),
 
                               const SizedBox(

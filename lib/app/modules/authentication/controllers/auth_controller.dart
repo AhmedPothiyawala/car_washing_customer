@@ -26,7 +26,7 @@ import '../../../services/storage_services/storage_services.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/custome_dialog.dart';
 import '../../webview/custom_webview.dart';
-
+import 'dart:async';
 class AuthController extends GetxController {
   final _apiService = Get.find<ApiServices>();
   final _storageService = Get.find<StorageService>();
@@ -66,6 +66,34 @@ class AuthController extends GetxController {
   final RxBool _isLoginPasswordObscureText = true.obs;
 
   RxBool get isLoginPasswordObscureText => _isLoginPasswordObscureText;
+
+  // Add below variables in your AuthController class
+  final RxInt _resendOtpTimer = 30.obs;
+  final RxBool _isResendOtpDisabled = true.obs;
+  Timer? _timer;
+
+  RxInt get resendOtpTimer => _resendOtpTimer;
+  RxBool get isResendOtpDisabled => _isResendOtpDisabled;
+  void startOtpTimer() {
+    _resendOtpTimer.value = 30;
+    _isResendOtpDisabled.value = true;
+
+    _timer?.cancel(); // cancel existing timer if any
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_resendOtpTimer.value > 0) {
+        _resendOtpTimer.value--;
+      } else {
+        _isResendOtpDisabled.value = false;
+        timer.cancel();
+      }
+    });
+  }
+
+  void stopOtpTimer() {
+    _timer?.cancel();
+    _isResendOtpDisabled.value = false;
+  }
+
 
   Future<void> clearWebViewCache() async {
     final WebViewCookieManager cookieManager = WebViewCookieManager();
@@ -219,6 +247,7 @@ class AuthController extends GetxController {
               'forgotpassword':false
 
             } );
+            startOtpTimer();
             CustomSnackBar.successSnackBar(message: "Otp Send Successfully");
           } else {
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
@@ -322,7 +351,7 @@ class AuthController extends GetxController {
           Map<String, dynamic> jsonMap = response.data;
           if (jsonMap['status'] == true) {
             _resendData.value = ResendOtpModel.fromJson(jsonMap);
-
+            startOtpTimer();
             CustomSnackBar.successSnackBar(message:jsonMap['message_en']);
           } else {
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
@@ -434,7 +463,7 @@ class AuthController extends GetxController {
               'forgotpassword':true
 
               });
-
+            startOtpTimer();
 
             CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
           } else {

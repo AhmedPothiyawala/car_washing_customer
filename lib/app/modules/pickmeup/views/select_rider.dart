@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/utils.dart';
 
@@ -15,24 +16,31 @@ class SelectRiderView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.appBackgroundColor,
+
       extendBody: true,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: AppColors.transparent,
         automaticallyImplyLeading: false,
+        systemOverlayStyle:  SystemUiOverlayStyle.dark,
         flexibleSpace: Padding(
           padding: const EdgeInsets.only(top: 45.0),
           child: Row(
             children: [
               const SizedBox(width: 15,),
-              Container(
-                height: 44,
-                width: 44,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.whiteShadeTwo,
+              InkWell(
+                onTap: (){
+                  Get.back();
+                },
+                child: Container(
+                  height: 44,
+                  width: 44,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.whiteShadeTwo,
+                  ),
+                  child: const Center(child: Icon(Icons.arrow_back_ios_new_outlined,color: AppColors.blackColor,)),
                 ),
-                child: const Center(child: Icon(Icons.arrow_back_ios_new_outlined,color: AppColors.blackColor,)),
               ),
             ],
           ),
@@ -267,7 +275,7 @@ class SelectRiderView extends StatelessWidget {
                       Get.toNamed(Routes.CUSTOMER_DETAIL_VIEW);
                     },
                     height: 50,
-                    width: kWidth * 0.8,
+                    width: kWidth * 0.9,
                     borderRadius: BorderRadius.circular(12),
                     bgColor: AppColors.primaryColor,
                     childWidget: Center(

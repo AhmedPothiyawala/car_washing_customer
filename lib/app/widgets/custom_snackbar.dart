@@ -13,8 +13,8 @@ class CustomSnackBar {
 
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: AppColors.appBackgroundColor,
-        snackPosition: SnackPosition.TOP,
+        backgroundColor: AppColors.primaryColor,
+        snackPosition: SnackPosition.BOTTOM,
         isDismissible: true,
         snackStyle: SnackStyle.FLOATING,
         duration: Duration(seconds: seconds),
@@ -31,7 +31,7 @@ class CustomSnackBar {
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColors.primaryColor,
+                  color: AppColors.appBackgroundColor,
                   fontSize: 14,
                 ),
               ),
@@ -44,7 +44,7 @@ class CustomSnackBar {
                 child: Icon(
                   Icons.close_rounded,
                   size: 20,
-                  color: AppColors.primaryColor,
+                  color: AppColors.appBackgroundColor,
                 ),
               ),
             ),
@@ -68,8 +68,8 @@ class CustomSnackBar {
 
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: AppColors.appBackgroundColor,
-        snackPosition: SnackPosition.TOP,
+        backgroundColor: AppColors.primaryColor,
+        snackPosition: SnackPosition.BOTTOM,
         isDismissible: isDismissible ?? true,
         snackStyle: SnackStyle.FLOATING,
         duration: duration ?? Duration(seconds: seconds),
@@ -87,7 +87,7 @@ class CustomSnackBar {
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColors.primaryColor,
+                  color: AppColors.appBackgroundColor,
                   fontSize: 14,
                 ),
               ),
@@ -100,7 +100,7 @@ class CustomSnackBar {
                 child: Icon(
                   Icons.close_rounded,
                   size: 20,
-                  color: AppColors.primaryColor,
+                  color: AppColors.appBackgroundColor,
                 ),
               ),
             ),

@@ -32,14 +32,15 @@ Map<String, String> enUS = {
   "emailIsRequired": "Email is required",
   "msgIsRequired": "Message is required",
   "enterValidEmail": "Please enter valid email",
+  "enterValidMobile": "Please enter valid phone number",
   "passwordIsRequired": "Password is required",
   "confirmpasswordIsRequired": "Confirm Password is required",
   "firstIsRequired": "Firstname is required",
   "lastIsRequired": "Lasttname is required",
 
   "enterValidPassword":
-      "Password must have one uppercase letter, one lowercase letter, one digit (0-9), and one non-alphanumeric character.",
-  "passwordMinLength": "Password should be more than or equal to 6 characters",
+      "Password must have one uppercase letter, one lowercase letter, one digit (0-9)",
+  "passwordMinLength": "Password should be more than or equal to 8 characters",
 
   //******************************************************************************************
   //SIGNUP

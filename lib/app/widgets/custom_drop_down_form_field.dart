@@ -103,7 +103,7 @@ class CustomDropDownFormField extends StatelessWidget {
                         const BorderRadius.all(Radius.circular(20)),
                     borderSide: BorderSide(
                         color: borderColor ?? AppColors.buttonBackgroundColor,
-                        width: 2),
+                        width: 1),
                   ),
               focusedBorder: focusedBorder ??
                   OutlineInputBorder(
@@ -111,7 +111,7 @@ class CustomDropDownFormField extends StatelessWidget {
                         const BorderRadius.all(Radius.circular(20)),
                     borderSide: BorderSide(
                         color: borderColor ?? AppColors.buttonBackgroundColor,
-                        width: 2),
+                        width: 1),
                   ),
               errorBorder: errorBorder ??
                   OutlineInputBorder(

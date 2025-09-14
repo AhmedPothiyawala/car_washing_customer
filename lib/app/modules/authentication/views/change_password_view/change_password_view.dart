@@ -45,7 +45,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
             child: Stack(
               children: [
                 Container(
-                  height: kHeight * 0.3,
+                  height: kHeight * 0.35,
                   width: kWidth,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
@@ -56,7 +56,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 20.0,top: 30),
+                        padding: const EdgeInsets.only(left: 20.0,top: 10),
                         child: InkWell(
                           onTap: () {
                             Get.back();
@@ -79,22 +79,62 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Text(
-                        "changePasswordTitle".tr,
-                        style: sfProBoldTextstyle,
+
+                      Center(
+                        child: Container(
+                          width: kWidth*0.9,
+                          child: Column(
+                            children: [
+                              Text(
+                                "changePasswordTitle".tr,
+                                style: sfProBoldTextstyle,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "changePasswordSubTitle".tr,
-                        style: sfProMediumTextstyle,
+                        height: 10,
                       ),
 
-                      Text(
-                        "changePasswordSubTitle2".tr,
-                        style: sfProMediumTextstyle,
+                      Center(
+                        child: Container(
+                          width: kWidth*0.9,
+
+                          child: Column(
+
+                            children: [
+                              Center(
+                                child: Text(
+                                  "changePasswordSubTitle".tr,
+                                  style: sfProMediumTextstyle,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
+                      Center(
+                        child: Container(
+                          width: kWidth*0.9,
+
+                          child: Column(
+
+                            children: [
+                              Center(
+                                child: Text(
+                                  "changePasswordSubTitle2".tr,
+                                  style: sfProMediumTextstyle,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
                       const SizedBox(
                         height: 20,
                       ),
@@ -102,7 +142,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: kHeight * 0.28),
+                  padding: EdgeInsets.only(top: kHeight * 0.3),
                   child: Center(
                     child: Align(
                       alignment: Alignment.center,
@@ -142,12 +182,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                 borderColor: passwordFocusNode.hasFocus
                                     ? AppColors.primaryColor
                                     : AppColors.appWhiteGreyColor,
-                                validator: (string) {
-                                  if (string == null || string.isEmpty) {
-                                    return "passwordIsRequired".tr;
-                                  }
-                                  return null;
-                                },
+                                validator: validatePassword,
                                 suffixIcon: GestureDetector(
                                   onTap: () async {
                                     authController.isLoginPasswordObscureText
@@ -191,13 +226,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                 borderColor: confirmPasswordFocusNode.hasFocus
                                     ? AppColors.primaryColor
                                     : AppColors.appWhiteGreyColor,
-                                validator: (string) {
-                                  if (string == null || string.isEmpty) {
-                                    return "confirmpasswordIsRequired".tr;
-                                  }
-
-                                  return null;
-                                },
+                                validator: (value) => validateConfirmPassword(value, passwordController.text),
                                 suffixIcon: GestureDetector(
                                   onTap: () async {
                                     authController
