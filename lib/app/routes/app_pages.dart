@@ -12,9 +12,11 @@ import '../modules/authentication/views/otp_view/otp_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/pickmeup/views/customer_detail_view.dart';
+import '../modules/pickmeup/views/driver_detail_view.dart';
 import '../modules/pickmeup/views/order_summary_view.dart';
 import '../modules/pickmeup/views/pick_me_up_view.dart';
 import '../modules/pickmeup/views/select_rider.dart';
+import '../modules/pickmeup/views/trip_detail_view.dart';
 
 part 'app_routes.dart';
 
@@ -64,11 +66,12 @@ class AppPages {
     GetPage(
       name: _Paths.HOME_VIEW,
       page: () => const HomeView(),
-      binding: HomeBinding(),
+      binding: BottomNavBarBinding(),
     ),
     GetPage(
       name: _Paths.PICK_ME_UP_VIEW,
-      page: () => const PickMeUpView(),
+      page: () =>  PickMeUpView(),
+      binding: BottomNavBarBinding(),
     ),
     GetPage(
       name: _Paths.SELECT_RIDER_VIEW,
@@ -81,6 +84,16 @@ class AppPages {
     GetPage(
       name: _Paths.CUSTOMER_DETAIL_VIEW,
       page: () => CustomerDetailView(),
+      binding: BottomNavBarBinding(),
+    ),
+
+    GetPage(
+      name: _Paths.DRIVER_DETAIL_VIEW,
+      page: () => DriverDetailView(),
+    ),
+    GetPage(
+      name: _Paths.TRIP_DETAIL_VIEW,
+      page: () => TripDetailView(),
     ),
   ];
 }

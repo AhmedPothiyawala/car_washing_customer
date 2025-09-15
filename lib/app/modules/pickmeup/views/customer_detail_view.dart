@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../data/app_colors.dart';
@@ -9,6 +10,8 @@ import '../../../routes/app_pages.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_drop_down_form_field.dart';
 import '../../../widgets/custom_text_form_field.dart';
+import '../../bottomnavigationbar/controllers/bottom_nav_bar_controllers.dart';
+import '../../home/controllers/home_controller.dart';
 
 class CustomerDetailView extends StatelessWidget {
   CustomerDetailView({super.key});
@@ -51,6 +54,10 @@ class CustomerDetailView extends StatelessWidget {
 
   final customerNameController = TextEditingController();
 
+  final customerPhoneController = TextEditingController();
+
+  final homeController = Get.find<BottomNavBarControllers>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,10 +65,14 @@ class CustomerDetailView extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         surfaceTintColor: AppColors.appBackgroundColor,
-        title: Text(
-          "bookPickUpMyCar".tr,
-          style: poppinsSemiboldTextstyle.copyWith(
-              fontSize: 18, color: AppColors.blackColor),
+        title: Obx(
+        () {
+            return Text(
+              homeController.isPickMeUp.value?"bookPickMeUp".tr:  "bookPickUpMyCar".tr,
+              style: poppinsSemiboldTextstyle.copyWith(
+                  fontSize: 18, color: AppColors.blackColor),
+            );
+          }
         ),
         centerTitle: true,
         backgroundColor: AppColors.appBackgroundColor,
@@ -439,12 +450,18 @@ class CustomerDetailView extends StatelessWidget {
                                       hintText: "phoneNumber".tr,
                                       contentPadding: EdgeInsets.zero,
                                       width: kWidth * 0.25,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.allow(
+                                          RegExp(r'\+?[0-9\s\-()]*'),
+                                        ),
+                                      ],
+                                      keyboardType: TextInputType.number,
                                       hintStyle: sfProMediumTextstyle.copyWith(
                                           fontSize: 14,
                                           color: AppColors.blackColor),
                                       borderRadiusAll: const BorderRadius.all(
                                           Radius.circular(0)),
-                                      controller: surNameController,
+                                      controller: phoneController,
                                       fillColor: AppColors.appBackgroundColor,
                                       borderColor: AppColors.appBackgroundColor,
                                       validator: (string) {
@@ -501,7 +518,7 @@ class CustomerDetailView extends StatelessWidget {
                         maxLines: 2,
                         borderRadiusAll:
                             const BorderRadius.all(Radius.circular(12)),
-                        controller: nameController,
+                        controller: remarkController,
                         fillColor: AppColors.appBackgroundColor,
                         borderColor: AppColors.appWhiteGreyColor,
                         validator: (string) {
@@ -573,7 +590,7 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: nameController,
+                            controller: companyName,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -607,7 +624,7 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: surNameController,
+                            controller: supplementController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -651,12 +668,18 @@ class CustomerDetailView extends StatelessWidget {
                           ),
                           CustomTextFormField(
                             hintText: "streetNumberIs".tr,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp(r'\+?[0-9\s\-()]*'),
+                              ),
+                            ],
+                            keyboardType: TextInputType.number,
                             hintStyle: sfProMediumTextstyle.copyWith(
                                 fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: nameController,
+                            controller: streetNumberController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -690,7 +713,7 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: surNameController,
+                            controller: placeController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -729,7 +752,7 @@ class CustomerDetailView extends StatelessWidget {
                       width: kWidth * 0.9,
                       borderRadiusAll:
                           const BorderRadius.all(Radius.circular(12)),
-                      controller: nameController,
+                      controller: addressController,
                       fillColor: AppColors.appBackgroundColor,
                       borderColor: AppColors.appWhiteGreyColor,
                       suffixIcon: Padding(
@@ -793,7 +816,7 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: nameController,
+                            controller: cantonController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -827,7 +850,13 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: surNameController,
+                            controller: postalCodeController,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp(r'\+?[0-9\s\-()]*'),
+                              ),
+                            ],
+                            keyboardType: TextInputType.number,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -888,6 +917,7 @@ class CustomerDetailView extends StatelessWidget {
                             .toList(),
                         onChanged: (value) {},
                         borderColor: AppColors.appWhiteGreyColor,
+                        controller: landController,
                         validator: (string) {
                           if (string == null) {
                             return "genderIsRequired".tr;
@@ -926,12 +956,13 @@ class CustomerDetailView extends StatelessWidget {
                   Center(
                     child: CustomTextFormField(
                       hintText: "dispatcherNameIs".tr,
+
                       hintStyle: sfProMediumTextstyle.copyWith(
                           fontSize: 14, color: AppColors.blackColor),
                       width: kWidth * 0.9,
                       borderRadiusAll:
                           const BorderRadius.all(Radius.circular(12)),
-                      controller: nameController,
+                      controller: dispatcherNameController,
                       fillColor: AppColors.appBackgroundColor,
                       borderColor: AppColors.appWhiteGreyColor,
                       validator: (string) {
@@ -1013,7 +1044,13 @@ class CustomerDetailView extends StatelessWidget {
                                           color: AppColors.blackColor),
                                       borderRadiusAll: const BorderRadius.all(
                                           Radius.circular(0)),
-                                      controller: surNameController,
+                                      controller: dispatcherPhoneController,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.allow(
+                                          RegExp(r'\+?[0-9\s\-()]*'),
+                                        ),
+                                      ],
+                                      keyboardType: TextInputType.number,
                                       fillColor: AppColors.appBackgroundColor,
                                       borderColor: AppColors.appBackgroundColor,
                                       validator: (string) {
@@ -1052,7 +1089,13 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: emailController,
+                            controller: orderNumberController,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp(r'\+?[0-9\s\-()]*'),
+                              ),
+                            ],
+                            keyboardType: TextInputType.number,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -1112,7 +1155,7 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: emailController,
+                            controller: customerNameController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -1177,13 +1220,19 @@ class CustomerDetailView extends StatelessWidget {
                                 CustomTextFormField(
                                   hintText: "phoneNumber".tr,
                                   contentPadding: EdgeInsets.zero,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                      RegExp(r'\+?[0-9\s\-()]*'),
+                                    ),
+                                  ],
+                                  keyboardType: TextInputType.number,
                                   width: kWidth * 0.25,
                                   hintStyle: sfProMediumTextstyle.copyWith(
                                       fontSize: 14,
                                       color: AppColors.blackColor),
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(0)),
-                                  controller: surNameController,
+                                  controller: customerPhoneController,
                                   fillColor: AppColors.appBackgroundColor,
                                   borderColor: AppColors.appBackgroundColor,
                                   validator: (string) {

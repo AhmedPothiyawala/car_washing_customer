@@ -16,7 +16,11 @@ abstract class Routes {
   static const SELECT_RIDER_VIEW = _Paths.SELECT_RIDER_VIEW;
   static const ORDER_SUMMARY_VIEW = _Paths.ORDER_SUMMARY_VIEW;
   static const CUSTOMER_DETAIL_VIEW = _Paths.CUSTOMER_DETAIL_VIEW;
+  static const DRIVER_DETAIL_VIEW = _Paths.DRIVER_DETAIL_VIEW;
+  static const TRIP_DETAIL_VIEW = _Paths.TRIP_DETAIL_VIEW;
+
 }
+
 
 abstract class _Paths {
   _Paths._();
@@ -33,4 +37,6 @@ abstract class _Paths {
   static const SELECT_RIDER_VIEW = '/select-riders-view';
   static const ORDER_SUMMARY_VIEW = '/order-summary-view';
   static const CUSTOMER_DETAIL_VIEW = '/customer-detail-view';
+  static const DRIVER_DETAIL_VIEW = "/driver-detail-view";
+  static const TRIP_DETAIL_VIEW = "/trip-detail-view";
 }

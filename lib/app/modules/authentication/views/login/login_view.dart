@@ -62,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
               child: Stack(
                 children: [
                   Container(
-                    height: kHeight * 0.3,
+                    height: kHeight * 0.35,
                     width: kWidth,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
@@ -80,7 +80,7 @@ class _LoginViewState extends State<LoginView> {
                                   image: AssetImage(AppImages.appIcon))),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Center(
                           child: SizedBox(
@@ -122,7 +122,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: kHeight * 0.25),
+                    padding: EdgeInsets.only(top: kHeight * 0.3),
                     child: Center(
                       child: Align(
                         alignment: Alignment.center,

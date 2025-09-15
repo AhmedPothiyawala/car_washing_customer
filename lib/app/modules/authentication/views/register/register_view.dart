@@ -62,7 +62,7 @@ class _RegisterViewState extends State<RegisterView> {
                     child: Stack(
                       children: [
                         Container(
-                          height: kHeight * 0.3,
+                          height: kHeight * 0.35,
                           width: kWidth,
                           decoration: const BoxDecoration(
                               image: DecorationImage(
@@ -73,7 +73,8 @@ class _RegisterViewState extends State<RegisterView> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 20.0),
+                                padding: const EdgeInsets.only(left: 20.0,
+                                    top: 10),
                                 child: InkWell(
                                   onTap: () {
                                     Get.back();
@@ -94,7 +95,7 @@ class _RegisterViewState extends State<RegisterView> {
                                         image: AssetImage(AppImages.appIcon))),
                               ),
                               const SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
                               Center(
                                 child: SizedBox(
@@ -136,7 +137,7 @@ class _RegisterViewState extends State<RegisterView> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: kHeight * 0.25),
+                          padding: EdgeInsets.only(top: kHeight * 0.3),
                           child: Center(
                             child: Align(
                               alignment: Alignment.center,

@@ -69,7 +69,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                               image: AssetImage(AppImages.appIcon))),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Center(
                       child: SizedBox(
@@ -86,7 +86,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Center(
                       child: SizedBox(

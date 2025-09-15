@@ -76,7 +76,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                 image: AssetImage(AppImages.appIcon))),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Center(
                         child: SizedBox(

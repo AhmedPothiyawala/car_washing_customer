@@ -44,7 +44,7 @@ String? validateEmail(String? value) {
 }
 
 String? validatePassword(String? value) {
-  String pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$';
+  String pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$';
   RegExp regex = RegExp(pattern);
   if (value == null || value.isEmpty) {
     return 'passwordIsRequired'.tr;
@@ -56,8 +56,22 @@ String? validatePassword(String? value) {
   return null;
 }
 
+String? validateOtp(String? value) {
+
+  String pattern = r'^\d{6}$';
+
+  RegExp regex = RegExp(pattern);
+  if (value == null || value.isEmpty) {
+    return 'otpRequired'.tr;
+  } else if (value.length < 6) {
+    return 'otpLength'.tr;
+  }
+  return null;
+}
+
 String? validateConfirmPassword(String? value, String? value2) {
-  String pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$';
+  String pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$';
+
   RegExp regex = RegExp(pattern);
   if (value == null || value.isEmpty) {
     return 'enterconfimpassword'.tr;

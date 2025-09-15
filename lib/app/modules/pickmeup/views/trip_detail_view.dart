@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_burble_new/app/data/utils.dart';
 
 import '../../../data/app_colors.dart';
 import '../../../data/app_images.dart';
 import '../../../data/text_styles.dart';
-import '../../../routes/app_pages.dart';
+import '../../../data/utils.dart';
 import '../../../widgets/custom_button.dart';
 
-class OrderSummaryView extends StatelessWidget {
-  const OrderSummaryView({super.key});
+class TripDetailView extends StatelessWidget {
+  const TripDetailView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +40,9 @@ class OrderSummaryView extends StatelessWidget {
                   ),
                   child: const Center(
                       child: Icon(
-                    Icons.close,
-                    color: AppColors.blackColor,
-                  )),
+                        Icons.close,
+                        color: AppColors.blackColor,
+                      )),
                 ),
               ),
             ],
@@ -51,16 +50,22 @@ class OrderSummaryView extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 15.0, right: 15),
+        padding: const EdgeInsets.only(left: 12.0,right: 12),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(
+                height: 20,
+              ),
               Text(
-                "orderSummery".tr,
+                "viewTripDetail".tr,
                 style: sfProSemiBoldTextstyle.copyWith(
                     fontSize: 18, color: AppColors.blackColor),
+              ),
+              const SizedBox(
+                height: 5,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,15 +89,118 @@ class OrderSummaryView extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(width: 5,),
+                  SizedBox(
+                    height: 85,
+                    width: kWidth * 0.4,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left:47,top: 5,
+                          child: Container(
+                            height: 70,
+                            width: 89,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(image: AssetImage
+                                  (AppImages.bmwImage),fit: BoxFit.fill)
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 70,
+                          width: 72,
+                          decoration: const BoxDecoration(
+                              image:  DecorationImage(image: AssetImage
+                                (AppImages.richardMendozaImage),fit: BoxFit.fill)
+                          ),
+                        ),
+                        Positioned(
+                          top: 55,left: 3,
+                          child: Container(
+                            height: 29,
+                            width: 67,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha:0.25),
+                                  offset: const Offset(0, 4),
+                                  blurRadius: 4,
+                                  spreadRadius: 0,
+                                ),
+                              ],
+                              color: AppColors.appBackgroundColor,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 14,
+                                  width: 14,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(image: AssetImage
+                                        (AppImages.starIcon))
+                                  ),
+                                ),
+                                const SizedBox(width: 10,),
+                                Text(
+                                  "rating".tr,
+                                  textAlign: TextAlign.center,maxLines: 2,
+                                  style: sfProRegularTextstyle.copyWith(fontSize: 12,
+                                      color: AppColors.blackColor),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+          
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width : kWidth * 0.4,
+                        child: Text(
+                          "richardMendoza".tr,
+                          textAlign: TextAlign.center,maxLines: 2,
+                          style: sfProMediumTextstyle.copyWith(fontSize: 16,
+                              color: AppColors.blackColor),
+                        ),
+                      ),
+                      SizedBox(
+                        width : kWidth * 0.43,
+                        child: Text(
+                          "blackBmwZhNumber".tr,
+                          textAlign: TextAlign.center,maxLines: 2,
+                          style: sfProRegularTextstyle.copyWith(fontSize: 12,
+                              color: AppColors.blackColor),
+                        ),
+                      ),
+                    ],
+                  ),
+          
+          
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               const Divider(
-                //
                 thickness: 1,
                 color: AppColors.greyShadeTwo,
                 indent: 15,
                 endIndent: 15,
               ),
               const SizedBox(
-                height: 20,
+                height: 25,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -103,12 +211,15 @@ class OrderSummaryView extends StatelessWidget {
                     width: 88,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(AppImages.bmwImage))),
+                            image: AssetImage(AppImages.bmwImage),fit: BoxFit
+                            .fill)),
                   ),
                   const SizedBox(
                     width: 20,
                   ),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "pickUpMyCarFirst".tr,
@@ -120,7 +231,7 @@ class OrderSummaryView extends StatelessWidget {
                       ),
                       Text(
                         "dropOffToday".tr,
-                        style: sfProMediumTextstyle.copyWith(
+                        style: sfProRegularTextstyle.copyWith(
                             color: AppColors.blackColor),
                       ),
                     ],
@@ -143,62 +254,66 @@ class OrderSummaryView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "transferTrip".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.blackColor),
+          
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "transferTrip".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
+                      ),
+                      Text(
+                        "service".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.greyShadeFour),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "kilometer".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.blackColor),
+                  const SizedBox(width: 10,),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "kilometer".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
+                      ),
+                      Text(
+                        "drivingRoute".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.greyShadeFour),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "time".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.blackColor),
-                  ),
-                  const SizedBox(
-                    width: 10,
+                  const SizedBox(width: 10,),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "time".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
+                      ),
+                      Text(
+                        "estimatedTravelTime".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.greyShadeFour),
+                      ),
+                    ],
                   ),
                 ],
               ),
               const SizedBox(
-                height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "service".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.blackColor),
-                  ),
-                  Text(
-                    "drivingRoute".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.blackColor),
-                  ),
-                  Text(
-                    "estimatedTravelTime".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.blackColor),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
+                height: 30,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
                   Column(
                     children: [
                       const Icon(
@@ -266,18 +381,14 @@ class OrderSummaryView extends StatelessWidget {
                         style: sfProMediumTextstyle.copyWith(
                             color: AppColors.blackColor),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+          
+          
                     ],
                   ),
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 25,
               ),
               Text(
                 "customerDetail".tr,
@@ -289,8 +400,8 @@ class OrderSummaryView extends StatelessWidget {
               ),
               Text(
                 "name".tr,
-                style: sfProRegularTextstyle.copyWith(
-                    fontSize: 12, color: AppColors.blackColor),
+                style: sfProMediumTextstyle.copyWith(
+                    fontSize: 12, color: AppColors.greyShadeFour),
               ),
               const SizedBox(
                 height: 5,
@@ -319,12 +430,12 @@ class OrderSummaryView extends StatelessWidget {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment:
-                          CrossAxisAlignment.start, //companyName
+                      CrossAxisAlignment.start, //companyName
                       children: [
                         Text(
                           "companyName".tr,
-                          style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                          style: sfProMediumTextstyle.copyWith(
+                              fontSize: 12, color: AppColors.greyShadeFour),
                         ),
                         Text(
                           "pickUpMyCarGmbh".tr,
@@ -339,7 +450,7 @@ class OrderSummaryView extends StatelessWidget {
                         Text(
                           "addition".tr,
                           style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                              fontSize: 12, color: AppColors.greyShadeFour),
                         ),
                         Text(
                           "dummyText".tr,
@@ -363,7 +474,7 @@ class OrderSummaryView extends StatelessWidget {
                 endIndent: 15,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -376,7 +487,7 @@ class OrderSummaryView extends StatelessWidget {
                         Text(
                           "email".tr,
                           style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                              fontSize: 12, color: AppColors.greyShadeFour),
                         ),
                         SizedBox(
                             width: kWidth * 0.4,
@@ -396,7 +507,7 @@ class OrderSummaryView extends StatelessWidget {
                         Text(
                           "phone".tr,
                           style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                              fontSize: 12, color: AppColors.greyShadeFour),
                         ),
                         Text(
                           "phoneNumber41".tr,
@@ -420,12 +531,12 @@ class OrderSummaryView extends StatelessWidget {
                 endIndent: 15,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Text(
                 "remark".tr,
                 style: sfProRegularTextstyle.copyWith(
-                    fontSize: 12, color: AppColors.blackColor),
+                    fontSize: 12, color: AppColors.greyShadeFour),
               ),
               const SizedBox(
                 height: 5,
@@ -447,7 +558,7 @@ class OrderSummaryView extends StatelessWidget {
                 endIndent: 15,
               ),
               const SizedBox(
-                height: 20,
+                height: 25,
               ),
               Text(
                 "billingAddress".tr,
@@ -460,7 +571,7 @@ class OrderSummaryView extends StatelessWidget {
               Text(
                 "name".tr,
                 style: sfProRegularTextstyle.copyWith(
-                    fontSize: 12, color: AppColors.blackColor),
+                    fontSize: 12, color: AppColors.greyShadeFour),
               ),
               const SizedBox(
                 height: 5,
@@ -489,12 +600,15 @@ class OrderSummaryView extends StatelessWidget {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment:
-                          CrossAxisAlignment.start, //companyName
+                      CrossAxisAlignment.start, //companyName
                       children: [
                         Text(
                           "companyName".tr,
                           style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                              fontSize: 12, color: AppColors.greyShadeFour),
+                        ),
+                        const SizedBox(
+                          height: 5,
                         ),
                         Text(
                           "pickUpMyCarGmbh".tr,
@@ -509,7 +623,10 @@ class OrderSummaryView extends StatelessWidget {
                         Text(
                           "addition".tr,
                           style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                              fontSize: 12, color: AppColors.greyShadeFour),
+                        ),
+                        const SizedBox(
+                          height: 5,
                         ),
                         Text(
                           "dummyText".tr,
@@ -533,7 +650,7 @@ class OrderSummaryView extends StatelessWidget {
                 endIndent: 15,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -546,7 +663,10 @@ class OrderSummaryView extends StatelessWidget {
                         Text(
                           "email".tr,
                           style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                              fontSize: 12, color: AppColors.greyShadeFour),
+                        ),
+                        const SizedBox(
+                          height: 5,
                         ),
                         SizedBox(
                             width: kWidth * 0.4,
@@ -566,7 +686,10 @@ class OrderSummaryView extends StatelessWidget {
                         Text(
                           "phone".tr,
                           style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                              fontSize: 12, color: AppColors.greyShadeFour),
+                        ),
+                        const SizedBox(
+                          height: 5,
                         ),
                         Text(
                           "phoneNumber41".tr,
@@ -590,12 +713,12 @@ class OrderSummaryView extends StatelessWidget {
                 endIndent: 15,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Text(
                 "companyLocation".tr,
                 style: sfProRegularTextstyle.copyWith(
-                    fontSize: 12, color: AppColors.blackColor),
+                    fontSize: 12, color: AppColors.greyShadeFour),
               ),
               const SizedBox(
                 height: 5,
@@ -616,7 +739,7 @@ class OrderSummaryView extends StatelessWidget {
                 endIndent: 15,
               ),
               const SizedBox(
-                height: 20,
+                height: 25,
               ),
               Text(
                 "dispatcherDetail".tr,
@@ -629,7 +752,7 @@ class OrderSummaryView extends StatelessWidget {
               Text(
                 "dispatcherName".tr,
                 style: sfProRegularTextstyle.copyWith(
-                    fontSize: 12, color: AppColors.blackColor),
+                    fontSize: 12, color: AppColors.greyShadeFour),
               ),
               const SizedBox(
                 height: 5,
@@ -658,12 +781,15 @@ class OrderSummaryView extends StatelessWidget {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment:
-                          CrossAxisAlignment.start, //companyName
+                      CrossAxisAlignment.start, //companyName
                       children: [
                         Text(
                           "dispatcherPhone".tr,
                           style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                              fontSize: 12, color: AppColors.greyShadeFour),
+                        ),
+                        const SizedBox(
+                          height: 5,
                         ),
                         Text(
                           "dispatcherNumber".tr,
@@ -678,7 +804,10 @@ class OrderSummaryView extends StatelessWidget {
                         Text(
                           "orderNumber".tr,
                           style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                              fontSize: 12, color: AppColors.greyShadeFour),
+                        ),
+                        const SizedBox(
+                          height: 5,
                         ),
                         Text(
                           "oneToNine".tr,
@@ -701,54 +830,9 @@ class OrderSummaryView extends StatelessWidget {
                 indent: 15,
                 endIndent: 15,
               ),
+
               const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.greenShadeTwo.withValues(alpha: 0.22),
-                    ),
-                    child: Image.asset(
-                      AppImages.moduloImage,
-                      cacheHeight: 21,
-                      cacheWidth: 21,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "promotionApplied".tr,
-                        style: sfProRegularTextstyle.copyWith(
-                            fontSize: 16, color: AppColors.blackColor),
-                      ),
-                      const SizedBox(
-                        height: 3,
-                      ),
-                      SizedBox(
-                          width: kWidth * 0.75,
-                          child: Text(
-                            "earnPoints".tr,
-                            style: sfProRegularTextstyle.copyWith(
-                                fontSize: 12, color: AppColors.greenColor),
-                          )),
-                    ],
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 20,
+                height: 25,
               ),
               Text(
                 "paymentSummary".tr,
@@ -756,7 +840,7 @@ class OrderSummaryView extends StatelessWidget {
                     fontSize: 18, color: AppColors.blackColor),
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -768,7 +852,7 @@ class OrderSummaryView extends StatelessWidget {
                   ),
                   Text(
                     "chf448".tr,
-                    style: sfProSemiBoldTextstyle.copyWith(
+                    style: sfProRegularTextstyle.copyWith(
                         fontSize: 16, color: AppColors.blackColor),
                   ),
                 ],
@@ -803,7 +887,7 @@ class OrderSummaryView extends StatelessWidget {
                   ),
                   Text(
                     "points".tr,
-                    style: sfProSemiBoldTextstyle.copyWith(
+                    style: sfProRegularTextstyle.copyWith(
                         fontSize: 16, color: AppColors.greenColor),
                   ),
                 ],
@@ -838,8 +922,8 @@ class OrderSummaryView extends StatelessWidget {
                   ),
                   Text(
                     "chf0".tr,
-                    style: sfProSemiBoldTextstyle.copyWith(
-                        fontSize: 16, color: AppColors.greenColor),
+                    style: sfProRegularTextstyle.copyWith(
+                        fontSize: 16, color: AppColors.blackColor),
                   ),
                 ],
               ),
@@ -856,7 +940,7 @@ class OrderSummaryView extends StatelessWidget {
                   ),
                   Text(
                     "totalChf".tr,
-                    style: sfProSemiBoldTextstyle.copyWith(
+                    style: sfProRegularTextstyle.copyWith(
                         fontSize: 16, color: AppColors.blackColor),
                   ),
                 ],
@@ -867,14 +951,14 @@ class OrderSummaryView extends StatelessWidget {
               Center(
                 child: CustomButton(
                   onPressed: () {
-                    Get.toNamed(Routes.DRIVER_DETAIL_VIEW);
+                    //Get.toNamed(Routes.DRIVER_DETAIL_VIEW);
                   },
                   height: 50,
                   width: kWidth * 0.9,
                   borderRadius: BorderRadius.circular(12),
-                  bgColor: AppColors.primaryColor,
+                  bgColor: AppColors.redColor,
                   childWidget: Center(
-                      child: Text("continueBooking".tr,
+                      child: Text("cancelBooking".tr,
                           style: sfProMediumTextstyle.copyWith(fontSize: 16))),
                 ),
               ),

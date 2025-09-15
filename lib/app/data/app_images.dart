@@ -23,7 +23,10 @@ class AppImages {
   static const String bmwImage = "assets/images/bmw_image.png";
   static const String whiteBmw = "assets/images/white_bmw.png";
   static const String flagImage = "assets/images/flag.png";
-  static const String moduloImage = "assets/images/modulo_Image.png";
+  static const String richardMendozaImage = "assets/images/richardMendozaImage.png";
+  static const String moduloImage = "assets/images/modulo_image.png";
+  static const String offerCarImage = "assets/images/offer_car_image.png";
+
   //Icons
   static const String errorInfo = "assets/icons/error_info.svg";
   static const String successIcon = "assets/icons/success_Icon.svg";
@@ -40,4 +43,9 @@ class AppImages {
   static const String shapeTargetIcon = "assets/images/shape_target_icon.png";
   static const String arrowSwapIcon = "assets/images/arrow_swap_icon.png";
   static const String carIcon = "assets/images/car_icon.png";
+  static const String starIcon = "assets/icons/star_icon.png";
+  static const String callIcon = "assets/icons/call_icon.png";
+  static const String messageIcon = "assets/icons/message_icon.png";
+  static const String carBlackIcon = "assets/icons/car_black_icon.png";
+
 }

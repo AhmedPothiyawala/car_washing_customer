@@ -78,6 +78,8 @@ Map<String, String> enUS = {
   "notReceiveTheOtp": "Didn’t receive the OTP?",
   "resendOtp": "Resend OTP",
   "Verify": "Verify",
+  "otpLength": "please enter six digit Otp",
+
 
   //******************************************************************************************
   //FORGOT_PASSWORD
@@ -165,6 +167,7 @@ Map<String, String> enUS = {
   "transferType": "Transfer Type",
   "singleRide": "Single Ride / Return (new transfer)",
   "continueBooking": "Continue booking",
+  "bookPickMeUp": "Book PickMeUp",
 
   //******************************
   //SELECTRIDER
@@ -252,6 +255,25 @@ Map<String, String> enUS = {
   "billingAddress": "Billing Address",
   "companyLocation": "Company Location",
   "companyLocationName": "Staldenbachstrasse 308808 Pfäffikon SZ",
+
+
+  //******************************************************************************************
+  //DRIVERDETAILVIEW
+  //******************************************************************************************
+  "pickUpMinute": "Pick-up in 2 min",
+  "leaveMetingToPerson": "Leave now to meet Mr Richard Mendoza",
+  "richardMendoza": "Mr. Richard Mendoza",
+  "blackBmwZhNumber": "Black BMW . ZH.445 789",
+  "rating": "4.5",
+  "sendMessage": "Send a message",
+  "driverDetail": "Driver Detail",
+  "viewTripDetail": "View Trip Detail",
+
+  //******************************************************************************************
+  //TRIPDETAILVIEW
+  //******************************************************************************************
+  "cancelBooking": "Cancel Booking",
+
   //******************************************************************************************
   //PROFILE_VIEW
   //******************************************************************************************

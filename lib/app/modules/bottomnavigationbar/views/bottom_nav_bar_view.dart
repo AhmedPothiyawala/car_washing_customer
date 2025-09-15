@@ -29,6 +29,7 @@ class _BottomNavBarViewState extends State<BottomNavBarView> {
   final List _pages = [const HomeView(), const HomeView(), const HomeView(), const HomeView()];
 
   final bottomNavBarController = Get.find<BottomNavBarControllers>();
+
   @override
   void initState() {
     // if (widget.isNotLogged == null) {

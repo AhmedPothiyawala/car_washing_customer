@@ -7,6 +7,8 @@ import 'package:go_burble_new/app/data/text_styles.dart';
 import 'package:go_burble_new/app/data/utils.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../bottomnavigationbar/controllers/bottom_nav_bar_controllers.dart';
+import '../controllers/home_controller.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -16,6 +18,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final homeController = Get.find<BottomNavBarControllers>();
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -30,23 +33,21 @@ class _HomeViewState extends State<HomeView> {
         surfaceTintColor: AppColors.appBackgroundColor,
         automaticallyImplyLeading: false,
         flexibleSpace: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 30),
+              padding: const EdgeInsets.only(left: 20.0, top: 35),
               child: Text(
                 "currentLocation".tr,
                 style: sfProRegularTextstyle.copyWith(
                     color: AppColors.blackColor, fontSize: 12),
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
                   width: 20,
@@ -309,54 +310,60 @@ class _HomeViewState extends State<HomeView> {
                   const SizedBox(
                     width: 10,
                   ),
-                  Container(
-                    height: 132,
-                    width: kWidth * 0.45,
-                    decoration: BoxDecoration(
-                        color: AppColors.pickMeupColor,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 74,
-                              width: 124,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(AppImages.pickMeUp),
-                                      fit: BoxFit.fill)),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text("pickMeUp".tr,
-                                style: sfProSemiBoldTextstyle.copyWith(
-                                    color: AppColors.blackColor, fontSize: 16))
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10.0),
-                          child: Container(
-                            height: 28,
-                            width: 28,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(color: AppColors.blackColor)),
-                            child: const Center(
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: AppColors.blackColor,
+                  InkWell(
+                    onTap: (){
+                      homeController.isPickMeUp(true);
+                      Get.toNamed(Routes.PICK_ME_UP_VIEW);
+                    },
+                    child: Container(
+                      height: 132,
+                      width: kWidth * 0.45,
+                      decoration: BoxDecoration(
+                          color: AppColors.pickMeupColor,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 74,
+                                width: 124,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(AppImages.pickMeUp),
+                                        fit: BoxFit.fill)),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text("pickMeUp".tr,
+                                  style: sfProSemiBoldTextstyle.copyWith(
+                                      color: AppColors.blackColor, fontSize: 16))
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Container(
+                              height: 28,
+                              width: 28,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border:
+                                  Border.all(color: AppColors.blackColor)),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.arrow_forward,
+                                  color: AppColors.blackColor,
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -489,12 +496,12 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                                 const Spacer(),
                                 Container(
-                                  height: 140,
+                                  height: 108,
                                   width: kWidth * 0.3,
                                   decoration: const BoxDecoration(
                                       image: DecorationImage(
                                           image: AssetImage(
-                                              AppImages.pickUpMyCarImage),
+                                              AppImages.offerCarImage),
                                           fit: BoxFit.fill)),
                                 ),
                                 const SizedBox(
