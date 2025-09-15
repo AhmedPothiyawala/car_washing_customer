@@ -32,7 +32,7 @@ class CustomDropDownFormField extends StatelessWidget {
   const CustomDropDownFormField(
       {super.key,
       this.hintText,
-       this.controller,
+      this.controller,
       this.focusNode,
       this.onTapOutside,
       this.onChanged,
@@ -64,8 +64,7 @@ class CustomDropDownFormField extends StatelessWidget {
       this.width,
       this.readOnly,
       this.items,
-      this.height
-      });
+      this.height});
 
   @override
   Widget build(BuildContext context) {

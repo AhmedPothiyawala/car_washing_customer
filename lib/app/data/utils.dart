@@ -44,54 +44,39 @@ String? validateEmail(String? value) {
 }
 
 String? validatePassword(String? value) {
-  String pattern =
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$'
-  ;
+  String pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$';
   RegExp regex = RegExp(pattern);
   if (value == null || value.isEmpty) {
     return 'passwordIsRequired'.tr;
-  }
-
- else if (value.length<6) {
+  } else if (value.length < 6) {
     return 'passwordMinLength'.tr;
-  }
-  else if (!regex.hasMatch(value)) {
+  } else if (!regex.hasMatch(value)) {
     return 'enterValidPassword'.tr;
   }
   return null;
 }
 
-String? validateConfirmPassword(String? value,String? value2) {
-
-  String pattern =
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$';
+String? validateConfirmPassword(String? value, String? value2) {
+  String pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$';
   RegExp regex = RegExp(pattern);
   if (value == null || value.isEmpty) {
     return 'enterconfimpassword'.tr;
-  }
-
- else if (value.length<8) {
+  } else if (value.length < 8) {
     return 'passwordMinLength'.tr;
-  }
-  else if (!regex.hasMatch(value)) {
+  } else if (!regex.hasMatch(value)) {
     return 'enterValidPassword'.tr;
-  }
-  else if (value!=value2) {
+  } else if (value != value2) {
     return 'passwordMismatch'.tr;
   }
   return null;
 }
 
 String? validatePhone(String? value) {
-
   String pattern = r'^\+?[0-9\s\-()]*$';
   RegExp regex = RegExp(pattern);
   if (value == null || value.isEmpty) {
     return 'phonenumber'.tr;
-  }
-
-
-  else if (!regex.hasMatch(value)) {
+  } else if (!regex.hasMatch(value)) {
     return 'enterValidMobile'.tr;
   }
   return null;

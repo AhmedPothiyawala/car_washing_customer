@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/app_colors.dart';
@@ -92,16 +91,14 @@ class _RegisterViewState extends State<RegisterView> {
                                 width: 50,
                                 decoration: const BoxDecoration(
                                     image: DecorationImage(
-                                        image:
-                                            AssetImage(AppImages.appIcon))),
+                                        image: AssetImage(AppImages.appIcon))),
                               ),
                               const SizedBox(
                                 height: 20,
                               ),
-
                               Center(
-                                child: Container(
-                                  width: kWidth*0.9,
+                                child: SizedBox(
+                                  width: kWidth * 0.9,
                                   child: Column(
                                     children: [
                                       Text(
@@ -117,11 +114,9 @@ class _RegisterViewState extends State<RegisterView> {
                                 height: 10,
                               ),
                               Center(
-                                child: Container(
-                                  width: kWidth*0.9,
-
+                                child: SizedBox(
+                                  width: kWidth * 0.9,
                                   child: Column(
-
                                     children: [
                                       Center(
                                         child: Text(
@@ -134,7 +129,6 @@ class _RegisterViewState extends State<RegisterView> {
                                   ),
                                 ),
                               ),
-
                               const SizedBox(
                                 height: 20,
                               ),
@@ -154,8 +148,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 child: Form(
                                   key: globalFormKey,
                                   child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -168,8 +161,8 @@ class _RegisterViewState extends State<RegisterView> {
                                         child: Text("name".tr,
                                             style:
                                                 sfProMediumTextstyle.copyWith(
-                                              color: AppColors
-                                                  .appWhiteGreyColor2,
+                                              color:
+                                                  AppColors.appWhiteGreyColor2,
                                             )),
                                       ),
                                       const SizedBox(
@@ -177,8 +170,7 @@ class _RegisterViewState extends State<RegisterView> {
                                       ),
                                       Center(
                                         child: CustomTextFormField(
-                                          textInputAction:
-                                              TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                           width: kWidth * 0.8,
                                           hintText: "name".tr,
                                           borderRadiusAll:
@@ -213,8 +205,8 @@ class _RegisterViewState extends State<RegisterView> {
                                         child: Text("gender".tr,
                                             style:
                                                 sfProMediumTextstyle.copyWith(
-                                              color: AppColors
-                                                  .appWhiteGreyColor2,
+                                              color:
+                                                  AppColors.appWhiteGreyColor2,
                                             )),
                                       ),
                                       const SizedBox(
@@ -222,8 +214,7 @@ class _RegisterViewState extends State<RegisterView> {
                                       ),
                                       Center(
                                         child: CustomDropDownFormField(
-                                          textInputAction:
-                                              TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                           width: kWidth * 0.8,
                                           hintText: "gender".tr,
                                           borderRadiusAll:
@@ -234,17 +225,16 @@ class _RegisterViewState extends State<RegisterView> {
                                           fillColor:
                                               AppColors.appBackgroundColor,
                                           items: ['Male', 'Female']
-                                              .map((option) =>
-                                                  DropdownMenuItem(
+                                              .map((option) => DropdownMenuItem(
                                                     value: option,
                                                     child: Text(option),
                                                   ))
                                               .toList(),
                                           onChanged: (value) {
-                                            genderController.text=value.toString();
+                                            genderController.text =
+                                                value.toString();
                                           },
-                                          borderColor: genderFocusNode
-                                                  .hasFocus
+                                          borderColor: genderFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
                                           validator: (string) {
@@ -268,8 +258,8 @@ class _RegisterViewState extends State<RegisterView> {
                                         child: Text("email".tr,
                                             style:
                                                 sfProMediumTextstyle.copyWith(
-                                              color: AppColors
-                                                  .appWhiteGreyColor2,
+                                              color:
+                                                  AppColors.appWhiteGreyColor2,
                                             )),
                                       ),
                                       const SizedBox(
@@ -277,8 +267,7 @@ class _RegisterViewState extends State<RegisterView> {
                                       ),
                                       Center(
                                         child: CustomTextFormField(
-                                          textInputAction:
-                                              TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                           width: kWidth * 0.8,
                                           hintText: "email".tr,
                                           inputFormatters: [
@@ -312,8 +301,8 @@ class _RegisterViewState extends State<RegisterView> {
                                         child: Text("phone".tr,
                                             style:
                                                 sfProMediumTextstyle.copyWith(
-                                              color: AppColors
-                                                  .appWhiteGreyColor2,
+                                              color:
+                                                  AppColors.appWhiteGreyColor2,
                                             )),
                                       ),
                                       const SizedBox(
@@ -321,14 +310,14 @@ class _RegisterViewState extends State<RegisterView> {
                                       ),
                                       Center(
                                         child: CustomTextFormField(
-                                          textInputAction:
-                                              TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                           width: kWidth * 0.8,
                                           keyboardType: TextInputType.number,
                                           hintText: "phone".tr,
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
-                                              RegExp( r'\+?[0-9\s\-()]*'), // allow digits, spaces, +, -, (, )
+                                              RegExp(
+                                                  r'\+?[0-9\s\-()]*'), // allow digits, spaces, +, -, (, )
                                             ),
                                           ],
                                           borderRadiusAll:
@@ -357,8 +346,8 @@ class _RegisterViewState extends State<RegisterView> {
                                         child: Text("password".tr,
                                             style:
                                                 sfProMediumTextstyle.copyWith(
-                                              color: AppColors
-                                                  .appWhiteGreyColor2,
+                                              color:
+                                                  AppColors.appWhiteGreyColor2,
                                             )),
                                       ),
                                       const SizedBox(
@@ -369,16 +358,13 @@ class _RegisterViewState extends State<RegisterView> {
                                         hintText: "password".tr,
                                         width: kWidth * 0.8,
                                         focusNode: passwordFocusNode,
-                                        borderRadiusAll:
-                                            const BorderRadius.all(
-                                                Radius.circular(12)),
+                                        borderRadiusAll: const BorderRadius.all(
+                                            Radius.circular(12)),
                                         controller: passwordController,
-                                        fillColor:
-                                            AppColors.appBackgroundColor,
-                                        borderColor:
-                                            passwordFocusNode.hasFocus
-                                                ? AppColors.primaryColor
-                                                : AppColors.appWhiteGreyColor,
+                                        fillColor: AppColors.appBackgroundColor,
+                                        borderColor: passwordFocusNode.hasFocus
+                                            ? AppColors.primaryColor
+                                            : AppColors.appWhiteGreyColor,
                                         validator: validatePassword,
                                         suffixIcon: GestureDetector(
                                           onTap: () async {
@@ -394,8 +380,7 @@ class _RegisterViewState extends State<RegisterView> {
                                                     .isLoginPasswordObscureText
                                                     .value
                                                 ? Icons.visibility_outlined
-                                                : Icons
-                                                    .visibility_off_outlined,
+                                                : Icons.visibility_off_outlined,
                                             color: AppColors.blackColor,
                                           ),
                                         ),
@@ -426,40 +411,38 @@ class _RegisterViewState extends State<RegisterView> {
                                                     .isTermsCondition.value,
                                                 onChanged: (value) {
                                                   authController
-                                                      .isTermsCondition(
-                                                          value);
+                                                      .isTermsCondition(value);
                                                 }),
                                           ),
                                           const SizedBox(
                                             width: 5,
                                           ),
                                           Text("agreeWith".tr,
-                                              style: sfProMediumTextstyle
-                                                  .copyWith(
-                                                      color: AppColors
-                                                          .blackColor,
+                                              style:
+                                                  sfProMediumTextstyle.copyWith(
+                                                      color:
+                                                          AppColors.blackColor,
                                                       fontSize: 12)),
                                           const SizedBox(
                                             width: 5,
                                           ),
                                           Text("termsCondition".tr,
-                                              style: sfProMediumTextstyle
-                                                  .copyWith(
+                                              style:
+                                                  sfProMediumTextstyle.copyWith(
                                                       color: AppColors
                                                           .appWhiteGreyColor2,
                                                       fontSize: 12,
-                                                      decoration:
-                                                          TextDecoration
-                                                              .underline,
+                                                      decoration: TextDecoration
+                                                          .underline,
                                                       decorationColor: AppColors
                                                           .appWhiteGreyColor2)),
                                           const Spacer(),
                                           Text(
                                             "forgotPassword".tr,
-                                            style: sfProSemiBoldTextstyle
-                                                .copyWith(
-                                                    color: AppColors
-                                                        .primaryColor,
+                                            style:
+                                                sfProSemiBoldTextstyle.copyWith(
+                                                    color:
+                                                        AppColors.primaryColor,
                                                     fontSize: 12),
                                           ),
                                           const SizedBox(
@@ -481,8 +464,7 @@ class _RegisterViewState extends State<RegisterView> {
                                           childWidget: Center(
                                               child: Text("signUp".tr,
                                                   style: sfProMediumTextstyle
-                                                      .copyWith(
-                                                          fontSize: 16))),
+                                                      .copyWith(fontSize: 16))),
                                         ),
                                       ),
                                       const SizedBox(
@@ -587,23 +569,19 @@ class _RegisterViewState extends State<RegisterView> {
     if (formkey) {
       ///login endpoint
 
-      if(authController.isTermsCondition.value!=true)
-        {
-          CustomSnackBar.errorSnackBar(message: "termsRequired".tr);
-        }
-      else {
+      if (authController.isTermsCondition.value != true) {
+        CustomSnackBar.errorSnackBar(message: "termsRequired".tr);
+      } else {
         await authController
             .register_new_account(
-            name: nameController.text,
-            gender: genderController.text,
-            email: emailController.text,
-            phone: phoneController.text,
-            password: passwordController.text
-        ).then((val) {
-
-
-        });
-      } }
+                name: nameController.text,
+                gender: genderController.text,
+                email: emailController.text,
+                phone: phoneController.text,
+                password: passwordController.text)
+            .then((val) {});
+      }
+    }
   }
 
   void updateWidget() {

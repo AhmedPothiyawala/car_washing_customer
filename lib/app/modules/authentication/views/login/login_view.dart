@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -15,6 +14,7 @@ import '../../../../widgets/custom_text_form_field.dart';
 import '../../controllers/auth_controller.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter/services.dart';
+
 class LoginView extends StatefulWidget {
   final bool? isNotLogged;
   const LoginView({super.key, this.isNotLogged});
@@ -47,18 +47,15 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (value1,value2){
-        if(Platform.isAndroid)
-          {
-            SystemNavigator.pop();
-          }
-        else{
+      onPopInvokedWithResult: (value1, value2) {
+        if (Platform.isAndroid) {
+          SystemNavigator.pop();
+        } else {
           exit(0);
         }
       },
       child: Scaffold(
         backgroundColor: AppColors.secondaryColor,
-
         body: Obx(
           () {
             return SingleChildScrollView(
@@ -86,8 +83,8 @@ class _LoginViewState extends State<LoginView> {
                           height: 20,
                         ),
                         Center(
-                          child: Container(
-                            width: kWidth*0.9,
+                          child: SizedBox(
+                            width: kWidth * 0.9,
                             child: Column(
                               children: [
                                 Text(
@@ -99,16 +96,13 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           ),
                         ),
-
                         const SizedBox(
                           height: 10,
                         ),
                         Center(
-                          child: Container(
-                            width: kWidth*0.9,
-
+                          child: SizedBox(
+                            width: kWidth * 0.9,
                             child: Column(
-
                               children: [
                                 Center(
                                   child: Text(
@@ -121,7 +115,6 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           ),
                         ),
-
                         const SizedBox(
                           height: 20,
                         ),
@@ -271,7 +264,6 @@ class _LoginViewState extends State<LoginView> {
                                     focusNode: userFocusNode,
                                     controller: userNameController,
                                     fillColor: AppColors.appBackgroundColor,
-
                                     borderColor: userFocusNode.hasFocus
                                         ? AppColors.primaryColor
                                         : AppColors.appWhiteGreyColor,
@@ -415,13 +407,12 @@ class _LoginViewState extends State<LoginView> {
 
       await authController
           .loginWithEmailPassword(
-        username: userNameController.text.trim(),
-        password: passwordController.text,
-      ).then((val){
-
-      });
-
-  }}
+            username: userNameController.text.trim(),
+            password: passwordController.text,
+          )
+          .then((val) {});
+    }
+  }
 
   @override
   void dispose() {

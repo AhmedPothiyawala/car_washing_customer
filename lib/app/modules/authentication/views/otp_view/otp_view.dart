@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/app_colors.dart';
 import 'package:go_burble_new/app/data/app_images.dart';
 import 'package:go_burble_new/app/modules/authentication/controllers/auth_controller.dart';
-import 'package:go_burble_new/app/routes/app_pages.dart';
 
 import '../../../../data/text_styles.dart';
 import '../../../../data/utils.dart';
@@ -89,10 +87,9 @@ class _OtpViewState extends State<OtpView> {
                       const SizedBox(
                         height: 20,
                       ),
-
                       Center(
-                        child: Container(
-                          width: kWidth*0.9,
+                        child: SizedBox(
+                          width: kWidth * 0.9,
                           child: Column(
                             children: [
                               Text(
@@ -107,13 +104,10 @@ class _OtpViewState extends State<OtpView> {
                       const SizedBox(
                         height: 10,
                       ),
-
                       Center(
-                        child: Container(
-                          width: kWidth*0.9,
-
+                        child: SizedBox(
+                          width: kWidth * 0.9,
                           child: Column(
-
                             children: [
                               Center(
                                 child: Text(
@@ -194,9 +188,6 @@ class _OtpViewState extends State<OtpView> {
                                     autoFillEnable: false,
                                     key: _otpPinFieldController,
 
-
-
-
                                     ///for Ios it is not needed as the SMS autofill is provided by default, but not for Android, that's where this key is useful.
                                     textInputAction: TextInputAction.done,
 
@@ -240,9 +231,8 @@ class _OtpViewState extends State<OtpView> {
 
                                     /// predefine decorate of pinField use  OtpPinFieldDecoration.defaultPinBoxDecoration||OtpPinFieldDecoration.underlinedPinBoxDecoration||OtpPinFieldDecoration.roundedPinBoxDecoration
                                     ///use OtpPinFieldDecoration.custom  (by using this you can make Otp_Pin_Field according to yourself like you can give fieldBorderRadius,fieldBorderWidth and etc things)
-                                    otpPinFieldDecoration:
-                                        OtpPinFieldDecoration
-                                            .defaultPinBoxDecoration,
+                                    otpPinFieldDecoration: OtpPinFieldDecoration
+                                        .defaultPinBoxDecoration,
                                   ),
                                 ),
                               ),
@@ -258,60 +248,61 @@ class _OtpViewState extends State<OtpView> {
                                   bgColor: AppColors.primaryColor,
                                   childWidget: Center(
                                       child: Text("Verify".tr,
-                                          style: sfProMediumTextstyle
-                                              .copyWith(fontSize: 16))),
+                                          style: sfProMediumTextstyle.copyWith(
+                                              fontSize: 16))),
                                 ),
                               ),
                               const SizedBox(
                                 height: 20,
                               ),
 
-
-                              Obx(
-                               () {
-                                  return authController.isResendOtpDisabled.value?
-                                  Center(
-                                    child: Text(
-                                      authController.resendOtpTimer.value.toString(),
-                                      style:
-                                      sfProSemiBoldTextstyle.copyWith(
-                                          color:
-                                          AppColors.primaryColor),
-                                    ),
-                                  )
-                                      :
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text(
-                                        "notReceiveTheOtp".tr,
-                                        style: sfProMediumTextstyle.copyWith(
-                                            color: AppColors.appWhiteGreyColor2),
-                                      ),
-                                      const Spacer(),
-
-                                      InkWell(
-                                          onTap: () {
-                                            authController.resend_otp(username: args['username']);
-                                          },
-                                          child: Text(
-                                            "resendOtp".tr,
+                              Obx(() {
+                                return authController.isResendOtpDisabled.value
+                                    ? Center(
+                                        child: Text(
+                                          authController.resendOtpTimer.value
+                                              .toString(),
+                                          style:
+                                              sfProSemiBoldTextstyle.copyWith(
+                                                  color:
+                                                      AppColors.primaryColor),
+                                        ),
+                                      )
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
+                                          Text(
+                                            "notReceiveTheOtp".tr,
                                             style:
-                                                sfProSemiBoldTextstyle.copyWith(
-                                                    color:
-                                                        AppColors.primaryColor),
-                                          )),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                    ],
-                                  );
-                                }
-                              ),
+                                                sfProMediumTextstyle.copyWith(
+                                                    color: AppColors
+                                                        .appWhiteGreyColor2),
+                                          ),
+                                          const Spacer(),
+                                          InkWell(
+                                              onTap: () {
+                                                authController.resend_otp(
+                                                    username: args['username']);
+                                              },
+                                              child: Text(
+                                                "resendOtp".tr,
+                                                style: sfProSemiBoldTextstyle
+                                                    .copyWith(
+                                                        color: AppColors
+                                                            .primaryColor),
+                                              )),
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
+                                        ],
+                                      );
+                              }),
 
                               const SizedBox(
                                 height: 20,
@@ -374,17 +365,18 @@ class _OtpViewState extends State<OtpView> {
   }
 
   Future<void> OtpSubmit() async {
-   if(_otpPinFieldController.currentState!.controller.text.isEmpty)
-{
-  CustomSnackBar.errorSnackBar(message: "otpRequired".tr);
-}
-
-   else{
-     authController.validate_otp(username: args['username'], otp: _otpPinFieldController.currentState!.controller.text, forgotpassword: args['forgotpassword']).then((value){
-       _otpPinFieldController.currentState!.controller.clear();
-     });
-   }
-
+    if (_otpPinFieldController.currentState!.controller.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(message: "otpRequired".tr);
+    } else {
+      authController
+          .validate_otp(
+              username: args['username'],
+              otp: _otpPinFieldController.currentState!.controller.text,
+              forgotpassword: args['forgotpassword'])
+          .then((value) {
+        _otpPinFieldController.currentState!.controller.clear();
+      });
+    }
   }
 
   void updateWidget() {

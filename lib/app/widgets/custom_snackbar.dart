@@ -5,7 +5,6 @@ import '../data/app_colors.dart';
 
 class CustomSnackBar {
   static void successSnackBar({
-
     required String message,
     int seconds = 4,
   }) {
@@ -36,7 +35,7 @@ class CustomSnackBar {
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             GestureDetector(
               onTap: () => Get.closeCurrentSnackbar(),
               child: const Padding(
@@ -48,7 +47,9 @@ class CustomSnackBar {
                 ),
               ),
             ),
-            SizedBox(width: 10,)
+            const SizedBox(
+              width: 10,
+            )
           ],
         ),
       ),
@@ -56,7 +57,6 @@ class CustomSnackBar {
   }
 
   static void errorSnackBar({
-
     required String message,
     int seconds = 4,
     int maxLines = 5,
@@ -73,7 +73,6 @@ class CustomSnackBar {
         isDismissible: isDismissible ?? true,
         snackStyle: SnackStyle.FLOATING,
         duration: duration ?? Duration(seconds: seconds),
-
         borderRadius: 8,
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         padding: const EdgeInsets.all(12),
@@ -92,7 +91,7 @@ class CustomSnackBar {
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             GestureDetector(
               onTap: () => Get.closeCurrentSnackbar(),
               child: const Padding(
@@ -104,7 +103,9 @@ class CustomSnackBar {
                 ),
               ),
             ),
-            SizedBox(width: 10,)
+            const SizedBox(
+              width: 10,
+            )
           ],
         ),
       ),

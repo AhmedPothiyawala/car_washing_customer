@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../data/app_colors.dart';
@@ -13,45 +11,45 @@ import '../../../widgets/custom_drop_down_form_field.dart';
 import '../../../widgets/custom_text_form_field.dart';
 
 class CustomerDetailView extends StatelessWidget {
-   CustomerDetailView({super.key});
+  CustomerDetailView({super.key});
 
-   bool isChecked = false;
+  bool isChecked = false;
 
-   final globalFormKey = GlobalKey<FormState>();
+  final globalFormKey = GlobalKey<FormState>();
 
-  final nameController =TextEditingController();
+  final nameController = TextEditingController();
 
-  final surNameController =TextEditingController();
+  final surNameController = TextEditingController();
 
-  final emailController =TextEditingController();
+  final emailController = TextEditingController();
 
-  final phoneController =TextEditingController();
+  final phoneController = TextEditingController();
 
-  final remarkController =TextEditingController();
+  final remarkController = TextEditingController();
 
-  final companyName =TextEditingController();
+  final companyName = TextEditingController();
 
-  final supplementController =TextEditingController();
+  final supplementController = TextEditingController();
 
-  final streetNumberController =TextEditingController();
+  final streetNumberController = TextEditingController();
 
-  final placeController =TextEditingController();
+  final placeController = TextEditingController();
 
-  final addressController =TextEditingController();
+  final addressController = TextEditingController();
 
-  final cantonController =TextEditingController();
+  final cantonController = TextEditingController();
 
-  final postalCodeController =TextEditingController();
+  final postalCodeController = TextEditingController();
 
-  final landController =TextEditingController();
+  final landController = TextEditingController();
 
-  final dispatcherNameController =TextEditingController();
+  final dispatcherNameController = TextEditingController();
 
-  final dispatcherPhoneController =TextEditingController();
+  final dispatcherPhoneController = TextEditingController();
 
-  final orderNumberController =TextEditingController();
+  final orderNumberController = TextEditingController();
 
-  final customerNameController =TextEditingController();
+  final customerNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +58,11 @@ class CustomerDetailView extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         surfaceTintColor: AppColors.appBackgroundColor,
-        title: Text("bookPickUpMyCar".tr,style: poppinsSemiboldTextstyle.copyWith(fontSize: 18,color: AppColors.blackColor),),
+        title: Text(
+          "bookPickUpMyCar".tr,
+          style: poppinsSemiboldTextstyle.copyWith(
+              fontSize: 18, color: AppColors.blackColor),
+        ),
         centerTitle: true,
         backgroundColor: AppColors.appBackgroundColor,
         flexibleSpace: Padding(
@@ -69,7 +71,9 @@ class CustomerDetailView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(width: 15,),
+              const SizedBox(
+                width: 15,
+              ),
               InkWell(
                 onTap: () {
                   Get.back();
@@ -81,11 +85,13 @@ class CustomerDetailView extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: AppColors.whiteShadeTwo,
                   ),
-                  child: const Center(child: Icon(Icons.arrow_back_ios_new_outlined,color: AppColors.blackColor,)),
+                  child: const Center(
+                      child: Icon(
+                    Icons.arrow_back_ios_new_outlined,
+                    color: AppColors.blackColor,
+                  )),
                 ),
               ),
-
-
             ],
           ),
         ),
@@ -95,16 +101,19 @@ class CustomerDetailView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Center(
               child: Container(
-                width: kWidth*0.9,
+                width: kWidth * 0.9,
                 decoration: BoxDecoration(
                   color: AppColors.skyShadeTwo,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 10.0,top: 10,right: 10),
+                  padding:
+                      const EdgeInsets.only(left: 10.0, top: 10, right: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,8 +122,14 @@ class CustomerDetailView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(width: 5,),
-                          Text("monday7September".tr,style: sfProSemiBoldTextstyle.copyWith(fontSize: 14,color: AppColors.blackShadeTwo),),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "monday7September".tr,
+                            style: sfProSemiBoldTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackShadeTwo),
+                          ),
                           const Spacer(),
                           Container(
                             height: 35,
@@ -123,37 +138,72 @@ class CustomerDetailView extends StatelessWidget {
                               shape: BoxShape.circle,
                               color: AppColors.skyShadeOne,
                             ),
-                            child: Center(child: Image.asset(AppImages.carIcon,cacheHeight: 12,cacheWidth: 16,)),
+                            child: Center(
+                                child: Image.asset(
+                              AppImages.carIcon,
+                              cacheHeight: 12,
+                              cacheWidth: 16,
+                            )),
                           )
                         ],
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Row(
                         children: [
-                          const Icon(Icons.location_on_outlined,color: AppColors.blackColor,),
-                          const SizedBox(width: 5,),
-                          Text("rainSwitzerland".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.blackColor),),
+                          const Icon(
+                            Icons.location_on_outlined,
+                            color: AppColors.blackColor,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "rainSwitzerland".tr,
+                            style: sfProMediumTextstyle.copyWith(
+                                color: AppColors.blackColor),
+                          ),
                         ],
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Row(
                         children: [
-                          const Icon(Icons.location_on_outlined,color: AppColors.primaryColor,),
-                          const SizedBox(width: 5,),
-                          Text("arbedoCastioneSwitzerland".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.blackColor),),
+                          const Icon(
+                            Icons.location_on_outlined,
+                            color: AppColors.primaryColor,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "arbedoCastioneSwitzerland".tr,
+                            style: sfProMediumTextstyle.copyWith(
+                                color: AppColors.blackColor),
+                          ),
                         ],
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Row(
                         children: [
-                          const SizedBox(width: 5,),
-                          Text("estArrivalTime".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.blackColor),),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "estArrivalTime".tr,
+                            style: sfProMediumTextstyle.copyWith(
+                                color: AppColors.blackColor),
+                          ),
                           Container(
                             height: 14,
                             width: 14,
                             decoration: const BoxDecoration(
-                                image: DecorationImage(image: AssetImage(AppImages.errorImage))
-                            ),
+                                image: DecorationImage(
+                                    image: AssetImage(AppImages.errorImage))),
                           )
                         ],
                       ),
@@ -163,85 +213,115 @@ class CustomerDetailView extends StatelessWidget {
                         indent: 15,
                         endIndent: 15,
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Row(
                         children: [
-                          Text("totalAmount".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.blackShadeTwo),),
+                          Text(
+                            "totalAmount".tr,
+                            style: sfProMediumTextstyle.copyWith(
+                                color: AppColors.blackShadeTwo),
+                          ),
                           const Spacer(),
-                          Text("chf448".tr,style: sfProMediumTextstyle.copyWith(color: AppColors.blackShadeTwo),),
+                          Text(
+                            "chf448".tr,
+                            style: sfProMediumTextstyle.copyWith(
+                                color: AppColors.blackShadeTwo),
+                          ),
                         ],
                       ),
-                      const SizedBox(height: 20,),
-
-
+                      const SizedBox(
+                        height: 20,
+                      ),
                     ],
-
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 0,right: 0),
+              padding: const EdgeInsets.only(left: 0, right: 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
-                    child: Text("customerDetail".tr,style: sfProSemiBoldTextstyle.copyWith(fontSize: 18,color: AppColors.blackColor),),
+                    child: Text(
+                      "customerDetail".tr,
+                      style: sfProSemiBoldTextstyle.copyWith(
+                          fontSize: 18, color: AppColors.blackColor),
+                    ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("name".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "name".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "john".tr,
-                            hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: nameController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
-
                             validator: (string) {
                               if (string == null || string.isEmpty) {
                                 return "enterName".tr;
                               }
                               return null;
                             },
-                                                    ),
+                          ),
                         ],
                       ),
-
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("surName".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "surName".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "doe".tr,
-                            hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
-
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: surNameController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
@@ -253,36 +333,47 @@ class CustomerDetailView extends StatelessWidget {
                             },
                           ),
                         ],
-
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("email".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "email".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "emailIs".tr,
-                            hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: emailController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
-
                             validator: (string) {
                               if (string == null || string.isEmpty) {
                                 return "enterName".tr;
@@ -292,16 +383,21 @@ class CustomerDetailView extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("phone".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackShadeTwo),),
+                            child: Text(
+                              "phone".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackShadeTwo),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Row(
                             children: [
                               Container(
@@ -311,28 +407,41 @@ class CustomerDetailView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(12),
                                   border: Border.all(
                                     color: AppColors.appWhiteGreyColor,
-
                                   ),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-
                                   children: [
-                                    const SizedBox(width: 8,),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
                                     Container(
                                       width: 24,
-                                      decoration:const BoxDecoration(
-                                          image: DecorationImage(image: AssetImage(AppImages.flagImage))
-                                      ),
+                                      decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  AppImages.flagImage))),
                                     ),
-                                    Text("countryCode".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
-                                    const Icon(Icons.keyboard_arrow_down,color: AppColors.greyShadeFive,),
-                                    const SizedBox(width: 2,),
+                                    Text(
+                                      "countryCode".tr,
+                                      style: sfProMediumTextstyle.copyWith(
+                                          fontSize: 12,
+                                          color: AppColors.blackColor),
+                                    ),
+                                    const Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: AppColors.greyShadeFive,
+                                    ),
+                                    const SizedBox(
+                                      width: 2,
+                                    ),
                                     CustomTextFormField(
                                       hintText: "phoneNumber".tr,
                                       contentPadding: EdgeInsets.zero,
                                       width: kWidth * 0.25,
-                                      hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                                      hintStyle: sfProMediumTextstyle.copyWith(
+                                          fontSize: 14,
+                                          color: AppColors.blackColor),
                                       borderRadiusAll: const BorderRadius.all(
                                           Radius.circular(0)),
                                       controller: surNameController,
@@ -348,47 +457,53 @@ class CustomerDetailView extends StatelessWidget {
                                   ],
                                 ),
                               ),
-
                             ],
                           ),
-
                         ],
-
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
-                    child: Text("remark".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                    child: Text(
+                      "remark".tr,
+                      style: sfProMediumTextstyle.copyWith(
+                          fontSize: 12, color: AppColors.blackColor),
+                    ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Center(
                     child: Container(
                       decoration: BoxDecoration(
-                          color: AppColors.appBackgroundColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.greyShadeSix.withValues(alpha: 0.24),
-
-                              blurRadius: 2,
-                              offset: const Offset(0, 1),
-                            ),
-                          ],
-
+                        color: AppColors.appBackgroundColor,
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                AppColors.greyShadeSix.withValues(alpha: 0.24),
+                            blurRadius: 2,
+                            offset: const Offset(0, 1),
+                          ),
+                        ],
                       ),
                       child: CustomTextFormField(
                         hintText: "remarkParagraph".tr,
-                        hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                        hintStyle: sfProMediumTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
                         width: kWidth * 0.9,
                         maxLines: 2,
-                        borderRadiusAll: const BorderRadius.all(
-                            Radius.circular(12)),
+                        borderRadiusAll:
+                            const BorderRadius.all(Radius.circular(12)),
                         controller: nameController,
                         fillColor: AppColors.appBackgroundColor,
                         borderColor: AppColors.appWhiteGreyColor,
-
                         validator: (string) {
                           if (string == null || string.isEmpty) {
                             return "enterName".tr;
@@ -398,49 +513,69 @@ class CustomerDetailView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     children: [
-                      SizedBox(width: 20,),
-                      Container(
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      SizedBox(
                           height: 18,
                           width: 18,
-                          child: Checkbox(value: false, onChanged: (val){},
-
+                          child: Checkbox(
+                            value: false,
+                            onChanged: (val) {},
                             checkColor: AppColors.primaryColor,
-                            side: BorderSide(color: AppColors.primaryColor,width: 1),
-
+                            side: const BorderSide(
+                                color: AppColors.primaryColor, width: 1),
                           )),
-                      SizedBox(width: 10,),
-                      Text("billingAddress".tr,style: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),),
-
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "billingAddress".tr,
+                        style: sfProMediumTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("companyName".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "companyName".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "pickUpMyCarGmbh".tr,
-                            hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: nameController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
-
                             validator: (string) {
                               if (string == null || string.isEmpty) {
                                 return "enterName".tr;
@@ -450,22 +585,28 @@ class CustomerDetailView extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("supplement".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "supplement".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "staldenBachStrasse".tr,
-                            hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: surNameController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
@@ -477,36 +618,47 @@ class CustomerDetailView extends StatelessWidget {
                             },
                           ),
                         ],
-
                       ),
-                      const SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("streetNumber".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "streetNumber".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "streetNumberIs".tr,
-                            hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: nameController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
-
                             validator: (string) {
                               if (string == null || string.isEmpty) {
                                 return "enterName".tr;
@@ -516,23 +668,28 @@ class CustomerDetailView extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("place".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "place".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "staldenBachStrasse".tr,
-                            hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
-
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: surNameController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
@@ -543,45 +700,54 @@ class CustomerDetailView extends StatelessWidget {
                               return null;
                             },
                           ),
-
                         ],
-
                       ),
-                      const SizedBox(width: 10,),
-
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
-                    child: Text("addressText".tr,style: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),),
+                    child: Text(
+                      "addressText".tr,
+                      style: sfProMediumTextstyle.copyWith(
+                          fontSize: 14, color: AppColors.blackColor),
+                    ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Center(
                     child: CustomTextFormField(
                       hintText: "addresssStaldenbachstrasse".tr,
-                      hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                      hintStyle: sfProMediumTextstyle.copyWith(
+                          fontSize: 14, color: AppColors.blackColor),
                       width: kWidth * 0.9,
-                      borderRadiusAll: const BorderRadius.all(
-                          Radius.circular(12)),
+                      borderRadiusAll:
+                          const BorderRadius.all(Radius.circular(12)),
                       controller: nameController,
                       fillColor: AppColors.appBackgroundColor,
                       borderColor: AppColors.appWhiteGreyColor,
-                      suffixIcon:   Padding(
+                      suffixIcon: Padding(
                         padding: const EdgeInsets.only(right: 10.0),
                         child: Container(
                           height: 35,
                           width: 35,
                           decoration: const BoxDecoration(
                               shape: BoxShape.circle,
-                              color: AppColors.greyShadeOne
-                          ),
+                              color: AppColors.greyShadeOne),
                           child: Center(
                             child: Container(
                               height: 22,
                               width: 22,
                               decoration: const BoxDecoration(
-                                image: DecorationImage(image: AssetImage(AppImages.shapeTargetIcon)),
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage(AppImages.shapeTargetIcon)),
                               ),
                             ),
                           ),
@@ -595,31 +761,41 @@ class CustomerDetailView extends StatelessWidget {
                       },
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("canton".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "canton".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "pfäffikonSZ".tr,
-                            hintStyle:  sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: nameController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
-
                             validator: (string) {
                               if (string == null || string.isEmpty) {
                                 return "enterName".tr;
@@ -629,22 +805,28 @@ class CustomerDetailView extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("postalCode".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "postalCode".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "postalCodeIs".tr,
-                            hintStyle:  sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: surNameController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
@@ -656,52 +838,53 @@ class CustomerDetailView extends StatelessWidget {
                             },
                           ),
                         ],
-
                       ),
-                      const SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ],
                   ),
-
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
-                    child: Text("land".tr,style: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),),
+                    child: Text(
+                      "land".tr,
+                      style: sfProMediumTextstyle.copyWith(
+                          fontSize: 14, color: AppColors.blackColor),
+                    ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Center(
                     child: Container(
                       decoration: BoxDecoration(
-                        color:  AppColors.appBackgroundColor,
-
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.greyShadeSix.withValues(alpha: 0.24),
-
-                              blurRadius: 2,
-                              offset: const Offset(0, 1),
-                            ),
-                          ],
-
+                        color: AppColors.appBackgroundColor,
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                AppColors.greyShadeSix.withValues(alpha: 0.24),
+                            blurRadius: 2,
+                            offset: const Offset(0, 1),
+                          ),
+                        ],
                       ),
                       child: CustomDropDownFormField(
-                        hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
-                        textInputAction:
-                        TextInputAction.next,
+                        hintStyle: sfProMediumTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
+                        textInputAction: TextInputAction.next,
                         width: kWidth * 0.9,
                         hintText: "switzerland".tr,
                         borderRadiusAll:
-                        const BorderRadius.all(
-                            Radius.circular(12)),
-
-
-                        fillColor:
-                        AppColors.appBackgroundColor,
+                            const BorderRadius.all(Radius.circular(12)),
+                        fillColor: AppColors.appBackgroundColor,
                         items: ['Male', 'Female']
-                            .map((option) =>
-                            DropdownMenuItem(
-                              value: option,
-                              child: Text(option),
-                            ))
+                            .map((option) => DropdownMenuItem(
+                                  value: option,
+                                  child: Text(option),
+                                ))
                             .toList(),
                         onChanged: (value) {},
                         borderColor: AppColors.appWhiteGreyColor,
@@ -711,34 +894,46 @@ class CustomerDetailView extends StatelessWidget {
                           }
                           return null;
                         },
-                        onFieldSubmitted: (value) {
-
-                        },
+                        onFieldSubmitted: (value) {},
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
-                    child: Text("dispatcherDetail".tr,style: sfProSemiBoldTextstyle.copyWith(fontSize: 16,color: AppColors.blackColor),),
+                    child: Text(
+                      "dispatcherDetail".tr,
+                      style: sfProSemiBoldTextstyle.copyWith(
+                          fontSize: 16, color: AppColors.blackColor),
+                    ),
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
-                    child: Text("dispatcherName".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                    child: Text(
+                      "dispatcherName".tr,
+                      style: sfProMediumTextstyle.copyWith(
+                          fontSize: 12, color: AppColors.blackColor),
+                    ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Center(
                     child: CustomTextFormField(
                       hintText: "dispatcherNameIs".tr,
-                      hintStyle:  sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                      hintStyle: sfProMediumTextstyle.copyWith(
+                          fontSize: 14, color: AppColors.blackColor),
                       width: kWidth * 0.9,
-                      borderRadiusAll: const BorderRadius.all(
-                          Radius.circular(12)),
+                      borderRadiusAll:
+                          const BorderRadius.all(Radius.circular(12)),
                       controller: nameController,
                       fillColor: AppColors.appBackgroundColor,
                       borderColor: AppColors.appWhiteGreyColor,
-
                       validator: (string) {
                         if (string == null || string.isEmpty) {
                           return "enterName".tr;
@@ -747,22 +942,31 @@ class CustomerDetailView extends StatelessWidget {
                       },
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(width: 10,),
-
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("dispatcherPhone".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackShadeTwo),),
+                            child: Text(
+                              "dispatcherPhone".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackShadeTwo),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Row(
                             children: [
                               Container(
@@ -772,28 +976,41 @@ class CustomerDetailView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(12),
                                   border: Border.all(
                                     color: AppColors.appWhiteGreyColor,
-
                                   ),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-
                                   children: [
-                                    const SizedBox(width: 8,),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
                                     Container(
                                       width: 24,
-                                      decoration:const BoxDecoration(
-                                          image: DecorationImage(image: AssetImage(AppImages.flagImage))
-                                      ),
+                                      decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  AppImages.flagImage))),
                                     ),
-                                    Text("countryCode".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
-                                    const Icon(Icons.keyboard_arrow_down,color: AppColors.greyShadeFive,),
-                                    const SizedBox(width: 2,),
+                                    Text(
+                                      "countryCode".tr,
+                                      style: sfProMediumTextstyle.copyWith(
+                                          fontSize: 12,
+                                          color: AppColors.blackColor),
+                                    ),
+                                    const Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: AppColors.greyShadeFive,
+                                    ),
+                                    const SizedBox(
+                                      width: 2,
+                                    ),
                                     CustomTextFormField(
                                       hintText: "phoneNumber".tr,
                                       contentPadding: EdgeInsets.zero,
                                       width: kWidth * 0.25,
-                                      hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                                      hintStyle: sfProMediumTextstyle.copyWith(
+                                          fontSize: 14,
+                                          color: AppColors.blackColor),
                                       borderRadiusAll: const BorderRadius.all(
                                           Radius.circular(0)),
                                       controller: surNameController,
@@ -809,34 +1026,35 @@ class CustomerDetailView extends StatelessWidget {
                                   ],
                                 ),
                               ),
-
                             ],
                           ),
-
                         ],
-
                       ),
-
-
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("orderNumber".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "orderNumber".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "oneToNine".tr,
-                            hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: emailController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
-
                             validator: (string) {
                               if (string == null || string.isEmpty) {
                                 return "enterName".tr;
@@ -846,40 +1064,57 @@ class CustomerDetailView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
-                    child: Text("customerDetail".tr,style: sfProSemiBoldTextstyle.copyWith(fontSize: 16,color: AppColors.blackColor),),
+                    child: Text(
+                      "customerDetail".tr,
+                      style: sfProSemiBoldTextstyle.copyWith(
+                          fontSize: 16, color: AppColors.blackColor),
+                    ),
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(width: 10,),
-
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("customerName".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
+                            child: Text(
+                              "customerName".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackColor),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           CustomTextFormField(
                             hintText: "dispatcherNameIs".tr,
-                            hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                            hintStyle: sfProMediumTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                             width: kWidth * 0.45,
-                            borderRadiusAll: const BorderRadius.all(
-                                Radius.circular(12)),
+                            borderRadiusAll:
+                                const BorderRadius.all(Radius.circular(12)),
                             controller: emailController,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
-
                             validator: (string) {
                               if (string == null || string.isEmpty) {
                                 return "enterName".tr;
@@ -889,17 +1124,21 @@ class CustomerDetailView extends StatelessWidget {
                           ),
                         ],
                       ),
-
-
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
-                            child: Text("phone".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackShadeTwo),),
+                            child: Text(
+                              "phone".tr,
+                              style: sfProMediumTextstyle.copyWith(
+                                  fontSize: 12, color: AppColors.blackShadeTwo),
+                            ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Container(
                             height: 55,
                             width: kWidth * 0.45,
@@ -907,28 +1146,41 @@ class CustomerDetailView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
                                 color: AppColors.appWhiteGreyColor,
-
                               ),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-
                               children: [
-                                const SizedBox(width: 8,),
+                                const SizedBox(
+                                  width: 8,
+                                ),
                                 Container(
                                   width: 24,
-                                  decoration:const BoxDecoration(
-                                      image: DecorationImage(image: AssetImage(AppImages.flagImage))
-                                  ),
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                          image:
+                                              AssetImage(AppImages.flagImage))),
                                 ),
-                                Text("countryCode".tr,style: sfProMediumTextstyle.copyWith(fontSize: 12,color: AppColors.blackColor),),
-                                const Icon(Icons.keyboard_arrow_down,color: AppColors.greyShadeFive,),
-                                const SizedBox(width: 2,),
+                                Text(
+                                  "countryCode".tr,
+                                  style: sfProMediumTextstyle.copyWith(
+                                      fontSize: 12,
+                                      color: AppColors.blackColor),
+                                ),
+                                const Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: AppColors.greyShadeFive,
+                                ),
+                                const SizedBox(
+                                  width: 2,
+                                ),
                                 CustomTextFormField(
                                   hintText: "phoneNumber".tr,
                                   contentPadding: EdgeInsets.zero,
                                   width: kWidth * 0.25,
-                                  hintStyle: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor),
+                                  hintStyle: sfProMediumTextstyle.copyWith(
+                                      fontSize: 14,
+                                      color: AppColors.blackColor),
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(0)),
                                   controller: surNameController,
@@ -944,18 +1196,20 @@ class CustomerDetailView extends StatelessWidget {
                               ],
                             ),
                           ),
-
                         ],
-
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Center(
                     child: CustomButton(
                       onPressed: () {
-                       Get.toNamed(Routes.ORDER_SUMMARY_VIEW);
+                        Get.toNamed(Routes.ORDER_SUMMARY_VIEW);
                       },
                       height: 50,
                       width: kWidth * 0.9,
@@ -963,15 +1217,16 @@ class CustomerDetailView extends StatelessWidget {
                       bgColor: AppColors.primaryColor,
                       childWidget: Center(
                           child: Text("bookingOverView".tr,
-                              style: sfProMediumTextstyle.copyWith(
-                                  fontSize: 16))),
+                              style:
+                                  sfProMediumTextstyle.copyWith(fontSize: 16))),
                     ),
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             )
-
           ],
         ),
       ),

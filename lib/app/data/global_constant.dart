@@ -1,8 +1,7 @@
 import '../../flavors/build_config.dart';
 
 class GlobalConstant {
-  static const String mailUrl =
-      "https://pickup.introdizajn.com/api/";
+  static const String mailUrl = "https://pickup.introdizajn.com/api/";
   static const String appName = "Go burble";
   static const String appNameDev = "Go burble";
   static const String appNameDevSmall = "Go burble";

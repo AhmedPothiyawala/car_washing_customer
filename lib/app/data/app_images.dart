@@ -12,7 +12,8 @@ class AppImages {
   static const String otpMobileImage = "assets/images/otp_mobile_image.png";
   static const String carImage1 = "assets/images/car_image1.png";
   static const String carImage2 = "assets/images/car_image2.png";
-  static const String pickUpMyCarImage = "assets/images/pick_up_my_car_image.png";
+  static const String pickUpMyCarImage =
+      "assets/images/pick_up_my_car_image.png";
   static const String pickMeUp = "assets/images/pick_me_up.png";
   static const String homeBannerimage = "assets/images/home_banner_image.png";
   static const String mapImage = "assets/images/map_image.png";

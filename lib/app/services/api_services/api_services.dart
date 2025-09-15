@@ -145,7 +145,7 @@ class ApiServices extends GetxService {
 
   Future<dioResp.Response?> post({
     required String endPoint,
-  Map<String, dynamic>? reqData,
+    Map<String, dynamic>? reqData,
     Map<String, dynamic>? extraHeaders,
   }) async {
     try {
@@ -153,8 +153,8 @@ class ApiServices extends GetxService {
         final url = "$_burble_life_url$endPoint";
         final storage = Get.find<StorageService>();
 
-
-        List<int> stringBytes = utf8.encode("JnBpY2t1cCojMjA0MA:QHNja3FuUHM2cGlja3Vw");
+        List<int> stringBytes =
+            utf8.encode("JnBpY2t1cCojMjA0MA:QHNja3FuUHM2cGlja3Vw");
         var token = base64.encode(stringBytes);
         final Map<String, dynamic> headers = {
           "accept": "text/plain",

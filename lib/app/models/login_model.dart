@@ -8,19 +8,19 @@ class LoginModel {
 
   LoginModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
     messageEn = json['message_en'];
     messageDe = json['message_de'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    if (user != null) {
+      data['user'] = user!.toJson();
     }
-    data['message_en'] = this.messageEn;
-    data['message_de'] = this.messageDe;
+    data['message_en'] = messageEn;
+    data['message_de'] = messageDe;
     return data;
   }
 }
@@ -40,26 +40,26 @@ class User {
   String? updatedAt;
   String? registerType;
   String? profilePicture;
- var userGroups;
+  var userGroups;
   String? deletedAt;
 
   User(
       {this.id,
-        this.firstName,
-        this.gender,
-        this.email,
-        this.address,
-        this.number,
-        this.dOB,
-        this.city,
-        this.zIP,
-        this.emailVerifiedAt,
-        this.createdAt,
-        this.updatedAt,
-        this.registerType,
-        this.profilePicture,
-        this.userGroups,
-        this.deletedAt});
+      this.firstName,
+      this.gender,
+      this.email,
+      this.address,
+      this.number,
+      this.dOB,
+      this.city,
+      this.zIP,
+      this.emailVerifiedAt,
+      this.createdAt,
+      this.updatedAt,
+      this.registerType,
+      this.profilePicture,
+      this.userGroups,
+      this.deletedAt});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -81,23 +81,23 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['first_name'] = this.firstName;
-    data['gender'] = this.gender;
-    data['email'] = this.email;
-    data['address'] = this.address;
-    data['number'] = this.number;
-    data['DOB'] = this.dOB;
-    data['city'] = this.city;
-    data['ZIP'] = this.zIP;
-    data['email_verified_at'] = this.emailVerifiedAt;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['register_type'] = this.registerType;
-    data['profile_picture'] = this.profilePicture;
-    data['user_groups'] = this.userGroups;
-    data['deleted_at'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['first_name'] = firstName;
+    data['gender'] = gender;
+    data['email'] = email;
+    data['address'] = address;
+    data['number'] = number;
+    data['DOB'] = dOB;
+    data['city'] = city;
+    data['ZIP'] = zIP;
+    data['email_verified_at'] = emailVerifiedAt;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['register_type'] = registerType;
+    data['profile_picture'] = profilePicture;
+    data['user_groups'] = userGroups;
+    data['deleted_at'] = deletedAt;
     return data;
   }
 }

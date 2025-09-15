@@ -7,11 +7,11 @@ import '../../../../data/app_images.dart';
 import '../../../../data/text_styles.dart';
 import '../../../../data/utils.dart';
 // import '../../../../widgets/custom_text_form_field.dart';
-import '../../../../routes/app_pages.dart';
 import '../../../../widgets/custom_button.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import '../../controllers/auth_controller.dart';
 import 'package:flutter/services.dart';
+
 class ForgotPasswordView extends StatefulWidget {
   const ForgotPasswordView({super.key});
 
@@ -26,9 +26,6 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   final phoneFocusNode = FocusNode();
   @override
   void initState() {
-
-
-
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.initState();
   }
@@ -45,14 +42,13 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 width: kWidth,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(AppImages.mainBg),
-                        fit: BoxFit.fill)),
+                        image: AssetImage(AppImages.mainBg), fit: BoxFit.fill)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20.0,top: 10),
+                      padding: const EdgeInsets.only(left: 20.0, top: 10),
                       child: InkWell(
                         onTap: () {
                           Get.back();
@@ -76,8 +72,8 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                       height: 20,
                     ),
                     Center(
-                      child: Container(
-                        width: kWidth*0.9,
+                      child: SizedBox(
+                        width: kWidth * 0.9,
                         child: Column(
                           children: [
                             Text(
@@ -93,11 +89,9 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                       height: 20,
                     ),
                     Center(
-                      child: Container(
-                        width: kWidth*0.9,
-
+                      child: SizedBox(
+                        width: kWidth * 0.9,
                         child: Column(
-
                           children: [
                             Center(
                               child: Text(
@@ -110,13 +104,10 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                         ),
                       ),
                     ),
-
                     Center(
-                      child: Container(
-                        width: kWidth*0.9,
-
+                      child: SizedBox(
+                        width: kWidth * 0.9,
                         child: Column(
-
                           children: [
                             Center(
                               child: Text(
@@ -170,8 +161,8 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                 width: kWidth * 0.8,
                                 keyboardType: TextInputType.number,
                                 hintText: "phone".tr,
-                                borderRadiusAll: const BorderRadius.all(
-                                    Radius.circular(12)),
+                                borderRadiusAll:
+                                    const BorderRadius.all(Radius.circular(12)),
                                 focusNode: phoneFocusNode,
                                 controller: phoneController,
                                 fillColor: AppColors.appBackgroundColor,
@@ -180,7 +171,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                     : AppColors.appWhiteGreyColor,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
-                                    RegExp( r'\+?[0-9\s\-()]*'),
+                                    RegExp(r'\+?[0-9\s\-()]*'),
                                   ),
                                 ],
                                 validator: validatePhone,
@@ -222,7 +213,8 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
     bool isMobileValid = globalFormKey.currentState!.validate();
 
     if (isMobileValid) {
-      authController.forgot_password(username: phoneController.text, forgotpassword: true);
+      authController.forgot_password(
+          username: phoneController.text, forgotpassword: true);
     }
   }
 }

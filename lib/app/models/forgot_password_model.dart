@@ -15,11 +15,11 @@ class ForgotPasswordModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['user_id'] = this.userId;
-    data['message_en'] = this.messageEn;
-    data['message_de'] = this.messageDe;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['user_id'] = userId;
+    data['message_en'] = messageEn;
+    data['message_de'] = messageDe;
     return data;
   }
 }

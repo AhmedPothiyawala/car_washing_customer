@@ -9,6 +9,7 @@ import '../../../../widgets/custom_button.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import '../../controllers/auth_controller.dart';
 import 'package:flutter/services.dart';
+
 class ChangePasswordView extends StatefulWidget {
   const ChangePasswordView({super.key});
 
@@ -29,12 +30,10 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   final args = Get.arguments as Map;
   @override
   void initState() {
-
-
-
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +55,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 20.0,top: 10),
+                        padding: const EdgeInsets.only(left: 20.0, top: 10),
                         child: InkWell(
                           onTap: () {
                             Get.back();
@@ -79,10 +78,9 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                       const SizedBox(
                         height: 20,
                       ),
-
                       Center(
-                        child: Container(
-                          width: kWidth*0.9,
+                        child: SizedBox(
+                          width: kWidth * 0.9,
                           child: Column(
                             children: [
                               Text(
@@ -97,13 +95,10 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                       const SizedBox(
                         height: 10,
                       ),
-
                       Center(
-                        child: Container(
-                          width: kWidth*0.9,
-
+                        child: SizedBox(
+                          width: kWidth * 0.9,
                           child: Column(
-
                             children: [
                               Center(
                                 child: Text(
@@ -117,11 +112,9 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                         ),
                       ),
                       Center(
-                        child: Container(
-                          width: kWidth*0.9,
-
+                        child: SizedBox(
+                          width: kWidth * 0.9,
                           child: Column(
-
                             children: [
                               Center(
                                 child: Text(
@@ -134,7 +127,6 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                           ),
                         ),
                       ),
-
                       const SizedBox(
                         height: 20,
                       ),
@@ -175,8 +167,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                 hintText: "password".tr,
                                 width: kWidth * 0.8,
                                 focusNode: passwordFocusNode,
-                                borderRadiusAll: const BorderRadius.all(
-                                    Radius.circular(12)),
+                                borderRadiusAll:
+                                    const BorderRadius.all(Radius.circular(12)),
                                 controller: passwordController,
                                 fillColor: AppColors.appBackgroundColor,
                                 borderColor: passwordFocusNode.hasFocus
@@ -185,8 +177,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                 validator: validatePassword,
                                 suffixIcon: GestureDetector(
                                   onTap: () async {
-                                    authController.isLoginPasswordObscureText
-                                            .value =
+                                    authController
+                                            .isLoginPasswordObscureText.value =
                                         !authController
                                             .isLoginPasswordObscureText.value;
                                   },
@@ -219,14 +211,15 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                 hintText: "confirmPassword".tr,
                                 width: kWidth * 0.8,
                                 focusNode: confirmPasswordFocusNode,
-                                borderRadiusAll: const BorderRadius.all(
-                                    Radius.circular(12)),
+                                borderRadiusAll:
+                                    const BorderRadius.all(Radius.circular(12)),
                                 controller: confirmPasswordController,
                                 fillColor: AppColors.appBackgroundColor,
                                 borderColor: confirmPasswordFocusNode.hasFocus
                                     ? AppColors.primaryColor
                                     : AppColors.appWhiteGreyColor,
-                                validator: (value) => validateConfirmPassword(value, passwordController.text),
+                                validator: (value) => validateConfirmPassword(
+                                    value, passwordController.text),
                                 suffixIcon: GestureDetector(
                                   onTap: () async {
                                     authController
@@ -260,8 +253,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                   bgColor: AppColors.primaryColor,
                                   childWidget: Center(
                                       child: Text("createNewPassword".tr,
-                                          style: sfProMediumTextstyle
-                                              .copyWith(fontSize: 16))),
+                                          style: sfProMediumTextstyle.copyWith(
+                                              fontSize: 16))),
                                 ),
                               ),
                               const SizedBox(
@@ -286,7 +279,10 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
     bool formkey = globalFormKey.currentState!.validate();
 
     if (formkey) {
-      authController.change_password(username: args['username'], password:passwordController.text , confirm_password: confirmPasswordController.text);
+      authController.change_password(
+          username: args['username'],
+          password: passwordController.text,
+          confirm_password: confirmPasswordController.text);
     }
   }
 }

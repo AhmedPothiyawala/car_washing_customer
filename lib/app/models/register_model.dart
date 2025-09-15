@@ -14,11 +14,11 @@ class RegisterModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message_en'] = this.messageEn;
-    data['message_de'] = this.messageDe;
-    data['user_id'] = this.userId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message_en'] = messageEn;
+    data['message_de'] = messageDe;
+    data['user_id'] = userId;
     return data;
   }
 }

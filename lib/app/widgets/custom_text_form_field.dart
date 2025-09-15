@@ -64,8 +64,7 @@ class CustomTextFormField extends StatelessWidget {
       this.contentPadding,
       this.width,
       this.readOnly,
-      this.inputFormatters
-      });
+      this.inputFormatters});
 
   @override
   Widget build(BuildContext context) {
@@ -95,11 +94,11 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: obscureText ?? false,
         contentInsertionConfiguration: contentInsertionConfiguration,
 
-        maxLines: maxLines ??1,
+        maxLines: maxLines ?? 1,
         // Allow unlimited number of lines for multiline input
         decoration: decoration ??
             InputDecoration(
-               contentPadding: contentPadding,
+              contentPadding: contentPadding,
 
               enabledBorder: enabledBorder ??
                   OutlineInputBorder(

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart' as dio;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/models/change_password_model.dart';
 import 'package:go_burble_new/app/models/forgot_password_model.dart';
@@ -11,22 +10,20 @@ import 'package:go_burble_new/app/models/otp_verfiy_model.dart';
 import 'package:go_burble_new/app/models/register_model.dart';
 import 'package:go_burble_new/app/models/resend_otp_model.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../../data/global_constant.dart';
 import '../../../data/storage_key.dart';
 import '../../../data/utils.dart';
 import '../../../models/check_subscription_model.dart';
-import '../../../models/login_model.dart'as loginmodel;
+import '../../../models/login_model.dart' as loginmodel;
 import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../services/api_services/api_services.dart';
 import '../../../services/storage_services/storage_services.dart';
 import '../../../widgets/custom_snackbar.dart';
-import '../../../widgets/custome_dialog.dart';
-import '../../webview/custom_webview.dart';
 import 'dart:async';
+
 class AuthController extends GetxController {
   final _apiService = Get.find<ApiServices>();
   final _storageService = Get.find<StorageService>();
@@ -79,7 +76,7 @@ class AuthController extends GetxController {
     _isResendOtpDisabled.value = true;
 
     _timer?.cancel(); // cancel existing timer if any
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_resendOtpTimer.value > 0) {
         _resendOtpTimer.value--;
       } else {
@@ -94,50 +91,38 @@ class AuthController extends GetxController {
     _isResendOtpDisabled.value = false;
   }
 
-
   Future<void> clearWebViewCache() async {
     final WebViewCookieManager cookieManager = WebViewCookieManager();
     await cookieManager.clearCookies();
   }
 
-  Future<void> loginWithEmailPassword({
-    required String username,
-     String? password,
-     String? logintype
-
-  }) async {
+  Future<void> loginWithEmailPassword(
+      {required String username, String? password, String? logintype}) async {
     loading(show: true, title: "Authenticating...");
     try {
+      var data = logintype != null
+          ? {
+              'username': username,
+              'usertype': "customer",
+              'login_type': logintype
+            }
+          : {
+              'username': username,
+              'password': password,
+              'usertype': "customer"
+            };
 
-      var data =
-      logintype!=null?
-      {
-        'username': username,
-        'usertype':"customer",
-        'login_type':logintype
-      }
-          :
-      {
-        'username': username,
-        'password': password,
-        'usertype':"customer"
-
-      };
-
-      final response = await _apiService.post(
-          endPoint: ApiEndpoints.login, reqData: data);
+      final response =
+          await _apiService.post(endPoint: ApiEndpoints.login, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-
           Map<String, dynamic> jsonMap = response.data;
 
           if (jsonMap['status'] == true) {
             _loginData.value = loginmodel.LoginModel.fromJson(jsonMap);
             await setUserData(data: jsonMap).then((value) async {
               if (value = true) {
-
-               Get.offAllNamed(Routes.BOTTOM_APP_BAR_VIEW);
-
+                Get.offAllNamed(Routes.BOTTOM_APP_BAR_VIEW);
               }
             });
 
@@ -218,35 +203,27 @@ class AuthController extends GetxController {
     // required String username,
     required String phone,
     required String password,
-
-
   }) async {
-
     loading(show: true, title: "Sending Otp");
     try {
-
       var data = {
         'name': name,
         'gender': gender.toString().toLowerCase(),
-        'email':email,
+        'email': email,
         'phone': phone,
         'password': password,
         'confirm_password': password,
-        'usertype':"1"
+        'usertype': "1"
       };
       final response = await _apiService.post(
           endPoint: ApiEndpoints.registration, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-
           Map<String, dynamic> jsonMap = response.data;
           if (jsonMap['status'] == true) {
             _registerData.value = RegisterModel.fromJson(jsonMap);
-            Get.toNamed(Routes.OTP_VIEW,arguments: {
-              'username': phone,
-              'forgotpassword':false
-
-            } );
+            Get.toNamed(Routes.OTP_VIEW,
+                arguments: {'username': phone, 'forgotpassword': false});
             startOtpTimer();
             CustomSnackBar.successSnackBar(message: "Otp Send Successfully");
           } else {
@@ -274,36 +251,22 @@ class AuthController extends GetxController {
     required String username,
     required String otp,
     required bool forgotpassword,
-
-
-
   }) async {
-
     loading(show: true, title: "Verifying");
     try {
-
-      var data = {
-        'username': username,
-        'otp': otp
-
-      };
+      var data = {'username': username, 'otp': otp};
       final response = await _apiService.post(
           endPoint: ApiEndpoints.validateOtp, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-
           Map<String, dynamic> jsonMap = response.data;
           if (jsonMap['status'] == true) {
             _otpData.value = OtpVerfiyModel.fromJson(jsonMap);
-            if(forgotpassword==true)
-              {
-                Get.toNamed(Routes.CHANGE_PASSWORD,arguments: {
-                  'username': username,
-
-
-                } );
-              }
-           else{
+            if (forgotpassword == true) {
+              Get.toNamed(Routes.CHANGE_PASSWORD, arguments: {
+                'username': username,
+              });
+            } else {
               Get.offAllNamed(Routes.LOGIN);
             }
             CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
@@ -329,30 +292,19 @@ class AuthController extends GetxController {
 
   Future<void> resend_otp({
     required String username,
-
-
-
-
   }) async {
-
     loading(show: true, title: "sending otp");
     try {
-
-      var data = {
-        'username': username
-
-
-      };
+      var data = {'username': username};
       final response = await _apiService.post(
           endPoint: ApiEndpoints.resendOtp, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-
           Map<String, dynamic> jsonMap = response.data;
           if (jsonMap['status'] == true) {
             _resendData.value = ResendOtpModel.fromJson(jsonMap);
             startOtpTimer();
-            CustomSnackBar.successSnackBar(message:jsonMap['message_en']);
+            CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
           } else {
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
           }
@@ -431,38 +383,25 @@ class AuthController extends GetxController {
     }
   }
 
-
   Future<void> forgot_password({
     required String username,
-
     required bool forgotpassword,
-
-
-
   }) async {
-
     loading(show: true, title: "Loding...");
     try {
-
       var data = {
         'username': username,
-
-
       };
       final response = await _apiService.post(
           endPoint: ApiEndpoints.forgotPassword, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-
           Map<String, dynamic> jsonMap = response.data;
           if (jsonMap['status'] == true) {
             _forgotPasswordData.value = ForgotPasswordModel.fromJson(jsonMap);
 
-              Get.toNamed(Routes.OTP_VIEW,arguments: {
-              'username': username,
-              'forgotpassword':true
-
-              });
+            Get.toNamed(Routes.OTP_VIEW,
+                arguments: {'username': username, 'forgotpassword': true});
             startOtpTimer();
 
             CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
@@ -485,6 +424,7 @@ class AuthController extends GetxController {
       loading(show: false);
     }
   }
+
   Future<void> validateAPI({
     required String token,
   }) async {
@@ -581,32 +521,23 @@ class AuthController extends GetxController {
     required String username,
     required String password,
     required String confirm_password,
-
-
-
-
   }) async {
-
     loading(show: true, title: "Loding...");
     try {
-
       var data = {
         'username': username,
         'password': password,
-        'confirm_password':confirm_password
-
+        'confirm_password': confirm_password
       };
       final response = await _apiService.post(
           endPoint: ApiEndpoints.Changepassword, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
-
           Map<String, dynamic> jsonMap = response.data;
           if (jsonMap['status'] == true) {
             _changePasswordData.value = ChangePasswordModel.fromJson(jsonMap);
 
             Get.toNamed(Routes.LOGIN);
-
 
             CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
           } else {
@@ -726,17 +657,14 @@ class AuthController extends GetxController {
 
   Future<User?> signInWithGoogle() async {
     try {
-
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
-
       if (googleUser == null) {
-
         return null;
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -744,13 +672,10 @@ class AuthController extends GetxController {
       );
 
       final UserCredential userCredential =
-      await FirebaseAuth.instance.signInWithCredential(credential);
+          await FirebaseAuth.instance.signInWithCredential(credential);
 
       final user = userCredential.user;
       if (user != null) {
-
-
-
         await loginWithEmailPassword(
           username: user.email!,
           logintype: "google",
@@ -758,16 +683,13 @@ class AuthController extends GetxController {
 
         return user;
       } else {
-
         return null;
       }
     } catch (e) {
-
       CustomSnackBar.errorSnackBar(message: "Google sign-in failed.");
       return null;
     }
   }
-
 
   // Future<void> aloginWithFacebook() async {
   //   try {
@@ -815,8 +737,6 @@ class AuthController extends GetxController {
     );
     final result =
         await FirebaseAuth.instance.signInWithCredential(oauthCredential);
-    if (result.user!.email!.isNotEmpty) {
-
-    }
+    if (result.user!.email!.isNotEmpty) {}
   }
 }

@@ -45,9 +45,7 @@ class _Custome_WebviewState extends State<Custome_Webview> {
               // Get.off(() => Thankyou());
             }
           },
-          onProgress: (progress) {
-
-          },
+          onProgress: (progress) {},
         ),
       )
       ..loadRequest(Uri.parse(widget.url));

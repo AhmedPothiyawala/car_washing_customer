@@ -56,10 +56,9 @@ class AppPages {
       page: () => const OtpView(),
       binding: AuthBinding(),
     ),
-
     GetPage(
       name: _Paths.BOTTOM_APP_BAR_VIEW,
-      page: () =>  BottomNavBarView(),
+      page: () => const BottomNavBarView(),
       binding: BottomNavBarBinding(),
     ),
     GetPage(
@@ -70,20 +69,18 @@ class AppPages {
     GetPage(
       name: _Paths.PICK_ME_UP_VIEW,
       page: () => const PickMeUpView(),
-
     ),
-  GetPage(
-  name: _Paths.SELECT_RIDER_VIEW,
-  page: () => const SelectRiderView(),
-
-  ),
+    GetPage(
+      name: _Paths.SELECT_RIDER_VIEW,
+      page: () => const SelectRiderView(),
+    ),
     GetPage(
       name: _Paths.ORDER_SUMMARY_VIEW,
-      page: () =>  OrderSummaryView(),
+      page: () => const OrderSummaryView(),
     ),
     GetPage(
       name: _Paths.CUSTOMER_DETAIL_VIEW,
-      page: () =>  CustomerDetailView(),
+      page: () => CustomerDetailView(),
     ),
   ];
 }
