@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/utils.dart';
 
@@ -128,12 +129,10 @@ class SelectRiderView extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   color: AppColors.skyShadeOne,
                                 ),
-                                child: Center(
-                                    child: Image.asset(
+                                child: SvgPicture.asset(
                                   AppImages.carIcon,
-                                  cacheHeight: 12,
-                                  cacheWidth: 16,
-                                )),
+                                  fit: BoxFit.scaleDown,
+                                )
                               )
                             ],
                           ),

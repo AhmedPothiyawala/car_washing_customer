@@ -9,6 +9,8 @@ import '../../../../data/utils.dart';
 import '../../../../widgets/custom_button.dart';
 import 'package:pinput/pinput.dart';
 
+
+
 import '../../../../widgets/custom_snackbar.dart';
 
 class OtpView extends StatefulWidget {
@@ -23,7 +25,7 @@ class _OtpViewState extends State<OtpView> {
 
   final otpFocusNode = FocusNode();
   final otpFormKey = GlobalKey<FormState>();
-  final FocusNode _pinFocusNode = FocusNode();
+  FocusNode _pinFocusNode = FocusNode();
   final otpController = TextEditingController();
   final args = Get.arguments as Map;
   @override
@@ -43,13 +45,14 @@ class _OtpViewState extends State<OtpView> {
                 width: kWidth,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(AppImages.mainBg), fit: BoxFit.fill)),
+                        image: AssetImage(AppImages.mainBg),
+                        fit: BoxFit.fill)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20.0, top: 10),
+                      padding: const EdgeInsets.only(left: 20.0,top: 10),
                       child: InkWell(
                         onTap: () {
                           Get.back();
@@ -143,13 +146,15 @@ class _OtpViewState extends State<OtpView> {
                             ),
                             Text("verifyCode".tr,
                                 style: sfProBoldTextstyle.copyWith(
-                                    color: AppColors.blackColor, fontSize: 18)),
+                                    color: AppColors.blackColor,
+                                    fontSize: 18)),
                             const SizedBox(
                               height: 20,
                             ),
                             Text("otpSubTitle2".tr,
                                 style: sfProMediumTextstyle.copyWith(
-                                    color: AppColors.blackColor, fontSize: 12)),
+                                    color: AppColors.blackColor,
+                                    fontSize: 12)),
                             const SizedBox(
                               height: 10,
                             ),
@@ -160,75 +165,72 @@ class _OtpViewState extends State<OtpView> {
                             const SizedBox(
                               height: 20,
                             ),
-                            Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0),
-                                child: Pinput(
-                                  length: 6,
-                                  controller: otpController,
-                                  keyboardType: TextInputType.number,
-                                  // The main style for all pin fields
-                                  defaultPinTheme: PinTheme(
-                                    width: 50,
-                                    height: 50,
-                                    textStyle: sfProBoldTextstyle.copyWith(
-                                        color: AppColors.appBlackColor,
-                                        fontSize: 16),
-                                    decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                          color: AppColors.appWhiteGreyColor,
-                                          width: 1),
-                                    ),
-                                  ),
-                                  // The style for the currently selected (focused) pin field
-                                  focusedPinTheme: PinTheme(
-                                    width: 50,
-                                    height: 50,
-                                    textStyle: sfProBoldTextstyle.copyWith(
-                                        color: AppColors.appBlackColor,
-                                        fontSize: 16),
-                                    decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                          color: AppColors.primaryColor,
-                                          width: 1),
-                                    ),
-                                  ),
-                                  // The style for pin fields that have been filled
-                                  submittedPinTheme: PinTheme(
-                                    width: 50,
-                                    height: 50,
-                                    textStyle: sfProBoldTextstyle.copyWith(
-                                        color: AppColors.appBlackColor,
-                                        fontSize: 16),
-                                    decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                          color: AppColors.primaryColor,
-                                          width: 1),
-                                    ),
-                                  ),
-                                  closeKeyboardWhenCompleted: false,
-                                  // Other properties you can set
 
-                                  cursor: const Text(
-                                    '|',
-                                    style: TextStyle(
-                                      color: AppColors.primaryColor,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  onCompleted: (value) {},
-                                  onChanged: (value) {
-                                    // You can add your onChanged logic here
-                                  },
-                                )),
+
+
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Pinput(
+                            length: 6,
+                            controller: otpController,
+                            keyboardType: TextInputType.number,
+                            // The main style for all pin fields
+                            defaultPinTheme: PinTheme(
+                              width: 50,
+                              height: 50,
+                              textStyle: sfProBoldTextstyle.copyWith(
+                                  color: AppColors.appBlackColor, fontSize: 16),
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: AppColors.appWhiteGreyColor, width: 1),
+                              ),
+                            ),
+                            // The style for the currently selected (focused) pin field
+                            focusedPinTheme: PinTheme(
+                              width: 50,
+                              height: 50,
+                              textStyle: sfProBoldTextstyle.copyWith(
+                                  color: AppColors.appBlackColor, fontSize: 16),
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: AppColors.primaryColor, width: 1),
+                              ),
+                            ),
+                            // The style for pin fields that have been filled
+                            submittedPinTheme:PinTheme(
+                              width: 50,
+                              height: 50,
+                              textStyle: sfProBoldTextstyle.copyWith(
+                                  color: AppColors.appBlackColor, fontSize: 16),
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: AppColors.primaryColor, width: 1),
+                              ),
+                            ),
+                            closeKeyboardWhenCompleted: false,
+                            // Other properties you can set
+
+
+                            cursor: const Text(
+                              '|',
+                              style: TextStyle(
+                                color: AppColors.primaryColor,
+                                fontSize: 20,
+                              ),
+                            ),
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            onCompleted: (value) {
+
+                            },
+                            onChanged: (value) {
+                              // You can add your onChanged logic here
+                            },
+                          )),
+
+
                             const SizedBox(
                               height: 20,
                             ),
@@ -248,14 +250,17 @@ class _OtpViewState extends State<OtpView> {
                             const SizedBox(
                               height: 20,
                             ),
+
                             Obx(() {
                               return authController.isResendOtpDisabled.value
                                   ? Center(
                                       child: Text(
                                         authController.resendOtpTimer.value
                                             .toString(),
-                                        style: sfProSemiBoldTextstyle.copyWith(
-                                            color: AppColors.primaryColor),
+                                        style:
+                                            sfProSemiBoldTextstyle.copyWith(
+                                                color:
+                                                    AppColors.primaryColor),
                                       ),
                                     )
                                   : Row(
@@ -269,9 +274,10 @@ class _OtpViewState extends State<OtpView> {
                                         ),
                                         Text(
                                           "notReceiveTheOtp".tr,
-                                          style: sfProMediumTextstyle.copyWith(
-                                              color:
-                                                  AppColors.appWhiteGreyColor2),
+                                          style:
+                                              sfProMediumTextstyle.copyWith(
+                                                  color: AppColors
+                                                      .appWhiteGreyColor2),
                                         ),
                                         const Spacer(),
                                         InkWell(
@@ -292,6 +298,7 @@ class _OtpViewState extends State<OtpView> {
                                       ],
                                     );
                             }),
+
                             const SizedBox(
                               height: 20,
                             ),
@@ -354,14 +361,19 @@ class _OtpViewState extends State<OtpView> {
   Future<void> OtpSubmit() async {
     if (otpController.text.isEmpty) {
       CustomSnackBar.errorSnackBar(message: "otpRequired".tr);
-    } else if (otpController.text.length < 6) {
+    }
+
+    else if (otpController.text.length<6) {
       CustomSnackBar.errorSnackBar(message: "otpLength".tr);
-    } else {
+    }
+
+
+    else {
       authController
           .validate_otp(
-              username: args['username'],
-              otp: otpController.text,
-              forgotpassword: args['forgotpassword'])
+          username: args['username'],
+          otp: otpController.text,
+          forgotpassword: args['forgotpassword'])
           .then((value) {
         otpController.clear();
       });
@@ -369,11 +381,13 @@ class _OtpViewState extends State<OtpView> {
   }
 
   void updateWidget() {
+
     authController.update();
   }
 
   @override
   void dispose() {
+
     super.dispose();
   }
 }

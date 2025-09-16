@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/app_colors.dart';
+import '../data/text_styles.dart';
 
 class CustomDropDownFormField extends StatelessWidget {
   final InputBorder? focusedBorder, enabledBorder, errorBorder;
@@ -18,6 +19,7 @@ class CustomDropDownFormField extends StatelessWidget {
   final FormFieldValidator<Object?>? validator;
   final FormFieldSetter<Object?>? onSaved;
   final Function(String)? onFieldSubmitted;
+  final void Function()? onTap;
   final Function()? onEditingComplete;
   final AutovalidateMode? autoValidateMode;
   final int? maxLines;
@@ -29,6 +31,7 @@ class CustomDropDownFormField extends StatelessWidget {
   final double? width;
   final double? height;
   final List<DropdownMenuItem<dynamic>>? items;
+  final dynamic value;
   const CustomDropDownFormField(
       {super.key,
       this.hintText,
@@ -64,7 +67,10 @@ class CustomDropDownFormField extends StatelessWidget {
       this.width,
       this.readOnly,
       this.items,
-      this.height});
+      this.height,
+      this.onTap,
+        this.value
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +82,11 @@ class CustomDropDownFormField extends StatelessWidget {
         onChanged: onChanged,
         onSaved: onSaved,
         validator: validator,
+        onTap:onTap ,
+        value:value ,
+        hint: Text(hintText??"",style: sfProRegularTextstyle.copyWith(
+            fontSize: 16, color: AppColors.blackColor),),
+
 
         icon: const Icon(
           Icons.keyboard_arrow_down,
@@ -83,11 +94,8 @@ class CustomDropDownFormField extends StatelessWidget {
         ),
 
         style: textStyle ??
-            const TextStyle(
-              color: AppColors.subtitleColor,
-              decoration: TextDecoration.none,
-              decorationThickness: 0,
-            ),
+             sfProRegularTextstyle.copyWith(
+                fontSize: 16, color: AppColors.blackColor),
 
         autovalidateMode: autoValidateMode,
 
@@ -140,7 +148,8 @@ class CustomDropDownFormField extends StatelessWidget {
               // errorStyle: poppinsTextStyle.copyWith(fontSize: 10, color: AppColors.errorColor),
               hintText: hintText,
               hintStyle:
-                  hintStyle ?? const TextStyle(color: AppColors.subtitleColor),
+                  hintStyle ??sfProRegularTextstyle.copyWith(
+                      fontSize: 16, color: AppColors.blackColor),
               fillColor: fillColor,
               filled: filled ?? true,
             ),

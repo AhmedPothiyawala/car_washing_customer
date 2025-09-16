@@ -171,7 +171,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                     : AppColors.appWhiteGreyColor,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
-                                    RegExp(r'\+?[0-9\s\-()]*'),
+                                    RegExp(r'\+?[0-9]*'),
                                   ),
                                 ],
                                 validator: validatePhone,

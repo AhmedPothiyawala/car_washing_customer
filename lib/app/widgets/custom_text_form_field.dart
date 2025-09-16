@@ -30,6 +30,7 @@ class CustomTextFormField extends StatelessWidget {
   final ContentInsertionConfiguration? contentInsertionConfiguration;
   final double? width;
   final List<TextInputFormatter>? inputFormatters;
+  final void Function()? onTap;
   const CustomTextFormField(
       {super.key,
       this.hintText,
@@ -64,7 +65,9 @@ class CustomTextFormField extends StatelessWidget {
       this.contentPadding,
       this.width,
       this.readOnly,
-      this.inputFormatters});
+      this.inputFormatters,
+      this.onTap
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +78,7 @@ class CustomTextFormField extends StatelessWidget {
         minLines: null,
         inputFormatters: inputFormatters,
         onTapOutside: onTapOutside,
+        onTap:onTap ,
         controller: controller,
         focusNode: focusNode,
         onChanged: onChanged,

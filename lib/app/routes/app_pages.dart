@@ -8,6 +8,7 @@ import 'package:go_burble_new/app/modules/bottomnavigationbar/bindings/bottom_na
 import 'package:go_burble_new/app/modules/bottomnavigationbar/views/bottom_nav_bar_view.dart';
 
 import '../modules/authentication/views/change_password_view/change_password_view.dart';
+import '../modules/authentication/views/location_view/location_view.dart';
 import '../modules/authentication/views/otp_view/otp_view.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/pickmeup/views/customer_detail_view.dart';
@@ -93,5 +94,11 @@ class AppPages {
       name: _Paths.TRIP_DETAIL_VIEW,
       page: () => const TripDetailView(),
     ),
+    GetPage(
+      name: _Paths.LOCATIN_VIEW,
+      page: () => const LocationView(),
+    ),
+
   ];
+
 }

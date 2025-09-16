@@ -123,6 +123,16 @@ Map<String, String> enUS = {
   "biometricsAuthSuccess": "Authenticated Successfully",
   "biometricsAuthDisable": "Biometrics option is disabled now.",
 
+
+  //******************************
+  //LOCATION_VIEW
+  //******************************
+  "enablePreciseLocation": "Enable precise location",
+  "YourLocationWillBeUsedToShowPeopleNearYou.": "Your location will be used to show people near you.",
+  "openSetting" : "Open Setting",
+  "remindMeLetter" : "Remind me later",
+
+
   //******************************************************************************************
   //BOTTOMNAVBAR
   //******************************************************************************************
@@ -152,6 +162,10 @@ Map<String, String> enUS = {
   "offerTitle": "Luxury Drive,Affordable Price",
   "offerSubTitle": "Nur bis 30.09. Auf ausgewählte BMW Modelle",
   "bookNow": "Aktion entdecken",
+  "exitAppTitle": "Exit App",
+  "exitAppSubTitle": "Are you sure you want to exit the app?",
+  "yes": "Yes",
+  "no": "No",
 
   //******************************
   //PICKMEUP
@@ -159,6 +173,7 @@ Map<String, String> enUS = {
   "location": "Location",
   "bookPickUpMyCar": "Book PickUpMyCar",
   "selectDate": "Select Date",
+  "selectTime": "Select Time",
   "currentAddress": "Current Address",
   "rainSwitzerland": "Rain, Switzerland",
   "dropOff": "Drop off",

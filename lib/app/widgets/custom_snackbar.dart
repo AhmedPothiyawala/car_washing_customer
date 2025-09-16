@@ -12,8 +12,8 @@ class CustomSnackBar {
 
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: AppColors.primaryColor,
-        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: AppColors.appBackgroundColor,
+        snackPosition: SnackPosition.TOP,
         isDismissible: true,
         snackStyle: SnackStyle.FLOATING,
         duration: Duration(seconds: seconds),
@@ -30,7 +30,7 @@ class CustomSnackBar {
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColors.appBackgroundColor,
+                  color: AppColors.primaryColor,
                   fontSize: 14,
                 ),
               ),
@@ -43,7 +43,7 @@ class CustomSnackBar {
                 child: Icon(
                   Icons.close_rounded,
                   size: 20,
-                  color: AppColors.appBackgroundColor,
+                  color: AppColors.primaryColor,
                 ),
               ),
             ),
@@ -68,8 +68,8 @@ class CustomSnackBar {
 
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: AppColors.primaryColor,
-        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: AppColors.appBackgroundColor,
+        snackPosition: SnackPosition.TOP,
         isDismissible: isDismissible ?? true,
         snackStyle: SnackStyle.FLOATING,
         duration: duration ?? Duration(seconds: seconds),
@@ -86,7 +86,7 @@ class CustomSnackBar {
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  color: AppColors.appBackgroundColor,
+                  color: AppColors.primaryColor,
                   fontSize: 14,
                 ),
               ),
@@ -99,7 +99,7 @@ class CustomSnackBar {
                 child: Icon(
                   Icons.close_rounded,
                   size: 20,
-                  color: AppColors.appBackgroundColor,
+                  color: AppColors.primaryColor,
                 ),
               ),
             ),

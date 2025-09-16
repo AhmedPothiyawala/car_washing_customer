@@ -30,6 +30,7 @@ class AppColors {
   static const greyShadeTwo = Color(0XFFEDEDF3);
   static const greyShadeThree = Color(0XFFEEEEEE);
   static const greyShadeFour = Color(0XFF747882);
+  static const greyShadeSeven = Color(0XFF8E8E93);
   //skyShade
   static const skyShadeOne = Color(0XFFC7DEF9);
   static const skyShadeTwo = Color(0XFFE2EDFB);
@@ -42,4 +43,5 @@ class AppColors {
   static const greenShadeTwo = Color(0XFF53C373); //
   static const blackShadeThree = Color(0XFF041023);
   static const redColor = Color(0XFFE50000);
+  static const silverColor = Color(0xFFE6E6E8);
 }

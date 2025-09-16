@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../data/app_colors.dart';
@@ -148,12 +149,10 @@ class CustomerDetailView extends StatelessWidget {
                               shape: BoxShape.circle,
                               color: AppColors.skyShadeOne,
                             ),
-                            child: Center(
-                                child: Image.asset(
+                            child: SvgPicture.asset(
                               AppImages.carIcon,
-                              cacheHeight: 12,
-                              cacheWidth: 16,
-                            )),
+                              fit: BoxFit.scaleDown,
+                            )
                           )
                         ],
                       ),
@@ -208,13 +207,11 @@ class CustomerDetailView extends StatelessWidget {
                             style: sfProMediumTextstyle.copyWith(
                                 color: AppColors.blackColor),
                           ),
-                          Container(
-                            height: 14,
-                            width: 14,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(AppImages.errorImage))),
-                          )
+                          SvgPicture.asset(
+                            AppImages.errorIcon,
+                            height: 15,
+                            width: 15,fit: BoxFit.fill,
+                          ),
                         ],
                       ),
                       const Divider(
@@ -425,13 +422,10 @@ class CustomerDetailView extends StatelessWidget {
                                     const SizedBox(
                                       width: 8,
                                     ),
-                                    Container(
-                                      width: 24,
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  AppImages.flagImage))),
-                                    ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 2.0),
+                                    child: SvgPicture.asset( AppImages.flagImage,height: 16,width: 24,),
+                                  ),
                                     Text(
                                       "countryCode".tr,
                                       style: sfProMediumTextstyle.copyWith(
@@ -1013,12 +1007,9 @@ class CustomerDetailView extends StatelessWidget {
                                     const SizedBox(
                                       width: 8,
                                     ),
-                                    Container(
-                                      width: 24,
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  AppImages.flagImage))),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 2.0),
+                                      child: SvgPicture.asset( AppImages.flagImage,height: 16,width: 24,),
                                     ),
                                     Text(
                                       "countryCode".tr,
@@ -1195,12 +1186,9 @@ class CustomerDetailView extends StatelessWidget {
                                 const SizedBox(
                                   width: 8,
                                 ),
-                                Container(
-                                  width: 24,
-                                  decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          image:
-                                              AssetImage(AppImages.flagImage))),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 2.0),
+                                  child: SvgPicture.asset( AppImages.flagImage,height: 16,width: 24,),
                                 ),
                                 Text(
                                   "countryCode".tr,

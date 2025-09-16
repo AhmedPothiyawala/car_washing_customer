@@ -398,7 +398,7 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future<void> loginSubmit() async {
-    await Permission.notification.request();
+
     bool isEmailValid = usernmaeFormKey.currentState!.validate();
     bool isPasswordValid = passwordFormKey.currentState!.validate();
     if (isEmailValid && isPasswordValid) {

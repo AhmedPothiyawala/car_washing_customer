@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../data/app_colors.dart';
 import '../../../data/app_images.dart';
 import '../../../data/text_styles.dart';
 import '../../../data/utils.dart';
+import '../../../routes/app_pages.dart';
 import '../../../widgets/custom_button.dart';
 
 class TripDetailView extends StatelessWidget {
@@ -77,6 +79,7 @@ class TripDetailView extends StatelessWidget {
                         style: sfProRegularTextstyle.copyWith(
                             fontSize: 14, color: AppColors.blackColor),
                       )),
+                  const Spacer(),
                   SizedBox(
                       width: kWidth * 0.4,
                       child: Text(
@@ -92,9 +95,6 @@ class TripDetailView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    width: 5,
-                  ),
                   SizedBox(
                     height: 85,
                     width: kWidth * 0.4,
@@ -116,6 +116,7 @@ class TripDetailView extends StatelessWidget {
                           height: 70,
                           width: 72,
                           decoration: const BoxDecoration(
+                             shape: BoxShape.circle,
                               image: DecorationImage(
                                   image:
                                       AssetImage(AppImages.richardMendozaImage),
@@ -143,24 +144,24 @@ class TripDetailView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
+                                SvgPicture.asset(
+                                    AppImages.starIcon,
                                   height: 14,
                                   width: 14,
-                                  decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          image:
-                                              AssetImage(AppImages.starIcon))),
+                                  fit: BoxFit.fill,
                                 ),
                                 const SizedBox(
-                                  width: 10,
+                                  width: 5,
                                 ),
-                                Text(
-                                  "rating".tr,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                  style: sfProRegularTextstyle.copyWith(
-                                      fontSize: 12,
-                                      color: AppColors.blackColor),
+                                Center(
+                                  child: Text(
+                                    "rating".tr,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    style: sfProRegularTextstyle.copyWith(
+                                        fontSize: 12,
+                                        color: AppColors.blackColor),
+                                  ),
                                 ),
                               ],
                             ),
@@ -178,20 +179,22 @@ class TripDetailView extends StatelessWidget {
                         width: kWidth * 0.4,
                         child: Text(
                           "richardMendoza".tr,
-                          textAlign: TextAlign.center,
+
                           maxLines: 2,
                           style: sfProMediumTextstyle.copyWith(
                               fontSize: 16, color: AppColors.blackColor),
                         ),
                       ),
-                      SizedBox(
-                        width: kWidth * 0.43,
-                        child: Text(
-                          "blackBmwZhNumber".tr,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          style: sfProRegularTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.blackColor),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: SizedBox(
+                          width: kWidth * 0.4,
+                          child: Text(
+                            "blackBmwZhNumber".tr,
+                            maxLines: 2,
+                            style: sfProRegularTextstyle.copyWith(
+                                fontSize: 12, color: AppColors.blackColor),
+                          ),
                         ),
                       ),
                     ],
@@ -212,7 +215,7 @@ class TripDetailView extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     height: 66,
@@ -250,7 +253,6 @@ class TripDetailView extends StatelessWidget {
                 height: 20,
               ),
               const Divider(
-                //
                 thickness: 1,
                 color: AppColors.greyShadeTwo,
                 indent: 15,
@@ -337,7 +339,8 @@ class TripDetailView extends StatelessWidget {
                         decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage(AppImages.verticleImage),
-                                fit: BoxFit.scaleDown)),
+                               )),
+
                       ),
                       const Icon(
                         Icons.location_on,
@@ -741,7 +744,6 @@ class TripDetailView extends StatelessWidget {
                 height: 10,
               ),
               const Divider(
-                //
                 thickness: 1,
                 color: AppColors.greyShadeTwo,
                 indent: 15,
@@ -775,7 +777,6 @@ class TripDetailView extends StatelessWidget {
                 height: 10,
               ),
               const Divider(
-                //
                 thickness: 1,
                 color: AppColors.greyShadeTwo,
                 indent: 15,
@@ -874,23 +875,21 @@ class TripDetailView extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         "promotion".tr,
                         style: sfProRegularTextstyle.copyWith(
                             fontSize: 16, color: AppColors.blackColor),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 15,
-                          width: 15,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(AppImages.errorImage))),
-                        ),
-                      )
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SvgPicture.asset(
+                        AppImages.errorIcon,
+                        height: 15,
+                        width: 15,fit: BoxFit.fill,
+                      ),
                     ],
                   ),
                   Text(
@@ -909,23 +908,22 @@ class TripDetailView extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         "texes&otherFee".tr,
                         style: sfProRegularTextstyle.copyWith(
                             fontSize: 16, color: AppColors.blackColor),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SvgPicture.asset(
+                          AppImages.errorIcon,
                           height: 15,
-                          width: 15,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(AppImages.errorImage))),
-                        ),
-                      )
+                          width: 15,fit: BoxFit.fill,
+                      ),
+
                     ],
                   ),
                   Text(
@@ -959,7 +957,7 @@ class TripDetailView extends StatelessWidget {
               Center(
                 child: CustomButton(
                   onPressed: () {
-                    //Get.toNamed(Routes.DRIVER_DETAIL_VIEW);
+                    Get.toNamed(Routes.LOCATIN_VIEW);
                   },
                   height: 50,
                   width: kWidth * 0.9,
