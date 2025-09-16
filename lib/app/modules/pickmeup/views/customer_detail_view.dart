@@ -11,7 +11,6 @@ import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_drop_down_form_field.dart';
 import '../../../widgets/custom_text_form_field.dart';
 import '../../bottomnavigationbar/controllers/bottom_nav_bar_controllers.dart';
-import '../../home/controllers/home_controller.dart';
 
 class CustomerDetailView extends StatelessWidget {
   CustomerDetailView({super.key});
@@ -65,15 +64,15 @@ class CustomerDetailView extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         surfaceTintColor: AppColors.appBackgroundColor,
-        title: Obx(
-        () {
-            return Text(
-              homeController.isPickMeUp.value?"bookPickMeUp".tr:  "bookPickUpMyCar".tr,
-              style: poppinsSemiboldTextstyle.copyWith(
-                  fontSize: 18, color: AppColors.blackColor),
-            );
-          }
-        ),
+        title: Obx(() {
+          return Text(
+            homeController.isPickMeUp.value
+                ? "bookPickMeUp".tr
+                : "bookPickUpMyCar".tr,
+            style: poppinsSemiboldTextstyle.copyWith(
+                fontSize: 18, color: AppColors.blackColor),
+          );
+        }),
         centerTitle: true,
         backgroundColor: AppColors.appBackgroundColor,
         flexibleSpace: Padding(
@@ -956,7 +955,6 @@ class CustomerDetailView extends StatelessWidget {
                   Center(
                     child: CustomTextFormField(
                       hintText: "dispatcherNameIs".tr,
-
                       hintStyle: sfProMediumTextstyle.copyWith(
                           fontSize: 14, color: AppColors.blackColor),
                       width: kWidth * 0.9,

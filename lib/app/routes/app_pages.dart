@@ -9,7 +9,6 @@ import 'package:go_burble_new/app/modules/bottomnavigationbar/views/bottom_nav_b
 
 import '../modules/authentication/views/change_password_view/change_password_view.dart';
 import '../modules/authentication/views/otp_view/otp_view.dart';
-import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/pickmeup/views/customer_detail_view.dart';
 import '../modules/pickmeup/views/driver_detail_view.dart';
@@ -70,7 +69,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PICK_ME_UP_VIEW,
-      page: () =>  PickMeUpView(),
+      page: () => PickMeUpView(),
       binding: BottomNavBarBinding(),
     ),
     GetPage(
@@ -86,14 +85,13 @@ class AppPages {
       page: () => CustomerDetailView(),
       binding: BottomNavBarBinding(),
     ),
-
     GetPage(
       name: _Paths.DRIVER_DETAIL_VIEW,
-      page: () => DriverDetailView(),
+      page: () => const DriverDetailView(),
     ),
     GetPage(
       name: _Paths.TRIP_DETAIL_VIEW,
-      page: () => TripDetailView(),
+      page: () => const TripDetailView(),
     ),
   ];
 }

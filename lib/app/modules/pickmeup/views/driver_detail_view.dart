@@ -1,9 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:go_burble_new/app/modules/pickmeup/views/trip_detail_view.dart';
 
 import '../../../data/app_colors.dart';
 import '../../../data/app_images.dart';
@@ -21,7 +18,7 @@ class DriverDetailView extends StatelessWidget {
       extendBody: true,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor:  AppColors.transparent,
+        backgroundColor: AppColors.transparent,
         automaticallyImplyLeading: false,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         flexibleSpace: Padding(
@@ -44,9 +41,9 @@ class DriverDetailView extends StatelessWidget {
                   ),
                   child: const Center(
                       child: Icon(
-                        Icons.arrow_back_ios_new_outlined,
-                        color: AppColors.blackColor,
-                      )),
+                    Icons.arrow_back_ios_new_outlined,
+                    color: AppColors.blackColor,
+                  )),
                 ),
               ),
             ],
@@ -90,9 +87,10 @@ class DriverDetailView extends StatelessWidget {
                     width: kWidth * 0.8,
                     child: Text(
                       "leaveMetingToPerson".tr,
-                      textAlign: TextAlign.center,maxLines: 2,
-                      style: sfProRegularTextstyle.copyWith(fontSize: 12,
-                          color: AppColors.blackColor),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      style: sfProRegularTextstyle.copyWith(
+                          fontSize: 12, color: AppColors.blackColor),
                     ),
                   ),
                 ),
@@ -108,37 +106,41 @@ class DriverDetailView extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(width: 10,),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     SizedBox(
-                     height: 85,
+                      height: 85,
                       width: kWidth * 0.45,
                       child: Stack(
                         children: [
                           Positioned(
-                            left:47,top: 5,
+                            left: 47,
+                            top: 5,
                             child: Container(
                               height: 70,
                               width: 89,
                               decoration: const BoxDecoration(
-                                  image: DecorationImage(image: AssetImage
-                                    (AppImages.bmwImage),fit: BoxFit.fill)
-                              ),
+                                  image: DecorationImage(
+                                      image: AssetImage(AppImages.bmwImage),
+                                      fit: BoxFit.fill)),
                             ),
                           ),
                           Container(
                             height: 70,
                             width: 72,
                             decoration: const BoxDecoration(
-                                image:  DecorationImage(image: AssetImage
-                                  (AppImages.richardMendozaImage),fit: BoxFit.fill)
-                            ),
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        AppImages.richardMendozaImage),
+                                    fit: BoxFit.fill)),
                           ),
                           Positioned(
-                            top: 55,left: 3,
+                            top: 55,
+                            left: 3,
                             child: Container(
                               height: 29,
                               width: 67,
@@ -146,7 +148,7 @@ class DriverDetailView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(50),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withValues(alpha:0.25),
+                                    color: Colors.black.withValues(alpha: 0.25),
                                     offset: const Offset(0, 4),
                                     blurRadius: 4,
                                     spreadRadius: 0,
@@ -162,52 +164,57 @@ class DriverDetailView extends StatelessWidget {
                                     height: 14,
                                     width: 14,
                                     decoration: const BoxDecoration(
-                                        image: DecorationImage(image: AssetImage
-                                          (AppImages.starIcon))
-                                    ),
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                AppImages.starIcon))),
                                   ),
-                                  const SizedBox(width: 10,),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
                                   Text(
                                     "rating".tr,
-                                    textAlign: TextAlign.center,maxLines: 2,
-                                    style: sfProRegularTextstyle.copyWith(fontSize: 12,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    style: sfProRegularTextstyle.copyWith(
+                                        fontSize: 12,
                                         color: AppColors.blackColor),
                                   ),
                                 ],
                               ),
                             ),
                           )
-
                         ],
                       ),
                     ),
-
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width : kWidth * 0.5,
+                          width: kWidth * 0.5,
                           child: Text(
                             "richardMendoza".tr,
-                            textAlign: TextAlign.center,maxLines: 2,
-                            style: sfProMediumTextstyle.copyWith(fontSize: 16,
-                                color: AppColors.blackColor),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            style: sfProMediumTextstyle.copyWith(
+                                fontSize: 16, color: AppColors.blackColor),
                           ),
                         ),
                         SizedBox(
-                          width : kWidth * 0.43,
+                          width: kWidth * 0.43,
                           child: Text(
                             "blackBmwZhNumber".tr,
-                            textAlign: TextAlign.end,maxLines: 2,
-                            style: sfProRegularTextstyle.copyWith(fontSize: 12,
-                                color: AppColors.blackColor),
+                            textAlign: TextAlign.end,
+                            maxLines: 2,
+                            style: sfProRegularTextstyle.copyWith(
+                                fontSize: 12, color: AppColors.blackColor),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(width: 10,),
-
+                    const SizedBox(
+                      width: 10,
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -225,8 +232,11 @@ class DriverDetailView extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: AppColors.greyShadeThree,
                       ),
-                      child: Image.asset(AppImages.callIcon,cacheHeight: 24,
-                        cacheWidth: 24,),
+                      child: Image.asset(
+                        AppImages.callIcon,
+                        cacheHeight: 24,
+                        cacheWidth: 24,
+                      ),
                     ),
                     const SizedBox(
                       width: 15,
@@ -241,14 +251,12 @@ class DriverDetailView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-
                           Container(
                             height: 24,
                             width: 24,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(image: AssetImage(
-                                  AppImages.messageIcon))
-                            ),
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(AppImages.messageIcon))),
                           ),
                           const SizedBox(
                             width: 10,
@@ -256,8 +264,8 @@ class DriverDetailView extends StatelessWidget {
                           Text(
                             "sendMessage".tr,
                             textAlign: TextAlign.center,
-                            style: sfProRegularTextstyle.copyWith(fontSize: 14,
-                                color: AppColors.blackColor),
+                            style: sfProRegularTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                           ),
                         ],
                       ),
@@ -275,14 +283,12 @@ class DriverDetailView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-
                           Container(
                             height: 13,
                             width: 16,
                             decoration: const BoxDecoration(
-                                image: DecorationImage(image: AssetImage(
-                                    AppImages.carBlackIcon))
-                            ),
+                                image: DecorationImage(
+                                    image: AssetImage(AppImages.carBlackIcon))),
                           ),
                           const SizedBox(
                             width: 10,
@@ -290,8 +296,8 @@ class DriverDetailView extends StatelessWidget {
                           Text(
                             "driverDetail".tr,
                             textAlign: TextAlign.center,
-                            style: sfProRegularTextstyle.copyWith(fontSize: 14,
-                                color: AppColors.blackColor),
+                            style: sfProRegularTextstyle.copyWith(
+                                fontSize: 14, color: AppColors.blackColor),
                           ),
                         ],
                       ),
@@ -299,7 +305,6 @@ class DriverDetailView extends StatelessWidget {
                     const SizedBox(
                       width: 15,
                     ),
-
                   ],
                 ),
                 const SizedBox(
@@ -308,7 +313,9 @@ class DriverDetailView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(width: 10,),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -325,7 +332,9 @@ class DriverDetailView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(width: 10,),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,7 +351,9 @@ class DriverDetailView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(width: 10,),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -359,7 +370,9 @@ class DriverDetailView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(width: 10,),
+                    const SizedBox(
+                      width: 10,
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -384,7 +397,9 @@ class DriverDetailView extends StatelessWidget {
                       Expanded(
                         child: Row(
                           children: [
-                            const SizedBox(width: 10,),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             Container(
                                 height: 35,
                                 width: 35,
@@ -392,21 +407,31 @@ class DriverDetailView extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   color: AppColors.greyShadeThree,
                                 ),
-                                child: Image.asset( AppImages.carBlackIcon,cacheHeight: 13,cacheWidth: 16,)
+                                child: Image.asset(
+                                  AppImages.carBlackIcon,
+                                  cacheHeight: 13,
+                                  cacheWidth: 16,
+                                )),
+                            const SizedBox(
+                              width: 20,
                             ),
-                            const SizedBox(width: 20,),
                             Text(
                               "viewTripDetail".tr,
                               textAlign: TextAlign.center,
-                              style: sfProRegularTextstyle.copyWith(fontSize: 14,
+                              style: sfProRegularTextstyle.copyWith(
+                                  fontSize: 14,
                                   color: AppColors.splashHeadingColor),
                             ),
                           ],
                         ),
                       ),
-                      const Icon(Icons.arrow_forward_ios_rounded,color: AppColors
-                          .blackColor,),
-                      const SizedBox(width: 10,),
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: AppColors.blackColor,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ],
                   ),
                 ),

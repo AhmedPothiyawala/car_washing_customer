@@ -73,8 +73,8 @@ class _RegisterViewState extends State<RegisterView> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 20.0,
-                                    top: 10),
+                                padding:
+                                    const EdgeInsets.only(left: 20.0, top: 10),
                                 child: InkWell(
                                   onTap: () {
                                     Get.back();

@@ -57,7 +57,6 @@ String? validatePassword(String? value) {
 }
 
 String? validateOtp(String? value) {
-
   String pattern = r'^\d{6}$';
 
   RegExp regex = RegExp(pattern);

@@ -18,9 +18,7 @@ abstract class Routes {
   static const CUSTOMER_DETAIL_VIEW = _Paths.CUSTOMER_DETAIL_VIEW;
   static const DRIVER_DETAIL_VIEW = _Paths.DRIVER_DETAIL_VIEW;
   static const TRIP_DETAIL_VIEW = _Paths.TRIP_DETAIL_VIEW;
-
 }
-
 
 abstract class _Paths {
   _Paths._();

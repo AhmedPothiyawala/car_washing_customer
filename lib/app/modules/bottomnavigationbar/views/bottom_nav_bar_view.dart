@@ -26,7 +26,12 @@ class _BottomNavBarViewState extends State<BottomNavBarView> {
   ];
 
   final List _navbarlable = ["home".tr, "rides".tr, "fav".tr, "myAccount".tr];
-  final List _pages = [const HomeView(), const HomeView(), const HomeView(), const HomeView()];
+  final List _pages = [
+    const HomeView(),
+    const HomeView(),
+    const HomeView(),
+    const HomeView()
+  ];
 
   final bottomNavBarController = Get.find<BottomNavBarControllers>();
 

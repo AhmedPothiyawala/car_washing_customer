@@ -40,9 +40,9 @@ class TripDetailView extends StatelessWidget {
                   ),
                   child: const Center(
                       child: Icon(
-                        Icons.close,
-                        color: AppColors.blackColor,
-                      )),
+                    Icons.close,
+                    color: AppColors.blackColor,
+                  )),
                 ),
               ),
             ],
@@ -50,7 +50,7 @@ class TripDetailView extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 12.0,right: 12),
+        padding: const EdgeInsets.only(left: 12.0, right: 12),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -92,33 +92,38 @@ class TripDetailView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 5,),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   SizedBox(
                     height: 85,
                     width: kWidth * 0.4,
                     child: Stack(
                       children: [
                         Positioned(
-                          left:47,top: 5,
+                          left: 47,
+                          top: 5,
                           child: Container(
                             height: 70,
                             width: 89,
                             decoration: const BoxDecoration(
-                                image: DecorationImage(image: AssetImage
-                                  (AppImages.bmwImage),fit: BoxFit.fill)
-                            ),
+                                image: DecorationImage(
+                                    image: AssetImage(AppImages.bmwImage),
+                                    fit: BoxFit.fill)),
                           ),
                         ),
                         Container(
                           height: 70,
                           width: 72,
                           decoration: const BoxDecoration(
-                              image:  DecorationImage(image: AssetImage
-                                (AppImages.richardMendozaImage),fit: BoxFit.fill)
-                          ),
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage(AppImages.richardMendozaImage),
+                                  fit: BoxFit.fill)),
                         ),
                         Positioned(
-                          top: 55,left: 3,
+                          top: 55,
+                          left: 3,
                           child: Container(
                             height: 29,
                             width: 67,
@@ -126,7 +131,7 @@ class TripDetailView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(50),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withValues(alpha:0.25),
+                                  color: Colors.black.withValues(alpha: 0.25),
                                   offset: const Offset(0, 4),
                                   blurRadius: 4,
                                   spreadRadius: 0,
@@ -142,52 +147,55 @@ class TripDetailView extends StatelessWidget {
                                   height: 14,
                                   width: 14,
                                   decoration: const BoxDecoration(
-                                      image: DecorationImage(image: AssetImage
-                                        (AppImages.starIcon))
-                                  ),
+                                      image: DecorationImage(
+                                          image:
+                                              AssetImage(AppImages.starIcon))),
                                 ),
-                                const SizedBox(width: 10,),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 Text(
                                   "rating".tr,
-                                  textAlign: TextAlign.center,maxLines: 2,
-                                  style: sfProRegularTextstyle.copyWith(fontSize: 12,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  style: sfProRegularTextstyle.copyWith(
+                                      fontSize: 12,
                                       color: AppColors.blackColor),
                                 ),
                               ],
                             ),
                           ),
                         )
-          
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width : kWidth * 0.4,
+                        width: kWidth * 0.4,
                         child: Text(
                           "richardMendoza".tr,
-                          textAlign: TextAlign.center,maxLines: 2,
-                          style: sfProMediumTextstyle.copyWith(fontSize: 16,
-                              color: AppColors.blackColor),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: sfProMediumTextstyle.copyWith(
+                              fontSize: 16, color: AppColors.blackColor),
                         ),
                       ),
                       SizedBox(
-                        width : kWidth * 0.43,
+                        width: kWidth * 0.43,
                         child: Text(
                           "blackBmwZhNumber".tr,
-                          textAlign: TextAlign.center,maxLines: 2,
-                          style: sfProRegularTextstyle.copyWith(fontSize: 12,
-                              color: AppColors.blackColor),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: sfProRegularTextstyle.copyWith(
+                              fontSize: 12, color: AppColors.blackColor),
                         ),
                       ),
                     ],
                   ),
-          
-          
                 ],
               ),
               const SizedBox(
@@ -211,8 +219,8 @@ class TripDetailView extends StatelessWidget {
                     width: 88,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(AppImages.bmwImage),fit: BoxFit
-                            .fill)),
+                            image: AssetImage(AppImages.bmwImage),
+                            fit: BoxFit.fill)),
                   ),
                   const SizedBox(
                     width: 20,
@@ -254,7 +262,6 @@ class TripDetailView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-          
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,7 +278,9 @@ class TripDetailView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,7 +297,9 @@ class TripDetailView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -381,8 +392,6 @@ class TripDetailView extends StatelessWidget {
                         style: sfProMediumTextstyle.copyWith(
                             color: AppColors.blackColor),
                       ),
-          
-          
                     ],
                   ),
                 ],
@@ -430,7 +439,7 @@ class TripDetailView extends StatelessWidget {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment:
-                      CrossAxisAlignment.start, //companyName
+                          CrossAxisAlignment.start, //companyName
                       children: [
                         Text(
                           "companyName".tr,
@@ -600,7 +609,7 @@ class TripDetailView extends StatelessWidget {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment:
-                      CrossAxisAlignment.start, //companyName
+                          CrossAxisAlignment.start, //companyName
                       children: [
                         Text(
                           "companyName".tr,
@@ -781,7 +790,7 @@ class TripDetailView extends StatelessWidget {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment:
-                      CrossAxisAlignment.start, //companyName
+                          CrossAxisAlignment.start, //companyName
                       children: [
                         Text(
                           "dispatcherPhone".tr,
@@ -830,7 +839,6 @@ class TripDetailView extends StatelessWidget {
                 indent: 15,
                 endIndent: 15,
               ),
-
               const SizedBox(
                 height: 25,
               ),

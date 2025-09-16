@@ -8,7 +8,6 @@ import 'package:go_burble_new/app/data/utils.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../bottomnavigationbar/controllers/bottom_nav_bar_controllers.dart';
-import '../controllers/home_controller.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -44,7 +43,6 @@ class _HomeViewState extends State<HomeView> {
                     color: AppColors.blackColor, fontSize: 12),
               ),
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -311,7 +309,7 @@ class _HomeViewState extends State<HomeView> {
                     width: 10,
                   ),
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       homeController.isPickMeUp(true);
                       Get.toNamed(Routes.PICK_ME_UP_VIEW);
                     },
@@ -342,7 +340,8 @@ class _HomeViewState extends State<HomeView> {
                               ),
                               Text("pickMeUp".tr,
                                   style: sfProSemiBoldTextstyle.copyWith(
-                                      color: AppColors.blackColor, fontSize: 16))
+                                      color: AppColors.blackColor,
+                                      fontSize: 16))
                             ],
                           ),
                           Padding(
@@ -353,7 +352,7 @@ class _HomeViewState extends State<HomeView> {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border:
-                                  Border.all(color: AppColors.blackColor)),
+                                      Border.all(color: AppColors.blackColor)),
                               child: const Center(
                                 child: Icon(
                                   Icons.arrow_forward,

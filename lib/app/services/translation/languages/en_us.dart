@@ -80,7 +80,6 @@ Map<String, String> enUS = {
   "Verify": "Verify",
   "otpLength": "please enter six digit Otp",
 
-
   //******************************************************************************************
   //FORGOT_PASSWORD
   //******************************************************************************************
@@ -255,7 +254,6 @@ Map<String, String> enUS = {
   "billingAddress": "Billing Address",
   "companyLocation": "Company Location",
   "companyLocationName": "Staldenbachstrasse 308808 Pfäffikon SZ",
-
 
   //******************************************************************************************
   //DRIVERDETAILVIEW
