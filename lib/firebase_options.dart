@@ -64,7 +64,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1013801564077',
     projectId: 'pickupmycar-c01db',
     storageBucket: 'pickupmycar-c01db.firebasestorage.app',
-    iosBundleId: 'com.pickupmycar.customer',
+    androidClientId: '1013801564077-ojk2f5fb411tnftgu7j510vcd87oes7j.apps.googleusercontent.com',
+    iosClientId: '1013801564077-5m0v93m2ui9ukqhb60p6r12ubi2jlpcg.apps.googleusercontent.com',
+    iosBundleId: 'com.carwashing.customer',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
