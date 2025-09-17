@@ -69,8 +69,7 @@ class CustomDropDownFormField extends StatelessWidget {
       this.items,
       this.height,
       this.onTap,
-        this.value
-      });
+      this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -82,11 +81,13 @@ class CustomDropDownFormField extends StatelessWidget {
         onChanged: onChanged,
         onSaved: onSaved,
         validator: validator,
-        onTap:onTap ,
-        value:value ,
-        hint: Text(hintText??"",style: sfProRegularTextstyle.copyWith(
-            fontSize: 16, color: AppColors.blackColor),),
-
+        onTap: onTap,
+        value: value,
+        hint: Text(
+          hintText ?? "",
+          style: sfProRegularTextstyle.copyWith(
+              fontSize: 16, color: AppColors.blackColor),
+        ),
 
         icon: const Icon(
           Icons.keyboard_arrow_down,
@@ -94,7 +95,7 @@ class CustomDropDownFormField extends StatelessWidget {
         ),
 
         style: textStyle ??
-             sfProRegularTextstyle.copyWith(
+            sfProRegularTextstyle.copyWith(
                 fontSize: 16, color: AppColors.blackColor),
 
         autovalidateMode: autoValidateMode,
@@ -147,8 +148,8 @@ class CustomDropDownFormField extends StatelessWidget {
 
               // errorStyle: poppinsTextStyle.copyWith(fontSize: 10, color: AppColors.errorColor),
               hintText: hintText,
-              hintStyle:
-                  hintStyle ??sfProRegularTextstyle.copyWith(
+              hintStyle: hintStyle ??
+                  sfProRegularTextstyle.copyWith(
                       fontSize: 16, color: AppColors.blackColor),
               fillColor: fillColor,
               filled: filled ?? true,

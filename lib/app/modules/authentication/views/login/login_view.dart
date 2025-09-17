@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/app_colors.dart';
 import 'package:go_burble_new/app/routes/app_pages.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../data/app_images.dart';
 import '../../../../data/text_styles.dart';
@@ -398,7 +397,6 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future<void> loginSubmit() async {
-
     bool isEmailValid = usernmaeFormKey.currentState!.validate();
     bool isPasswordValid = passwordFormKey.currentState!.validate();
     if (isEmailValid && isPasswordValid) {

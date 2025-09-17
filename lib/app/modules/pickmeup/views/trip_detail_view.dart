@@ -116,7 +116,7 @@ class TripDetailView extends StatelessWidget {
                           height: 70,
                           width: 72,
                           decoration: const BoxDecoration(
-                             shape: BoxShape.circle,
+                              shape: BoxShape.circle,
                               image: DecorationImage(
                                   image:
                                       AssetImage(AppImages.richardMendozaImage),
@@ -145,7 +145,7 @@ class TripDetailView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 SvgPicture.asset(
-                                    AppImages.starIcon,
+                                  AppImages.starIcon,
                                   height: 14,
                                   width: 14,
                                   fit: BoxFit.fill,
@@ -179,7 +179,6 @@ class TripDetailView extends StatelessWidget {
                         width: kWidth * 0.4,
                         child: Text(
                           "richardMendoza".tr,
-
                           maxLines: 2,
                           style: sfProMediumTextstyle.copyWith(
                               fontSize: 16, color: AppColors.blackColor),
@@ -338,9 +337,8 @@ class TripDetailView extends StatelessWidget {
                         width: 10,
                         decoration: const BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(AppImages.verticleImage),
-                               )),
-
+                          image: AssetImage(AppImages.verticleImage),
+                        )),
                       ),
                       const Icon(
                         Icons.location_on,
@@ -888,7 +886,8 @@ class TripDetailView extends StatelessWidget {
                       SvgPicture.asset(
                         AppImages.errorIcon,
                         height: 15,
-                        width: 15,fit: BoxFit.fill,
+                        width: 15,
+                        fit: BoxFit.fill,
                       ),
                     ],
                   ),
@@ -919,11 +918,11 @@ class TripDetailView extends StatelessWidget {
                         width: 10,
                       ),
                       SvgPicture.asset(
-                          AppImages.errorIcon,
-                          height: 15,
-                          width: 15,fit: BoxFit.fill,
+                        AppImages.errorIcon,
+                        height: 15,
+                        width: 15,
+                        fit: BoxFit.fill,
                       ),
-
                     ],
                   ),
                   Text(

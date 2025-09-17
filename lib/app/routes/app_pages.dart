@@ -98,7 +98,5 @@ class AppPages {
       name: _Paths.LOCATIN_VIEW,
       page: () => const LocationView(),
     ),
-
   ];
-
 }

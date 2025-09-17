@@ -66,8 +66,7 @@ class CustomTextFormField extends StatelessWidget {
       this.width,
       this.readOnly,
       this.inputFormatters,
-      this.onTap
-      });
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +77,7 @@ class CustomTextFormField extends StatelessWidget {
         minLines: null,
         inputFormatters: inputFormatters,
         onTapOutside: onTapOutside,
-        onTap:onTap ,
+        onTap: onTap,
         controller: controller,
         focusNode: focusNode,
         onChanged: onChanged,

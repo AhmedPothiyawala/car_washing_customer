@@ -8,7 +8,6 @@ import '../../../../data/text_styles.dart';
 import '../../../../data/utils.dart';
 import '../../../../widgets/custom_button.dart';
 
-
 class LocationView extends StatelessWidget {
   const LocationView({super.key});
 
@@ -23,11 +22,9 @@ class LocationView extends StatelessWidget {
             height: 96,
             width: 96,
             decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.silverColor
-            ),
+                shape: BoxShape.circle, color: AppColors.silverColor),
             child: SvgPicture.asset(
-                AppImages.whiteLocationIcon,
+              AppImages.whiteLocationIcon,
               fit: BoxFit.scaleDown,
             ),
           ),
@@ -38,7 +35,8 @@ class LocationView extends StatelessWidget {
             child: SizedBox(
               width: kWidth * 0.8,
               child: Text(
-                "enablePreciseLocation".tr,textAlign: TextAlign.center,
+                "enablePreciseLocation".tr,
+                textAlign: TextAlign.center,
                 style: sfProBoldTextstyle.copyWith(
                     fontSize: 24, color: AppColors.blackColor),
               ),
@@ -51,8 +49,8 @@ class LocationView extends StatelessWidget {
             child: SizedBox(
               width: kWidth * 0.7,
               child: Text(
-                "YourLocationWillBeUsedToShowPeopleNearYou.".tr,textAlign:
-              TextAlign.center,
+                "YourLocationWillBeUsedToShowPeopleNearYou.".tr,
+                textAlign: TextAlign.center,
                 style: poppinsRegularTextstyle.copyWith(
                     fontSize: 15, color: AppColors.greyShadeSeven),
               ),
@@ -64,7 +62,7 @@ class LocationView extends StatelessWidget {
           Center(
             child: CustomButton(
               onPressed: () {
-              //  Get.toNamed(Routes.LOCATIN_VIEW);
+                //  Get.toNamed(Routes.LOCATIN_VIEW);
               },
               height: 50,
               width: kWidth * 0.8,
@@ -80,8 +78,8 @@ class LocationView extends StatelessWidget {
           ),
           Center(
             child: Text(
-              "remindMeLetter".tr,textAlign:
-            TextAlign.center,
+              "remindMeLetter".tr,
+              textAlign: TextAlign.center,
               style: poppinsRegularTextstyle.copyWith(
                   fontSize: 15, color: AppColors.greyShadeSeven),
             ),

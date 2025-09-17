@@ -317,7 +317,8 @@ class _RegisterViewState extends State<RegisterView> {
                                           hintText: "phone".tr,
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
-                                              RegExp(r'\+?[0-9]*'), // allow digits, spaces, +, -, (, )
+                                              RegExp(
+                                                  r'\+?[0-9]*'), // allow digits, spaces, +, -, (, )
                                             ),
                                           ],
                                           borderRadiusAll:

@@ -123,15 +123,14 @@ Map<String, String> enUS = {
   "biometricsAuthSuccess": "Authenticated Successfully",
   "biometricsAuthDisable": "Biometrics option is disabled now.",
 
-
   //******************************
   //LOCATION_VIEW
   //******************************
   "enablePreciseLocation": "Enable precise location",
-  "YourLocationWillBeUsedToShowPeopleNearYou.": "Your location will be used to show people near you.",
-  "openSetting" : "Open Setting",
-  "remindMeLetter" : "Remind me later",
-
+  "YourLocationWillBeUsedToShowPeopleNearYou.":
+      "Your location will be used to show people near you.",
+  "openSetting": "Open Setting",
+  "remindMeLetter": "Remind me later",
 
   //******************************************************************************************
   //BOTTOMNAVBAR

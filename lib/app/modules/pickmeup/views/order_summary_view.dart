@@ -147,66 +147,65 @@ class OrderSummaryView extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-             Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "transferTrip".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.blackColor),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "transferTrip".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
+                      ),
+                      Text(
+                        "service".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.greyShadeFour),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "service".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.greyShadeFour),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "kilometer".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
+                      ),
+                      Text(
+                        "drivingRoute".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.greyShadeFour),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "time".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
+                      ),
+                      Text(
+                        "estimatedTravelTime".tr,
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.greyShadeFour),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "kilometer".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.blackColor),
-                  ),
-                  Text(
-                    "drivingRoute".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.greyShadeFour),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "time".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.blackColor),
-                  ),
-                  Text(
-                    "estimatedTravelTime".tr,
-                    style: sfProRegularTextstyle.copyWith(
-                        fontSize: 14, color: AppColors.greyShadeFour),
-                  ),
-                ],
-              ),
-            ],
-          ),
-
               const SizedBox(
                 height: 25,
               ),
@@ -490,8 +489,7 @@ class OrderSummaryView extends StatelessWidget {
               Text(
                 "name".tr,
                 style: sfProMediumTextstyle.copyWith(
-                    fontSize: 12, color: AppColors.greyShadeFour
-                ),
+                    fontSize: 12, color: AppColors.greyShadeFour),
               ),
               const SizedBox(
                 height: 5,
@@ -525,8 +523,7 @@ class OrderSummaryView extends StatelessWidget {
                         Text(
                           "companyName".tr,
                           style: sfProMediumTextstyle.copyWith(
-                              fontSize: 12, color: AppColors.greyShadeFour
-                          ),
+                              fontSize: 12, color: AppColors.greyShadeFour),
                         ),
                         const SizedBox(
                           height: 5,
@@ -735,8 +732,7 @@ class OrderSummaryView extends StatelessWidget {
                           style: sfProRegularTextstyle.copyWith(
                               fontSize: 14, color: AppColors.blackColor),
                         ),
-                      ]
-                  ),
+                      ]),
                   const SizedBox(
                     width: 20,
                   ),

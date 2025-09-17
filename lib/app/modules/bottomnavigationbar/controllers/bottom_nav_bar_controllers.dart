@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +16,7 @@ class BottomNavBarControllers extends GetxController {
   void selectedindex(int val) {
     _isPageIndex(val);
   }
+
   Future<void> selectdate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -24,24 +24,25 @@ class BottomNavBarControllers extends GetxController {
       firstDate: DateTime(2000),
       lastDate: DateTime(2030),
     );
-    if (picked != null ) {
-      _isselectedDate("${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}");
+    if (picked != null) {
+      _isselectedDate(
+          "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}");
     }
   }
 
   Future<void> selectTime(BuildContext context) async {
     final TimeOfDay? pickedTime = await showTimePicker(
         context: context,
-        initialTime: TimeOfDay.now(), builder: (BuildContext context, Widget? child) {
-      return MediaQuery(
-        data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
-        child: child!,
-      );});
+        initialTime: TimeOfDay.now(),
+        builder: (BuildContext context, Widget? child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+            child: child!,
+          );
+        });
 
-    if (pickedTime != null )
-    {
+    if (pickedTime != null) {
       _isselectedTime("${pickedTime.hour}:${pickedTime.minute}");
     }
   }
 }
-

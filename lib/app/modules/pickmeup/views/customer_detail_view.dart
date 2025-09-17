@@ -143,17 +143,16 @@ class CustomerDetailView extends StatelessWidget {
                           ),
                           const Spacer(),
                           Container(
-                            height: 35,
-                            width: 35,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.skyShadeOne,
-                            ),
-                            child: SvgPicture.asset(
-                              AppImages.carIcon,
-                              fit: BoxFit.scaleDown,
-                            )
-                          )
+                              height: 35,
+                              width: 35,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.skyShadeOne,
+                              ),
+                              child: SvgPicture.asset(
+                                AppImages.carIcon,
+                                fit: BoxFit.scaleDown,
+                              ))
                         ],
                       ),
                       const SizedBox(
@@ -210,7 +209,8 @@ class CustomerDetailView extends StatelessWidget {
                           SvgPicture.asset(
                             AppImages.errorIcon,
                             height: 15,
-                            width: 15,fit: BoxFit.fill,
+                            width: 15,
+                            fit: BoxFit.fill,
                           ),
                         ],
                       ),
@@ -422,10 +422,14 @@ class CustomerDetailView extends StatelessWidget {
                                     const SizedBox(
                                       width: 8,
                                     ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 2.0),
-                                    child: SvgPicture.asset( AppImages.flagImage,height: 16,width: 24,),
-                                  ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 2.0),
+                                      child: SvgPicture.asset(
+                                        AppImages.flagImage,
+                                        height: 16,
+                                        width: 24,
+                                      ),
+                                    ),
                                     Text(
                                       "countryCode".tr,
                                       style: sfProMediumTextstyle.copyWith(
@@ -1009,7 +1013,11 @@ class CustomerDetailView extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 2.0),
-                                      child: SvgPicture.asset( AppImages.flagImage,height: 16,width: 24,),
+                                      child: SvgPicture.asset(
+                                        AppImages.flagImage,
+                                        height: 16,
+                                        width: 24,
+                                      ),
                                     ),
                                     Text(
                                       "countryCode".tr,
@@ -1188,7 +1196,11 @@ class CustomerDetailView extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 2.0),
-                                  child: SvgPicture.asset( AppImages.flagImage,height: 16,width: 24,),
+                                  child: SvgPicture.asset(
+                                    AppImages.flagImage,
+                                    height: 16,
+                                    width: 24,
+                                  ),
                                 ),
                                 Text(
                                   "countryCode".tr,

@@ -123,17 +123,16 @@ class SelectRiderView extends StatelessWidget {
                               ),
                               const Spacer(),
                               Container(
-                                height: 35,
-                                width: 35,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.skyShadeOne,
-                                ),
-                                child: SvgPicture.asset(
-                                  AppImages.carIcon,
-                                  fit: BoxFit.scaleDown,
-                                )
-                              )
+                                  height: 35,
+                                  width: 35,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.skyShadeOne,
+                                  ),
+                                  child: SvgPicture.asset(
+                                    AppImages.carIcon,
+                                    fit: BoxFit.scaleDown,
+                                  ))
                             ],
                           ),
                           const SizedBox(
