@@ -177,44 +177,50 @@ class _LoginViewState extends State<LoginView> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              Center(
-                                child: CustomIconButton(
-                                    height: 50,
-                                    width: kWidth * 0.8,
-                                    onPressed: () async {},
-                                    bgColor: AppColors.appBackgroundColor,
-                                    borderRadius: BorderRadius.circular(12),
-                                    // iconData:  Image.asset(AppImages.googleIcon, height: 30),
-                                    borderColor:
-                                        AppColors.iconButtonBorderColor,
-                                    childWidget: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          height: 18,
-                                          width: 18,
-                                          decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      AppImages.appleIcon),
-                                                  fit: BoxFit.fill)),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "appleLogin".tr,
-                                          style: sfProSemiBoldTextstyle,
-                                        ),
-                                      ],
-                                    )),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
+                              Platform.isIOS?
+                              Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Center(
+                                    child: CustomIconButton(
+                                        height: 50,
+                                        width: kWidth * 0.8,
+                                        onPressed: () async {},
+                                        bgColor: AppColors.appBackgroundColor,
+                                        borderRadius: BorderRadius.circular(12),
+                                        // iconData:  Image.asset(AppImages.googleIcon, height: 30),
+                                        borderColor:
+                                            AppColors.iconButtonBorderColor,
+                                        childWidget: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              height: 18,
+                                              width: 18,
+                                              decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          AppImages.appleIcon),
+                                                      fit: BoxFit.fill)),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              "appleLogin".tr,
+                                              style: sfProSemiBoldTextstyle,
+                                            ),
+                                          ],
+                                        )),
+                                  ),
+                                ],
+                              ):Container(),
+
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,

@@ -11,10 +11,11 @@ import '../../../routes/app_pages.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_drop_down_form_field.dart';
 import '../../bottomnavigationbar/controllers/bottom_nav_bar_controllers.dart';
+import '../../home/controllers/home_controller.dart';
 
 class PickMeUpView extends StatelessWidget {
   PickMeUpView({super.key});
-  final homeController = Get.find<BottomNavBarControllers>();
+  final homeController = Get.find<HomeControllers>();
 
   @override
   Widget build(BuildContext context) {
@@ -173,6 +174,7 @@ class PickMeUpView extends StatelessWidget {
                               },
                               child: CustomDropDownFormField(
                                 height: 50,
+                                contentPadding: EdgeInsets.only(right: 8),
                                 hintStyle: sfProMediumTextstyle.copyWith(
                                     fontSize: 12, color: AppColors.blackColor),
                                 textInputAction: TextInputAction.next,
@@ -213,6 +215,7 @@ class PickMeUpView extends StatelessWidget {
                               },
                               child: CustomDropDownFormField(
                                 height: 50,
+                                contentPadding: EdgeInsets.only(right: 8),
                                 hintStyle: sfProMediumTextstyle.copyWith(
                                     fontSize: 12, color: AppColors.blackColor),
                                 textInputAction: TextInputAction.next,
@@ -361,25 +364,23 @@ class PickMeUpView extends StatelessWidget {
                               style: sfProRegularTextstyle.copyWith(
                                   color: AppColors.greyShadeFour),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+
                           ],
                         ),
                       ],
                     ),
                     Center(
                       child: CustomDropDownFormField(
-                        height: 55,
+
                         hintStyle: sfProMediumTextstyle.copyWith(
                             fontSize: 12, color: AppColors.blackColor),
                         textInputAction: TextInputAction.next,
-                        width: kWidth * 0.85,
+                        width: kWidth * 0.8,
                         hintText: "singleRide".tr,
                         borderRadiusAll:
                             const BorderRadius.all(Radius.circular(0)),
                         fillColor: AppColors.transparent,
-                        items: ['Male', 'Female']
+                        items: ['Single Ride', ' Return(new transfer)']
                             .map((option) => DropdownMenuItem(
                                   value: option,
                                   child: Text(option),

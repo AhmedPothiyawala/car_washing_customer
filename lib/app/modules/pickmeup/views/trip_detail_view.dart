@@ -956,7 +956,7 @@ class TripDetailView extends StatelessWidget {
               Center(
                 child: CustomButton(
                   onPressed: () {
-                    Get.toNamed(Routes.LOCATIN_VIEW);
+                    Get.toNamed(Routes.CANCEL_BOOKING_VIEW);
                   },
                   height: 50,
                   width: kWidth * 0.9,

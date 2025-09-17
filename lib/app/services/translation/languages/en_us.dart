@@ -286,6 +286,26 @@ Map<String, String> enUS = {
   //******************************************************************************************
   "cancelBooking": "Cancel Booking",
 
+
+  //**********
+  //CANCEL_BOOKING_VIEW Success Your Ride
+  //**********
+  "skip": "Skip",
+  "selectReasonForCancel": "Please select the reason for cancellation",
+  "scheduleChange": "Schedule Change",
+  "bookAnotherCar": "Book Another Car",
+  "foundBetterAlternative": "Found Better alternative",
+  "myReasonIsNotListed": "My reason is not listed",
+  "wantToBookAnotherCar": "Want to Book Another Car",
+  "other": "Other",
+
+  //**********
+  //SUCCESS_YOUR_RIDE
+  //**********
+  "successYourRide": "Success Your Ride",
+  "enjoyYourRide": "We hope you enjoyed your ride",
+  "giveComplement": "Give Complement",
+
   //******************************************************************************************
   //PROFILE_VIEW
   //******************************************************************************************

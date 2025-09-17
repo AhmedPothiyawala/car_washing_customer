@@ -6,15 +6,18 @@ import 'package:go_burble_new/app/modules/authentication/views/register/register
 import 'package:go_burble_new/app/modules/authentication/views/splash_view.dart';
 import 'package:go_burble_new/app/modules/bottomnavigationbar/bindings/bottom_nav_bar_binding.dart';
 import 'package:go_burble_new/app/modules/bottomnavigationbar/views/bottom_nav_bar_view.dart';
+import 'package:go_burble_new/app/modules/home/bindings/home_binding.dart';
 
 import '../modules/authentication/views/change_password_view/change_password_view.dart';
 import '../modules/authentication/views/location_view/location_view.dart';
 import '../modules/authentication/views/otp_view/otp_view.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/pickmeup/views/cancel_booking_view.dart';
 import '../modules/pickmeup/views/customer_detail_view.dart';
 import '../modules/pickmeup/views/driver_detail_view.dart';
 import '../modules/pickmeup/views/order_summary_view.dart';
 import '../modules/pickmeup/views/pick_me_up_view.dart';
+import '../modules/pickmeup/views/ride_success_view.dart';
 import '../modules/pickmeup/views/select_rider.dart';
 import '../modules/pickmeup/views/trip_detail_view.dart';
 
@@ -61,17 +64,17 @@ class AppPages {
     GetPage(
       name: _Paths.BOTTOM_APP_BAR_VIEW,
       page: () => const BottomNavBarView(),
-      binding: BottomNavBarBinding(),
+      binding: BottomNavBarBinding()
     ),
     GetPage(
       name: _Paths.HOME_VIEW,
       page: () => const HomeView(),
-      binding: BottomNavBarBinding(),
+      binding: HomeBinding(),
     ),
     GetPage(
       name: _Paths.PICK_ME_UP_VIEW,
       page: () => PickMeUpView(),
-      binding: BottomNavBarBinding(),
+      binding:  HomeBinding(),
     ),
     GetPage(
       name: _Paths.SELECT_RIDER_VIEW,
@@ -84,7 +87,7 @@ class AppPages {
     GetPage(
       name: _Paths.CUSTOMER_DETAIL_VIEW,
       page: () => CustomerDetailView(),
-      binding: BottomNavBarBinding(),
+      binding:HomeBinding()
     ),
     GetPage(
       name: _Paths.DRIVER_DETAIL_VIEW,
@@ -97,6 +100,14 @@ class AppPages {
     GetPage(
       name: _Paths.LOCATIN_VIEW,
       page: () => const LocationView(),
+    ),
+    GetPage(
+      name: _Paths.CANCEL_BOOKING_VIEW,
+      page: () => const CancelBookingView(),
+    ),
+    GetPage(
+      name: _Paths.RIDE_SUCCESS_VIEW,
+      page: () => const RideSuccessView(),
     ),
   ];
 }

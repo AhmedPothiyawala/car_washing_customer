@@ -222,7 +222,7 @@ class DriverDetailView extends StatelessWidget {
                     height: 25,
                   ),
                   SizedBox(
-                    width: kWidth * 0.95,
+                    width: kWidth,
                     child: Row(
                       children: [
                         Container(
@@ -244,7 +244,7 @@ class DriverDetailView extends StatelessWidget {
                         ),
                         Container(
                           height: 45,
-                          width: kWidth * 0.4,
+                          width: kWidth * 0.41,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(99),
                             color: AppColors.greyShadeThree,
@@ -281,7 +281,7 @@ class DriverDetailView extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          width: 10,
+                          width: 8,
                         ),
                         Container(
                           height: 45,

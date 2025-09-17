@@ -103,7 +103,7 @@ class CustomDropDownFormField extends StatelessWidget {
         // Allow unlimited number of lines for multiline input
         decoration: decoration ??
             InputDecoration(
-              // contentPadding: EdgeInsets.all(8.0),
+              contentPadding: contentPadding,
 
               enabledBorder: enabledBorder ??
                   OutlineInputBorder(

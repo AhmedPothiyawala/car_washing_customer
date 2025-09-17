@@ -27,6 +27,7 @@ class AppImages {
       "assets/images/richardMendozaImage.png";
   static const String moduloImage = "assets/images/modulo_image.png";
   static const String offerCarImage = "assets/images/offer_car_image.png";
+  static const String cancelBookingImage = "assets/images/cancel_booking.png";
 
   //Icons
   static const String errorInfo = "assets/icons/error_info.svg";
@@ -39,7 +40,7 @@ class AppImages {
   static const String ridesIcon = "assets/icons/rides_icon.svg";
   static const String favIcon = "assets/icons/fav_icon.svg";
   static const String accountIcon = "assets/icons/account_icon.svg";
-  static const String notificationIcon = "assets/icons/notification_icon.png";
+  static const String notificationIcon = "assets/icons/notification_icon.svg";
   static const String calenderIcon = "assets/images/calender_icon.svg";
   static const String shapeTargetIcon = "assets/images/shape_target_icon.png";
   static const String arrowSwapIcon = "assets/icons/arrowSwapIcon.svg";
@@ -54,4 +55,5 @@ class AppImages {
       "assets/icons/white_location_icon.svg";
   static const String carIcon = "assets/icons/car_icon.svg";
   static const String blackCarIcon = "assets/icons/black_car_icon.svg";
+  static const String rightClickIcon = "assets/icons/right_click_icon.svg";
 }

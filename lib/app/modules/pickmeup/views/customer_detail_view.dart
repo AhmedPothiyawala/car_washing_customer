@@ -12,6 +12,7 @@ import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_drop_down_form_field.dart';
 import '../../../widgets/custom_text_form_field.dart';
 import '../../bottomnavigationbar/controllers/bottom_nav_bar_controllers.dart';
+import '../../home/controllers/home_controller.dart';
 
 class CustomerDetailView extends StatelessWidget {
   CustomerDetailView({super.key});
@@ -56,7 +57,7 @@ class CustomerDetailView extends StatelessWidget {
 
   final customerPhoneController = TextEditingController();
 
-  final homeController = Get.find<BottomNavBarControllers>();
+  final homeController = Get.find<HomeControllers>();
 
   @override
   Widget build(BuildContext context) {
@@ -427,7 +428,7 @@ class CustomerDetailView extends StatelessWidget {
                                       child: SvgPicture.asset(
                                         AppImages.flagImage,
                                         height: 16,
-                                        width: 24,
+                                        width: 22,
                                       ),
                                     ),
                                     Text(
@@ -1016,7 +1017,7 @@ class CustomerDetailView extends StatelessWidget {
                                       child: SvgPicture.asset(
                                         AppImages.flagImage,
                                         height: 16,
-                                        width: 24,
+                                        width: 22,
                                       ),
                                     ),
                                     Text(
@@ -1199,7 +1200,7 @@ class CustomerDetailView extends StatelessWidget {
                                   child: SvgPicture.asset(
                                     AppImages.flagImage,
                                     height: 16,
-                                    width: 24,
+                                    width: 22,
                                   ),
                                 ),
                                 Text(

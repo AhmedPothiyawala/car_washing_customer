@@ -24,4 +24,5 @@ class ApiEndpoints {
   static const String thrivePopupStatusUpdate = "thrivePopupStatusUpdate";
   static const String activateAccount = "activateAccount";
   static const String validateEmailLinks = "validateEmailLinks";
+  static const String homeContent = "getHomepageContent";
 }
