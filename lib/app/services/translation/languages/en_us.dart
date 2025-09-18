@@ -165,6 +165,8 @@ Map<String, String> enUS = {
   "exitAppSubTitle": "Are you sure you want to exit the app?",
   "yes": "Yes",
   "no": "No",
+  "noDataFound": "No Data Found",
+
 
   //******************************
   //PICKMEUP
@@ -305,6 +307,22 @@ Map<String, String> enUS = {
   "successYourRide": "Success Your Ride",
   "enjoyYourRide": "We hope you enjoyed your ride",
   "giveComplement": "Give Complement",
+
+
+  //****
+  //NOTIFICATION_VIEW
+  //****
+  "notification": "Notification",
+  "today": "Today",
+  "carBookedSuccessfully": "Car Booked Successfully",
+  "twoHourAgo": "2hrs ago",
+  "loremIpsumParagraph": "Lorem ipsum dolor sit amet, consectetur the adipiscing elit consectetur ......",
+  "completeYourTrip": "Completed Your Trip",
+  "offerForNow": "30% Offer just for Now",
+  "twoHoursRemain": "2 Hours Remain",
+  "yesterday": "Yesterday",
+  "driveReviewRequest": "Driver 1 Review Request",
+  "carCancelledSuccessfully": "Car Cancelled Successfully",
 
   //******************************************************************************************
   //PROFILE_VIEW

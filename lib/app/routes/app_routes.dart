@@ -21,6 +21,7 @@ abstract class Routes {
   static const LOCATIN_VIEW = _Paths.LOCATIN_VIEW;
   static const CANCEL_BOOKING_VIEW = _Paths.CANCEL_BOOKING_VIEW;
   static const RIDE_SUCCESS_VIEW = _Paths.RIDE_SUCCESS_VIEW;
+  static const NOTIFICATION_VIEW = _Paths.NOTIFICATION_VIEW;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const LOCATIN_VIEW = "/location-view";
   static const CANCEL_BOOKING_VIEW = "/cancel-booking-view";
   static const RIDE_SUCCESS_VIEW = "/ride-success-view";
+  static const NOTIFICATION_VIEW = "/notification-view";
 }

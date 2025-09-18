@@ -7,6 +7,7 @@ import 'package:go_burble_new/app/data/app_images.dart';
 import 'package:go_burble_new/app/data/text_styles.dart';
 import 'package:go_burble_new/app/data/utils.dart';
 
+import '../../../data/global_constant.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/custome_dialog.dart';
 import '../../bottomnavigationbar/controllers/bottom_nav_bar_controllers.dart';
@@ -84,14 +85,18 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
           actions: [
-            SvgPicture.asset(AppImages.notificationIcon),
+            InkWell(
+                onTap: (){
+                  Get.toNamed(Routes.NOTIFICATION_VIEW);
+                },
+                child: SvgPicture.asset(AppImages.notificationIcon)),
             const SizedBox(width: 20,)
           ],
         ),
         body: SafeArea(
           child: Obx(
            () {
-              return homeController.isLoding.value?
+              return homeController.isLoding.value||homeController.isLoding2.value?
                   const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,))
 
                   :
@@ -163,9 +168,9 @@ class _HomeViewState extends State<HomeView> {
                                 Container(
                                   height: 145,
                                   width: kWidth * 0.5,
-                                  decoration:  BoxDecoration(
+                                  decoration:  const BoxDecoration(
                                       image: DecorationImage(
-                                          image: NetworkImage(homeController.homeData.value.configuration!.bannerDetails!.image.toString()),
+                                          image: AssetImage(AppImages.carImage1),
                                           fit: BoxFit.fill)),
                                 ),
                                 const SizedBox(
@@ -189,70 +194,87 @@ class _HomeViewState extends State<HomeView> {
                     const SizedBox(
                       height: 10,
                     ),
+
+                    homeController.bookingData.value.bookings!.isEmpty?
                     Center(
-                      child: Container(
-                        height: 72,
-                        width: kWidth * 0.9,
-                        decoration: BoxDecoration(
-                            color: AppColors.appBackgroundColor,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: AppColors.secondaryColor)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              height: 56,
-                              width: 56,
+                      child: Text("noDataFound".tr,
+                          style: sfProMediumTextstyle.copyWith(
+                              color: AppColors.blackColor, fontSize: 16)),
+                    )
+                        :
+
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Wrap(
+                        children: List.generate(homeController.bookingData.value.bookings!.length, (val) {
+                          return Center(
+                            child: Container(
+
+                              width: kWidth * 0.9,
                               decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: AppColors.secondaryColor)),
-                              child: Center(child: Image.asset(AppImages.carImage2)),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text("upcomingBookingTitle".tr,
-                                    style: sfProSemiBoldTextstyle.copyWith(
-                                        color: AppColors.splashHeadingColor,
-                                        fontSize: 14)),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text("upcomingBookingSubTitle".tr,
-                                    style: sfProRegularTextstyle.copyWith(
-                                        color: AppColors.appWhiteGreyColor3,
-                                        fontSize: 12)),
-                              ],
-                            ),
-                            const Spacer(),
-                            Container(
-                              height: 28,
-                              width: 28,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: AppColors.blackColor)),
-                              child: const Center(
-                                child: Icon(
-                                  Icons.arrow_forward,
-                                  color: AppColors.blackColor,
-                                ),
+                                  color: AppColors.appBackgroundColor,
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(color: AppColors.secondaryColor)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
+                                    height: 56,
+                                    width: 56,
+                                    decoration: BoxDecoration(
+                                        border:
+                                        Border.all(color: AppColors.secondaryColor)),
+                                    child: Center(child: Image.asset(AppImages.carImage2)),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(homeController.bookingData.value.bookings![val].carClassTitleEn.toString(),
+                                          style: sfProSemiBoldTextstyle.copyWith(
+                                              color: AppColors.splashHeadingColor,
+                                              fontSize: 14)),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(homeController.bookingData.value.bookings![val].remainingTime.toString(),
+                                          style: sfProRegularTextstyle.copyWith(
+                                              color: AppColors.appWhiteGreyColor3,
+                                              fontSize: 12)),
+                                    ],
+                                  ),
+                                  const Spacer(),
+                                  Container(
+                                    height: 28,
+                                    width: 28,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(color: AppColors.blackColor)),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.arrow_forward,
+                                        color: AppColors.blackColor,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                ],
                               ),
                             ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                          ],
-                        ),
+                          );
+                        }),
                       ),
                     ),
+
                     const SizedBox(
                       height: 20,
                     ),
@@ -293,10 +315,10 @@ class _HomeViewState extends State<HomeView> {
                                     Container(
                                       height: 74,
                                       width: 124,
-                                      decoration:  BoxDecoration(
+                                      decoration:  const BoxDecoration(
                                           image: DecorationImage(
-                                              image: NetworkImage(
-                                                  homeController.homeData.value.configuration!.servicesList![0].image.toString()),
+                                              image:AssetImage(
+                                                  AppImages.pickUpMyCarImage),
                                               fit: BoxFit.fill)),
                                     ),
                                     const SizedBox(
@@ -354,9 +376,9 @@ class _HomeViewState extends State<HomeView> {
                                     Container(
                                       height: 74,
                                       width: 124,
-                                      decoration:  BoxDecoration(
+                                      decoration:  const BoxDecoration(
                                           image: DecorationImage(
-                                              image: NetworkImage(homeController.homeData.value.configuration!.servicesList![1].image.toString()),
+                                              image: AssetImage(AppImages.pickMeUp),
                                               fit: BoxFit.fill)),
                                     ),
                                     const SizedBox(
@@ -521,10 +543,10 @@ class _HomeViewState extends State<HomeView> {
                                       Container(
                                         height: 108,
                                         width: kWidth * 0.3,
-                                        decoration:  BoxDecoration(
+                                        decoration:  const BoxDecoration(
                                             image: DecorationImage(
-                                                image: NetworkImage(
-                                                    homeController.homeData.value.configuration!.offersList![val].image.toString()),
+                                                image: AssetImage(
+                                                    AppImages.offerCarImage),
                                                 fit: BoxFit.fill)),
                                       ),
                                       const SizedBox(

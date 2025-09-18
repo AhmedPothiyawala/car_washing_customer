@@ -2,6 +2,7 @@ import '../../flavors/build_config.dart';
 
 class GlobalConstant {
   static const String mailUrl = "https://pickup.introdizajn.com/api/";
+  static const String domainUrl = "https://pickup.introdizajn.com/";
   static const String appName = "Go burble";
   static const String appNameDev = "Go burble";
   static const String appNameDevSmall = "Go burble";
@@ -25,4 +26,5 @@ class ApiEndpoints {
   static const String activateAccount = "activateAccount";
   static const String validateEmailLinks = "validateEmailLinks";
   static const String homeContent = "getHomepageContent";
+  static const String upcomingBooking = "upcomingBooking";
 }

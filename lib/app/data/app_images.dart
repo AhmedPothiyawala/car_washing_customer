@@ -56,4 +56,12 @@ class AppImages {
   static const String carIcon = "assets/icons/car_icon.svg";
   static const String blackCarIcon = "assets/icons/black_car_icon.svg";
   static const String rightClickIcon = "assets/icons/right_click_icon.svg";
+  static const String rightClickOrangeColorIcon =
+      "assets/icons/right_click_orange_color.svg";
+  static const String pinkTimeIcon = "assets/icons/time_pink_icon.svg";
+  static const String starIconWithBlackBorder =
+      "assets/icons/star_icon_with_black_border.svg";
+  static const String calendarOrangeColorIcon = "assets/icons/calendar_orange_i"
+      "con.svg";
+
 }

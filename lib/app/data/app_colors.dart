@@ -49,4 +49,11 @@ class AppColors {
   static const blackShadeFour = Color(0xFF010101);
   static const tintColor = Color(0xFFD9F2E0);
   static const greenColor2 = Color(0xFF4CD171);
+
+  static const tomatoColorShadeOne = Color(0xFFFDF1F0);
+  static const tomatoColorShadeTwo = Color(0xFFFCDDDA);
+  static const tomatoColorShadeThree = Color(0xFFEFF2FA);
+  static const skyColorShadeThree = Color(0xFFE0F3E1);
+  static const pinkColorShadeOne = Color(0xFFFDF0FD);
+  static const pinkColorShadeTwo = Color(0xFFFFDBFF);
 }
