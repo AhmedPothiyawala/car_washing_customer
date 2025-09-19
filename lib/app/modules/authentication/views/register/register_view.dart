@@ -438,13 +438,18 @@ class _RegisterViewState extends State<RegisterView> {
                                                       decorationColor: AppColors
                                                           .appWhiteGreyColor2)),
                                           const Spacer(),
-                                          Text(
-                                            "forgotPassword".tr,
-                                            style:
-                                                sfProSemiBoldTextstyle.copyWith(
-                                                    color:
-                                                        AppColors.primaryColor,
-                                                    fontSize: 12),
+                                          InkWell(
+                                            onTap: (){
+                                              Get.toNamed(Routes.FORGOT_PASSWORD);
+                                            },
+                                            child: Text(
+                                              "forgotPassword".tr,
+                                              style:
+                                                  sfProSemiBoldTextstyle.copyWith(
+                                                      color:
+                                                          AppColors.primaryColor,
+                                                      fontSize: 12),
+                                            ),
                                           ),
                                           const SizedBox(
                                             width: 20,

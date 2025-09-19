@@ -252,72 +252,66 @@ class _LoginViewState extends State<LoginView> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              Form(
-                                key: usernmaeFormKey,
-                                child: Center(
-                                  child: CustomTextFormField(
-                                    textInputAction: TextInputAction.next,
-                                    width: kWidth * 0.8,
-                                    hintText: "email".tr,
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.allow(
-                                        RegExp(r'[a-zA-Z0-9@._\-+]'),
-                                      ),
-                                    ],
-                                    borderRadiusAll: const BorderRadius.all(
-                                        Radius.circular(12)),
-                                    focusNode: userFocusNode,
-                                    controller: userNameController,
-                                    fillColor: AppColors.appBackgroundColor,
-                                    borderColor: userFocusNode.hasFocus
-                                        ? AppColors.primaryColor
-                                        : AppColors.appWhiteGreyColor,
-                                    validator: validateEmail,
-                                    onFieldSubmitted: (value) {
-                                      usernmaeFormKey.currentState!.validate();
-                                    },
-                                  ),
+                              Center(
+                                child: CustomTextFormField(
+                                  textInputAction: TextInputAction.next,
+                                  width: kWidth * 0.8,
+                                  hintText: "email".tr,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                      RegExp(r'[a-zA-Z0-9@._\-+]'),
+                                    ),
+                                  ],
+                                  borderRadiusAll: const BorderRadius.all(
+                                      Radius.circular(12)),
+                                  focusNode: userFocusNode,
+                                  controller: userNameController,
+                                  fillColor: AppColors.appBackgroundColor,
+                                  borderColor: userFocusNode.hasFocus
+                                      ? AppColors.primaryColor
+                                      : AppColors.appWhiteGreyColor,
+                                  validator: validateEmail,
+                                  onFieldSubmitted: (value) {
+                                    usernmaeFormKey.currentState!.validate();
+                                  },
                                 ),
                               ),
                               const SizedBox(
                                 height: 20,
                               ),
                               Center(
-                                child: Form(
-                                  key: passwordFormKey,
-                                  child: CustomTextFormField(
-                                    hintText: "password".tr,
-                                    width: kWidth * 0.8,
-                                    focusNode: passwordFocusNode,
-                                    borderRadiusAll: const BorderRadius.all(
-                                        Radius.circular(12)),
-                                    controller: passwordController,
-                                    fillColor: AppColors.appBackgroundColor,
-                                    borderColor: passwordFocusNode.hasFocus
-                                        ? AppColors.primaryColor
-                                        : AppColors.appWhiteGreyColor,
-                                    validator: validatePassword,
-                                    suffixIcon: GestureDetector(
-                                      onTap: () async {
-                                        authController
-                                                .isLoginPasswordObscureText
-                                                .value =
-                                            !authController
-                                                .isLoginPasswordObscureText
-                                                .value;
-                                      },
-                                      child: Icon(
-                                        authController
-                                                .isLoginPasswordObscureText
-                                                .value
-                                            ? Icons.visibility_outlined
-                                            : Icons.visibility_off_outlined,
-                                        color: AppColors.blackColor,
-                                      ),
+                                child: CustomTextFormField(
+                                  hintText: "password".tr,
+                                  width: kWidth * 0.8,
+                                  focusNode: passwordFocusNode,
+                                  borderRadiusAll: const BorderRadius.all(
+                                      Radius.circular(12)),
+                                  controller: passwordController,
+                                  fillColor: AppColors.appBackgroundColor,
+                                  borderColor: passwordFocusNode.hasFocus
+                                      ? AppColors.primaryColor
+                                      : AppColors.appWhiteGreyColor,
+                                  validator: validatePassword,
+                                  suffixIcon: GestureDetector(
+                                    onTap: () async {
+                                      authController
+                                          .isLoginPasswordObscureText
+                                          .value =
+                                      !authController
+                                          .isLoginPasswordObscureText
+                                          .value;
+                                    },
+                                    child: Icon(
+                                      authController
+                                          .isLoginPasswordObscureText
+                                          .value
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined,
+                                      color: AppColors.blackColor,
                                     ),
-                                    obscureText: authController
-                                        .isLoginPasswordObscureText.value,
                                   ),
+                                  obscureText: authController
+                                      .isLoginPasswordObscureText.value,
                                 ),
                               ),
                               const SizedBox(
@@ -403,19 +397,29 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future<void> loginSubmit() async {
-    bool isEmailValid = usernmaeFormKey.currentState!.validate();
-    bool isPasswordValid = passwordFormKey.currentState!.validate();
-    if (isEmailValid && isPasswordValid) {
-      userFocusNode.unfocus();
-      passwordFocusNode.unfocus();
+    // bool isEmailValid = usernmaeFormKey.currentState!.validate();
+    // bool isPasswordValid = passwordFormKey.currentState!.validate();
+    // if (isEmailValid && isPasswordValid) {
+    //   userFocusNode.unfocus();
+    //   passwordFocusNode.unfocus();
+    //
+    //   await authController
+    //       .loginWithEmailPassword(
+    //         username: userNameController.text.trim(),
+    //         password: passwordController.text,
+    //       )
+    //       .then((val) {});
+    // }
 
-      await authController
-          .loginWithEmailPassword(
-            username: userNameController.text.trim(),
-            password: passwordController.text,
-          )
-          .then((val) {});
-    }
+    userFocusNode.unfocus();
+    passwordFocusNode.unfocus();
+
+    await authController
+        .loginWithEmailPassword(
+      username: userNameController.text.trim(),
+      password: passwordController.text,
+    )
+        .then((val) {});
   }
 
   @override

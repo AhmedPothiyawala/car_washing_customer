@@ -168,9 +168,9 @@ class _HomeViewState extends State<HomeView> {
                                 Container(
                                   height: 145,
                                   width: kWidth * 0.5,
-                                  decoration:  const BoxDecoration(
+                                  decoration:   BoxDecoration(
                                       image: DecorationImage(
-                                          image: AssetImage(AppImages.carImage1),
+                                          image: NetworkImage(homeController.homeData.value.configuration!.bannerDetails!.image.toString()),
                                           fit: BoxFit.fill)),
                                 ),
                                 const SizedBox(
@@ -315,10 +315,10 @@ class _HomeViewState extends State<HomeView> {
                                     Container(
                                       height: 74,
                                       width: 124,
-                                      decoration:  const BoxDecoration(
+                                      decoration:   BoxDecoration(
                                           image: DecorationImage(
-                                              image:AssetImage(
-                                                  AppImages.pickUpMyCarImage),
+                                              image:NetworkImage(
+                                                  homeController.homeData.value.configuration!.servicesList![0].image.toString()),
                                               fit: BoxFit.fill)),
                                     ),
                                     const SizedBox(
@@ -376,9 +376,9 @@ class _HomeViewState extends State<HomeView> {
                                     Container(
                                       height: 74,
                                       width: 124,
-                                      decoration:  const BoxDecoration(
+                                      decoration:   BoxDecoration(
                                           image: DecorationImage(
-                                              image: AssetImage(AppImages.pickMeUp),
+                                              image: NetworkImage(homeController.homeData.value.configuration!.servicesList![1].image.toString()),
                                               fit: BoxFit.fill)),
                                     ),
                                     const SizedBox(
@@ -543,10 +543,10 @@ class _HomeViewState extends State<HomeView> {
                                       Container(
                                         height: 108,
                                         width: kWidth * 0.3,
-                                        decoration:  const BoxDecoration(
+                                        decoration:   BoxDecoration(
                                             image: DecorationImage(
-                                                image: AssetImage(
-                                                    AppImages.offerCarImage),
+                                                image: NetworkImage(
+                                                    homeController.homeData.value.configuration!.offersList![val].image.toString()),
                                                 fit: BoxFit.fill)),
                                       ),
                                       const SizedBox(

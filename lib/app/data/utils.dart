@@ -9,23 +9,43 @@ import 'package:url_launcher/url_launcher.dart';
 import 'app_colors.dart';
 import 'app_images.dart';
 
-double kHeight = Get.mediaQuery.size.height;
-double kWidth = Get.mediaQuery.size.width;
-double kShortestSide = Get.mediaQuery.size.shortestSide;
+import 'package:get/get.dart';
 
-bool kIsSmallestWidth = (Get.mediaQuery.size.shortestSide <= 380 &&
-        Get.mediaQuery.size.shortestSide >= 340)
-    ? true
-    : false;
-bool kIsMediumWidth = (Get.mediaQuery.size.shortestSide <= 410 &&
-        Get.mediaQuery.size.shortestSide >= 381)
-    ? true
-    : false;
-bool kIsIPad = kShortestSide >= 600;
+late double kHeight;
+late double kWidth;
+late double kShortestSide;
 
-double kHeightRatio = kHeight / 932; // According to design in iPhone 15 Pro Max
-double kWidthRatio = kWidth / 430;
+late bool kIsSmallestWidth;
+late bool kIsMediumWidth;
+late bool kIsIPad;
 
+void initResponsiveValues(BuildContext context) {
+  final size = MediaQuery.of(context).size;
+
+  kShortestSide = size.shortestSide;
+
+  kIsSmallestWidth = (kShortestSide <= 380 && kShortestSide >= 340);
+  kIsMediumWidth   = (kShortestSide <= 410 && kShortestSide >= 381);
+  kIsIPad          = kShortestSide >= 600;
+
+
+  const baseHeight = 932.0;
+  const baseWidth  = 430.0;
+
+
+  double hRatio = size.height / baseHeight;
+  double wRatio = size.width / baseWidth;
+
+
+  kHeight = size.height;
+  kWidth  = size.width ;
+
+
+  if (kIsIPad) {
+    kHeight = (size.height * hRatio).clamp(size.height * 0.9, size.height * 1.2);
+    kWidth  = (size.width * wRatio).clamp(size.width * 0.9, size.width * 1.2);
+  }
+}
 String postCacheKey({required String id}) {
   return "post_$id".toLowerCase();
 }

@@ -10,6 +10,7 @@ import 'package:go_burble_new/app/modules/authentication/controllers/auth_contro
 import 'app/data/app_colors.dart';
 // import 'app/modules/subscribe/controllers/subscribe_controller.dart';
 // import 'app/modules/subscribe/views/new_pay_wall_screen.dart';
+import 'app/data/utils.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/deeplink/deep_link_service.dart';
 import 'app/services/translation/app_translation.dart';
@@ -55,6 +56,8 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return GetMaterialApp(
       title: _envConfig.appName,
       initialRoute: AppPages.INITIAL,
@@ -62,7 +65,11 @@ class MyAppState extends State<MyApp> {
       translations: AppTranslation(),
       locale: Locale(translationService.langCode.value),
       fallbackLocale: const Locale('en_US'),
-      builder: EasyLoading.init(),
+      builder: (context,child){
+        initResponsiveValues(context);
+        return EasyLoading.init()(context,child);
+
+      },
       theme: ThemeData(
         brightness: Brightness.light,
         scaffoldBackgroundColor: AppColors.appBackgroundColor,
