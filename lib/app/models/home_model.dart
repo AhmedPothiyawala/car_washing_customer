@@ -11,17 +11,17 @@ class HomeModel {
     messageEn = json['message_en'];
     messageDe = json['message_de'];
     configuration = json['configuration'] != null
-        ? new Configuration.fromJson(json['configuration'])
+        ? Configuration.fromJson(json['configuration'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message_en'] = this.messageEn;
-    data['message_de'] = this.messageDe;
-    if (this.configuration != null) {
-      data['configuration'] = this.configuration!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message_en'] = messageEn;
+    data['message_de'] = messageDe;
+    if (configuration != null) {
+      data['configuration'] = configuration!.toJson();
     }
     return data;
   }
@@ -36,33 +36,32 @@ class Configuration {
 
   Configuration.fromJson(Map<String, dynamic> json) {
     bannerDetails = json['banner_details'] != null
-        ? new BannerDetails.fromJson(json['banner_details'])
+        ? BannerDetails.fromJson(json['banner_details'])
         : null;
     if (json['services_list'] != null) {
       servicesList = <ServicesList>[];
       json['services_list'].forEach((v) {
-        servicesList!.add(new ServicesList.fromJson(v));
+        servicesList!.add(ServicesList.fromJson(v));
       });
     }
     if (json['offers_list'] != null) {
       offersList = <OffersList>[];
       json['offers_list'].forEach((v) {
-        offersList!.add(new OffersList.fromJson(v));
+        offersList!.add(OffersList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.bannerDetails != null) {
-      data['banner_details'] = this.bannerDetails!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (bannerDetails != null) {
+      data['banner_details'] = bannerDetails!.toJson();
     }
-    if (this.servicesList != null) {
-      data['services_list'] =
-          this.servicesList!.map((v) => v.toJson()).toList();
+    if (servicesList != null) {
+      data['services_list'] = servicesList!.map((v) => v.toJson()).toList();
     }
-    if (this.offersList != null) {
-      data['offers_list'] = this.offersList!.map((v) => v.toJson()).toList();
+    if (offersList != null) {
+      data['offers_list'] = offersList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -84,11 +83,11 @@ class BannerDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['button_text'] = this.buttonText;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['description'] = description;
+    data['button_text'] = buttonText;
+    data['image'] = image;
     return data;
   }
 }
@@ -105,9 +104,9 @@ class ServicesList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['image'] = image;
     return data;
   }
 }
@@ -128,11 +127,11 @@ class OffersList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['button_text'] = this.buttonText;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['description'] = description;
+    data['button_text'] = buttonText;
+    data['image'] = image;
     return data;
   }
 }

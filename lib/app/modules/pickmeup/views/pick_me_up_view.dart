@@ -10,7 +10,6 @@ import '../../../data/text_styles.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_drop_down_form_field.dart';
-import '../../bottomnavigationbar/controllers/bottom_nav_bar_controllers.dart';
 import '../../home/controllers/home_controller.dart';
 
 class PickMeUpView extends StatelessWidget {
@@ -174,7 +173,7 @@ class PickMeUpView extends StatelessWidget {
                               },
                               child: CustomDropDownFormField(
                                 height: 50,
-                                contentPadding: EdgeInsets.only(right: 8),
+                                contentPadding: const EdgeInsets.only(right: 8),
                                 hintStyle: sfProMediumTextstyle.copyWith(
                                     fontSize: 12, color: AppColors.blackColor),
                                 textInputAction: TextInputAction.next,
@@ -215,7 +214,7 @@ class PickMeUpView extends StatelessWidget {
                               },
                               child: CustomDropDownFormField(
                                 height: 50,
-                                contentPadding: EdgeInsets.only(right: 8),
+                                contentPadding: const EdgeInsets.only(right: 8),
                                 hintStyle: sfProMediumTextstyle.copyWith(
                                     fontSize: 12, color: AppColors.blackColor),
                                 textInputAction: TextInputAction.next,
@@ -364,14 +363,12 @@ class PickMeUpView extends StatelessWidget {
                               style: sfProRegularTextstyle.copyWith(
                                   color: AppColors.greyShadeFour),
                             ),
-
                           ],
                         ),
                       ],
                     ),
                     Center(
                       child: CustomDropDownFormField(
-
                         hintStyle: sfProMediumTextstyle.copyWith(
                             fontSize: 12, color: AppColors.blackColor),
                         textInputAction: TextInputAction.next,

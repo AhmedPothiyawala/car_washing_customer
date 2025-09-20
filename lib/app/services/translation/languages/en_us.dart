@@ -167,7 +167,6 @@ Map<String, String> enUS = {
   "no": "No",
   "noDataFound": "No Data Found",
 
-
   //******************************
   //PICKMEUP
   //******************************
@@ -288,7 +287,6 @@ Map<String, String> enUS = {
   //******************************************************************************************
   "cancelBooking": "Cancel Booking",
 
-
   //**********
   //CANCEL_BOOKING_VIEW Success Your Ride
   //**********
@@ -308,7 +306,6 @@ Map<String, String> enUS = {
   "enjoyYourRide": "We hope you enjoyed your ride",
   "giveComplement": "Give Complement",
 
-
   //****
   //NOTIFICATION_VIEW
   //****
@@ -316,7 +313,8 @@ Map<String, String> enUS = {
   "today": "Today",
   "carBookedSuccessfully": "Car Booked Successfully",
   "twoHourAgo": "2hrs ago",
-  "loremIpsumParagraph": "Lorem ipsum dolor sit amet, consectetur the adipiscing elit consectetur ......",
+  "loremIpsumParagraph":
+      "Lorem ipsum dolor sit amet, consectetur the adipiscing elit consectetur ......",
   "completeYourTrip": "Completed Your Trip",
   "offerForNow": "30% Offer just for Now",
   "twoHoursRemain": "2 Hours Remain",

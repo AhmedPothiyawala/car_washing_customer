@@ -16,7 +16,8 @@ class LocationView extends StatefulWidget {
   State<LocationView> createState() => _LocationViewState();
 }
 
-class _LocationViewState extends State<LocationView> with WidgetsBindingObserver {
+class _LocationViewState extends State<LocationView>
+    with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -40,7 +41,8 @@ class _LocationViewState extends State<LocationView> with WidgetsBindingObserver
           (permission == LocationPermission.always ||
               permission == LocationPermission.whileInUse)) {
         // Permission is granted, go back to home screen and trigger location fetch
-        Get.back(result: true); // You can use this result to re-call getlocation
+        Get.back(
+            result: true); // You can use this result to re-call getlocation
       }
     }
   }
@@ -125,4 +127,3 @@ class _LocationViewState extends State<LocationView> with WidgetsBindingObserver
     );
   }
 }
-

@@ -56,8 +56,6 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return GetMaterialApp(
       title: _envConfig.appName,
       initialRoute: AppPages.INITIAL,
@@ -65,10 +63,9 @@ class MyAppState extends State<MyApp> {
       translations: AppTranslation(),
       locale: Locale(translationService.langCode.value),
       fallbackLocale: const Locale('en_US'),
-      builder: (context,child){
+      builder: (context, child) {
         initResponsiveValues(context);
-        return EasyLoading.init()(context,child);
-
+        return EasyLoading.init()(context, child);
       },
       theme: ThemeData(
         brightness: Brightness.light,

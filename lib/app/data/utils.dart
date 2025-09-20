@@ -9,8 +9,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'app_colors.dart';
 import 'app_images.dart';
 
-import 'package:get/get.dart';
-
 late double kHeight;
 late double kWidth;
 late double kShortestSide;
@@ -25,27 +23,25 @@ void initResponsiveValues(BuildContext context) {
   kShortestSide = size.shortestSide;
 
   kIsSmallestWidth = (kShortestSide <= 380 && kShortestSide >= 340);
-  kIsMediumWidth   = (kShortestSide <= 410 && kShortestSide >= 381);
-  kIsIPad          = kShortestSide >= 600;
-
+  kIsMediumWidth = (kShortestSide <= 410 && kShortestSide >= 381);
+  kIsIPad = kShortestSide >= 600;
 
   const baseHeight = 932.0;
-  const baseWidth  = 430.0;
-
+  const baseWidth = 430.0;
 
   double hRatio = size.height / baseHeight;
   double wRatio = size.width / baseWidth;
 
-
   kHeight = size.height;
-  kWidth  = size.width ;
-
+  kWidth = size.width;
 
   if (kIsIPad) {
-    kHeight = (size.height * hRatio).clamp(size.height * 0.9, size.height * 1.2);
-    kWidth  = (size.width * wRatio).clamp(size.width * 0.9, size.width * 1.2);
+    kHeight =
+        (size.height * hRatio).clamp(size.height * 0.9, size.height * 1.2);
+    kWidth = (size.width * wRatio).clamp(size.width * 0.9, size.width * 1.2);
   }
 }
+
 String postCacheKey({required String id}) {
   return "post_$id".toLowerCase();
 }

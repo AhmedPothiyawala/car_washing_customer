@@ -18,10 +18,9 @@ class CancelBookingView extends StatefulWidget {
 }
 
 class _CancelBookingViewState extends State<CancelBookingView> {
-
   final cancelBookingRemarkController = TextEditingController();
 
- int _value = 1;
+  int _value = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +39,9 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                 width: 15,
               ),
               InkWell(
-                 onTap: () {
-                   Get.back();
-                 },
+                onTap: () {
+                  Get.back();
+                },
                 child: Container(
                   height: 44,
                   width: 44,
@@ -52,9 +51,9 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                   ),
                   child: const Center(
                       child: Icon(
-                        Icons.close,
-                        color: AppColors.blackColor,
-                      )),
+                    Icons.close,
+                    color: AppColors.blackColor,
+                  )),
                 ),
               ),
             ],
@@ -65,9 +64,9 @@ class _CancelBookingViewState extends State<CancelBookingView> {
         height: kHeight,
         width: kWidth,
         decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage(AppImages
-              .cancelBookingImage),fit: BoxFit.fill)
-        ),
+            image: DecorationImage(
+                image: AssetImage(AppImages.cancelBookingImage),
+                fit: BoxFit.fill)),
       ),
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
@@ -81,7 +80,7 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                   topLeft: Radius.circular(18),
                 )),
             child: Padding(
-              padding: const EdgeInsets.only(left: 12.0,right: 12),
+              padding: const EdgeInsets.only(left: 12.0, right: 12),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,11 +101,12 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                       const Spacer(),
                       Text(
                         "skip".tr,
-                        style: sfProRegularTextstyle.copyWith(fontSize: 14,
-                            color: AppColors.blackColor),
-
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
                       ),
-                      const SizedBox(width: 10,)
+                      const SizedBox(
+                        width: 10,
+                      )
                     ],
                   ),
                   const SizedBox(
@@ -118,8 +118,8 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                       width: kWidth * 0.95,
                       child: Text(
                         "selectReasonForCancel".tr,
-                        style: sfProMediumTextstyle.copyWith(fontSize: 16,color:
-                        AppColors.blackShadeFour),
+                        style: sfProMediumTextstyle.copyWith(
+                            fontSize: 16, color: AppColors.blackShadeFour),
                       ),
                     ),
                   ),
@@ -131,22 +131,22 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Radio(
-                          value: 1,
-                      activeColor: AppColors.blackColor,
-                      groupValue: _value,
-                      onChanged: (value) {
-                        setState(() {
-                          _value = value!;
-                        });
-                      },
+                        value: 1,
+                        activeColor: AppColors.blackColor,
+                        groupValue: _value,
+                        onChanged: (value) {
+                          setState(() {
+                            _value = value!;
+                          });
+                        },
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
                         "scheduleChange".tr,
-                        style: sfProRegularTextstyle.copyWith(fontSize: 14,
-                            color: AppColors.blackColor),
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
                       ),
                     ],
                   ),
@@ -172,12 +172,11 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                       ),
                       Text(
                         "bookAnotherCar".tr,
-                        style: sfProRegularTextstyle.copyWith(fontSize: 14,
-                            color: AppColors.blackColor),
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
                       ),
                     ],
                   ),
-
                   const SizedBox(
                     height: 10,
                   ),
@@ -200,8 +199,8 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                       ),
                       Text(
                         "foundBetterAlternative".tr,
-                        style: sfProRegularTextstyle.copyWith(fontSize: 14,
-                            color: AppColors.blackColor),
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
                       ),
                     ],
                   ),
@@ -227,8 +226,8 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                       ),
                       Text(
                         "myReasonIsNotListed".tr,
-                        style: sfProRegularTextstyle.copyWith(fontSize: 14,
-                            color: AppColors.blackColor),
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
                       ),
                     ],
                   ),
@@ -257,8 +256,8 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                       ),
                       Text(
                         "wantToBookAnotherCar".tr,
-                        style: sfProRegularTextstyle.copyWith(fontSize: 14,
-                            color: AppColors.blackColor),
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
                       ),
                     ],
                   ),
@@ -284,8 +283,8 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                       ),
                       Text(
                         "other".tr,
-                        style: sfProRegularTextstyle.copyWith(fontSize: 14,
-                            color: AppColors.blackColor),
+                        style: sfProRegularTextstyle.copyWith(
+                            fontSize: 14, color: AppColors.blackColor),
                       ),
                     ],
                   ),
@@ -307,7 +306,7 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                         boxShadow: [
                           BoxShadow(
                             color:
-                            AppColors.greyShadeSix.withValues(alpha: 0.24),
+                                AppColors.greyShadeSix.withValues(alpha: 0.24),
                             blurRadius: 2,
                             offset: const Offset(0, 1),
                           ),
@@ -320,7 +319,7 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                         width: kWidth * 0.9,
                         maxLines: 2,
                         borderRadiusAll:
-                        const BorderRadius.all(Radius.circular(12)),
+                            const BorderRadius.all(Radius.circular(12)),
                         controller: cancelBookingRemarkController,
                         fillColor: AppColors.appBackgroundColor,
                         borderColor: AppColors.appWhiteGreyColor,
@@ -347,7 +346,8 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                       bgColor: AppColors.redColor,
                       childWidget: Center(
                           child: Text("continueBooking".tr,
-                              style: sfProMediumTextstyle.copyWith(fontSize: 16))),
+                              style:
+                                  sfProMediumTextstyle.copyWith(fontSize: 16))),
                     ),
                   ),
                   const SizedBox(

@@ -45,7 +45,6 @@ class AppColors {
   static const redColor = Color(0XFFE50000);
   static const silverColor = Color(0xFFE6E6E8);
 
-
   static const blackShadeFour = Color(0xFF010101);
   static const tintColor = Color(0xFFD9F2E0);
   static const greenColor2 = Color(0xFF4CD171);

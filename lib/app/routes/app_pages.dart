@@ -63,10 +63,9 @@ class AppPages {
       binding: AuthBinding(),
     ),
     GetPage(
-      name: _Paths.BOTTOM_APP_BAR_VIEW,
-      page: () => const BottomNavBarView(),
-      binding: BottomNavBarBinding()
-    ),
+        name: _Paths.BOTTOM_APP_BAR_VIEW,
+        page: () => const BottomNavBarView(),
+        binding: BottomNavBarBinding()),
     GetPage(
       name: _Paths.HOME_VIEW,
       page: () => const HomeView(),
@@ -75,7 +74,7 @@ class AppPages {
     GetPage(
       name: _Paths.PICK_ME_UP_VIEW,
       page: () => PickMeUpView(),
-      binding:  HomeBinding(),
+      binding: HomeBinding(),
     ),
     GetPage(
       name: _Paths.SELECT_RIDER_VIEW,
@@ -86,10 +85,9 @@ class AppPages {
       page: () => const OrderSummaryView(),
     ),
     GetPage(
-      name: _Paths.CUSTOMER_DETAIL_VIEW,
-      page: () => CustomerDetailView(),
-      binding:HomeBinding()
-    ),
+        name: _Paths.CUSTOMER_DETAIL_VIEW,
+        page: () => CustomerDetailView(),
+        binding: HomeBinding()),
     GetPage(
       name: _Paths.DRIVER_DETAIL_VIEW,
       page: () => const DriverDetailView(),

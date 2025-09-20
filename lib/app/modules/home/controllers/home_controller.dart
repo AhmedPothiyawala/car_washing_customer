@@ -6,13 +6,13 @@ import 'package:geocoding/geocoding.dart';
 
 import '../../../data/global_constant.dart';
 import '../../../data/storage_key.dart';
-import '../../../data/utils.dart';
 import '../../../models/home_model.dart';
 import '../../../models/upcoming_booking_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../services/api_services/api_services.dart';
 import '../../../services/storage_services/storage_services.dart';
 import '../../../widgets/custom_snackbar.dart';
+
 class HomeControllers extends GetxController {
   final RxBool _isPickMeUp = false.obs;
 
@@ -46,7 +46,6 @@ class HomeControllers extends GetxController {
     if (!serviceEnabled ||
         permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
-
       // Navigate to settings screen and wait for result
       final result = await Get.toNamed(Routes.LOCATIN_VIEW);
 
@@ -67,19 +66,17 @@ class HomeControllers extends GetxController {
     );
   }
 
-
   Future<void> getlocation() async {
     _currentPosition(await determinePosition());
     List<Placemark> placemarks = await placemarkFromCoordinates(
-    _currentPosition.value!.latitude,
-    _currentPosition.value!.longitude,
+      _currentPosition.value!.latitude,
+      _currentPosition.value!.longitude,
     );
     if (placemarks.isNotEmpty) {
-    _currentAddress(placemarks[0]);
-    print(_currentAddress);
+      _currentAddress(placemarks[0]);
+      print(_currentAddress);
     }
   }
-
 
   Future<void> selectdate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -110,25 +107,21 @@ class HomeControllers extends GetxController {
     }
   }
 
-
-  Future<void> homecontent(
-    ) async {
-   _isLoding(true);
+  Future<void> homecontent() async {
+    _isLoding(true);
     try {
-      var data =  {
-        'user_id':await _storageService.readString(StorageKey.userId)
+      var data = {
+        'user_id': await _storageService.readString(StorageKey.userId)
       };
 
-      final response =
-      await _apiService.post(endPoint: ApiEndpoints.homeContent, reqData: data);
+      final response = await _apiService.post(
+          endPoint: ApiEndpoints.homeContent, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
           Map<String, dynamic> jsonMap = response.data;
 
           if (jsonMap['status'] == true) {
-            _homeData.value =HomeModel.fromJson(jsonMap);
-
-
+            _homeData.value = HomeModel.fromJson(jsonMap);
           } else {
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
           }
@@ -154,26 +147,21 @@ class HomeControllers extends GetxController {
     }
   }
 
-
-
-  Future<void> upcomingbooking(
-      ) async {
+  Future<void> upcomingbooking() async {
     _isLoding2(true);
     try {
-      var data =  {
+      var data = {
         'user_id': await _storageService.readString(StorageKey.userId)
       };
 
-      final response =
-      await _apiService.post(endPoint: ApiEndpoints.upcomingBooking, reqData: data);
+      final response = await _apiService.post(
+          endPoint: ApiEndpoints.upcomingBooking, reqData: data);
       if (response != null) {
         if (response.statusCode == 200) {
           Map<String, dynamic> jsonMap = response.data;
 
           if (jsonMap['status'] == true) {
-            _bookingData.value =UpcomingBookingModel.fromJson(jsonMap);
-
-
+            _bookingData.value = UpcomingBookingModel.fromJson(jsonMap);
           } else {
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
           }
@@ -198,6 +186,7 @@ class HomeControllers extends GetxController {
       _isLoding2(false);
     }
   }
+
   @override
   void onInit() {
     homecontent();

@@ -13,7 +13,7 @@ class NotificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
+    return Scaffold(
         backgroundColor: AppColors.appBackgroundColor,
         appBar: AppBar(
           surfaceTintColor: AppColors.appBackgroundColor,
@@ -38,15 +38,17 @@ class NotificationView extends StatelessWidget {
                       color: AppColors.appBackgroundColor,
                       boxShadow: [
                         BoxShadow(
-                          color: Color(0x1C77758D), // Drop shadow color with 11% opacity
-                          offset: Offset(0, 4),     // X = 0, Y = 4
-                          blurRadius: 22,           // Blur radius
+                          color: Color(
+                              0x1C77758D), // Drop shadow color with 11% opacity
+                          offset: Offset(0, 4), // X = 0, Y = 4
+                          blurRadius: 22, // Blur radius
                         ),
                       ],
                     ),
                     child: const Icon(
                       Icons.close,
-                      color: AppColors.blackShadeThree,),
+                      color: AppColors.blackShadeThree,
+                    ),
                   ),
                 ),
               ],
@@ -91,21 +93,19 @@ class NotificationView extends StatelessWidget {
                     color: AppColors.skyShadeTwo,
                     boxShadow: [
                       BoxShadow(
-                        offset: const Offset(9, 6),
-                        blurRadius: 32,
-                        color: AppColors.tomatoColorShadeThree.withValues
-                          (alpha: 0.56)
-                      ),
+                          offset: const Offset(9, 6),
+                          blurRadius: 32,
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.56)),
                       BoxShadow(
                           blurRadius: 33,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.54)
-                      )
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.54))
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 12, right:
-                    10,bottom: 12),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 12, right: 10, bottom: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,8 +115,7 @@ class NotificationView extends StatelessWidget {
                           width: 35,
                           decoration: const BoxDecoration(
                               shape: BoxShape.circle,
-                              color: AppColors.skyShadeOne
-                          ),
+                              color: AppColors.skyShadeOne),
                           child: SvgPicture.asset(
                             AppImages.carIcon,
                             fit: BoxFit.scaleDown,
@@ -138,17 +137,20 @@ class NotificationView extends StatelessWidget {
                                   child: Text(
                                     "carBookedSuccessfully".tr,
                                     style: sfProMediumTextstyle.copyWith(
-                                        fontSize: 16, color: AppColors
-                                        .blackColor),
+                                        fontSize: 16,
+                                        color: AppColors.blackColor),
                                   ),
                                 ),
-                                const SizedBox(width: 10,),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: Text(
                                     "twoHourAgo".tr,
                                     style: sfProRegularTextstyle.copyWith(
-                                        fontSize: 12, color: AppColors.blackShadeThree),
+                                        fontSize: 12,
+                                        color: AppColors.blackShadeThree),
                                   ),
                                 ),
                               ],
@@ -159,16 +161,14 @@ class NotificationView extends StatelessWidget {
                             SizedBox(
                               width: kWidth * 0.7,
                               child: Text(
-                                "loremIpsumParagraph".tr,maxLines: 3,
+                                "loremIpsumParagraph".tr,
+                                maxLines: 3,
                                 style: sfProRegularTextstyle.copyWith(
-                                     color: AppColors.blackColor),
+                                    color: AppColors.blackColor),
                               ),
                             ),
                           ],
                         ),
-                    
-                    
-                    
                       ],
                     ),
                   ),
@@ -187,19 +187,17 @@ class NotificationView extends StatelessWidget {
                       BoxShadow(
                           offset: const Offset(9, 6),
                           blurRadius: 32,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.56)
-                      ),
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.56)),
                       BoxShadow(
                           blurRadius: 33,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.54)
-                      )
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.54))
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 12, right:
-                    10,bottom: 12),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 12, right: 10, bottom: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,8 +207,7 @@ class NotificationView extends StatelessWidget {
                           width: 35,
                           decoration: const BoxDecoration(
                               shape: BoxShape.circle,
-                              color: AppColors.tomatoColorShadeTwo
-                          ),
+                              color: AppColors.tomatoColorShadeTwo),
                           child: SvgPicture.asset(
                             AppImages.rightClickOrangeColorIcon,
                             fit: BoxFit.scaleDown,
@@ -232,17 +229,20 @@ class NotificationView extends StatelessWidget {
                                   child: Text(
                                     "completeYourTrip".tr,
                                     style: sfProMediumTextstyle.copyWith(
-                                        fontSize: 16, color: AppColors
-                                        .blackColor),
+                                        fontSize: 16,
+                                        color: AppColors.blackColor),
                                   ),
                                 ),
-                                const SizedBox(width: 10,),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: Text(
                                     "twoHourAgo".tr,
                                     style: sfProRegularTextstyle.copyWith(
-                                        fontSize: 12, color: AppColors.blackShadeThree),
+                                        fontSize: 12,
+                                        color: AppColors.blackShadeThree),
                                   ),
                                 ),
                               ],
@@ -253,16 +253,14 @@ class NotificationView extends StatelessWidget {
                             SizedBox(
                               width: kWidth * 0.7,
                               child: Text(
-                                "loremIpsumParagraph".tr,maxLines: 3,
+                                "loremIpsumParagraph".tr,
+                                maxLines: 3,
                                 style: sfProRegularTextstyle.copyWith(
                                     color: AppColors.blackColor),
                               ),
                             ),
                           ],
                         ),
-          
-          
-          
                       ],
                     ),
                   ),
@@ -270,7 +268,7 @@ class NotificationView extends StatelessWidget {
               ),
               const SizedBox(
                 height: 15,
-              ),//skyColorShadeThree
+              ), //skyColorShadeThree
               Center(
                 child: Container(
                   width: kWidth * 0.9,
@@ -281,19 +279,17 @@ class NotificationView extends StatelessWidget {
                       BoxShadow(
                           offset: const Offset(9, 6),
                           blurRadius: 32,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.56)
-                      ),
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.56)),
                       BoxShadow(
                           blurRadius: 33,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.54)
-                      )
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.54))
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 12, right:
-                    10,bottom: 12),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 12, right: 10, bottom: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -303,8 +299,8 @@ class NotificationView extends StatelessWidget {
                           width: 35,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                            color: AppColors.greenShadeTwo.withValues(alpha:0.22)
-                          ),
+                              color: AppColors.greenShadeTwo
+                                  .withValues(alpha: 0.22)),
                           child: SvgPicture.asset(
                             AppImages.moduloIcon,
                             fit: BoxFit.scaleDown,
@@ -326,17 +322,20 @@ class NotificationView extends StatelessWidget {
                                   child: Text(
                                     "offerForNow".tr,
                                     style: sfProMediumTextstyle.copyWith(
-                                        fontSize: 16, color: AppColors
-                                        .blackColor),
+                                        fontSize: 16,
+                                        color: AppColors.blackColor),
                                   ),
                                 ),
-                                const SizedBox(width: 10,),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: Text(
                                     "twoHourAgo".tr,
                                     style: sfProRegularTextstyle.copyWith(
-                                        fontSize: 12, color: AppColors.blackShadeThree),
+                                        fontSize: 12,
+                                        color: AppColors.blackShadeThree),
                                   ),
                                 ),
                               ],
@@ -347,16 +346,14 @@ class NotificationView extends StatelessWidget {
                             SizedBox(
                               width: kWidth * 0.7,
                               child: Text(
-                                "loremIpsumParagraph".tr,maxLines: 3,
+                                "loremIpsumParagraph".tr,
+                                maxLines: 3,
                                 style: sfProRegularTextstyle.copyWith(
                                     color: AppColors.blackColor),
                               ),
                             ),
                           ],
                         ),
-          
-          
-          
                       ],
                     ),
                   ),
@@ -375,19 +372,17 @@ class NotificationView extends StatelessWidget {
                       BoxShadow(
                           offset: const Offset(9, 6),
                           blurRadius: 32,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.56)
-                      ),
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.56)),
                       BoxShadow(
                           blurRadius: 33,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.54)
-                      )
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.54))
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 12, right:
-                    10,bottom: 12),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 12, right: 10, bottom: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -396,8 +391,8 @@ class NotificationView extends StatelessWidget {
                           height: 35,
                           width: 35,
                           decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.pinkColorShadeTwo,
+                            shape: BoxShape.circle,
+                            color: AppColors.pinkColorShadeTwo,
                           ),
                           child: SvgPicture.asset(
                             AppImages.pinkTimeIcon,
@@ -420,17 +415,20 @@ class NotificationView extends StatelessWidget {
                                   child: Text(
                                     "twoHoursRemain".tr,
                                     style: sfProMediumTextstyle.copyWith(
-                                        fontSize: 16, color: AppColors
-                                        .blackColor),
+                                        fontSize: 16,
+                                        color: AppColors.blackColor),
                                   ),
                                 ),
-                                const SizedBox(width: 10,),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: Text(
                                     "twoHourAgo".tr,
                                     style: sfProRegularTextstyle.copyWith(
-                                        fontSize: 12, color: AppColors.blackShadeThree),
+                                        fontSize: 12,
+                                        color: AppColors.blackShadeThree),
                                   ),
                                 ),
                               ],
@@ -441,16 +439,14 @@ class NotificationView extends StatelessWidget {
                             SizedBox(
                               width: kWidth * 0.7,
                               child: Text(
-                                "loremIpsumParagraph".tr,maxLines: 3,
+                                "loremIpsumParagraph".tr,
+                                maxLines: 3,
                                 style: sfProRegularTextstyle.copyWith(
                                     color: AppColors.blackColor),
                               ),
                             ),
                           ],
                         ),
-          
-          
-          
                       ],
                     ),
                   ),
@@ -480,20 +476,17 @@ class NotificationView extends StatelessWidget {
                       BoxShadow(
                           offset: const Offset(9, 6),
                           blurRadius: 32,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.56)
-                      ),
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.56)),
                       BoxShadow(
                           blurRadius: 33,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.54)
-                      )
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.54))
                     ],
-
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 12, right:
-                    10,bottom: 12),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 12, right: 10, bottom: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -526,17 +519,20 @@ class NotificationView extends StatelessWidget {
                                   child: Text(
                                     "driveReviewRequest".tr,
                                     style: sfProMediumTextstyle.copyWith(
-                                        fontSize: 16, color: AppColors
-                                        .blackColor),
+                                        fontSize: 16,
+                                        color: AppColors.blackColor),
                                   ),
                                 ),
-                                const SizedBox(width: 10,),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: Text(
                                     "twoHourAgo".tr,
                                     style: sfProRegularTextstyle.copyWith(
-                                        fontSize: 12, color: AppColors.blackShadeThree),
+                                        fontSize: 12,
+                                        color: AppColors.blackShadeThree),
                                   ),
                                 ),
                               ],
@@ -547,16 +543,14 @@ class NotificationView extends StatelessWidget {
                             SizedBox(
                               width: kWidth * 0.7,
                               child: Text(
-                                "loremIpsumParagraph".tr,maxLines: 3,
+                                "loremIpsumParagraph".tr,
+                                maxLines: 3,
                                 style: sfProRegularTextstyle.copyWith(
                                     color: AppColors.blackColor),
                               ),
                             ),
                           ],
                         ),
-          
-          
-          
                       ],
                     ),
                   ),
@@ -575,19 +569,17 @@ class NotificationView extends StatelessWidget {
                       BoxShadow(
                           offset: const Offset(9, 6),
                           blurRadius: 32,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.56)
-                      ),
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.56)),
                       BoxShadow(
                           blurRadius: 33,
-                          color: AppColors.tomatoColorShadeThree.withValues
-                            (alpha: 0.54)
-                      )
+                          color: AppColors.tomatoColorShadeThree
+                              .withValues(alpha: 0.54))
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 12, right:
-                    10,bottom: 12),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 12, right: 10, bottom: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -620,17 +612,20 @@ class NotificationView extends StatelessWidget {
                                   child: Text(
                                     "carCancelledSuccessfully".tr,
                                     style: sfProMediumTextstyle.copyWith(
-                                        fontSize: 16, color: AppColors
-                                        .blackColor),
+                                        fontSize: 16,
+                                        color: AppColors.blackColor),
                                   ),
                                 ),
-                                const SizedBox(width: 10,),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: Text(
                                     "twoHourAgo".tr,
                                     style: sfProRegularTextstyle.copyWith(
-                                        fontSize: 12, color: AppColors.blackShadeThree),
+                                        fontSize: 12,
+                                        color: AppColors.blackShadeThree),
                                   ),
                                 ),
                               ],
@@ -641,16 +636,14 @@ class NotificationView extends StatelessWidget {
                             SizedBox(
                               width: kWidth * 0.7,
                               child: Text(
-                                "loremIpsumParagraph".tr,maxLines: 3,
+                                "loremIpsumParagraph".tr,
+                                maxLines: 3,
                                 style: sfProRegularTextstyle.copyWith(
                                     color: AppColors.blackColor),
                               ),
                             ),
                           ],
                         ),
-          
-          
-          
                       ],
                     ),
                   ),
@@ -661,7 +654,6 @@ class NotificationView extends StatelessWidget {
               ),
             ],
           ),
-        )
-      );
+        ));
   }
 }

@@ -14,18 +14,18 @@ class UpcomingBookingModel {
     if (json['bookings'] != null) {
       bookings = <Bookings>[];
       json['bookings'].forEach((v) {
-        bookings!.add(new Bookings.fromJson(v));
+        bookings!.add(Bookings.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message_en'] = this.messageEn;
-    data['message_de'] = this.messageDe;
-    if (this.bookings != null) {
-      data['bookings'] = this.bookings!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message_en'] = messageEn;
+    data['message_de'] = messageDe;
+    if (bookings != null) {
+      data['bookings'] = bookings!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -73,43 +73,43 @@ class Bookings {
 
   Bookings(
       {this.id,
-        this.bookingId,
-        this.userId,
-        this.service,
-        this.carClassId,
-        this.transferType,
-        this.bookingDate,
-        this.bookingTime,
-        this.pickupPoints,
-        this.dropPoints,
-        this.totalDistance,
-        this.baseRate,
-        this.vatValue,
-        this.ourFees,
-        this.customerName,
-        this.customerSurname,
-        this.customerEmail,
-        this.customerPhone,
-        this.customerRemarks,
-        this.billingCompanyName,
-        this.billingSupplement,
-        this.billingStreetNo,
-        this.billingPlace,
-        this.billingAddress,
-        this.billingCanton,
-        this.billingPostalCode,
-        this.billingLand,
-        this.dispatcherName,
-        this.dispatcherPhone,
-        this.dispatcherOrderNumber,
-        this.customerName2,
-        this.customerPhone2,
-        this.status,
-        this.createdAt,
-        this.updatedAt,
-        this.carClassTitleEn,
-        this.carClassTitleDe,
-        this.remainingTime});
+      this.bookingId,
+      this.userId,
+      this.service,
+      this.carClassId,
+      this.transferType,
+      this.bookingDate,
+      this.bookingTime,
+      this.pickupPoints,
+      this.dropPoints,
+      this.totalDistance,
+      this.baseRate,
+      this.vatValue,
+      this.ourFees,
+      this.customerName,
+      this.customerSurname,
+      this.customerEmail,
+      this.customerPhone,
+      this.customerRemarks,
+      this.billingCompanyName,
+      this.billingSupplement,
+      this.billingStreetNo,
+      this.billingPlace,
+      this.billingAddress,
+      this.billingCanton,
+      this.billingPostalCode,
+      this.billingLand,
+      this.dispatcherName,
+      this.dispatcherPhone,
+      this.dispatcherOrderNumber,
+      this.customerName2,
+      this.customerPhone2,
+      this.status,
+      this.createdAt,
+      this.updatedAt,
+      this.carClassTitleEn,
+      this.carClassTitleDe,
+      this.remainingTime});
 
   Bookings.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -153,45 +153,45 @@ class Bookings {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['booking_id'] = this.bookingId;
-    data['user_id'] = this.userId;
-    data['service'] = this.service;
-    data['car_class_id'] = this.carClassId;
-    data['transfer_type'] = this.transferType;
-    data['booking_date'] = this.bookingDate;
-    data['booking_time'] = this.bookingTime;
-    data['pickup_points'] = this.pickupPoints;
-    data['drop_points'] = this.dropPoints;
-    data['total_distance'] = this.totalDistance;
-    data['base_rate'] = this.baseRate;
-    data['vat_value'] = this.vatValue;
-    data['our_fees'] = this.ourFees;
-    data['customer_name'] = this.customerName;
-    data['customer_surname'] = this.customerSurname;
-    data['customer_email'] = this.customerEmail;
-    data['customer_phone'] = this.customerPhone;
-    data['customer_remarks'] = this.customerRemarks;
-    data['billing_company_name'] = this.billingCompanyName;
-    data['billing_supplement'] = this.billingSupplement;
-    data['billing_street_no'] = this.billingStreetNo;
-    data['billing_place'] = this.billingPlace;
-    data['billing_address'] = this.billingAddress;
-    data['billing_canton'] = this.billingCanton;
-    data['billing_postal_code'] = this.billingPostalCode;
-    data['billing_land'] = this.billingLand;
-    data['dispatcher_name'] = this.dispatcherName;
-    data['dispatcher_phone'] = this.dispatcherPhone;
-    data['dispatcher_order_number'] = this.dispatcherOrderNumber;
-    data['customer_name2'] = this.customerName2;
-    data['customer_phone2'] = this.customerPhone2;
-    data['status'] = this.status;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['car_class_title_en'] = this.carClassTitleEn;
-    data['car_class_title_de'] = this.carClassTitleDe;
-    data['remaining_time'] = this.remainingTime;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['booking_id'] = bookingId;
+    data['user_id'] = userId;
+    data['service'] = service;
+    data['car_class_id'] = carClassId;
+    data['transfer_type'] = transferType;
+    data['booking_date'] = bookingDate;
+    data['booking_time'] = bookingTime;
+    data['pickup_points'] = pickupPoints;
+    data['drop_points'] = dropPoints;
+    data['total_distance'] = totalDistance;
+    data['base_rate'] = baseRate;
+    data['vat_value'] = vatValue;
+    data['our_fees'] = ourFees;
+    data['customer_name'] = customerName;
+    data['customer_surname'] = customerSurname;
+    data['customer_email'] = customerEmail;
+    data['customer_phone'] = customerPhone;
+    data['customer_remarks'] = customerRemarks;
+    data['billing_company_name'] = billingCompanyName;
+    data['billing_supplement'] = billingSupplement;
+    data['billing_street_no'] = billingStreetNo;
+    data['billing_place'] = billingPlace;
+    data['billing_address'] = billingAddress;
+    data['billing_canton'] = billingCanton;
+    data['billing_postal_code'] = billingPostalCode;
+    data['billing_land'] = billingLand;
+    data['dispatcher_name'] = dispatcherName;
+    data['dispatcher_phone'] = dispatcherPhone;
+    data['dispatcher_order_number'] = dispatcherOrderNumber;
+    data['customer_name2'] = customerName2;
+    data['customer_phone2'] = customerPhone2;
+    data['status'] = status;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['car_class_title_en'] = carClassTitleEn;
+    data['car_class_title_de'] = carClassTitleDe;
+    data['remaining_time'] = remainingTime;
     return data;
   }
 }

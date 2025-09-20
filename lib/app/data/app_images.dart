@@ -63,5 +63,4 @@ class AppImages {
       "assets/icons/star_icon_with_black_border.svg";
   static const String calendarOrangeColorIcon = "assets/icons/calendar_orange_i"
       "con.svg";
-
 }

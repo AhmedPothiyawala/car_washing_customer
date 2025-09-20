@@ -39,9 +39,9 @@ class RideSuccessView extends StatelessWidget {
                   ),
                   child: const Center(
                       child: Icon(
-                        Icons.close,
-                        color: AppColors.blackColor,
-                      )),
+                    Icons.close,
+                    color: AppColors.blackColor,
+                  )),
                 ),
               ),
             ],
@@ -61,8 +61,8 @@ class RideSuccessView extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: SvgPicture.asset(
-                  AppImages.rightClickIcon,
-                 fit: BoxFit.scaleDown,
+                AppImages.rightClickIcon,
+                fit: BoxFit.scaleDown,
               ),
             ),
           ),
@@ -102,7 +102,6 @@ class RideSuccessView extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-
         ],
       ),
     );

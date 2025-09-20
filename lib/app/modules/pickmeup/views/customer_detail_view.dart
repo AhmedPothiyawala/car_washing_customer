@@ -11,7 +11,6 @@ import '../../../routes/app_pages.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_drop_down_form_field.dart';
 import '../../../widgets/custom_text_form_field.dart';
-import '../../bottomnavigationbar/controllers/bottom_nav_bar_controllers.dart';
 import '../../home/controllers/home_controller.dart';
 
 class CustomerDetailView extends StatelessWidget {
