@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:go_burble_new/app/models/get_calculated_rate_model.dart';
 
 import '../../../data/global_constant.dart';
 import '../../../data/storage_key.dart';
@@ -29,10 +30,12 @@ class HomeControllers extends GetxController {
   RxString get isselectedTime => _isselectedTime;
   final Rx<HomeModel> _homeData = HomeModel().obs;
   final Rx<UpcomingBookingModel> _bookingData = UpcomingBookingModel().obs;
+  final Rx<GetCalculatedRateModel> _getCalculatedPriceData = GetCalculatedRateModel().obs;
   Rx<Position?> get currentPosition => _currentPosition;
   Rx<Placemark?> get currentAddress => _currentAddress;
   Rx<HomeModel> get homeData => _homeData;
   Rx<UpcomingBookingModel> get bookingData => _bookingData;
+  Rx<GetCalculatedRateModel> get getCalculatedPriceData => _getCalculatedPriceData;
 
   final _apiService = Get.find<ApiServices>();
   final _storageService = Get.find<StorageService>();

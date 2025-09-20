@@ -106,7 +106,7 @@ class _SplashViewState extends State<SplashView> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                  height: 350,
+                  height: 348,
                   width: kWidth * 0.8,
                   decoration: const BoxDecoration(
                       image: DecorationImage(

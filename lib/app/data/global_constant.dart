@@ -27,4 +27,5 @@ class ApiEndpoints {
   static const String validateEmailLinks = "validateEmailLinks";
   static const String homeContent = "getHomepageContent";
   static const String upcomingBooking = "upcomingBooking";
+  static const String getCalculatedRate= "getBookingCalculatedPrice";
 }
