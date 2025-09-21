@@ -13,32 +13,37 @@ late double kHeight;
 late double kWidth;
 late double kShortestSide;
 
-late bool kIsSmallestWidth;
-late bool kIsMediumWidth;
-late bool kIsIPad;
+late bool kIsSmallScreen;
+late bool kIsMediumScreen;
+late bool kIsLargeScreen;
 
 void initResponsiveValues(BuildContext context) {
   final size = MediaQuery.of(context).size;
 
   kShortestSide = size.shortestSide;
-
-  kIsSmallestWidth = (kShortestSide <= 380 && kShortestSide >= 340);
-  kIsMediumWidth = (kShortestSide <= 410 && kShortestSide >= 381);
-  kIsIPad = kShortestSide >= 600;
-
-  const baseHeight = 932.0;
-  const baseWidth = 430.0;
-
-  double hRatio = size.height / baseHeight;
-  double wRatio = size.width / baseWidth;
-
   kHeight = size.height;
   kWidth = size.width;
 
-  if (kIsIPad) {
-    kHeight =
-        (size.height * hRatio).clamp(size.height * 0.9, size.height * 1.2);
-    kWidth = (size.width * wRatio).clamp(size.width * 0.9, size.width * 1.2);
+  // Define size thresholds
+  kIsSmallScreen = size.shortestSide <= 360;
+  kIsMediumScreen = size.shortestSide > 360 && size.shortestSide <= 600;
+  kIsLargeScreen = size.shortestSide > 600;
+
+  // Apply scaling factors to accommodate different screen sizes
+  double baseHeight = 800.0; // Base height for scaling
+  double baseWidth = 400.0;  // Base width for scaling
+
+  // Calculate ratios for scaling
+  double heightRatio = size.height / baseHeight;
+  double widthRatio = size.width / baseWidth;
+
+  // Scale layout based on screen size
+  if (kIsLargeScreen) {
+    kHeight = (size.height * heightRatio).clamp(size.height * 0.9, size.height * 1.1);
+    kWidth = (size.width * widthRatio).clamp(size.width * 0.9, size.width * 1.2);
+  } else {
+    kHeight = size.height;
+    kWidth = size.width;
   }
 }
 

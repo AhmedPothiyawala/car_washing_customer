@@ -40,7 +40,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (val1,val2){
-        Get.offAll(Routes.LOGIN);
+        Get.toNamed(Routes.LOGIN);
       },
       child: Scaffold(
         backgroundColor: AppColors.secondaryColor,
@@ -64,7 +64,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                           padding: const EdgeInsets.only(left: 20.0, top: 10),
                           child: InkWell(
                             onTap: () {
-                              Get.offAll(Routes.LOGIN);
+                              Get.toNamed(Routes.LOGIN);
 
                             },
                             child: const Align(
