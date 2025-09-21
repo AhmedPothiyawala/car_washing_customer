@@ -68,6 +68,7 @@ dependencies:
   pinput: ^5.0.2
   geolocator:
   geocoding:
+  google_places_flutter:
 
 
 

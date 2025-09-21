@@ -90,7 +90,7 @@ class HomeControllers extends GetxController {
     );
     if (picked != null) {
       _isselectedDate(
-          "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}");
+          "${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year}");
     }
   }
 
@@ -149,6 +149,60 @@ class HomeControllers extends GetxController {
       _isLoding(false);
     }
   }
+
+
+  Future<void> getbookingcalculatedprice(String transfer_type,List<Map<String, double>> pickup,List<Map<String, double>> drop) async {
+    _isLoding(true);
+    try {
+      var data = {
+        'user_id': await _storageService.readString(StorageKey.userId),
+        'service': _isPickMeUp.value==true?"pickmeup":"pickupmycar",
+        'transfer_type': transfer_type.toString().toLowerCase(),
+        'booking_date':  _isselectedDate.value,
+        'booking_time': _isselectedTime.value,
+        'pickup': pickup,
+        'drop':drop,
+      };
+
+      final response = await _apiService.post(
+          endPoint: ApiEndpoints.getCalculatedRate,
+          reqData: data
+      );
+
+      if (response != null) {
+        if (response.statusCode == 200) {
+          Map<String, dynamic> jsonMap = response.data;
+
+          if (jsonMap['status'] == true) {
+            _homeData.value = HomeModel.fromJson(jsonMap);
+          } else {
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en']);
+          }
+        } else {
+          CustomSnackBar.errorSnackBar(message: "Failed to load data.");
+        }
+
+        _isLoding(false);
+      }
+    } on dio.DioException catch (ex) {
+      _isLoding(false);
+      if (ex.response != null) {
+        final data = ex.response!.data;
+        CustomSnackBar.errorSnackBar(
+            message: data['message_en'] ?? "somethingWentWrong".tr
+        );
+      } else {
+        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
+      }
+    } catch (e) {
+      _isLoding(false);
+      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
+      appLogger.e(e.toString());
+    } finally {
+      _isLoding(false);
+    }
+  }
+
 
   Future<void> upcomingbooking() async {
     _isLoding2(true);

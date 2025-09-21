@@ -6,6 +6,7 @@ class GlobalConstant {
   static const String appName = "Go burble";
   static const String appNameDev = "Go burble";
   static const String appNameDevSmall = "Go burble";
+  static const String mapSdkKeyAndroid = "AIzaSyBw3nEiim6lhwxyodPcaoIHDN_ngt6jwJA";
 }
 
 /// ************************[Use for logging]******************************************************

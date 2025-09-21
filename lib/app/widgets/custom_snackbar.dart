@@ -7,12 +7,14 @@ class CustomSnackBar {
   static void successSnackBar({
     required String message,
     int seconds = 4,
+    Color? backgroundColor,
+    Color? textcolor
   }) {
     double screenWidth = kWidth;
 
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: AppColors.appBackgroundColor,
+        backgroundColor:backgroundColor?? AppColors.appBackgroundColor,
         snackPosition: SnackPosition.TOP,
         isDismissible: true,
         snackStyle: SnackStyle.FLOATING,
@@ -29,8 +31,8 @@ class CustomSnackBar {
                 message,
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: AppColors.primaryColor,
+                style: TextStyle(
+                  color:textcolor?? AppColors.primaryColor,
                   fontSize: 14,
                 ),
               ),
@@ -38,12 +40,12 @@ class CustomSnackBar {
             const Spacer(),
             GestureDetector(
               onTap: () => Get.closeCurrentSnackbar(),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 8),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8),
                 child: Icon(
                   Icons.close_rounded,
                   size: 20,
-                  color: AppColors.primaryColor,
+                  color:textcolor?? AppColors.primaryColor,
                 ),
               ),
             ),
@@ -63,12 +65,14 @@ class CustomSnackBar {
     double? fontSize,
     Duration? duration,
     bool? isDismissible,
+    Color? backgroundColor,
+    Color? textcolor
   }) {
     double screenWidth = kWidth;
 
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: AppColors.appBackgroundColor,
+        backgroundColor:backgroundColor?? AppColors.appBackgroundColor,
         snackPosition: SnackPosition.TOP,
         isDismissible: isDismissible ?? true,
         snackStyle: SnackStyle.FLOATING,
@@ -85,8 +89,8 @@ class CustomSnackBar {
                 message,
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: AppColors.primaryColor,
+                style:  TextStyle(
+                  color:textcolor?? AppColors.primaryColor,
                   fontSize: 14,
                 ),
               ),
@@ -94,12 +98,12 @@ class CustomSnackBar {
             const Spacer(),
             GestureDetector(
               onTap: () => Get.closeCurrentSnackbar(),
-              child: const Padding(
+              child:  Padding(
                 padding: EdgeInsets.only(left: 8),
                 child: Icon(
                   Icons.close_rounded,
                   size: 20,
-                  color: AppColors.primaryColor,
+                  color:textcolor?? AppColors.primaryColor,
                 ),
               ),
             ),
