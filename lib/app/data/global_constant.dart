@@ -30,4 +30,6 @@ class ApiEndpoints {
   static const String homeContent = "getHomepageContent";
   static const String upcomingBooking = "upcomingBooking";
   static const String getCalculatedRate = "getBookingCalculatedPrice";
+  static const String confirmBooking = "confirmBooking";
+
 }

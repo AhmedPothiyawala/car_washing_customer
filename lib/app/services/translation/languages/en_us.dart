@@ -182,7 +182,12 @@ Map<String, String> enUS = {
   "singleRide": "Single Ride / Return (new transfer)",
   "continueBooking": "Continue booking",
   "bookPickMeUp": "Book PickMeUp",
-
+  "selectedDateValidation": "Select date is required",
+  "selectedTimeValidation": "Select time is required",
+  "pickupLocationValidation": "Pickup locaton is required",
+  "dropLocationValidation": "Drop locaton is required",
+  "dropLocationValidation2": "Atleast 2 Dropping locaton is required",
+  "transferTypeValidation2": "Transfer type is required",
   //******************************
   //SELECTRIDER
   //******************************

@@ -69,6 +69,7 @@ dependencies:
   geolocator:
   geocoding:
   google_places_flutter:
+  init:
 
 
 

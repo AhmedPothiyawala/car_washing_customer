@@ -78,7 +78,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SELECT_RIDER_VIEW,
-      page: () => const SelectRiderView(),
+      page: () =>  SelectRiderView(),
+      binding: HomeBinding(),
+
     ),
     GetPage(
       name: _Paths.ORDER_SUMMARY_VIEW,

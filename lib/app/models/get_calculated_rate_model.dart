@@ -37,10 +37,10 @@ class Data {
   String? carClassTitleDe;
   String? carClassImage;
   double? totalDistance;
-  int? baseRate;
-  int? baseRateWithOurFees;
+  double? baseRate;
+  double? baseRateWithOurFees;
   double? vatValue;
-  int? ourFees;
+  double? ourFees;
 
   Data(
       {this.carClassId,
