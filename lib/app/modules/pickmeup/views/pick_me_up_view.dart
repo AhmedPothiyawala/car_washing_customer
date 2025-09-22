@@ -322,7 +322,7 @@ class PickMeUpView extends StatelessWidget {
                                       errorBorder: InputBorder.none,
                                       focusedErrorBorder: InputBorder.none,
                                       disabledBorder: InputBorder.none,
-                                      contentPadding: EdgeInsetsGeometry.all(0),
+                                      contentPadding: EdgeInsets.all(0),
                                       hintText:   "currentAddress".tr,
                                       hintStyle:  sfProMediumTextstyle.copyWith(
                                           color: AppColors.blackColor)
@@ -410,7 +410,7 @@ class PickMeUpView extends StatelessWidget {
 
                                   child: ListView.separated(
                                     shrinkWrap: true,
-                                    padding: EdgeInsetsGeometry.zero,
+                                    padding: EdgeInsets.all(0),
                                     physics: NeverScrollableScrollPhysics(),
                                     itemBuilder: (BuildContext context, int index) {
                                     return        Center(
@@ -431,7 +431,7 @@ class PickMeUpView extends StatelessWidget {
                                               errorBorder: InputBorder.none,
                                               focusedErrorBorder: InputBorder.none,
                                               disabledBorder: InputBorder.none,
-                                              contentPadding: EdgeInsetsGeometry.all(0),
+                                              contentPadding: EdgeInsets.all(0),
                                               hintText:   "dropOff".tr,
                                               hintStyle:  sfProMediumTextstyle.copyWith(
                                                   color: AppColors.blackColor)
