@@ -4,17 +4,16 @@ import 'package:go_burble_new/app/data/utils.dart';
 import '../data/app_colors.dart';
 
 class CustomSnackBar {
-  static void successSnackBar({
-    required String message,
-    int seconds = 4,
-    Color? backgroundColor,
-    Color? textcolor
-  }) {
+  static void successSnackBar(
+      {required String message,
+      int seconds = 4,
+      Color? backgroundColor,
+      Color? textcolor}) {
     double screenWidth = kWidth;
 
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor:backgroundColor?? AppColors.appBackgroundColor,
+        backgroundColor: backgroundColor ?? AppColors.appBackgroundColor,
         snackPosition: SnackPosition.TOP,
         isDismissible: true,
         snackStyle: SnackStyle.FLOATING,
@@ -32,7 +31,7 @@ class CustomSnackBar {
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color:textcolor?? AppColors.primaryColor,
+                  color: textcolor ?? AppColors.primaryColor,
                   fontSize: 14,
                 ),
               ),
@@ -45,7 +44,7 @@ class CustomSnackBar {
                 child: Icon(
                   Icons.close_rounded,
                   size: 20,
-                  color:textcolor?? AppColors.primaryColor,
+                  color: textcolor ?? AppColors.primaryColor,
                 ),
               ),
             ),
@@ -58,21 +57,20 @@ class CustomSnackBar {
     );
   }
 
-  static void errorSnackBar({
-    required String message,
-    int seconds = 4,
-    int maxLines = 5,
-    double? fontSize,
-    Duration? duration,
-    bool? isDismissible,
-    Color? backgroundColor,
-    Color? textcolor
-  }) {
+  static void errorSnackBar(
+      {required String message,
+      int seconds = 4,
+      int maxLines = 5,
+      double? fontSize,
+      Duration? duration,
+      bool? isDismissible,
+      Color? backgroundColor,
+      Color? textcolor}) {
     double screenWidth = kWidth;
 
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor:backgroundColor?? AppColors.appBackgroundColor,
+        backgroundColor: backgroundColor ?? AppColors.appBackgroundColor,
         snackPosition: SnackPosition.TOP,
         isDismissible: isDismissible ?? true,
         snackStyle: SnackStyle.FLOATING,
@@ -89,8 +87,8 @@ class CustomSnackBar {
                 message,
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
-                style:  TextStyle(
-                  color:textcolor?? AppColors.primaryColor,
+                style: TextStyle(
+                  color: textcolor ?? AppColors.primaryColor,
                   fontSize: 14,
                 ),
               ),
@@ -98,12 +96,12 @@ class CustomSnackBar {
             const Spacer(),
             GestureDetector(
               onTap: () => Get.closeCurrentSnackbar(),
-              child:  Padding(
+              child: Padding(
                 padding: EdgeInsets.only(left: 8),
                 child: Icon(
                   Icons.close_rounded,
                   size: 20,
-                  color:textcolor?? AppColors.primaryColor,
+                  color: textcolor ?? AppColors.primaryColor,
                 ),
               ),
             ),

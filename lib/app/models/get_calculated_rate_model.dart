@@ -44,14 +44,14 @@ class Data {
 
   Data(
       {this.carClassId,
-        this.carClassTitleEn,
-        this.carClassTitleDe,
-        this.carClassImage,
-        this.totalDistance,
-        this.baseRate,
-        this.baseRateWithOurFees,
-        this.vatValue,
-        this.ourFees});
+      this.carClassTitleEn,
+      this.carClassTitleDe,
+      this.carClassImage,
+      this.totalDistance,
+      this.baseRate,
+      this.baseRateWithOurFees,
+      this.vatValue,
+      this.ourFees});
 
   Data.fromJson(Map<String, dynamic> json) {
     carClassId = json['car_class_id'];

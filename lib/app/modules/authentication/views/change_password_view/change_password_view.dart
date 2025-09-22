@@ -39,7 +39,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (val1,val2){
+      onPopInvokedWithResult: (val1, val2) {
         Get.toNamed(Routes.LOGIN);
       },
       child: Scaffold(
@@ -65,7 +65,6 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                           child: InkWell(
                             onTap: () {
                               Get.toNamed(Routes.LOGIN);
-
                             },
                             child: const Align(
                                 alignment: Alignment.topLeft,
@@ -174,8 +173,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                   hintText: "password".tr,
                                   width: kWidth * 0.8,
                                   focusNode: passwordFocusNode,
-                                  borderRadiusAll:
-                                      const BorderRadius.all(Radius.circular(12)),
+                                  borderRadiusAll: const BorderRadius.all(
+                                      Radius.circular(12)),
                                   controller: passwordController,
                                   fillColor: AppColors.appBackgroundColor,
                                   borderColor: passwordFocusNode.hasFocus
@@ -184,8 +183,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                   validator: validatePassword,
                                   suffixIcon: GestureDetector(
                                     onTap: () async {
-                                      authController
-                                              .isLoginPasswordObscureText.value =
+                                      authController.isLoginPasswordObscureText
+                                              .value =
                                           !authController
                                               .isLoginPasswordObscureText.value;
                                     },
@@ -218,8 +217,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                   hintText: "confirmPassword".tr,
                                   width: kWidth * 0.8,
                                   focusNode: confirmPasswordFocusNode,
-                                  borderRadiusAll:
-                                      const BorderRadius.all(Radius.circular(12)),
+                                  borderRadiusAll: const BorderRadius.all(
+                                      Radius.circular(12)),
                                   controller: confirmPasswordController,
                                   fillColor: AppColors.appBackgroundColor,
                                   borderColor: confirmPasswordFocusNode.hasFocus
@@ -260,8 +259,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                     bgColor: AppColors.primaryColor,
                                     childWidget: Center(
                                         child: Text("createNewPassword".tr,
-                                            style: sfProMediumTextstyle.copyWith(
-                                                fontSize: 16))),
+                                            style: sfProMediumTextstyle
+                                                .copyWith(fontSize: 16))),
                                   ),
                                 ),
                                 const SizedBox(

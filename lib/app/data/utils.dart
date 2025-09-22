@@ -31,7 +31,7 @@ void initResponsiveValues(BuildContext context) {
 
   // Apply scaling factors to accommodate different screen sizes
   double baseHeight = 800.0; // Base height for scaling
-  double baseWidth = 400.0;  // Base width for scaling
+  double baseWidth = 400.0; // Base width for scaling
 
   // Calculate ratios for scaling
   double heightRatio = size.height / baseHeight;
@@ -39,8 +39,10 @@ void initResponsiveValues(BuildContext context) {
 
   // Scale layout based on screen size
   if (kIsLargeScreen) {
-    kHeight = (size.height * heightRatio).clamp(size.height * 0.9, size.height * 1.1);
-    kWidth = (size.width * widthRatio).clamp(size.width * 0.9, size.width * 1.2);
+    kHeight =
+        (size.height * heightRatio).clamp(size.height * 0.9, size.height * 1.1);
+    kWidth =
+        (size.width * widthRatio).clamp(size.width * 0.9, size.width * 1.2);
   } else {
     kHeight = size.height;
     kWidth = size.width;

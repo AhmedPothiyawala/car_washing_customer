@@ -30,12 +30,14 @@ class HomeControllers extends GetxController {
   RxString get isselectedTime => _isselectedTime;
   final Rx<HomeModel> _homeData = HomeModel().obs;
   final Rx<UpcomingBookingModel> _bookingData = UpcomingBookingModel().obs;
-  final Rx<GetCalculatedRateModel> _getCalculatedPriceData = GetCalculatedRateModel().obs;
+  final Rx<GetCalculatedRateModel> _getCalculatedPriceData =
+      GetCalculatedRateModel().obs;
   Rx<Position?> get currentPosition => _currentPosition;
   Rx<Placemark?> get currentAddress => _currentAddress;
   Rx<HomeModel> get homeData => _homeData;
   Rx<UpcomingBookingModel> get bookingData => _bookingData;
-  Rx<GetCalculatedRateModel> get getCalculatedPriceData => _getCalculatedPriceData;
+  Rx<GetCalculatedRateModel> get getCalculatedPriceData =>
+      _getCalculatedPriceData;
 
   final _apiService = Get.find<ApiServices>();
   final _storageService = Get.find<StorageService>();
@@ -150,24 +152,22 @@ class HomeControllers extends GetxController {
     }
   }
 
-
-  Future<void> getbookingcalculatedprice(String transfer_type,List<Map<String, double>> pickup,List<Map<String, double>> drop) async {
+  Future<void> getbookingcalculatedprice(String transfer_type,
+      List<Map<String, double>> pickup, List<Map<String, double>> drop) async {
     _isLoding(true);
     try {
       var data = {
         'user_id': await _storageService.readString(StorageKey.userId),
-        'service': _isPickMeUp.value==true?"pickmeup":"pickupmycar",
+        'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
         'transfer_type': transfer_type.toString().toLowerCase(),
-        'booking_date':  _isselectedDate.value,
+        'booking_date': _isselectedDate.value,
         'booking_time': _isselectedTime.value,
         'pickup': pickup,
-        'drop':drop,
+        'drop': drop,
       };
 
       final response = await _apiService.post(
-          endPoint: ApiEndpoints.getCalculatedRate,
-          reqData: data
-      );
+          endPoint: ApiEndpoints.getCalculatedRate, reqData: data);
 
       if (response != null) {
         if (response.statusCode == 200) {
@@ -189,8 +189,7 @@ class HomeControllers extends GetxController {
       if (ex.response != null) {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
-            message: data['message_en'] ?? "somethingWentWrong".tr
-        );
+            message: data['message_en'] ?? "somethingWentWrong".tr);
       } else {
         CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
       }
@@ -202,7 +201,6 @@ class HomeControllers extends GetxController {
       _isLoding(false);
     }
   }
-
 
   Future<void> upcomingbooking() async {
     _isLoding2(true);

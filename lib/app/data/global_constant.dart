@@ -6,7 +6,8 @@ class GlobalConstant {
   static const String appName = "Go burble";
   static const String appNameDev = "Go burble";
   static const String appNameDevSmall = "Go burble";
-  static const String mapSdkKeyAndroid = "AIzaSyBw3nEiim6lhwxyodPcaoIHDN_ngt6jwJA";
+  static const String mapSdkKeyAndroid =
+      "AIzaSyBw3nEiim6lhwxyodPcaoIHDN_ngt6jwJA";
 }
 
 /// ************************[Use for logging]******************************************************
@@ -28,5 +29,5 @@ class ApiEndpoints {
   static const String validateEmailLinks = "validateEmailLinks";
   static const String homeContent = "getHomepageContent";
   static const String upcomingBooking = "upcomingBooking";
-  static const String getCalculatedRate= "getBookingCalculatedPrice";
+  static const String getCalculatedRate = "getBookingCalculatedPrice";
 }

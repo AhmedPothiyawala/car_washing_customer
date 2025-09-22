@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,13 +20,12 @@ import '../../home/controllers/home_controller.dart';
 class PickMeUpView extends StatelessWidget {
   PickMeUpView({super.key});
   final homeController = Get.find<HomeControllers>();
-  final pickupLocationController=TextEditingController();
-  final transferTypeController=TextEditingController();
+  final pickupLocationController = TextEditingController();
+  final transferTypeController = TextEditingController();
 
-  List<TextEditingController>dropController=[TextEditingController()];
-  List<Map<String, double>> pickup =[];
-  List<Map<String, double>> drop=[];
-
+  List<TextEditingController> dropController = [TextEditingController()];
+  List<Map<String, double>> pickup = [];
+  List<Map<String, double>> drop = [];
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +135,7 @@ class PickMeUpView extends StatelessWidget {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-               SingleChildScrollView(
+              SingleChildScrollView(
                 child: Container(
                   width: kWidth,
                   decoration: const BoxDecoration(
@@ -160,7 +158,8 @@ class PickMeUpView extends StatelessWidget {
                                 ? "bookPickMeUp".tr
                                 : "bookPickUpMyCar".tr,
                             textAlign: TextAlign.center,
-                            style: sfProSemiBoldTextstyle.copyWith(fontSize: 18),
+                            style:
+                                sfProSemiBoldTextstyle.copyWith(fontSize: 18),
                           )),
                       const SizedBox(
                         height: 10,
@@ -187,17 +186,19 @@ class PickMeUpView extends StatelessWidget {
                                 },
                                 child: CustomDropDownFormField(
                                   height: 50,
-                                  contentPadding: const EdgeInsets.only(right: 8),
+                                  contentPadding:
+                                      const EdgeInsets.only(right: 8),
                                   hintStyle: sfProMediumTextstyle.copyWith(
-                                      fontSize: 12, color: AppColors.blackColor),
+                                      fontSize: 12,
+                                      color: AppColors.blackColor),
                                   textInputAction: TextInputAction.next,
                                   width: kWidth * 0.45,
                                   hintText:
                                       homeController.isselectedDate.value != ""
                                           ? homeController.isselectedDate.value
                                           : "selectDate".tr,
-                                  borderRadiusAll:
-                                      const BorderRadius.all(Radius.circular(30)),
+                                  borderRadiusAll: const BorderRadius.all(
+                                      Radius.circular(30)),
                                   prefixIcon: SvgPicture.asset(
                                     AppImages.calenderIcon,
                                     fit: BoxFit.scaleDown,
@@ -228,17 +229,19 @@ class PickMeUpView extends StatelessWidget {
                                 },
                                 child: CustomDropDownFormField(
                                   height: 50,
-                                  contentPadding: const EdgeInsets.only(right: 8),
+                                  contentPadding:
+                                      const EdgeInsets.only(right: 8),
                                   hintStyle: sfProMediumTextstyle.copyWith(
-                                      fontSize: 12, color: AppColors.blackColor),
+                                      fontSize: 12,
+                                      color: AppColors.blackColor),
                                   textInputAction: TextInputAction.next,
                                   width: kWidth * 0.45,
                                   hintText:
                                       homeController.isselectedTime.value != ""
                                           ? homeController.isselectedTime.value
                                           : "selectTime".tr,
-                                  borderRadiusAll:
-                                      const BorderRadius.all(Radius.circular(30)),
+                                  borderRadiusAll: const BorderRadius.all(
+                                      Radius.circular(30)),
                                   prefixIcon: SvgPicture.asset(
                                     AppImages.clockIcon,
                                     fit: BoxFit.scaleDown,
@@ -303,62 +306,72 @@ class PickMeUpView extends StatelessWidget {
                                 style: sfProRegularTextstyle.copyWith(
                                     color: AppColors.greyShadeFour),
                               ),
-
                               Center(
                                 child: SizedBox(
                                   height: 30,
-                                  width: kWidth*0.7,
+                                  width: kWidth * 0.7,
                                   child: GooglePlaceAutoCompleteTextField(
-                                    textEditingController: pickupLocationController,
-                                    googleAPIKey:GlobalConstant.mapSdkKeyAndroid,
+                                    textEditingController:
+                                        pickupLocationController,
+                                    googleAPIKey:
+                                        GlobalConstant.mapSdkKeyAndroid,
                                     boxDecoration: BoxDecoration(
-                                        border: Border.all(color:AppColors.appBackgroundColor )
-                                    ),
+                                        border: Border.all(
+                                            color:
+                                                AppColors.appBackgroundColor)),
 
-                                    inputDecoration:  InputDecoration(
-                                      border: InputBorder.none,
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      errorBorder: InputBorder.none,
-                                      focusedErrorBorder: InputBorder.none,
-                                      disabledBorder: InputBorder.none,
-                                      contentPadding: EdgeInsets.all(0),
-                                      hintText:   "currentAddress".tr,
-                                      hintStyle:  sfProMediumTextstyle.copyWith(
-                                          color: AppColors.blackColor)
-                                    ),
+                                    inputDecoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        focusedErrorBorder: InputBorder.none,
+                                        disabledBorder: InputBorder.none,
+                                        contentPadding: EdgeInsets.all(0),
+                                        hintText: "currentAddress".tr,
+                                        hintStyle:
+                                            sfProMediumTextstyle.copyWith(
+                                                color: AppColors.blackColor)),
 
-
-
-                                    isLatLngRequired:true,// if you required coordinates from place detail
-                                    getPlaceDetailWithLatLng: (Prediction prediction) {
-                                      pickup=[{"lat":double.parse(prediction.lat.toString()),"long":double.parse(prediction.lng.toString())}];
+                                    isLatLngRequired:
+                                        true, // if you required coordinates from place detail
+                                    getPlaceDetailWithLatLng:
+                                        (Prediction prediction) {
+                                      pickup = [
+                                        {
+                                          "lat": double.parse(
+                                              prediction.lat.toString()),
+                                          "long": double.parse(
+                                              prediction.lng.toString())
+                                        }
+                                      ];
                                       // this method will return latlng with place detail
-                                      print("placeDetails" + prediction.lng.toString());
+                                      print("placeDetails" +
+                                          prediction.lng.toString());
                                     }, // this callback is called when isLatLngRequired is true
                                     itemClick: (Prediction prediction) {
-                                      pickupLocationController.text=prediction.description!;
-                                      pickupLocationController.selection = TextSelection.fromPosition(TextPosition(offset: prediction.description!.length));
+                                      pickupLocationController.text =
+                                          prediction.description!;
+                                      pickupLocationController.selection =
+                                          TextSelection.fromPosition(
+                                              TextPosition(
+                                                  offset: prediction
+                                                      .description!.length));
                                     },
 
                                     // want to show close icon
                                     isCrossBtnShown: false,
-                                    textStyle:  sfProMediumTextstyle.copyWith(
+                                    textStyle: sfProMediumTextstyle.copyWith(
                                         color: AppColors.blackColor),
 
                                     // place type
                                     placeType: PlaceType.geocode,
                                     // keyboard type (defaults to TextInputType.streetAddress)
-                                    keyboardType: TextInputType.text, // optional - defaults to streetAddress for better address input
-
-
-
-
+                                    keyboardType: TextInputType
+                                        .text, // optional - defaults to streetAddress for better address input
                                   ),
                                 ),
                               ),
-
-
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -374,24 +387,22 @@ class PickMeUpView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-
                                   Container(
                                       height: 30,
                                       width: 30,
                                       decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: AppColors.appBackgroundColor,
-                                        border: Border.all(
-                                            color: AppColors.blackColor,
-                                            width: 1),
+                                          shape: BoxShape.circle,
+                                          color: AppColors.appBackgroundColor,
+                                          border: Border.all(
+                                              color: AppColors.blackColor,
+                                              width: 1),
                                           boxShadow: [
                                             BoxShadow(
                                                 blurRadius: 24,
                                                 offset: Offset(0, 4),
-                                                color: AppColors.greyShadeEight.withValues(alpha: 0.25)
-                                            )
-                                          ]
-                                      ),
+                                                color: AppColors.greyShadeEight
+                                                    .withValues(alpha: 0.25))
+                                          ]),
                                       child: SvgPicture.asset(
                                         AppImages.arrowSwapIcon,
                                         fit: BoxFit.scaleDown,
@@ -403,102 +414,141 @@ class PickMeUpView extends StatelessWidget {
                                 style: sfProRegularTextstyle.copyWith(
                                     color: AppColors.greyShadeFour),
                               ),
-
                               Center(
                                 child: SizedBox(
-                                  width: kWidth*0.7,
-
+                                  width: kWidth * 0.7,
                                   child: ListView.separated(
                                     shrinkWrap: true,
                                     padding: EdgeInsets.all(0),
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemBuilder: (BuildContext context, int index) {
-                                    return        Center(
-                                      child: SizedBox(
-                                        height: 30,
-                                        width: kWidth*0.7,
-                                        child: GooglePlaceAutoCompleteTextField(
-                                          textEditingController: dropController[index],
-                                          googleAPIKey:GlobalConstant.mapSdkKeyAndroid,
-                                          boxDecoration: BoxDecoration(
-                                              border: Border.all(color:AppColors.appBackgroundColor )
-                                          ),
-
-                                          inputDecoration:  InputDecoration(
-                                              border: InputBorder.none,
-                                              enabledBorder: InputBorder.none,
-                                              focusedBorder: InputBorder.none,
-                                              errorBorder: InputBorder.none,
-                                              focusedErrorBorder: InputBorder.none,
-                                              disabledBorder: InputBorder.none,
-                                              contentPadding: EdgeInsets.all(0),
-                                              hintText:   "dropOff".tr,
-                                              hintStyle:  sfProMediumTextstyle.copyWith(
-                                                  color: AppColors.blackColor)
-                                          ),
-
-
-
-                                          isLatLngRequired:true,// if you required coordinates from place detail
-                                          getPlaceDetailWithLatLng: (Prediction prediction) {
-                                                      if(index >= 0 && index < drop.length)
-                                                        {
-                                                          drop[index]={"lat":double.parse(prediction.lat.toString()),"long":double.parse(prediction.lng.toString())};
-                                                        }
-                                                      else{
-                                                        drop=[{"lat":double.parse(prediction.lat.toString()),"long":double.parse(prediction.lng.toString())}];
-                                                      }
-                                                      print(drop);
-                                          }, // this callback is called when isLatLngRequired is true
-                                          itemClick: (Prediction prediction) {
-                                            if(transferTypeController.text=="Single/Return")
-
-                                           {
-                                             dropController.add(TextEditingController());
-                                             dropController[index].text=prediction.description!;
-                                             dropController[index].selection = TextSelection.fromPosition(TextPosition(offset: prediction.description!.length));
-                                           }
-                                            else{
-                                              dropController[index].text=prediction.description!;
-                                              dropController[index].selection = TextSelection.fromPosition(TextPosition(offset: prediction.description!.length));
-                                            }
-                                          },
-
-                                          // want to show close icon
-                                          isCrossBtnShown: false,
-                                          textStyle:  sfProMediumTextstyle.copyWith(
-                                              color: AppColors.blackColor),
-
-                                          // place type
-                                          placeType: PlaceType.geocode,
-                                          // keyboard type (defaults to TextInputType.streetAddress)
-                                          keyboardType: TextInputType.text, // optional - defaults to streetAddress for better address input
-
-
-
-
-                                        ),
-                                      ),
-                                    );
-                                  }, separatorBuilder: (BuildContext context, int index) {
-                                    return Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        SizedBox(
-                                          height: 12,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Center(
+                                        child: SizedBox(
+                                          height: 30,
                                           width: kWidth * 0.7,
-                                          child: const Divider(
-                                            color: AppColors.greyShadeTwo,
-                                            endIndent: 15,
+                                          child:
+                                              GooglePlaceAutoCompleteTextField(
+                                            textEditingController:
+                                                dropController[index],
+                                            googleAPIKey:
+                                                GlobalConstant.mapSdkKeyAndroid,
+                                            boxDecoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: AppColors
+                                                        .appBackgroundColor)),
+
+                                            inputDecoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                enabledBorder: InputBorder.none,
+                                                focusedBorder: InputBorder.none,
+                                                errorBorder: InputBorder.none,
+                                                focusedErrorBorder:
+                                                    InputBorder.none,
+                                                disabledBorder:
+                                                    InputBorder.none,
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                                hintText: "dropOff".tr,
+                                                hintStyle: sfProMediumTextstyle
+                                                    .copyWith(
+                                                        color: AppColors
+                                                            .blackColor)),
+
+                                            isLatLngRequired:
+                                                true, // if you required coordinates from place detail
+                                            getPlaceDetailWithLatLng:
+                                                (Prediction prediction) {
+                                              if (index >= 0 &&
+                                                  index < drop.length) {
+                                                drop[index] = {
+                                                  "lat": double.parse(prediction
+                                                      .lat
+                                                      .toString()),
+                                                  "long": double.parse(
+                                                      prediction.lng.toString())
+                                                };
+                                              } else {
+                                                drop = [
+                                                  {
+                                                    "lat": double.parse(
+                                                        prediction.lat
+                                                            .toString()),
+                                                    "long": double.parse(
+                                                        prediction.lng
+                                                            .toString())
+                                                  }
+                                                ];
+                                              }
+                                              print(drop);
+                                            }, // this callback is called when isLatLngRequired is true
+                                            itemClick: (Prediction prediction) {
+                                              if (transferTypeController.text ==
+                                                  "Single/Return") {
+                                                dropController.add(
+                                                    TextEditingController());
+                                                dropController[index].text =
+                                                    prediction.description!;
+                                                dropController[index]
+                                                        .selection =
+                                                    TextSelection.fromPosition(
+                                                        TextPosition(
+                                                            offset: prediction
+                                                                .description!
+                                                                .length));
+                                              } else {
+                                                dropController[index].text =
+                                                    prediction.description!;
+                                                dropController[index]
+                                                        .selection =
+                                                    TextSelection.fromPosition(
+                                                        TextPosition(
+                                                            offset: prediction
+                                                                .description!
+                                                                .length));
+                                              }
+                                            },
+
+                                            // want to show close icon
+                                            isCrossBtnShown: false,
+                                            textStyle:
+                                                sfProMediumTextstyle.copyWith(
+                                                    color:
+                                                        AppColors.blackColor),
+
+                                            // place type
+                                            placeType: PlaceType.geocode,
+                                            // keyboard type (defaults to TextInputType.streetAddress)
+                                            keyboardType: TextInputType
+                                                .text, // optional - defaults to streetAddress for better address input
                                           ),
                                         ),
-                                      ],
-                                    );
-                                  }, itemCount: dropController.length,),
+                                      );
+                                    },
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          SizedBox(
+                                            height: 12,
+                                            width: kWidth * 0.7,
+                                            child: const Divider(
+                                              color: AppColors.greyShadeTwo,
+                                              endIndent: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                    itemCount: dropController.length,
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -534,38 +584,33 @@ class PickMeUpView extends StatelessWidget {
                           borderRadiusAll:
                               const BorderRadius.all(Radius.circular(0)),
                           fillColor: AppColors.transparent,
-                          items: homeController.isPickMeUp.value==true?
-
-                          ['Single', 'Single/Return']
-                              .map((option) => DropdownMenuItem(
-                                    value: option,
-                                    child: Text(option),
-                                  ))
-                              .toList(): ['Single']
-                              .map((option) => DropdownMenuItem(
-                            value: option,
-                            child: Text(option),
-                          ))
-                              .toList(),
+                          items: homeController.isPickMeUp.value == true
+                              ? ['Single', 'Single/Return']
+                                  .map((option) => DropdownMenuItem(
+                                        value: option,
+                                        child: Text(option),
+                                      ))
+                                  .toList()
+                              : ['Single']
+                                  .map((option) => DropdownMenuItem(
+                                        value: option,
+                                        child: Text(option),
+                                      ))
+                                  .toList(),
                           onChanged: (value) {
-                            if(value=="Single/Return"&&transferTypeController.length==1)
-                              {
-                                dropController.add(TextEditingController());
-                                transferTypeController.text=value.toString();
-                              }
-                            else{
-                              transferTypeController.text=value.toString();
+                            if (value == "Single/Return" &&
+                                transferTypeController.length == 1) {
+                              dropController.add(TextEditingController());
+                              transferTypeController.text = value.toString();
+                            } else {
+                              transferTypeController.text = value.toString();
                             }
                           },
                           borderColor: Colors.transparent,
-
                           onFieldSubmitted: (value) {},
                           controller: null,
                         ),
                       ),
-
-
-
                       const SizedBox(
                         height: 20,
                       ),
