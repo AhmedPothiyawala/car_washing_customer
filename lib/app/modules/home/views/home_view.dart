@@ -10,6 +10,7 @@ import 'package:go_burble_new/app/data/utils.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/custome_dialog.dart';
 import '../controllers/home_controller.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -96,12 +97,66 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: SafeArea(
           child: Obx(() {
-            return homeController.isLoding.value ||
-                    homeController.isLoding2.value
-                ? const Center(
-                    child: CircularProgressIndicator(
-                    color: AppColors.primaryColor,
-                  ))
+            return
+               homeController.isLoding.value || homeController.isLoding2.value
+                ? SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  shimmerHomeBanner(kWidth),
+                  const SizedBox(height: 20),
+                  // Section Title Placeholder
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Container(height: 16, width: 120, color: Colors.grey[300]),
+                  ),
+                  const SizedBox(height: 10),
+                  shimmerBookingCard(kWidth),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Container(height: 16, width: 120, color: Colors.grey[300]),
+                  ),
+                  const SizedBox(height: 10),
+                  // Our Services
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      shimmerServiceCard(kWidth),
+                      shimmerServiceCard(kWidth),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  // Today's Offers
+                  Row(
+                    children: [
+                      const SizedBox(width: 20),
+                      Container(height: 16, width: 120, color: Colors.grey[300]),
+                      Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Container(height: 16, width: 120, color: Colors.grey[300]),
+                      ),
+                      const SizedBox(width: 20),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 20),
+                        shimmerOfferCard(kWidth),
+                        shimmerOfferCard(kWidth),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+
                 : SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -697,4 +752,180 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+  Widget shimmerHomeBanner(double kWidth) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
+        child: Center(
+          child: Container(
+            width: kWidth * 0.9,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                Container(
+                  height: 20,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[400],
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  height: 16,
+                  width: kWidth * 0.6,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: kWidth * 0.3,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[400],
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      height: 120,
+                      width: kWidth * 0.45,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Widget shimmerBookingCard(double kWidth) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
+        child: Container(
+          width: kWidth * 0.9,
+          height: 80,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey[400]!),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              Container(
+                height: 56,
+                width: 56,
+                color: Colors.grey[400],
+              ),
+              const SizedBox(width: 10),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(height: 14, width: 120, color: Colors.grey[400]),
+                  const SizedBox(height: 8),
+                  Container(height: 12, width: 100, color: Colors.grey[300]),
+                ],
+              ),
+              const Spacer(),
+              Container(
+                height: 28,
+                width: 28,
+                decoration: const BoxDecoration(
+                  color: Colors.grey,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(width: 20),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget shimmerServiceCard(double kWidth) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Container(
+        height: 132,
+        width: kWidth * 0.45,
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(height: 74, width: 124, color: Colors.grey[400]),
+            const SizedBox(height: 10),
+            Container(height: 14, width: 80, color: Colors.grey[300]),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget shimmerOfferCard(double kWidth) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 15.0),
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
+        child: Container(
+          width: kWidth * 0.8,
+          height: 120,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(height: 16, width: 100, color: Colors.grey[400]),
+                  const SizedBox(height: 10),
+                  Container(height: 12, width: 150, color: Colors.grey[300]),
+                  const SizedBox(height: 10),
+                  Container(height: 26, width: kWidth * 0.35, color: Colors.grey[300]),
+                ],
+              ),
+              const Spacer(),
+              Container(height: 100, width: kWidth * 0.3, color: Colors.grey[400]),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
 }
