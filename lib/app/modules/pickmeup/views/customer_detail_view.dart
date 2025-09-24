@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../data/app_colors.dart';
 import '../../../data/app_images.dart';
 import '../../../data/text_styles.dart';
 import '../../../data/utils.dart';
-import '../../../routes/app_pages.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_drop_down_form_field.dart';
+import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/custom_text_form_field.dart';
 import '../../home/controllers/home_controller.dart';
 
@@ -57,9 +58,13 @@ class CustomerDetailView extends StatelessWidget {
   final customerPhoneController = TextEditingController();
 
   final homeController = Get.find<HomeControllers>();
+  final args = Get.arguments as Map;
 
   @override
   Widget build(BuildContext context) {
+    final navBarHeight = MediaQuery.of(context).viewPadding.bottom;
+    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
+
     return Scaffold(
       backgroundColor: AppColors.appBackgroundColor,
       appBar: AppBar(
@@ -108,6 +113,7 @@ class CustomerDetailView extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: navBarHeight>0&&isKeyboardOpen==false?navBarHeight:0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,7 +143,7 @@ class CustomerDetailView extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            "monday7September".tr,
+                            "${DateFormat("EEEE, MMM d").format(DateFormat("dd/MM/yyyy").parse(args['booking_date']))} at ${DateFormat("h:mm a").format(DateFormat("HH:mm").parse(args['booking_time']))}",
                             style: sfProSemiBoldTextstyle.copyWith(
                                 fontSize: 14, color: AppColors.blackShadeTwo),
                           ),
@@ -168,7 +174,7 @@ class CustomerDetailView extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            "rainSwitzerland".tr,
+                            args['pickup'].text,
                             style: sfProMediumTextstyle.copyWith(
                                 color: AppColors.blackColor),
                           ),
@@ -177,21 +183,32 @@ class CustomerDetailView extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.location_on_outlined,
-                            color: AppColors.primaryColor,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "arbedoCastioneSwitzerland".tr,
-                            style: sfProMediumTextstyle.copyWith(
-                                color: AppColors.blackColor),
-                          ),
-                        ],
+                      ListView.separated(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero, itemBuilder: (BuildContext context, int index) {
+                        return args['drop'][index].text!="" ?
+
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on_outlined,
+                              color: AppColors.primaryColor,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              args['drop'][index].text,
+                              style: sfProMediumTextstyle.copyWith(
+                                  color: AppColors.blackColor),
+                            ),
+                          ],
+                        ):const SizedBox();
+                      }, separatorBuilder: (BuildContext context, int index) {
+                        return  const SizedBox(
+                          height: 5,
+                        );
+                      }, itemCount: args['drop'].length,
                       ),
                       const SizedBox(
                         height: 5,
@@ -906,13 +923,15 @@ class CustomerDetailView extends StatelessWidget {
                         borderRadiusAll:
                             const BorderRadius.all(Radius.circular(12)),
                         fillColor: AppColors.appBackgroundColor,
-                        items: ['Male', 'Female']
+                        items: ['Switzerland']
                             .map((option) => DropdownMenuItem(
                                   value: option,
                                   child: Text(option),
                                 ))
                             .toList(),
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          landController.text=value.toString();
+                        },
                         borderColor: AppColors.appWhiteGreyColor,
                         controller: landController,
                         validator: (string) {
@@ -1256,7 +1275,82 @@ class CustomerDetailView extends StatelessWidget {
                   Center(
                     child: CustomButton(
                       onPressed: () {
-                        Get.toNamed(Routes.ORDER_SUMMARY_VIEW);
+                        if(nameController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "nameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(surNameController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "surNameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(emailController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "emailValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(phoneController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "phoneValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(remarkController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "remarkValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(companyName.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "companyNameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(supplementController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "supplementValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(streetNumberController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "streetNoValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(placeController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "placeValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(addressController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "addressValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(cantonController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "cantonValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(postalCodeController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "postalCodeValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(landController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "landValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(dispatcherNameController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "dispatcherNameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(dispatcherPhoneController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "dispatcherPhoneValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(orderNumberController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "orderNumberValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(customerNameController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "customerNameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else if(customerPhoneController.text.isEmpty)
+                        {
+                          CustomSnackBar.errorSnackBar(message: "customerPhoneValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        }
+                        else{
+                          homeController.confirmbooking(args['service'],args['transfer_type'], args['booking_date'], args['booking_time'], args['pickuplat'], args['droplat'], nameController.text, surNameController.text,emailController.text, phoneController.text, remarkController.text, dispatcherNameController.text, customerNameController.text, customerPhoneController.text, companyName.text, supplementController.text, streetNumberController.text, placeController.text, addressController.text, cantonController.text, postalCodeController.text, landController.text, dispatcherPhoneController.text, orderNumberController.text);
+                        }
+
                       },
                       height: 50,
                       width: kWidth * 0.9,

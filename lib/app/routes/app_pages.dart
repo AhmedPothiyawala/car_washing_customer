@@ -96,7 +96,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TRIP_DETAIL_VIEW,
-      page: () => const TripDetailView(),
+      page: () =>  TripDetailView(),
+      binding: HomeBinding()
     ),
     GetPage(
       name: _Paths.LOCATIN_VIEW,

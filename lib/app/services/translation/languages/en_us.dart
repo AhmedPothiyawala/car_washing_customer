@@ -249,7 +249,24 @@ Map<String, String> enUS = {
   "total": "Total",
   "promotionApplied": "Promotion applied",
   "earnPoints": "You’ll earn 20 loyalty points after booking this service.",
-
+  "nameValidation": "Name is required",
+  "surNameValidation": "Surname is required",
+  "emailValidation": "Email is required",
+  "phoneValidation": "Phone is required",
+  "remarkValidation": "Remark is required",
+  "companyNameValidation": "Company Name is required",
+  "supplementValidation": "Supplement is required",
+  "streetNoValidation": "Street and No is required",
+  "placeValidation": "Place is required",
+  "addressValidation": "Address is required",
+  "cantonValidation": "Canton is required",
+  "postalCodeValidation": "Postal Code is required",
+  "landValidation": "Land is required",
+  "dispatcherNameValidation": "Dispatcher Name is required",
+  "dispatcherPhoneValidation": "dispatcher Phone is required",
+  "orderNumberValidation": "Order Number is required",
+  "customerNameValidation": "Customer Name is required",
+  "customerPhoneValidation": "Customer Phone is required",
   //******************************************************************************************
   //ORDERSUMMARY
   //******************************************************************************************
@@ -303,6 +320,8 @@ Map<String, String> enUS = {
   "myReasonIsNotListed": "My reason is not listed",
   "wantToBookAnotherCar": "Want to Book Another Car",
   "other": "Other",
+  "cancel": "Cancel",
+  "cancelReasonValidation": "Cancel Reason is required",
 
   //**********
   //SUCCESS_YOUR_RIDE

@@ -12,7 +12,7 @@ class GetCalculatedRateModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
     messageEn = json['message_en'];
@@ -20,13 +20,13 @@ class GetCalculatedRateModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['message_en'] = this.messageEn;
-    data['message_de'] = this.messageDe;
+    data['message_en'] = messageEn;
+    data['message_de'] = messageDe;
     return data;
   }
 }
@@ -66,16 +66,16 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['car_class_id'] = this.carClassId;
-    data['car_class_title_en'] = this.carClassTitleEn;
-    data['car_class_title_de'] = this.carClassTitleDe;
-    data['car_class_image'] = this.carClassImage;
-    data['total_distance'] = this.totalDistance;
-    data['base_rate'] = this.baseRate;
-    data['base_rate_with_our_fees'] = this.baseRateWithOurFees;
-    data['vat_value'] = this.vatValue;
-    data['our_fees'] = this.ourFees;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['car_class_id'] = carClassId;
+    data['car_class_title_en'] = carClassTitleEn;
+    data['car_class_title_de'] = carClassTitleDe;
+    data['car_class_image'] = carClassImage;
+    data['total_distance'] = totalDistance;
+    data['base_rate'] = baseRate;
+    data['base_rate_with_our_fees'] = baseRateWithOurFees;
+    data['vat_value'] = vatValue;
+    data['our_fees'] = ourFees;
     return data;
   }
 }

@@ -188,7 +188,7 @@ class SelectRiderView extends StatelessWidget {
                                                 color: AppColors.blackColor),
                                           ),
                                         ],
-                                      ):SizedBox();
+                                      ):const SizedBox();
                                   }, separatorBuilder: (BuildContext context, int index) {
                                       return  const SizedBox(
                                         height: 5,
@@ -257,7 +257,7 @@ class SelectRiderView extends StatelessWidget {
                         ListView.separated(
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
                             return  Obx(
                              () {
@@ -366,7 +366,7 @@ class SelectRiderView extends StatelessWidget {
                         Center(
                           child: CustomButton(
                             onPressed: () {
-                              Get.toNamed(Routes.CUSTOMER_DETAIL_VIEW);
+                              Get.toNamed(Routes.CUSTOMER_DETAIL_VIEW,arguments: {'service': args['service'], 'transfer_type': args['transfer_type'],'booking_date': args['booking_date'], 'booking_time':args['booking_time'],'pickup':  args['pickup'],'drop':args['drop'],'pickuplat':  args['pickuplat'],'droplat':args['droplat']});
                             },
                             height: 50,
                             width: kWidth * 0.9,

@@ -6,13 +6,11 @@ import 'package:go_burble_new/app/data/utils.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/place_type.dart';
 import 'package:google_places_flutter/model/prediction.dart';
-import 'package:pinput/pinput.dart';
 
 import '../../../data/app_colors.dart';
 import '../../../data/app_images.dart';
 import '../../../data/global_constant.dart';
 import '../../../data/text_styles.dart';
-import '../../../routes/app_pages.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_drop_down_form_field.dart';
 import '../../../widgets/custom_snackbar.dart';
@@ -336,7 +334,7 @@ class PickMeUpView extends StatelessWidget {
                                                       errorBorder: InputBorder.none,
                                                       focusedErrorBorder: InputBorder.none,
                                                       disabledBorder: InputBorder.none,
-                                                      contentPadding: EdgeInsets.all(0),
+                                                      contentPadding: const EdgeInsets.all(0),
                                                       hintText: "currentAddress".tr,
                                                       hintStyle: sfProMediumTextstyle.copyWith(
                                                           color: AppColors.blackColor)),
@@ -391,7 +389,7 @@ class PickMeUpView extends StatelessWidget {
                                                         boxShadow: [
                                                           BoxShadow(
                                                               blurRadius: 24,
-                                                              offset: Offset(0, 4),
+                                                              offset: const Offset(0, 4),
                                                               color: AppColors.greyShadeEight.withValues(alpha: 0.25))
                                                         ]),
                                                     child: SvgPicture.asset(
@@ -414,8 +412,8 @@ class PickMeUpView extends StatelessWidget {
                                           width: kWidth * 0.7,
                                           child: ListView.builder(
                                             shrinkWrap: true,
-                                            padding: EdgeInsets.all(0),
-                                            physics: NeverScrollableScrollPhysics(),
+                                            padding: const EdgeInsets.all(0),
+                                            physics: const NeverScrollableScrollPhysics(),
                                             itemBuilder: (BuildContext context, int index) {
                                               return InkWell(
                                                 onTap: (){
@@ -443,7 +441,7 @@ class PickMeUpView extends StatelessWidget {
                                                               errorBorder: InputBorder.none,
                                                               focusedErrorBorder: InputBorder.none,
                                                               disabledBorder: InputBorder.none,
-                                                              contentPadding: EdgeInsets.all(0),
+                                                              contentPadding: const EdgeInsets.all(0),
                                                               hintText: "dropOff".tr,
                                                               hintStyle: sfProMediumTextstyle.copyWith(
                                                                   color: AppColors.blackColor)),

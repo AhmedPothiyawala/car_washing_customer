@@ -31,5 +31,8 @@ class ApiEndpoints {
   static const String upcomingBooking = "upcomingBooking";
   static const String getCalculatedRate = "getBookingCalculatedPrice";
   static const String confirmBooking = "confirmBooking";
+  static const String bookingDetail = "getBookingDetails";
+  static const String cancelBooking = "cancelBooking";
+
 
 }

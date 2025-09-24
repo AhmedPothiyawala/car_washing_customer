@@ -25,7 +25,7 @@ class CustomSnackBar {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: screenWidth * 0.7,
+              width: kWidth* 0.6,
               child: Text(
                 message,
                 maxLines: 5,
@@ -82,7 +82,7 @@ class CustomSnackBar {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: screenWidth * 0.7,
+              width: kWidth * 0.6,
               child: Text(
                 message,
                 maxLines: 5,
@@ -97,7 +97,7 @@ class CustomSnackBar {
             GestureDetector(
               onTap: () => Get.closeCurrentSnackbar(),
               child: Padding(
-                padding: EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.only(left: 8),
                 child: Icon(
                   Icons.close_rounded,
                   size: 20,

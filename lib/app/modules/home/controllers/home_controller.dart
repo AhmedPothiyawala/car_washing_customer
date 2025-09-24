@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:go_burble_new/app/models/cancel_booking_model.dart';
 import 'package:go_burble_new/app/models/confirm_booking_model.dart';
 import 'package:go_burble_new/app/models/get_calculated_rate_model.dart';
 
@@ -12,6 +13,7 @@ import '../../../data/app_colors.dart';
 import '../../../data/global_constant.dart';
 import '../../../data/storage_key.dart';
 import '../../../data/utils.dart';
+import '../../../models/booking_detail_model.dart';
 import '../../../models/home_model.dart';
 import '../../../models/upcoming_booking_model.dart';
 import '../../../routes/app_pages.dart';
@@ -35,8 +37,14 @@ class HomeControllers extends GetxController {
   RxString get isselectedTime => _isselectedTime;
   final Rx<HomeModel> _homeData = HomeModel().obs;
   final Rx<UpcomingBookingModel> _bookingData = UpcomingBookingModel().obs;
+  final Rx<CancelBookingModel> _cancelbookingData = CancelBookingModel().obs;
+
   final Rx<ConfirmBookingModel> _confirmBookingData = ConfirmBookingModel().obs;
+  final Rx<BookingDetailModel> _bookingDetail = BookingDetailModel().obs;
+
   final RxInt _isselectedCar = 0.obs;
+  final RxInt _groupvalue = 0.obs;
+  final RxString _cancelreson = "".obs;
   final Rx<GetCalculatedRateModel> _getCalculatedPriceData =
       GetCalculatedRateModel().obs;
   Rx<Position?> get currentPosition => _currentPosition;
@@ -46,6 +54,9 @@ class HomeControllers extends GetxController {
   Rx<ConfirmBookingModel> get confirmBookingData => _confirmBookingData;
   Rx<GetCalculatedRateModel> get getCalculatedPriceData =>
       _getCalculatedPriceData;
+  Rx<BookingDetailModel> get bookingDetail => _bookingDetail;
+  Rx<CancelBookingModel> get cancelbookingData => _cancelbookingData;
+
   final _pickupLocationController = TextEditingController();
   var  pickupFocusNode = FocusNode().obs;
   final _apiService = Get.find<ApiServices>();
@@ -58,8 +69,11 @@ class HomeControllers extends GetxController {
   RxList<Map<String, double>> get pickup => _pickup;
   RxList<Map<String, double>> get drop => _drop;
   RxInt get isselectedCar => _isselectedCar;
+  RxInt get groupvalue => _groupvalue;
+  RxString get cancelreson => _cancelreson;
   RxList<TextEditingController>  get dropController => _dropController;
   Future<Position> determinePosition() async {
+    Geolocator.requestPermission();
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
 
     LocationPermission permission = await Geolocator.checkPermission();
@@ -169,7 +183,7 @@ class HomeControllers extends GetxController {
     }
   }
 
-  Future<void> getbookingcalculatedprice(String transfer_type,
+  Future<void> getbookingcalculatedprice(String transferType,
      ) async {
     loading(show: true, title: "Sending...");
     try {
@@ -180,7 +194,7 @@ class HomeControllers extends GetxController {
       {
         'user_id': await _storageService.readString(StorageKey.userId),
         'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
-        'transfer_type': transfer_type.toString().toLowerCase(),
+        'transfer_type': transferType.toString().toLowerCase(),
         'booking_date': _isselectedDate.value,
         'booking_time': _isselectedTime.value,
         'pickup':jsonEncode( _pickup),
@@ -189,7 +203,7 @@ class HomeControllers extends GetxController {
       }:  {
         'user_id': await _storageService.readString(StorageKey.userId),
         'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
-        'transfer_type': transfer_type.toString().toLowerCase(),
+        'transfer_type': transferType.toString().toLowerCase(),
         'booking_date': _isselectedDate.value,
         'booking_time': _isselectedTime.value,
         'pickup': jsonEncode( _pickup),
@@ -206,7 +220,7 @@ class HomeControllers extends GetxController {
 
           if (jsonMap['success'] == true) {
             _getCalculatedPriceData.value = GetCalculatedRateModel.fromJson(jsonMap);
-            Get.toNamed(Routes.SELECT_RIDER_VIEW, arguments: {'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar", 'transfer_type': transfer_type.toString().toLowerCase(),'booking_date': _isselectedDate.value, 'booking_time': _isselectedTime.value,'pickup':  _pickupLocationController,'drop':_dropController,'pickuplat':  _pickup,'droplat':_drop});
+            Get.toNamed(Routes.SELECT_RIDER_VIEW, arguments: {'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar", 'transfer_type': transferType.toString().toLowerCase(),'booking_date': _isselectedDate.value, 'booking_time': _isselectedTime.value,'pickup':  _pickupLocationController,'drop':_dropController,'pickuplat':  _pickup,'droplat':_drop});
           } else {
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
           }
@@ -277,10 +291,10 @@ class HomeControllers extends GetxController {
   }
 
 
-  Future<void> confirmbooking(String transfer_type,booking_date,booking_time,List<Map<String, double>> pickup,List<Map<String, double>> drop,
-     String car_class,customer_name,customer_surname,customer_email,customer_phone,customer_remarks,dispatcher_name,customer_name2,customer_phone2,
-      billing_company_name,billing_supplement,billing_street_no,billing_place,billing_address,billing_canton
-      ,billing_postal_code,billing_land,dispatcher_phone,dispatcher_order_number
+  Future<void> confirmbooking(String service,transferType,bookingDate,bookingTime,List<Map<String, double>> pickup,List<Map<String, double>> drop,
+     String customerName,customerSurname,customerEmail,customerPhone,customerRemarks,dispatcherName,customerName2,customerPhone2,
+      billingCompanyName,billingSupplement,billingStreetNo,billingPlace,billingAddress,billingCanton
+      ,billingPostalCode,billingLand,dispatcherPhone,dispatcherOrderNumber
       ) async {
     loading(show: true, title: "Sending...");
     try {
@@ -288,10 +302,10 @@ class HomeControllers extends GetxController {
 
       {
         'user_id': await _storageService.readString(StorageKey.userId),
-        'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
-        'transfer_type': transfer_type.toString().toLowerCase(),
-        'booking_date': booking_date,
-        'booking_time': booking_time,
+        'service': service,
+        'transfer_type': transferType.toString().toLowerCase(),
+        'booking_date': bookingDate,
+        'booking_time': bookingTime,
         'pickup': jsonEncode( pickup),
         'drops': jsonEncode(drop),
         'car_class': _getCalculatedPriceData.value.data![_isselectedCar.value].carClassId,
@@ -299,33 +313,33 @@ class HomeControllers extends GetxController {
         'base_rate': _getCalculatedPriceData.value.data![_isselectedCar.value].baseRate,
         'vat_value': _getCalculatedPriceData.value.data![_isselectedCar.value].vatValue,
         'our_fees': _getCalculatedPriceData.value.data![_isselectedCar.value].ourFees,
-        'customer_name': customer_name,
-        'customer_surname': customer_surname,
-        'customer_email': customer_email,
-        'customer_phone': customer_phone,
-        'customer_remarks': customer_remarks,
+        'customer_name': customerName,
+        'customer_surname': customerSurname,
+        'customer_email': customerEmail,
+        'customer_phone': customerPhone,
+        'customer_remarks': customerRemarks,
         'billing_address_flag': 1,
-        'dispatcher_name': dispatcher_name,
-        'customer_name2': customer_name2,
-        'customer_phone2': customer_phone2,
-        'billing_company_name': billing_company_name,
-        'billing_supplement': billing_supplement,
-        'billing_street_no': billing_street_no,
-        'billing_place': billing_place,
-        'billing_address': billing_address,
-        'billing_canton': billing_canton,
-        'billing_postal_code': billing_postal_code,
-        'billing_land': billing_land,
-        'dispatcher_phone': dispatcher_phone,
-        'dispatcher_order_number': dispatcher_order_number,
+        'dispatcher_name': dispatcherName,
+        'customer_name2': customerName2,
+        'customer_phone2': customerPhone2,
+        'billing_company_name': billingCompanyName,
+        'billing_supplement': billingSupplement,
+        'billing_street_no': billingStreetNo,
+        'billing_place': billingPlace,
+        'billing_address': billingAddress,
+        'billing_canton': billingCanton,
+        'billing_postal_code': billingPostalCode,
+        'billing_land': billingLand,
+        'dispatcher_phone': dispatcherPhone,
+        'dispatcher_order_number': dispatcherOrderNumber,
       }
           :
     {
         'user_id': await _storageService.readString(StorageKey.userId),
         'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
-        'transfer_type': transfer_type.toString().toLowerCase(),
-        'booking_date': booking_date,
-        'booking_time': booking_time,
+        'transfer_type': transferType.toString().toLowerCase(),
+        'booking_date': bookingDate,
+        'booking_time': bookingTime,
         'pickup': jsonEncode( pickup),
          'drop': jsonEncode(drop),
       'car_class': _getCalculatedPriceData.value.data![_isselectedCar.value].carClassId,
@@ -333,25 +347,25 @@ class HomeControllers extends GetxController {
       'base_rate': _getCalculatedPriceData.value.data![_isselectedCar.value].baseRate,
       'vat_value': _getCalculatedPriceData.value.data![_isselectedCar.value].vatValue,
       'our_fees': _getCalculatedPriceData.value.data![_isselectedCar.value].ourFees,
-      'customer_name': customer_name,
-      'customer_surname': customer_surname,
-      'customer_email': customer_email,
-      'customer_phone': customer_phone,
-      'customer_remarks': customer_remarks,
+      'customer_name': customerName,
+      'customer_surname': customerSurname,
+      'customer_email': customerEmail,
+      'customer_phone': customerPhone,
+      'customer_remarks': customerRemarks,
       'billing_address_flag': 1,
-      'dispatcher_name': dispatcher_name,
-      'customer_name2': customer_name2,
-      'customer_phone2': customer_phone2,
-      'billing_company_name': billing_company_name,
-      'billing_supplement': billing_supplement,
-      'billing_street_no': billing_street_no,
-      'billing_place': billing_place,
-      'billing_address': billing_address,
-      'billing_canton': billing_canton,
-      'billing_postal_code': billing_postal_code,
-      'billing_land': billing_land,
-      'dispatcher_phone': dispatcher_phone,
-      'dispatcher_order_number': dispatcher_order_number,
+      'dispatcher_name': dispatcherName,
+      'customer_name2': customerName2,
+      'customer_phone2': customerPhone2,
+      'billing_company_name': billingCompanyName,
+      'billing_supplement': billingSupplement,
+      'billing_street_no': billingStreetNo,
+      'billing_place': billingPlace,
+      'billing_address': billingAddress,
+      'billing_canton': billingCanton,
+      'billing_postal_code': billingPostalCode,
+      'billing_land': billingLand,
+      'dispatcher_phone': dispatcherPhone,
+      'dispatcher_order_number': dispatcherOrderNumber,
       };
 
       final response = await _apiService.post(
@@ -361,9 +375,11 @@ class HomeControllers extends GetxController {
         if (response.statusCode == 200) {
           Map<String, dynamic> jsonMap = response.data;
 
-          if (jsonMap['success'] == true) {
+          if (jsonMap['status'] == true) {
             _confirmBookingData.value = ConfirmBookingModel.fromJson(jsonMap);
-            Get.toNamed(Routes.RIDE_SUCCESS_VIEW);
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+           bookingdetail( jsonMap['data']['booking_unique_id']);
+            Get.toNamed(Routes.TRIP_DETAIL_VIEW);
           } else {
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
           }
@@ -393,6 +409,130 @@ class HomeControllers extends GetxController {
     }
   }
 
+  Future<void> bookingdetail(String bookingId) async {
+    _isLoding2(true);
+    try {
+      var data = {
+        'user_id': await _storageService.readString(StorageKey.userId),
+        'booking_id' :bookingId
+      };
+
+      final response = await _apiService.post(
+          endPoint: ApiEndpoints.bookingDetail, reqData: data);
+      if (response != null) {
+        if (response.statusCode == 200) {
+          Map<String, dynamic> jsonMap = response.data;
+
+          if (jsonMap['status'] == true) {
+            _bookingDetail.value = BookingDetailModel.fromJson(jsonMap);
+            final dynamic decoded = jsonDecode(jsonMap['pickup_points']);
+
+            List<Map<String, dynamic>> pickuppoints = [];
+            pickuppoints = List<Map<String, dynamic>>.from(decoded);
+
+            for (var point in pickuppoints) {
+              double lat = point['lat'];
+              double lng = point['long'];
+
+              List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+
+              if (placemarks.isNotEmpty) {
+                final p = placemarks.first;
+                final address = "${p.name}, ${p.locality}, ${p.country}";
+                _pickupLocationController.text=address;
+              }
+            }
+
+
+
+            final dynamic decoded2 = jsonDecode(jsonMap['drop_points']);
+
+            List<Map<String, dynamic>> droppoints = [];
+            droppoints = List<Map<String, dynamic>>.from(decoded2);
+
+            for (var point in droppoints) {
+              double lat = point['lat'];
+              double lng = point['long'];
+
+              List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+
+              if (placemarks.isNotEmpty) {
+                final p = placemarks.first;
+                final address = "${p.name}, ${p.locality}, ${p.country}";
+                _dropController.add(TextEditingController(text: address));
+              }
+            }
+          } else {
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+          }
+
+          _isLoding2(false);
+        }
+      }
+    } on dio.DioException catch (ex) {
+      _isLoding2(false);
+      if (ex.response != null) {
+        final data = ex.response!.data;
+        CustomSnackBar.errorSnackBar(
+            message: data['message_en'] ?? "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+        print(data["errors_de"]);
+      } else {
+        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+      }
+    } catch (e) {
+      _isLoding2(false);
+      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+      appLogger.e(e.toString());
+    } finally {
+      _isLoding2(false);
+    }
+  }
+
+  Future<void> cancelbooking() async {
+    loading(show: true, title: "Cancelling.");
+
+    try {
+      var data = {
+        'user_id': await _storageService.readString(StorageKey.userId),
+        'booking_id' :_bookingDetail.value.bookings!.bookingId,
+        'cancel_reason':_cancelreson.value.toString().toLowerCase()
+      };
+
+      final response = await _apiService.post(
+          endPoint: ApiEndpoints.cancelBooking, reqData: data);
+      if (response != null) {
+        if (response.statusCode == 200) {
+          Map<String, dynamic> jsonMap = response.data;
+
+          if (jsonMap['status'] == true) {
+            _cancelbookingData.value = CancelBookingModel.fromJson(jsonMap);
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            Get.toNamed(Routes.BOTTOM_APP_BAR_VIEW);
+          } else {
+            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+          }
+
+          loading(show: false);
+        }
+      }
+    } on dio.DioException catch (ex) {
+      loading(show: false);
+      if (ex.response != null) {
+        final data = ex.response!.data;
+        CustomSnackBar.errorSnackBar(
+            message: data['message_en'] ?? "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+        print(data["errors_de"]);
+      } else {
+        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+      }
+    } catch (e) {
+      loading(show: false);
+      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+      appLogger.e(e.toString());
+    } finally {
+      loading(show: false);
+    }
+  }
 
   @override
   void onInit() {

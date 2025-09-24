@@ -1,22 +1,19 @@
-class ConfirmBookingModel {
+class BookingDetailModel {
   bool? status;
   String? messageEn;
   String? messageDe;
-  List<Bookings>? bookings;
+  Bookings? bookings;
 
-  ConfirmBookingModel(
+  BookingDetailModel(
       {this.status, this.messageEn, this.messageDe, this.bookings});
 
-  ConfirmBookingModel.fromJson(Map<String, dynamic> json) {
+  BookingDetailModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     messageEn = json['message_en'];
     messageDe = json['message_de'];
-    if (json['bookings'] != null) {
-      bookings = <Bookings>[];
-      json['bookings'].forEach((v) {
-        bookings!.add(Bookings.fromJson(v));
-      });
-    }
+    bookings = json['bookings'] != null
+        ? Bookings.fromJson(json['bookings'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -25,7 +22,7 @@ class ConfirmBookingModel {
     data['message_en'] = messageEn;
     data['message_de'] = messageDe;
     if (bookings != null) {
-      data['bookings'] = bookings!.map((v) => v.toJson()).toList();
+      data['bookings'] = bookings!.toJson();
     }
     return data;
   }
@@ -66,10 +63,12 @@ class Bookings {
   String? customerPhone2;
   String? status;
   Null cancelReason;
+  Null driverUserid;
   String? createdAt;
   String? updatedAt;
   String? carClassTitleEn;
   String? carClassTitleDe;
+  String? carClassImage;
   String? remainingTime;
 
   Bookings(
@@ -107,10 +106,12 @@ class Bookings {
         this.customerPhone2,
         this.status,
         this.cancelReason,
+        this.driverUserid,
         this.createdAt,
         this.updatedAt,
         this.carClassTitleEn,
         this.carClassTitleDe,
+        this.carClassImage,
         this.remainingTime});
 
   Bookings.fromJson(Map<String, dynamic> json) {
@@ -148,10 +149,12 @@ class Bookings {
     customerPhone2 = json['customer_phone2'];
     status = json['status'];
     cancelReason = json['cancel_reason'];
+    driverUserid = json['driver_userid'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     carClassTitleEn = json['car_class_title_en'];
     carClassTitleDe = json['car_class_title_de'];
+    carClassImage = json['car_class_image'];
     remainingTime = json['remaining_time'];
   }
 
@@ -191,10 +194,12 @@ class Bookings {
     data['customer_phone2'] = customerPhone2;
     data['status'] = status;
     data['cancel_reason'] = cancelReason;
+    data['driver_userid'] = driverUserid;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     data['car_class_title_en'] = carClassTitleEn;
     data['car_class_title_de'] = carClassTitleDe;
+    data['car_class_image'] = carClassImage;
     data['remaining_time'] = remainingTime;
     return data;
   }

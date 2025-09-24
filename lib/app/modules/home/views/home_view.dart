@@ -113,7 +113,7 @@ class _HomeViewState extends State<HomeView> {
                     child: Container(height: 16, width: 120, color: Colors.grey[300]),
                   ),
                   const SizedBox(height: 10),
-                  shimmerBookingCard(kWidth),
+                  Center(child: shimmerBookingCard(kWidth)),
                   const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
@@ -134,7 +134,7 @@ class _HomeViewState extends State<HomeView> {
                     children: [
                       const SizedBox(width: 20),
                       Container(height: 16, width: 120, color: Colors.grey[300]),
-                      Spacer(),
+                      const Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: Container(height: 16, width: 120, color: Colors.grey[300]),
