@@ -28,6 +28,7 @@ class AppImages {
   static const String moduloImage = "assets/images/modulo_image.png";
   static const String offerCarImage = "assets/images/offer_car_image.png";
   static const String cancelBookingImage = "assets/images/cancel_booking.png";
+  static const String dropCarImage = "assets/images/drop_car_image.png";
 
   //Icons
   static const String errorInfo = "assets/icons/error_info.svg";
@@ -63,4 +64,7 @@ class AppImages {
       "assets/icons/star_icon_with_black_border.svg";
   static const String calendarOrangeColorIcon = "assets/icons/calendar_orange_i"
       "con.svg";
+  static const String markerIcon = "assets/icons/marker_icon.png";
+  static const String markerIcon2 = "assets/icons/marker_icon2.png";
+
 }

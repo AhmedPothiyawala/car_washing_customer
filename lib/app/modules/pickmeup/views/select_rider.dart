@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/utils.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
 import '../../../data/app_colors.dart';
@@ -35,6 +36,8 @@ class SelectRiderView extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
+                  homeController.routeMarkers.clear();
+                  homeController.routePolylines.clear();
                   Get.back();
                 },
                 child: Container(
@@ -56,14 +59,58 @@ class SelectRiderView extends StatelessWidget {
         ),
         surfaceTintColor: AppColors.appBackgroundColor,
       ),
-      body: Container(
-        height: kHeight,
-        width: kWidth,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(AppImages.riderMapImage), fit: BoxFit.fill),
-        ),
+      // The HomeControllers dependency is already set up via GetBuilder
+      body: GetBuilder<HomeControllers>(
+        builder: (controller) {
+
+          // Safely access the RxLists
+          final pickupList = controller.pickup.value;
+          final dropList = controller.drop.value;
+
+          // --- Pickup Location Data ---
+          final String pickupAddress = controller.pickupLocationController.text.isNotEmpty
+              ? controller.pickupLocationController.text
+              : "Pickup location address loading...";
+
+          final LatLng initialTarget = pickupList.isNotEmpty
+              ? LatLng(pickupList[0]['lat']!, pickupList[0]['long']!,)
+              : const LatLng(0, 0);
+
+          // --- Drop Location Data (using the FIRST drop point for display) ---
+          final String dropAddress = dropList.isNotEmpty && controller.dropController.value.isNotEmpty
+              ? controller.dropController.value[0].text
+              : "Drop location address loading...";
+
+          final bool showDropContainer = dropList.isNotEmpty;
+
+          return Container(
+            height: kHeight,
+            width: kWidth,
+            child: Stack(
+              children: [
+                // 1. Google Map
+                GoogleMap(
+                  initialCameraPosition: CameraPosition(target: initialTarget),
+                  onMapCreated: (GoogleMapController mapController) {
+                    controller.onMapCreated2(mapController);
+                    Future.delayed(const Duration(milliseconds: 300), () {
+                      controller.fitMapToAllPoints();
+                    });
+                  },
+                  markers: controller.routeMarkers.value,
+                  polylines: controller.routePolylines.value,
+                  circles: controller.circles2.value,
+                  myLocationEnabled: true,
+                  myLocationButtonEnabled: true,
+                ),
+
+              ],
+            ),
+          );
+        },
       ),
+
+
       bottomNavigationBar: Obx(
         () {
           final navBarHeight = MediaQuery.of(context).viewPadding.bottom;
@@ -158,10 +205,13 @@ class SelectRiderView extends StatelessWidget {
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      Text(
-                                        args['pickup'].text,
-                                        style: sfProMediumTextstyle.copyWith(
-                                            color: AppColors.blackColor),
+                                      Container(
+                                        width: kWidth*0.7,
+                                        child: Text(
+                                          args['pickup'].text,
+                                          style: sfProMediumTextstyle.copyWith(
+                                              color: AppColors.blackColor),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -182,10 +232,13 @@ class SelectRiderView extends StatelessWidget {
                                           const SizedBox(
                                             width: 5,
                                           ),
-                                          Text(
-                                            args['drop'][index].text,
-                                            style: sfProMediumTextstyle.copyWith(
-                                                color: AppColors.blackColor),
+                                          Container(
+                                            width: kWidth*0.7,
+                                            child: Text(
+                                              args['drop'][index].text,
+                                              style: sfProMediumTextstyle.copyWith(
+                                                  color: AppColors.blackColor),
+                                            ),
                                           ),
                                         ],
                                       ):const SizedBox();
@@ -237,7 +290,9 @@ class SelectRiderView extends StatelessWidget {
                                       ),
                                       const Spacer(),
                                       Text(
-                                        "chf448".tr,
+                                        double.tryParse(
+                                          homeController.getCalculatedPriceData.value.data![homeController.isselectedCar.value].baseRateWithOurFees.toString(),
+                                        )!.toStringAsFixed(2),
                                         style: sfProMediumTextstyle.copyWith(
                                             color: AppColors.blackShadeTwo),
                                       ),
@@ -398,4 +453,67 @@ class SelectRiderView extends StatelessWidget {
       ),
     );
   }
+
+
+
+}
+
+// Helper function (add this outside the build method or page class)
+Widget _buildLocationContainer(BuildContext context, String address, String type, Color color) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(20),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.1),
+          blurRadius: 10,
+          offset: const Offset(0, 5),
+        ),
+      ],
+    ),
+    child: Row(
+      children: [
+        Container(
+          height: 40,
+          width: 40,
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(
+            type.contains("Pickup") ? Icons.place : Icons.local_taxi,
+            color: color,
+            size: 20,
+          ),
+        ),
+        const SizedBox(width: 15),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                type,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                address,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey[600],
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
 }

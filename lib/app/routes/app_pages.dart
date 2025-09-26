@@ -113,7 +113,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.NOTIFICATION_VIEW,
-      page: () => const NotificationView(),
+      page: () =>  NotificationView(),
     ),
   ];
 }

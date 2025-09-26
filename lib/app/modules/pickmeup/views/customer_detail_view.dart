@@ -173,10 +173,13 @@ class CustomerDetailView extends StatelessWidget {
                           const SizedBox(
                             width: 5,
                           ),
-                          Text(
-                            args['pickup'].text,
-                            style: sfProMediumTextstyle.copyWith(
-                                color: AppColors.blackColor),
+                          Container(
+                            width: kWidth*0.7,
+                            child: Text(
+                              args['pickup'].text,
+                              style: sfProMediumTextstyle.copyWith(
+                                  color: AppColors.blackColor),
+                            ),
                           ),
                         ],
                       ),
@@ -197,10 +200,13 @@ class CustomerDetailView extends StatelessWidget {
                             const SizedBox(
                               width: 5,
                             ),
-                            Text(
-                              args['drop'][index].text,
-                              style: sfProMediumTextstyle.copyWith(
-                                  color: AppColors.blackColor),
+                            Container(
+                              width: kWidth*0.7,
+                              child: Text(
+                                args['drop'][index].text,
+                                style: sfProMediumTextstyle.copyWith(
+                                    color: AppColors.blackColor),
+                              ),
                             ),
                           ],
                         ):const SizedBox();
@@ -249,7 +255,9 @@ class CustomerDetailView extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            "chf448".tr,
+                            double.tryParse(
+                              homeController.getCalculatedPriceData.value.data![homeController.isselectedCar.value].baseRateWithOurFees.toString(),
+                            )!.toStringAsFixed(2),
                             style: sfProMediumTextstyle.copyWith(
                                 color: AppColors.blackShadeTwo),
                           ),

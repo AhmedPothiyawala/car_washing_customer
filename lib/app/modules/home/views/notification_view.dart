@@ -9,7 +9,50 @@ import '../../../data/text_styles.dart';
 import '../../../data/utils.dart';
 
 class NotificationView extends StatelessWidget {
-  const NotificationView({super.key});
+   NotificationView({super.key});
+
+   final List<Map<String,dynamic>> todayNotifications = [
+     {
+       "iconContainerBackgroundColor" : AppColors.skyShadeOne,
+       "icon" : AppImages.carIcon,
+       "title" : "carBookedSuccessfully".tr,
+       "color" : AppColors.skyShadeTwo,
+     },
+     {
+       "iconContainerBackgroundColor" : AppColors.tomatoColorShadeTwo,
+       "icon": AppImages.rightClickOrangeColorIcon,
+       "title": "completeYourTrip".tr,
+       "color" : AppColors.tomatoColorShadeOne,
+     },
+     {
+       "iconContainerBackgroundColor" : AppColors.greenShadeTwo
+           .withValues(alpha: 0.22),
+       "icon": AppImages.moduloIcon,
+       "title": "offerForNow".tr,
+       "color" : AppColors.skyColorShadeThree,
+     },
+     {
+       "iconContainerBackgroundColor" : AppColors.pinkColorShadeTwo,
+       "icon" : AppImages.pinkTimeIcon,
+       "title" : "twoHoursRemain".tr,
+       "color" : AppColors.pinkColorShadeOne,
+     },
+   ];
+
+   final List<Map<String,dynamic>> yesterdayNotifications = [
+     {
+       "iconContainerBackgroundColor" : AppColors.tomatoColorShadeTwo,
+       "icon" : AppImages.starIconWithBlackBorder,
+       "title" : "driveReviewRequest".tr,
+       "color" : AppColors.tomatoColorShadeOne,
+     },
+     {
+       "iconContainerBackgroundColor" : AppColors.tomatoColorShadeTwo,
+       "icon" : AppImages.calendarOrangeColorIcon,
+       "title" : "carCancelledSuccessfully".tr,
+       "color" : AppColors.tomatoColorShadeOne,
+     },
+   ];
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +99,271 @@ class NotificationView extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: Text(
+                  "notification".tr,
+                  style: sfProSemiBoldTextstyle.copyWith(
+                      fontSize: 18, color: AppColors.blackShadeThree),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: Text(
+                  "today".tr,
+                  style: sfProMediumTextstyle.copyWith(
+                      fontSize: 16, color: AppColors.blackShadeThree),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                  itemCount: todayNotifications.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                final item = todayNotifications[index];
+
+                return Column(
+                  mainAxisAlignment:  MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: kWidth * 0.9,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: item["color"],
+                        boxShadow: [
+                          BoxShadow(
+                              offset: const Offset(9, 6),
+                              blurRadius: 32,
+                              color: AppColors.tomatoColorShadeThree
+                                  .withValues(alpha: 0.56)),
+                          BoxShadow(
+                              blurRadius: 33,
+                              color: AppColors.tomatoColorShadeThree
+                                  .withValues(alpha: 0.54))
+                        ]
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10.0, top: 12, right: 10, bottom: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: item["iconContainerBackgroundColor"],
+                              ),
+                              child: SvgPicture.asset(
+                                item["icon"],
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            SizedBox(
+                              width: kWidth * 0.7,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        width : kWidth * 0.55,
+                                        child: Text(item["title"],style:
+                                             sfProMediumTextstyle.copyWith(
+                                                 fontSize: 16,
+                                                 color: AppColors.blackColor),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 2,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Text(
+                                        "twoHourAgo".tr,
+                                        style: sfProRegularTextstyle.copyWith(
+                                            fontSize: 12,
+                                            color: AppColors.blackShadeThree),
+                                      ),
+
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "loremIpsumParagraph".tr,
+                                    maxLines: 3,
+                                    style: sfProRegularTextstyle.copyWith(
+                                        color: AppColors.blackColor),
+                                  ),
+
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                );
+
+
+              }),
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: Text(
+                  "yesterday".tr,
+                  style: sfProSemiBoldTextstyle.copyWith(
+                      fontSize: 18, color: AppColors.blackShadeThree),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              ListView.builder(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  itemCount: yesterdayNotifications.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    final item = yesterdayNotifications[index];
+
+                    return Column(
+                      mainAxisAlignment:  MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: kWidth * 0.9,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: item["color"],
+                              boxShadow: [
+                                BoxShadow(
+                                    offset: const Offset(9, 6),
+                                    blurRadius: 32,
+                                    color: AppColors.tomatoColorShadeThree
+                                        .withValues(alpha: 0.56)),
+                                BoxShadow(
+                                    blurRadius: 33,
+                                    color: AppColors.tomatoColorShadeThree
+                                        .withValues(alpha: 0.54))
+                              ]
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10.0, top: 12, right: 10, bottom: 12),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 35,
+                                  width: 35,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: item["iconContainerBackgroundColor"],
+                                  ),
+                                  child: SvgPicture.asset(
+                                    item["icon"],
+                                    fit: BoxFit.scaleDown,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                SizedBox(
+                                  width: kWidth * 0.7,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            width : kWidth * 0.55,
+                                            child: Text(item["title"],style:
+                                            sfProMediumTextstyle.copyWith(
+                                                fontSize: 16,
+                                                color: AppColors.blackColor),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            "twoHourAgo".tr,
+                                            style: sfProRegularTextstyle.copyWith(
+                                                fontSize: 12,
+                                                color: AppColors.blackShadeThree),
+                                          ),
+
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "loremIpsumParagraph".tr,
+                                        maxLines: 3,
+                                        style: sfProRegularTextstyle.copyWith(
+                                            color: AppColors.blackColor),
+                                      ),
+
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                      ],
+                    );
+
+
+                  }),
+
+              const SizedBox(
+                height: 5,
+              ),
+            ],
+          ),
+        ) );
+  }
+}
+
+/*
+SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -654,6 +962,5 @@ class NotificationView extends StatelessWidget {
               ),
             ],
           ),
-        ));
-  }
-}
+        )
+ */

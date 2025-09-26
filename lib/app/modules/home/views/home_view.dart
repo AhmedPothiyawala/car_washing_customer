@@ -406,7 +406,16 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             InkWell(
                               onTap: () {
+                                homeController.drop([]);
+                                homeController.pickup([]);
+                                homeController.dropController([TextEditingController()]);
+                                homeController.dropfocus([FocusNode()]);
+                                homeController.isselectedTime("");
+                                homeController.isselectedDate("");
+                                homeController.pickupLocationController.clear();
+                                homeController.getlocation();
                                 Get.toNamed(Routes.PICK_ME_UP_VIEW);
+
                               },
                               child: Container(
                                 height: 132,
@@ -483,6 +492,14 @@ class _HomeViewState extends State<HomeView> {
                             InkWell(
                               onTap: () {
                                 homeController.isPickMeUp(true);
+                                homeController.drop([]);
+                                homeController.pickup([]);
+                                homeController.dropController([TextEditingController()]);
+                                homeController.dropfocus([FocusNode()]);
+                                homeController.isselectedTime("");
+                                homeController.isselectedDate("");
+                                homeController.pickupLocationController.clear();
+                                homeController.getlocation();
                                 Get.toNamed(Routes.PICK_ME_UP_VIEW);
                               },
                               child: Container(

@@ -1,13 +1,17 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart' as dio;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:go_burble_new/app/data/app_images.dart';
 import 'package:go_burble_new/app/models/cancel_booking_model.dart';
 import 'package:go_burble_new/app/models/confirm_booking_model.dart';
 import 'package:go_burble_new/app/models/get_calculated_rate_model.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../data/app_colors.dart';
 import '../../../data/global_constant.dart';
@@ -20,6 +24,9 @@ import '../../../routes/app_pages.dart';
 import '../../../services/api_services/api_services.dart';
 import '../../../services/storage_services/storage_services.dart';
 import '../../../widgets/custom_snackbar.dart';
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+
 
 class HomeControllers extends GetxController {
   final RxBool _isPickMeUp = false.obs;
@@ -72,28 +79,212 @@ class HomeControllers extends GetxController {
   RxInt get groupvalue => _groupvalue;
   RxString get cancelreson => _cancelreson;
   RxList<TextEditingController>  get dropController => _dropController;
+  final RxSet<Circle> circles = <Circle>{}.obs;
+  final RxSet<Marker> markers = <Marker>{}.obs;
+  final RxSet<Marker> routeMarkers = <Marker>{}.obs;
+  final RxSet<Polyline> routePolylines = <Polyline>{}.obs;
+  final RxSet<Circle> circles2 = <Circle>{}.obs; // Used for the route map pickup circle
+
+  // GoogleMapController fields
+  GoogleMapController? mapController1; // For the current location map
+  GoogleMapController? mapController2; // For the route map
+
+  // New methods to be called from GoogleMap's onMapCreated in the views
+  void onMapCreated1(GoogleMapController controller) {
+    mapController1 = controller;
+  }
+
+  void onMapCreated2(GoogleMapController controller) {
+    mapController2 = controller;
+  }
+
+  // Rx CameraPosition
+  final Rx<CameraPosition> currentPositionMap = const CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  ).obs;
+
+
+  // Call this when location updates
+  Future<void> updateCircle(double lat,double long) async {
+    circles.value = {
+      Circle(
+        circleId: CircleId("pickup_area"),
+        center: LatLng(lat,long),
+        radius: 30, // in meters
+        fillColor: AppColors.primaryColor.withValues(alpha: 0.15),
+        strokeColor:AppColors.primaryColor.withValues(alpha: 0.58),
+        strokeWidth: 1,
+      ),
+    };
+
+    // ⚠️ Updated how BitmapDescriptor is loaded
+    final icon = await BitmapDescriptor.asset(
+        const ImageConfiguration(size: Size(33, 33)), AppImages.markerIcon);
+
+    markers.value = {
+      Marker(
+        markerId: MarkerId("current_location"),
+        position: LatLng(lat, long),
+        icon: icon,
+        infoWindow: InfoWindow(title: "Your Location"),
+      ),
+    };
+  }
+
+  Future<void> updateCamerapost(double lat,double long) async {
+    if (mapController1 != null) {
+      await mapController1!.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            bearing: 192.8334901395799,
+            target: LatLng(
+                lat,
+                long
+            ),
+            tilt: 59.440717697143555,
+            zoom: 19.151926040649414,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> updateRouteMarkers() async {
+    if (_pickup.isEmpty) return;
+
+    final pickup = LatLng(_pickup[0]["lat"]!, _pickup[0]["long"]!);
+
+    // 1. Setup Circle for Pickup (as requested)
+    circles2.value = {
+      Circle(
+        circleId: CircleId("pickup_area"),
+        center: pickup,
+        radius: 30, // in meters
+        fillColor: AppColors.primaryColor.withValues(alpha: 0.15),
+        strokeColor: AppColors.primaryColor.withValues(alpha: 0.58),
+        strokeWidth: 1,
+      ),
+      Circle(
+        circleId: CircleId("pickup_area"),
+        center: pickup,
+        radius: 15, // in meters
+        fillColor: AppColors.primaryColor.withValues(alpha: 0.15),
+        strokeColor: AppColors.primaryColor.withValues(alpha: 0.58),
+        strokeWidth: 1,
+      ),
+    };
+
+
+    // Load the custom car marker icon once (Ensuring vertical orientation is in the PNG asset itself)
+    final BitmapDescriptor dropCarIcon = await BitmapDescriptor.asset(
+        const ImageConfiguration(size: Size(33, 33)), // Adjusted size
+        AppImages.dropCarImage
+    );
+    final BitmapDescriptor pickupIcon = await BitmapDescriptor.asset(
+        const ImageConfiguration(size: Size(10, 10)), // Adjusted size
+        AppImages.markerIcon2
+    );
+    final Set<Marker> markers = {
+      Marker(
+        markerId: MarkerId("pickup"),
+        position: pickup,
+        icon: pickupIcon,
+        infoWindow: InfoWindow(title: pickupLocationController.text),
+      ),
+    };
+    for (int i = 0; i < _drop.length; i++) {
+      final drop = LatLng(_drop[i]["lat"]!, _drop[i]["long"]!);
+
+      markers.add(
+        Marker(
+          markerId: MarkerId("drop_$i"),
+          position: drop,
+          icon: dropCarIcon,
+          infoWindow: InfoWindow(title: dropController[i].text),
+          // Set anchor to bottom center to properly align vertical icons
+          anchor: const Offset(0.5, 1.0),
+        ),
+      );
+    }
+
+    routeMarkers.value = markers;
+  }
+
+  void drawRoutePolyline() {
+    if (_pickup.isEmpty) return;
+
+    final List<LatLng> points = [];
+
+    // Add pickup point first
+    points.add(LatLng(_pickup[0]["lat"]!, _pickup[0]["long"]!));
+
+    // Add all drop points
+    for (final drop in _drop) {
+      points.add(LatLng(drop["lat"]!, drop["long"]!));
+    }
+
+    routePolylines.value = {
+      Polyline(
+        polylineId: PolylineId("route"),
+        color: AppColors.primaryColor,
+        width: 5,
+        points: points,
+      ),
+    };
+  }
+
+  // Inside HomeControllers.dart
+
+// Inside HomeControllers.dart
+
+  Future<void> fitMapToAllPoints() async {
+    if (mapController2 == null) return;
+
+    // Check if the pickup location is available
+    if (_pickup.isEmpty) {
+      return;
+    }
+
+    // Get the pickup coordinates
+    final LatLng pickupLocation = LatLng(_pickup[0]["lat"]!, _pickup[0]["long"]!);
+
+    // Define the specific high-zoom, bearing, and tilt used on the first map page
+    const double TARGET_ZOOM = 19.151926040649414;
+    const double TARGET_BEARING = 192.8334901395799;
+    const double TARGET_TILT = 59.440717697143555;
+
+    // Animate the camera directly to the pickup location using the desired settings
+    await mapController2!.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: pickupLocation, // Center on pickup location
+          zoom: TARGET_ZOOM,      // Apply desired high zoom
+          bearing: TARGET_BEARING,
+          tilt: TARGET_TILT,
+        ),
+      ),
+    );
+  }
+
+
   Future<Position> determinePosition() async {
     Geolocator.requestPermission();
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
     LocationPermission permission = await Geolocator.checkPermission();
 
     // Check if service is disabled or permission is not granted
     if (!serviceEnabled ||
         permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
-      // Navigate to settings screen and wait for result
       final result = await Get.toNamed(Routes.LOCATIN_VIEW);
-
-      // If user came back and granted permission, retry
       if (result == true) {
-        return await determinePosition(); // 🔁 Retry recursively
+        return await determinePosition();
       } else {
         return Future.error('Location permission not granted');
       }
     }
 
-    // ✅ All good: get the position
     return await Geolocator.getCurrentPosition(
       locationSettings: const LocationSettings(
         accuracy: LocationAccuracy.high,
@@ -102,17 +293,61 @@ class HomeControllers extends GetxController {
     );
   }
 
+
   Future<void> getlocation() async {
     _currentPosition(await determinePosition());
+    updateCircle(_currentPosition.value!.latitude,_currentPosition.value!.longitude);
     List<Placemark> placemarks = await placemarkFromCoordinates(
       _currentPosition.value!.latitude,
       _currentPosition.value!.longitude,
     );
+
+    if (mapController1 != null) {
+      updateCircle(_currentPosition.value!.latitude,_currentPosition.value!.longitude);
+
+      await mapController1!.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            bearing: 192.8334901395799,
+            target: LatLng(
+              _currentPosition.value!.latitude,
+              _currentPosition.value!.longitude,
+            ),
+            tilt: 59.440717697143555,
+            zoom: 19.151926040649414,
+          ),
+        ),
+      );
+    } else {
+      print("Map Controller 1 is null. Cannot animate camera.");
+    }
+
     if (placemarks.isNotEmpty) {
       _currentAddress(placemarks[0]);
-      print(_currentAddress);
+      print(_currentAddress.value);
+    }
+
+    // --- 2. NOTIFICATION PERMISSION CHECK ---
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized ||
+        settings.authorizationStatus == AuthorizationStatus.provisional) {
+      appLogger.i('FCM Notification permission granted.');
+    } else if (settings.authorizationStatus == AuthorizationStatus.denied) {
+      appLogger.w('FCM Notification permission denied by user.');
+    } else {
+      // AuthorizationStatus.notDetermined
+      appLogger.w('FCM Notification permission status undetermined.');
     }
   }
+
 
   Future<void> selectdate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -184,13 +419,11 @@ class HomeControllers extends GetxController {
   }
 
   Future<void> getbookingcalculatedprice(String transferType,
-     ) async {
+      ) async {
     loading(show: true, title: "Sending...");
     try {
       var data =
       _drop.length>1?
-
-
       {
         'user_id': await _storageService.readString(StorageKey.userId),
         'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
@@ -199,7 +432,7 @@ class HomeControllers extends GetxController {
         'booking_time': _isselectedTime.value,
         'pickup':jsonEncode( _pickup),
 
-      'drops': jsonEncode( _drop)
+        'drops': jsonEncode( _drop)
       }:  {
         'user_id': await _storageService.readString(StorageKey.userId),
         'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
@@ -220,6 +453,8 @@ class HomeControllers extends GetxController {
 
           if (jsonMap['success'] == true) {
             _getCalculatedPriceData.value = GetCalculatedRateModel.fromJson(jsonMap);
+            updateRouteMarkers();
+            drawRoutePolyline();
             Get.toNamed(Routes.SELECT_RIDER_VIEW, arguments: {'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar", 'transfer_type': transferType.toString().toLowerCase(),'booking_date': _isselectedDate.value, 'booking_time': _isselectedTime.value,'pickup':  _pickupLocationController,'drop':_dropController,'pickuplat':  _pickup,'droplat':_drop});
           } else {
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
@@ -237,7 +472,7 @@ class HomeControllers extends GetxController {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
             message: data['message_en'] ?? "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-            print(data["errors_de"]);
+        print(data["errors_de"]);
       } else {
         CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
       }
@@ -292,7 +527,7 @@ class HomeControllers extends GetxController {
 
 
   Future<void> confirmbooking(String service,transferType,bookingDate,bookingTime,List<Map<String, double>> pickup,List<Map<String, double>> drop,
-     String customerName,customerSurname,customerEmail,customerPhone,customerRemarks,dispatcherName,customerName2,customerPhone2,
+      String customerName,customerSurname,customerEmail,customerPhone,customerRemarks,dispatcherName,customerName2,customerPhone2,
       billingCompanyName,billingSupplement,billingStreetNo,billingPlace,billingAddress,billingCanton
       ,billingPostalCode,billingLand,dispatcherPhone,dispatcherOrderNumber
       ) async {
@@ -334,38 +569,38 @@ class HomeControllers extends GetxController {
         'dispatcher_order_number': dispatcherOrderNumber,
       }
           :
-    {
+      {
         'user_id': await _storageService.readString(StorageKey.userId),
         'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
         'transfer_type': transferType.toString().toLowerCase(),
         'booking_date': bookingDate,
         'booking_time': bookingTime,
         'pickup': jsonEncode( pickup),
-         'drop': jsonEncode(drop),
-      'car_class': _getCalculatedPriceData.value.data![_isselectedCar.value].carClassId,
-      'total_distance': _getCalculatedPriceData.value.data![_isselectedCar.value].totalDistance,
-      'base_rate': _getCalculatedPriceData.value.data![_isselectedCar.value].baseRate,
-      'vat_value': _getCalculatedPriceData.value.data![_isselectedCar.value].vatValue,
-      'our_fees': _getCalculatedPriceData.value.data![_isselectedCar.value].ourFees,
-      'customer_name': customerName,
-      'customer_surname': customerSurname,
-      'customer_email': customerEmail,
-      'customer_phone': customerPhone,
-      'customer_remarks': customerRemarks,
-      'billing_address_flag': 1,
-      'dispatcher_name': dispatcherName,
-      'customer_name2': customerName2,
-      'customer_phone2': customerPhone2,
-      'billing_company_name': billingCompanyName,
-      'billing_supplement': billingSupplement,
-      'billing_street_no': billingStreetNo,
-      'billing_place': billingPlace,
-      'billing_address': billingAddress,
-      'billing_canton': billingCanton,
-      'billing_postal_code': billingPostalCode,
-      'billing_land': billingLand,
-      'dispatcher_phone': dispatcherPhone,
-      'dispatcher_order_number': dispatcherOrderNumber,
+        'drop': jsonEncode(drop),
+        'car_class': _getCalculatedPriceData.value.data![_isselectedCar.value].carClassId,
+        'total_distance': _getCalculatedPriceData.value.data![_isselectedCar.value].totalDistance,
+        'base_rate': _getCalculatedPriceData.value.data![_isselectedCar.value].baseRate,
+        'vat_value': _getCalculatedPriceData.value.data![_isselectedCar.value].vatValue,
+        'our_fees': _getCalculatedPriceData.value.data![_isselectedCar.value].ourFees,
+        'customer_name': customerName,
+        'customer_surname': customerSurname,
+        'customer_email': customerEmail,
+        'customer_phone': customerPhone,
+        'customer_remarks': customerRemarks,
+        'billing_address_flag': 1,
+        'dispatcher_name': dispatcherName,
+        'customer_name2': customerName2,
+        'customer_phone2': customerPhone2,
+        'billing_company_name': billingCompanyName,
+        'billing_supplement': billingSupplement,
+        'billing_street_no': billingStreetNo,
+        'billing_place': billingPlace,
+        'billing_address': billingAddress,
+        'billing_canton': billingCanton,
+        'billing_postal_code': billingPostalCode,
+        'billing_land': billingLand,
+        'dispatcher_phone': dispatcherPhone,
+        'dispatcher_order_number': dispatcherOrderNumber,
       };
 
       final response = await _apiService.post(
@@ -378,7 +613,7 @@ class HomeControllers extends GetxController {
           if (jsonMap['status'] == true) {
             _confirmBookingData.value = ConfirmBookingModel.fromJson(jsonMap);
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-           bookingdetail( jsonMap['data']['booking_unique_id']);
+            bookingdetail( jsonMap['data']['booking_unique_id']);
             Get.toNamed(Routes.TRIP_DETAIL_VIEW);
           } else {
             CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);

@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/utils.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/place_type.dart';
 import 'package:google_places_flutter/model/prediction.dart';
@@ -15,14 +18,15 @@ import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_drop_down_form_field.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../home/controllers/home_controller.dart';
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+
 
 class PickMeUpView extends StatelessWidget {
   PickMeUpView({super.key});
   final homeController = Get.find<HomeControllers>();
 
   final transferTypeController = TextEditingController();
-
-
 
 
   @override
@@ -38,6 +42,7 @@ class PickMeUpView extends StatelessWidget {
         homeController.dropfocus([FocusNode()]);
         homeController.isselectedTime("");
         homeController.isselectedDate("");
+        homeController.pickupLocationController.clear();
       },
       child: Scaffold(
           resizeToAvoidBottomInset: true,
@@ -63,6 +68,10 @@ class PickMeUpView extends StatelessWidget {
                       homeController.drop([]);
                       homeController.pickup([]);
                       homeController.dropController([TextEditingController()]);
+                      homeController.dropfocus([FocusNode()]);
+                      homeController.isselectedTime("");
+                      homeController.isselectedDate("");
+                      homeController.pickupLocationController.clear();
                     },
                     child: Container(
                       height: 44,
@@ -139,12 +148,26 @@ class PickMeUpView extends StatelessWidget {
             ),
           ),
           body: Container(
-            height: kHeight,
-            width: kWidth,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(AppImages.mapImage), fit: BoxFit.fill)),
+              height: kHeight,
+              width: kWidth,
+              child:  GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: const CameraPosition(
+                  target: LatLng(0, 0), // Initial placeholder
+                  zoom: 1,
+                ),
+                // 🎯 FIX: Use the new setter method
+                onMapCreated: (GoogleMapController mapController) {
+                  // Assuming 'homeController' is the instance of HomeControllers
+                  homeController.onMapCreated1(mapController);
+                },
+                circles: homeController.circles, // Use .value for RxSet
+                myLocationEnabled: false,
+                myLocationButtonEnabled: false,
+                markers: homeController.markers, // Use .value for RxSet
+              )
           ),
+
           bottomNavigationBar: Obx(() {
             final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
               final navBarHeight = MediaQuery.of(context).viewPadding.bottom;
@@ -339,14 +362,15 @@ class PickMeUpView extends StatelessWidget {
                                                       hintStyle: sfProMediumTextstyle.copyWith(
                                                           color: AppColors.blackColor)),
                                                   isLatLngRequired: true,
-                                                  getPlaceDetailWithLatLng: (Prediction prediction) {
+                                                  getPlaceDetailWithLatLng: (Prediction prediction) async {
                                                     homeController.pickup([
                                                       {
                                                         "lat": double.parse(prediction.lat.toString()),
                                                         "long": double.parse(prediction.lng.toString())
                                                       }
                                                     ]);
-                                                    print(homeController.pickup);
+                                                    homeController.updateCamerapost(double.parse(prediction.lat.toString()),double.parse(prediction.lng.toString()));
+                                                    homeController.updateCircle(double.parse(prediction.lat.toString()),double.parse(prediction.lng.toString()));
 
                                                   },
                                                   itemClick: (Prediction prediction) {
