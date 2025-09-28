@@ -11,9 +11,8 @@ class BookingDetailModel {
     status = json['status'];
     messageEn = json['message_en'];
     messageDe = json['message_de'];
-    bookings = json['bookings'] != null
-        ? Bookings.fromJson(json['bookings'])
-        : null;
+    bookings =
+        json['bookings'] != null ? Bookings.fromJson(json['bookings']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -73,46 +72,46 @@ class Bookings {
 
   Bookings(
       {this.id,
-        this.bookingId,
-        this.userId,
-        this.service,
-        this.carClassId,
-        this.transferType,
-        this.bookingDate,
-        this.bookingTime,
-        this.pickupPoints,
-        this.dropPoints,
-        this.totalDistance,
-        this.baseRate,
-        this.vatValue,
-        this.ourFees,
-        this.customerName,
-        this.customerSurname,
-        this.customerEmail,
-        this.customerPhone,
-        this.customerRemarks,
-        this.billingCompanyName,
-        this.billingSupplement,
-        this.billingStreetNo,
-        this.billingPlace,
-        this.billingAddress,
-        this.billingCanton,
-        this.billingPostalCode,
-        this.billingLand,
-        this.dispatcherName,
-        this.dispatcherPhone,
-        this.dispatcherOrderNumber,
-        this.customerName2,
-        this.customerPhone2,
-        this.status,
-        this.cancelReason,
-        this.driverUserid,
-        this.createdAt,
-        this.updatedAt,
-        this.carClassTitleEn,
-        this.carClassTitleDe,
-        this.carClassImage,
-        this.remainingTime});
+      this.bookingId,
+      this.userId,
+      this.service,
+      this.carClassId,
+      this.transferType,
+      this.bookingDate,
+      this.bookingTime,
+      this.pickupPoints,
+      this.dropPoints,
+      this.totalDistance,
+      this.baseRate,
+      this.vatValue,
+      this.ourFees,
+      this.customerName,
+      this.customerSurname,
+      this.customerEmail,
+      this.customerPhone,
+      this.customerRemarks,
+      this.billingCompanyName,
+      this.billingSupplement,
+      this.billingStreetNo,
+      this.billingPlace,
+      this.billingAddress,
+      this.billingCanton,
+      this.billingPostalCode,
+      this.billingLand,
+      this.dispatcherName,
+      this.dispatcherPhone,
+      this.dispatcherOrderNumber,
+      this.customerName2,
+      this.customerPhone2,
+      this.status,
+      this.cancelReason,
+      this.driverUserid,
+      this.createdAt,
+      this.updatedAt,
+      this.carClassTitleEn,
+      this.carClassTitleDe,
+      this.carClassImage,
+      this.remainingTime});
 
   Bookings.fromJson(Map<String, dynamic> json) {
     id = json['id'];

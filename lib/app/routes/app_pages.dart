@@ -78,9 +78,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SELECT_RIDER_VIEW,
-      page: () =>  SelectRiderView(),
+      page: () => SelectRiderView(),
       binding: HomeBinding(),
-
     ),
     GetPage(
       name: _Paths.ORDER_SUMMARY_VIEW,
@@ -95,10 +94,9 @@ class AppPages {
       page: () => const DriverDetailView(),
     ),
     GetPage(
-      name: _Paths.TRIP_DETAIL_VIEW,
-      page: () =>  TripDetailView(),
-      binding: HomeBinding()
-    ),
+        name: _Paths.TRIP_DETAIL_VIEW,
+        page: () => TripDetailView(),
+        binding: HomeBinding()),
     GetPage(
       name: _Paths.LOCATIN_VIEW,
       page: () => const LocationView(),
@@ -113,7 +111,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.NOTIFICATION_VIEW,
-      page: () =>  NotificationView(),
+      page: () => NotificationView(),
     ),
   ];
 }

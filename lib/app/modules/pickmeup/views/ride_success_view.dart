@@ -16,7 +16,7 @@ class RideSuccessView extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (val1,val2){
+      onPopInvokedWithResult: (val1, val2) {
         Get.toNamed(Routes.BOTTOM_APP_BAR_VIEW);
       },
       child: Scaffold(

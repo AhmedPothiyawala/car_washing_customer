@@ -113,7 +113,9 @@ class CustomerDetailView extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(bottom: navBarHeight>0&&isKeyboardOpen==false?navBarHeight:0),
+        padding: EdgeInsets.only(
+            bottom:
+                navBarHeight > 0 && isKeyboardOpen == false ? navBarHeight : 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,8 +175,8 @@ class CustomerDetailView extends StatelessWidget {
                           const SizedBox(
                             width: 5,
                           ),
-                          Container(
-                            width: kWidth*0.7,
+                          SizedBox(
+                            width: kWidth * 0.7,
                             child: Text(
                               args['pickup'].text,
                               style: sfProMediumTextstyle.copyWith(
@@ -188,33 +190,36 @@ class CustomerDetailView extends StatelessWidget {
                       ),
                       ListView.separated(
                         shrinkWrap: true,
-                        padding: EdgeInsets.zero, itemBuilder: (BuildContext context, int index) {
-                        return args['drop'][index].text!="" ?
-
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.location_on_outlined,
-                              color: AppColors.primaryColor,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Container(
-                              width: kWidth*0.7,
-                              child: Text(
-                                args['drop'][index].text,
-                                style: sfProMediumTextstyle.copyWith(
-                                    color: AppColors.blackColor),
-                              ),
-                            ),
-                          ],
-                        ):const SizedBox();
-                      }, separatorBuilder: (BuildContext context, int index) {
-                        return  const SizedBox(
-                          height: 5,
-                        );
-                      }, itemCount: args['drop'].length,
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (BuildContext context, int index) {
+                          return args['drop'][index].text != ""
+                              ? Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_outlined,
+                                      color: AppColors.primaryColor,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    SizedBox(
+                                      width: kWidth * 0.7,
+                                      child: Text(
+                                        args['drop'][index].text,
+                                        style: sfProMediumTextstyle.copyWith(
+                                            color: AppColors.blackColor),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : const SizedBox();
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const SizedBox(
+                            height: 5,
+                          );
+                        },
+                        itemCount: args['drop'].length,
                       ),
                       const SizedBox(
                         height: 5,
@@ -256,8 +261,14 @@ class CustomerDetailView extends StatelessWidget {
                           const Spacer(),
                           Text(
                             double.tryParse(
-                              homeController.getCalculatedPriceData.value.data![homeController.isselectedCar.value].baseRateWithOurFees.toString(),
-                            )!.toStringAsFixed(2),
+                              homeController
+                                  .getCalculatedPriceData
+                                  .value
+                                  .data![homeController.isselectedCar.value]
+                                  .baseRateWithOurFees
+                                  .toString(),
+                            )!
+                                .toStringAsFixed(2),
                             style: sfProMediumTextstyle.copyWith(
                                 color: AppColors.blackShadeTwo),
                           ),
@@ -938,7 +949,7 @@ class CustomerDetailView extends StatelessWidget {
                                 ))
                             .toList(),
                         onChanged: (value) {
-                          landController.text=value.toString();
+                          landController.text = value.toString();
                         },
                         borderColor: AppColors.appWhiteGreyColor,
                         controller: landController,
@@ -1283,82 +1294,123 @@ class CustomerDetailView extends StatelessWidget {
                   Center(
                     child: CustomButton(
                       onPressed: () {
-                        if(nameController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "nameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+                        if (nameController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "nameValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (surNameController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "surNameValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (emailController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "emailValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (phoneController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "phoneValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (remarkController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "remarkValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (companyName.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "companyNameValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (supplementController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "supplementValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (streetNumberController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "streetNoValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (placeController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "placeValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (addressController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "addressValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (cantonController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "cantonValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (postalCodeController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "postalCodeValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (landController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "landValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (dispatcherNameController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "dispatcherNameValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (dispatcherPhoneController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "dispatcherPhoneValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (orderNumberController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "orderNumberValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (customerNameController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "customerNameValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else if (customerPhoneController.text.isEmpty) {
+                          CustomSnackBar.errorSnackBar(
+                              message: "customerPhoneValidation".tr,
+                              backgroundColor: AppColors.primaryColor,
+                              textcolor: AppColors.appBackgroundColor);
+                        } else {
+                          homeController.confirmbooking(
+                              args['service'],
+                              args['transfer_type'],
+                              args['booking_date'],
+                              args['booking_time'],
+                              args['pickuplat'],
+                              args['droplat'],
+                              nameController.text,
+                              surNameController.text,
+                              emailController.text,
+                              phoneController.text,
+                              remarkController.text,
+                              dispatcherNameController.text,
+                              customerNameController.text,
+                              customerPhoneController.text,
+                              companyName.text,
+                              supplementController.text,
+                              streetNumberController.text,
+                              placeController.text,
+                              addressController.text,
+                              cantonController.text,
+                              postalCodeController.text,
+                              landController.text,
+                              dispatcherPhoneController.text,
+                              orderNumberController.text);
                         }
-                        else if(surNameController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "surNameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(emailController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "emailValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(phoneController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "phoneValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(remarkController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "remarkValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(companyName.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "companyNameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(supplementController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "supplementValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(streetNumberController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "streetNoValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(placeController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "placeValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(addressController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "addressValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(cantonController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "cantonValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(postalCodeController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "postalCodeValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(landController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "landValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(dispatcherNameController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "dispatcherNameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(dispatcherPhoneController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "dispatcherPhoneValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(orderNumberController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "orderNumberValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(customerNameController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "customerNameValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else if(customerPhoneController.text.isEmpty)
-                        {
-                          CustomSnackBar.errorSnackBar(message: "customerPhoneValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                        }
-                        else{
-                          homeController.confirmbooking(args['service'],args['transfer_type'], args['booking_date'], args['booking_time'], args['pickuplat'], args['droplat'], nameController.text, surNameController.text,emailController.text, phoneController.text, remarkController.text, dispatcherNameController.text, customerNameController.text, customerPhoneController.text, companyName.text, supplementController.text, streetNumberController.text, placeController.text, addressController.text, cantonController.text, postalCodeController.text, landController.text, dispatcherPhoneController.text, orderNumberController.text);
-                        }
-
                       },
                       height: 50,
                       width: kWidth * 0.9,

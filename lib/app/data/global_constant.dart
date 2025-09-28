@@ -33,6 +33,4 @@ class ApiEndpoints {
   static const String confirmBooking = "confirmBooking";
   static const String bookingDetail = "getBookingDetails";
   static const String cancelBooking = "cancelBooking";
-
-
 }

@@ -66,5 +66,4 @@ class AppImages {
       "con.svg";
   static const String markerIcon = "assets/icons/marker_icon.png";
   static const String markerIcon2 = "assets/icons/marker_icon2.png";
-
 }

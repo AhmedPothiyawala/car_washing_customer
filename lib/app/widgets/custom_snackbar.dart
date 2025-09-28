@@ -25,7 +25,7 @@ class CustomSnackBar {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: kWidth* 0.6,
+              width: kWidth * 0.6,
               child: Text(
                 message,
                 maxLines: 5,

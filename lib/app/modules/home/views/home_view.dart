@@ -97,66 +97,73 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: SafeArea(
           child: Obx(() {
-            return
-               homeController.isLoding.value || homeController.isLoding2.value
+            return homeController.isLoding.value ||
+                    homeController.isLoding2.value
                 ? SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 10),
-                  shimmerHomeBanner(kWidth),
-                  const SizedBox(height: 20),
-                  // Section Title Placeholder
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Container(height: 16, width: 120, color: Colors.grey[300]),
-                  ),
-                  const SizedBox(height: 10),
-                  Center(child: shimmerBookingCard(kWidth)),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Container(height: 16, width: 120, color: Colors.grey[300]),
-                  ),
-                  const SizedBox(height: 10),
-                  // Our Services
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      shimmerServiceCard(kWidth),
-                      shimmerServiceCard(kWidth),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  // Today's Offers
-                  Row(
-                    children: [
-                      const SizedBox(width: 20),
-                      Container(height: 16, width: 120, color: Colors.grey[300]),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Container(height: 16, width: 120, color: Colors.grey[300]),
-                      ),
-                      const SizedBox(width: 20),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(width: 20),
-                        shimmerOfferCard(kWidth),
-                        shimmerOfferCard(kWidth),
+                        const SizedBox(height: 10),
+                        shimmerHomeBanner(kWidth),
+                        const SizedBox(height: 20),
+                        // Section Title Placeholder
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Container(
+                              height: 16, width: 120, color: Colors.grey[300]),
+                        ),
+                        const SizedBox(height: 10),
+                        Center(child: shimmerBookingCard(kWidth)),
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Container(
+                              height: 16, width: 120, color: Colors.grey[300]),
+                        ),
+                        const SizedBox(height: 10),
+                        // Our Services
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            shimmerServiceCard(kWidth),
+                            shimmerServiceCard(kWidth),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        // Today's Offers
+                        Row(
+                          children: [
+                            const SizedBox(width: 20),
+                            Container(
+                                height: 16,
+                                width: 120,
+                                color: Colors.grey[300]),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: Container(
+                                  height: 16,
+                                  width: 120,
+                                  color: Colors.grey[300]),
+                            ),
+                            const SizedBox(width: 20),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              const SizedBox(width: 20),
+                              shimmerOfferCard(kWidth),
+                              shimmerOfferCard(kWidth),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ],
-              ),
-            )
-
+                  )
                 : SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -408,14 +415,14 @@ class _HomeViewState extends State<HomeView> {
                               onTap: () {
                                 homeController.drop([]);
                                 homeController.pickup([]);
-                                homeController.dropController([TextEditingController()]);
+                                homeController
+                                    .dropController([TextEditingController()]);
                                 homeController.dropfocus([FocusNode()]);
                                 homeController.isselectedTime("");
                                 homeController.isselectedDate("");
                                 homeController.pickupLocationController.clear();
                                 homeController.getlocation();
                                 Get.toNamed(Routes.PICK_ME_UP_VIEW);
-
                               },
                               child: Container(
                                 height: 132,
@@ -494,7 +501,8 @@ class _HomeViewState extends State<HomeView> {
                                 homeController.isPickMeUp(true);
                                 homeController.drop([]);
                                 homeController.pickup([]);
-                                homeController.dropController([TextEditingController()]);
+                                homeController
+                                    .dropController([TextEditingController()]);
                                 homeController.dropfocus([FocusNode()]);
                                 homeController.isselectedTime("");
                                 homeController.isselectedDate("");
@@ -769,6 +777,7 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+
   Widget shimmerHomeBanner(double kWidth) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -834,7 +843,6 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
-
 
   Widget shimmerBookingCard(double kWidth) {
     return Padding(
@@ -932,17 +940,19 @@ class _HomeViewState extends State<HomeView> {
                   const SizedBox(height: 10),
                   Container(height: 12, width: 150, color: Colors.grey[300]),
                   const SizedBox(height: 10),
-                  Container(height: 26, width: kWidth * 0.35, color: Colors.grey[300]),
+                  Container(
+                      height: 26,
+                      width: kWidth * 0.35,
+                      color: Colors.grey[300]),
                 ],
               ),
               const Spacer(),
-              Container(height: 100, width: kWidth * 0.3, color: Colors.grey[400]),
+              Container(
+                  height: 100, width: kWidth * 0.3, color: Colors.grey[400]),
             ],
           ),
         ),
       ),
     );
   }
-
-
 }

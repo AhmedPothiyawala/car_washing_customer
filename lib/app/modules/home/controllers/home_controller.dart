@@ -24,9 +24,6 @@ import '../../../routes/app_pages.dart';
 import '../../../services/api_services/api_services.dart';
 import '../../../services/storage_services/storage_services.dart';
 import '../../../widgets/custom_snackbar.dart';
-import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
-import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
-
 
 class HomeControllers extends GetxController {
   final RxBool _isPickMeUp = false.obs;
@@ -65,25 +62,28 @@ class HomeControllers extends GetxController {
   Rx<CancelBookingModel> get cancelbookingData => _cancelbookingData;
 
   final _pickupLocationController = TextEditingController();
-  var  pickupFocusNode = FocusNode().obs;
+  var pickupFocusNode = FocusNode().obs;
   final _apiService = Get.find<ApiServices>();
   final _storageService = Get.find<StorageService>();
-  final RxList<FocusNode> dropfocus =[FocusNode()].obs;
-  final RxList<Map<String, double>> _pickup =<Map<String, double>>[].obs;
-  final RxList<Map<String, double>> _drop =<Map<String, double>>[].obs;
-  final RxList<TextEditingController> _dropController = [TextEditingController()].obs;
-  TextEditingController get pickupLocationController => _pickupLocationController;
+  final RxList<FocusNode> dropfocus = [FocusNode()].obs;
+  final RxList<Map<String, double>> _pickup = <Map<String, double>>[].obs;
+  final RxList<Map<String, double>> _drop = <Map<String, double>>[].obs;
+  final RxList<TextEditingController> _dropController =
+      [TextEditingController()].obs;
+  TextEditingController get pickupLocationController =>
+      _pickupLocationController;
   RxList<Map<String, double>> get pickup => _pickup;
   RxList<Map<String, double>> get drop => _drop;
   RxInt get isselectedCar => _isselectedCar;
   RxInt get groupvalue => _groupvalue;
   RxString get cancelreson => _cancelreson;
-  RxList<TextEditingController>  get dropController => _dropController;
+  RxList<TextEditingController> get dropController => _dropController;
   final RxSet<Circle> circles = <Circle>{}.obs;
   final RxSet<Marker> markers = <Marker>{}.obs;
   final RxSet<Marker> routeMarkers = <Marker>{}.obs;
   final RxSet<Polyline> routePolylines = <Polyline>{}.obs;
-  final RxSet<Circle> circles2 = <Circle>{}.obs; // Used for the route map pickup circle
+  final RxSet<Circle> circles2 =
+      <Circle>{}.obs; // Used for the route map pickup circle
 
   // GoogleMapController fields
   GoogleMapController? mapController1; // For the current location map
@@ -104,16 +104,15 @@ class HomeControllers extends GetxController {
     zoom: 14.4746,
   ).obs;
 
-
   // Call this when location updates
-  Future<void> updateCircle(double lat,double long) async {
+  Future<void> updateCircle(double lat, double long) async {
     circles.value = {
       Circle(
-        circleId: CircleId("pickup_area"),
-        center: LatLng(lat,long),
+        circleId: const CircleId("pickup_area"),
+        center: LatLng(lat, long),
         radius: 30, // in meters
         fillColor: AppColors.primaryColor.withValues(alpha: 0.15),
-        strokeColor:AppColors.primaryColor.withValues(alpha: 0.58),
+        strokeColor: AppColors.primaryColor.withValues(alpha: 0.58),
         strokeWidth: 1,
       ),
     };
@@ -124,24 +123,21 @@ class HomeControllers extends GetxController {
 
     markers.value = {
       Marker(
-        markerId: MarkerId("current_location"),
+        markerId: const MarkerId("current_location"),
         position: LatLng(lat, long),
         icon: icon,
-        infoWindow: InfoWindow(title: "Your Location"),
+        infoWindow: const InfoWindow(title: "Your Location"),
       ),
     };
   }
 
-  Future<void> updateCamerapost(double lat,double long) async {
+  Future<void> updateCamerapost(double lat, double long) async {
     if (mapController1 != null) {
       await mapController1!.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
             bearing: 192.8334901395799,
-            target: LatLng(
-                lat,
-                long
-            ),
+            target: LatLng(lat, long),
             tilt: 59.440717697143555,
             zoom: 19.151926040649414,
           ),
@@ -158,7 +154,7 @@ class HomeControllers extends GetxController {
     // 1. Setup Circle for Pickup (as requested)
     circles2.value = {
       Circle(
-        circleId: CircleId("pickup_area"),
+        circleId: const CircleId("pickup_area"),
         center: pickup,
         radius: 30, // in meters
         fillColor: AppColors.primaryColor.withValues(alpha: 0.15),
@@ -166,7 +162,7 @@ class HomeControllers extends GetxController {
         strokeWidth: 1,
       ),
       Circle(
-        circleId: CircleId("pickup_area"),
+        circleId: const CircleId("pickup_area"),
         center: pickup,
         radius: 15, // in meters
         fillColor: AppColors.primaryColor.withValues(alpha: 0.15),
@@ -175,19 +171,16 @@ class HomeControllers extends GetxController {
       ),
     };
 
-
     // Load the custom car marker icon once (Ensuring vertical orientation is in the PNG asset itself)
     final BitmapDescriptor dropCarIcon = await BitmapDescriptor.asset(
         const ImageConfiguration(size: Size(33, 33)), // Adjusted size
-        AppImages.dropCarImage
-    );
+        AppImages.dropCarImage);
     final BitmapDescriptor pickupIcon = await BitmapDescriptor.asset(
         const ImageConfiguration(size: Size(10, 10)), // Adjusted size
-        AppImages.markerIcon2
-    );
+        AppImages.markerIcon2);
     final Set<Marker> markers = {
       Marker(
-        markerId: MarkerId("pickup"),
+        markerId: const MarkerId("pickup"),
         position: pickup,
         icon: pickupIcon,
         infoWindow: InfoWindow(title: pickupLocationController.text),
@@ -226,7 +219,7 @@ class HomeControllers extends GetxController {
 
     routePolylines.value = {
       Polyline(
-        polylineId: PolylineId("route"),
+        polylineId: const PolylineId("route"),
         color: AppColors.primaryColor,
         width: 5,
         points: points,
@@ -247,26 +240,26 @@ class HomeControllers extends GetxController {
     }
 
     // Get the pickup coordinates
-    final LatLng pickupLocation = LatLng(_pickup[0]["lat"]!, _pickup[0]["long"]!);
+    final LatLng pickupLocation =
+        LatLng(_pickup[0]["lat"]!, _pickup[0]["long"]!);
 
     // Define the specific high-zoom, bearing, and tilt used on the first map page
-    const double TARGET_ZOOM = 19.151926040649414;
-    const double TARGET_BEARING = 192.8334901395799;
-    const double TARGET_TILT = 59.440717697143555;
+    const double targetZoom = 19.151926040649414;
+    const double targetBearing = 192.8334901395799;
+    const double targetTilt = 59.440717697143555;
 
     // Animate the camera directly to the pickup location using the desired settings
     await mapController2!.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
           target: pickupLocation, // Center on pickup location
-          zoom: TARGET_ZOOM,      // Apply desired high zoom
-          bearing: TARGET_BEARING,
-          tilt: TARGET_TILT,
+          zoom: targetZoom, // Apply desired high zoom
+          bearing: targetBearing,
+          tilt: targetTilt,
         ),
       ),
     );
   }
-
 
   Future<Position> determinePosition() async {
     Geolocator.requestPermission();
@@ -293,17 +286,18 @@ class HomeControllers extends GetxController {
     );
   }
 
-
   Future<void> getlocation() async {
     _currentPosition(await determinePosition());
-    updateCircle(_currentPosition.value!.latitude,_currentPosition.value!.longitude);
+    updateCircle(
+        _currentPosition.value!.latitude, _currentPosition.value!.longitude);
     List<Placemark> placemarks = await placemarkFromCoordinates(
       _currentPosition.value!.latitude,
       _currentPosition.value!.longitude,
     );
 
     if (mapController1 != null) {
-      updateCircle(_currentPosition.value!.latitude,_currentPosition.value!.longitude);
+      updateCircle(
+          _currentPosition.value!.latitude, _currentPosition.value!.longitude);
 
       await mapController1!.animateCamera(
         CameraUpdate.newCameraPosition(
@@ -347,7 +341,6 @@ class HomeControllers extends GetxController {
       appLogger.w('FCM Notification permission status undetermined.');
     }
   }
-
 
   Future<void> selectdate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -418,31 +411,30 @@ class HomeControllers extends GetxController {
     }
   }
 
-  Future<void> getbookingcalculatedprice(String transferType,
-      ) async {
+  Future<void> getbookingcalculatedprice(
+    String transferType,
+  ) async {
     loading(show: true, title: "Sending...");
     try {
-      var data =
-      _drop.length>1?
-      {
-        'user_id': await _storageService.readString(StorageKey.userId),
-        'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
-        'transfer_type': transferType.toString().toLowerCase(),
-        'booking_date': _isselectedDate.value,
-        'booking_time': _isselectedTime.value,
-        'pickup':jsonEncode( _pickup),
-
-        'drops': jsonEncode( _drop)
-      }:  {
-        'user_id': await _storageService.readString(StorageKey.userId),
-        'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
-        'transfer_type': transferType.toString().toLowerCase(),
-        'booking_date': _isselectedDate.value,
-        'booking_time': _isselectedTime.value,
-        'pickup': jsonEncode( _pickup),
-
-        'drop': jsonEncode( _drop)
-      };
+      var data = _drop.length > 1
+          ? {
+              'user_id': await _storageService.readString(StorageKey.userId),
+              'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
+              'transfer_type': transferType.toString().toLowerCase(),
+              'booking_date': _isselectedDate.value,
+              'booking_time': _isselectedTime.value,
+              'pickup': jsonEncode(_pickup),
+              'drops': jsonEncode(_drop)
+            }
+          : {
+              'user_id': await _storageService.readString(StorageKey.userId),
+              'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
+              'transfer_type': transferType.toString().toLowerCase(),
+              'booking_date': _isselectedDate.value,
+              'booking_time': _isselectedTime.value,
+              'pickup': jsonEncode(_pickup),
+              'drop': jsonEncode(_drop)
+            };
 
       final response = await _apiService.post(
           endPoint: ApiEndpoints.getCalculatedRate, reqData: data);
@@ -452,15 +444,31 @@ class HomeControllers extends GetxController {
           Map<String, dynamic> jsonMap = response.data;
 
           if (jsonMap['success'] == true) {
-            _getCalculatedPriceData.value = GetCalculatedRateModel.fromJson(jsonMap);
+            _getCalculatedPriceData.value =
+                GetCalculatedRateModel.fromJson(jsonMap);
             updateRouteMarkers();
             drawRoutePolyline();
-            Get.toNamed(Routes.SELECT_RIDER_VIEW, arguments: {'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar", 'transfer_type': transferType.toString().toLowerCase(),'booking_date': _isselectedDate.value, 'booking_time': _isselectedTime.value,'pickup':  _pickupLocationController,'drop':_dropController,'pickuplat':  _pickup,'droplat':_drop});
+            Get.toNamed(Routes.SELECT_RIDER_VIEW, arguments: {
+              'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
+              'transfer_type': transferType.toString().toLowerCase(),
+              'booking_date': _isselectedDate.value,
+              'booking_time': _isselectedTime.value,
+              'pickup': _pickupLocationController,
+              'drop': _dropController,
+              'pickuplat': _pickup,
+              'droplat': _drop
+            });
           } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            CustomSnackBar.errorSnackBar(
+                message: jsonMap['message_en'],
+                backgroundColor: AppColors.primaryColor,
+                textcolor: AppColors.appBackgroundColor);
           }
         } else {
-          CustomSnackBar.errorSnackBar(message: "Failed to load data.",backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+          CustomSnackBar.errorSnackBar(
+              message: "Failed to load data.",
+              backgroundColor: AppColors.primaryColor,
+              textcolor: AppColors.appBackgroundColor);
         }
         loading(show: false);
         _isLoding(false);
@@ -471,14 +479,22 @@ class HomeControllers extends GetxController {
       if (ex.response != null) {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
-            message: data['message_en'] ?? "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            message: data['message_en'] ?? "somethingWentWrong".tr,
+            backgroundColor: AppColors.primaryColor,
+            textcolor: AppColors.appBackgroundColor);
         print(data["errors_de"]);
       } else {
-        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+        CustomSnackBar.errorSnackBar(
+            message: "somethingWentWrong".tr,
+            backgroundColor: AppColors.primaryColor,
+            textcolor: AppColors.appBackgroundColor);
       }
     } catch (e) {
       _isLoding(false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+      CustomSnackBar.errorSnackBar(
+          message: "somethingWentWrong".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
       appLogger.e(e.toString());
     } finally {
       loading(show: false);
@@ -525,83 +541,110 @@ class HomeControllers extends GetxController {
     }
   }
 
-
-  Future<void> confirmbooking(String service,transferType,bookingDate,bookingTime,List<Map<String, double>> pickup,List<Map<String, double>> drop,
-      String customerName,customerSurname,customerEmail,customerPhone,customerRemarks,dispatcherName,customerName2,customerPhone2,
-      billingCompanyName,billingSupplement,billingStreetNo,billingPlace,billingAddress,billingCanton
-      ,billingPostalCode,billingLand,dispatcherPhone,dispatcherOrderNumber
-      ) async {
+  Future<void> confirmbooking(
+      String service,
+      transferType,
+      bookingDate,
+      bookingTime,
+      List<Map<String, double>> pickup,
+      List<Map<String, double>> drop,
+      String customerName,
+      customerSurname,
+      customerEmail,
+      customerPhone,
+      customerRemarks,
+      dispatcherName,
+      customerName2,
+      customerPhone2,
+      billingCompanyName,
+      billingSupplement,
+      billingStreetNo,
+      billingPlace,
+      billingAddress,
+      billingCanton,
+      billingPostalCode,
+      billingLand,
+      dispatcherPhone,
+      dispatcherOrderNumber) async {
     loading(show: true, title: "Sending...");
     try {
-      var data =drop.length>1?
-
-      {
-        'user_id': await _storageService.readString(StorageKey.userId),
-        'service': service,
-        'transfer_type': transferType.toString().toLowerCase(),
-        'booking_date': bookingDate,
-        'booking_time': bookingTime,
-        'pickup': jsonEncode( pickup),
-        'drops': jsonEncode(drop),
-        'car_class': _getCalculatedPriceData.value.data![_isselectedCar.value].carClassId,
-        'total_distance': _getCalculatedPriceData.value.data![_isselectedCar.value].totalDistance,
-        'base_rate': _getCalculatedPriceData.value.data![_isselectedCar.value].baseRate,
-        'vat_value': _getCalculatedPriceData.value.data![_isselectedCar.value].vatValue,
-        'our_fees': _getCalculatedPriceData.value.data![_isselectedCar.value].ourFees,
-        'customer_name': customerName,
-        'customer_surname': customerSurname,
-        'customer_email': customerEmail,
-        'customer_phone': customerPhone,
-        'customer_remarks': customerRemarks,
-        'billing_address_flag': 1,
-        'dispatcher_name': dispatcherName,
-        'customer_name2': customerName2,
-        'customer_phone2': customerPhone2,
-        'billing_company_name': billingCompanyName,
-        'billing_supplement': billingSupplement,
-        'billing_street_no': billingStreetNo,
-        'billing_place': billingPlace,
-        'billing_address': billingAddress,
-        'billing_canton': billingCanton,
-        'billing_postal_code': billingPostalCode,
-        'billing_land': billingLand,
-        'dispatcher_phone': dispatcherPhone,
-        'dispatcher_order_number': dispatcherOrderNumber,
-      }
-          :
-      {
-        'user_id': await _storageService.readString(StorageKey.userId),
-        'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
-        'transfer_type': transferType.toString().toLowerCase(),
-        'booking_date': bookingDate,
-        'booking_time': bookingTime,
-        'pickup': jsonEncode( pickup),
-        'drop': jsonEncode(drop),
-        'car_class': _getCalculatedPriceData.value.data![_isselectedCar.value].carClassId,
-        'total_distance': _getCalculatedPriceData.value.data![_isselectedCar.value].totalDistance,
-        'base_rate': _getCalculatedPriceData.value.data![_isselectedCar.value].baseRate,
-        'vat_value': _getCalculatedPriceData.value.data![_isselectedCar.value].vatValue,
-        'our_fees': _getCalculatedPriceData.value.data![_isselectedCar.value].ourFees,
-        'customer_name': customerName,
-        'customer_surname': customerSurname,
-        'customer_email': customerEmail,
-        'customer_phone': customerPhone,
-        'customer_remarks': customerRemarks,
-        'billing_address_flag': 1,
-        'dispatcher_name': dispatcherName,
-        'customer_name2': customerName2,
-        'customer_phone2': customerPhone2,
-        'billing_company_name': billingCompanyName,
-        'billing_supplement': billingSupplement,
-        'billing_street_no': billingStreetNo,
-        'billing_place': billingPlace,
-        'billing_address': billingAddress,
-        'billing_canton': billingCanton,
-        'billing_postal_code': billingPostalCode,
-        'billing_land': billingLand,
-        'dispatcher_phone': dispatcherPhone,
-        'dispatcher_order_number': dispatcherOrderNumber,
-      };
+      var data = drop.length > 1
+          ? {
+              'user_id': await _storageService.readString(StorageKey.userId),
+              'service': service,
+              'transfer_type': transferType.toString().toLowerCase(),
+              'booking_date': bookingDate,
+              'booking_time': bookingTime,
+              'pickup': jsonEncode(pickup),
+              'drops': jsonEncode(drop),
+              'car_class': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].carClassId,
+              'total_distance': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].totalDistance,
+              'base_rate': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].baseRate,
+              'vat_value': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].vatValue,
+              'our_fees': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].ourFees,
+              'customer_name': customerName,
+              'customer_surname': customerSurname,
+              'customer_email': customerEmail,
+              'customer_phone': customerPhone,
+              'customer_remarks': customerRemarks,
+              'billing_address_flag': 1,
+              'dispatcher_name': dispatcherName,
+              'customer_name2': customerName2,
+              'customer_phone2': customerPhone2,
+              'billing_company_name': billingCompanyName,
+              'billing_supplement': billingSupplement,
+              'billing_street_no': billingStreetNo,
+              'billing_place': billingPlace,
+              'billing_address': billingAddress,
+              'billing_canton': billingCanton,
+              'billing_postal_code': billingPostalCode,
+              'billing_land': billingLand,
+              'dispatcher_phone': dispatcherPhone,
+              'dispatcher_order_number': dispatcherOrderNumber,
+            }
+          : {
+              'user_id': await _storageService.readString(StorageKey.userId),
+              'service': _isPickMeUp.value == true ? "pickmeup" : "pickupmycar",
+              'transfer_type': transferType.toString().toLowerCase(),
+              'booking_date': bookingDate,
+              'booking_time': bookingTime,
+              'pickup': jsonEncode(pickup),
+              'drop': jsonEncode(drop),
+              'car_class': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].carClassId,
+              'total_distance': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].totalDistance,
+              'base_rate': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].baseRate,
+              'vat_value': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].vatValue,
+              'our_fees': _getCalculatedPriceData
+                  .value.data![_isselectedCar.value].ourFees,
+              'customer_name': customerName,
+              'customer_surname': customerSurname,
+              'customer_email': customerEmail,
+              'customer_phone': customerPhone,
+              'customer_remarks': customerRemarks,
+              'billing_address_flag': 1,
+              'dispatcher_name': dispatcherName,
+              'customer_name2': customerName2,
+              'customer_phone2': customerPhone2,
+              'billing_company_name': billingCompanyName,
+              'billing_supplement': billingSupplement,
+              'billing_street_no': billingStreetNo,
+              'billing_place': billingPlace,
+              'billing_address': billingAddress,
+              'billing_canton': billingCanton,
+              'billing_postal_code': billingPostalCode,
+              'billing_land': billingLand,
+              'dispatcher_phone': dispatcherPhone,
+              'dispatcher_order_number': dispatcherOrderNumber,
+            };
 
       final response = await _apiService.post(
           endPoint: ApiEndpoints.confirmBooking, reqData: data);
@@ -612,14 +655,23 @@ class HomeControllers extends GetxController {
 
           if (jsonMap['status'] == true) {
             _confirmBookingData.value = ConfirmBookingModel.fromJson(jsonMap);
-            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-            bookingdetail( jsonMap['data']['booking_unique_id']);
+            CustomSnackBar.errorSnackBar(
+                message: jsonMap['message_en'],
+                backgroundColor: AppColors.primaryColor,
+                textcolor: AppColors.appBackgroundColor);
+            bookingdetail(jsonMap['data']['booking_unique_id']);
             Get.toNamed(Routes.TRIP_DETAIL_VIEW);
           } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            CustomSnackBar.errorSnackBar(
+                message: jsonMap['message_en'],
+                backgroundColor: AppColors.primaryColor,
+                textcolor: AppColors.appBackgroundColor);
           }
         } else {
-          CustomSnackBar.errorSnackBar(message: "Failed to load data.",backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+          CustomSnackBar.errorSnackBar(
+              message: "Failed to load data.",
+              backgroundColor: AppColors.primaryColor,
+              textcolor: AppColors.appBackgroundColor);
         }
         loading(show: false);
         _isLoding(false);
@@ -630,14 +682,22 @@ class HomeControllers extends GetxController {
       if (ex.response != null) {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
-            message: data['message_en'] ?? "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            message: data['message_en'] ?? "somethingWentWrong".tr,
+            backgroundColor: AppColors.primaryColor,
+            textcolor: AppColors.appBackgroundColor);
         print(data["errors_de"]);
       } else {
-        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+        CustomSnackBar.errorSnackBar(
+            message: "somethingWentWrong".tr,
+            backgroundColor: AppColors.primaryColor,
+            textcolor: AppColors.appBackgroundColor);
       }
     } catch (e) {
       _isLoding(false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+      CustomSnackBar.errorSnackBar(
+          message: "somethingWentWrong".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
       appLogger.e(e.toString());
     } finally {
       loading(show: false);
@@ -649,7 +709,7 @@ class HomeControllers extends GetxController {
     try {
       var data = {
         'user_id': await _storageService.readString(StorageKey.userId),
-        'booking_id' :bookingId
+        'booking_id': bookingId
       };
 
       final response = await _apiService.post(
@@ -669,16 +729,15 @@ class HomeControllers extends GetxController {
               double lat = point['lat'];
               double lng = point['long'];
 
-              List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+              List<Placemark> placemarks =
+                  await placemarkFromCoordinates(lat, lng);
 
               if (placemarks.isNotEmpty) {
                 final p = placemarks.first;
                 final address = "${p.name}, ${p.locality}, ${p.country}";
-                _pickupLocationController.text=address;
+                _pickupLocationController.text = address;
               }
             }
-
-
 
             final dynamic decoded2 = jsonDecode(jsonMap['drop_points']);
 
@@ -689,7 +748,8 @@ class HomeControllers extends GetxController {
               double lat = point['lat'];
               double lng = point['long'];
 
-              List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+              List<Placemark> placemarks =
+                  await placemarkFromCoordinates(lat, lng);
 
               if (placemarks.isNotEmpty) {
                 final p = placemarks.first;
@@ -698,7 +758,10 @@ class HomeControllers extends GetxController {
               }
             }
           } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            CustomSnackBar.errorSnackBar(
+                message: jsonMap['message_en'],
+                backgroundColor: AppColors.primaryColor,
+                textcolor: AppColors.appBackgroundColor);
           }
 
           _isLoding2(false);
@@ -709,14 +772,22 @@ class HomeControllers extends GetxController {
       if (ex.response != null) {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
-            message: data['message_en'] ?? "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            message: data['message_en'] ?? "somethingWentWrong".tr,
+            backgroundColor: AppColors.primaryColor,
+            textcolor: AppColors.appBackgroundColor);
         print(data["errors_de"]);
       } else {
-        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+        CustomSnackBar.errorSnackBar(
+            message: "somethingWentWrong".tr,
+            backgroundColor: AppColors.primaryColor,
+            textcolor: AppColors.appBackgroundColor);
       }
     } catch (e) {
       _isLoding2(false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+      CustomSnackBar.errorSnackBar(
+          message: "somethingWentWrong".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
       appLogger.e(e.toString());
     } finally {
       _isLoding2(false);
@@ -729,8 +800,8 @@ class HomeControllers extends GetxController {
     try {
       var data = {
         'user_id': await _storageService.readString(StorageKey.userId),
-        'booking_id' :_bookingDetail.value.bookings!.bookingId,
-        'cancel_reason':_cancelreson.value.toString().toLowerCase()
+        'booking_id': _bookingDetail.value.bookings!.bookingId,
+        'cancel_reason': _cancelreson.value.toString().toLowerCase()
       };
 
       final response = await _apiService.post(
@@ -741,10 +812,16 @@ class HomeControllers extends GetxController {
 
           if (jsonMap['status'] == true) {
             _cancelbookingData.value = CancelBookingModel.fromJson(jsonMap);
-            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            CustomSnackBar.errorSnackBar(
+                message: jsonMap['message_en'],
+                backgroundColor: AppColors.primaryColor,
+                textcolor: AppColors.appBackgroundColor);
             Get.toNamed(Routes.BOTTOM_APP_BAR_VIEW);
           } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message_en'],backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            CustomSnackBar.errorSnackBar(
+                message: jsonMap['message_en'],
+                backgroundColor: AppColors.primaryColor,
+                textcolor: AppColors.appBackgroundColor);
           }
 
           loading(show: false);
@@ -755,14 +832,22 @@ class HomeControllers extends GetxController {
       if (ex.response != null) {
         final data = ex.response!.data;
         CustomSnackBar.errorSnackBar(
-            message: data['message_en'] ?? "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+            message: data['message_en'] ?? "somethingWentWrong".tr,
+            backgroundColor: AppColors.primaryColor,
+            textcolor: AppColors.appBackgroundColor);
         print(data["errors_de"]);
       } else {
-        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+        CustomSnackBar.errorSnackBar(
+            message: "somethingWentWrong".tr,
+            backgroundColor: AppColors.primaryColor,
+            textcolor: AppColors.appBackgroundColor);
       }
     } catch (e) {
       loading(show: false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
+      CustomSnackBar.errorSnackBar(
+          message: "somethingWentWrong".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
       appLogger.e(e.toString());
     } finally {
       loading(show: false);

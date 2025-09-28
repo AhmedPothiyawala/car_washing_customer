@@ -23,7 +23,14 @@ class _CancelBookingViewState extends State<CancelBookingView> {
   final homeController = Get.find<HomeControllers>();
 
   final int _value = 1;
-  List cancelreasons=["scheduleChange".tr,"bookAnotherCar".tr,"foundBetterAlternative".tr,"myReasonIsNotListed".tr,"wantToBookAnotherCar".tr,"other".tr,];
+  List cancelreasons = [
+    "scheduleChange".tr,
+    "bookAnotherCar".tr,
+    "foundBetterAlternative".tr,
+    "myReasonIsNotListed".tr,
+    "wantToBookAnotherCar".tr,
+    "other".tr,
+  ];
   @override
   Widget build(BuildContext context) {
     final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
@@ -74,8 +81,8 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                 fit: BoxFit.fill)),
       ),
       bottomNavigationBar: SingleChildScrollView(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -138,22 +145,20 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
                       physics: const NeverScrollableScrollPhysics(),
-        
                       itemBuilder: (BuildContext context, int index) {
-                      return   Obx(
-            () {
+                        return Obx(() {
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Radio(
-                                value: index+1,
+                                value: index + 1,
                                 activeColor: AppColors.blackColor,
                                 groupValue: homeController.groupvalue.value,
                                 onChanged: (value) {
                                   homeController.groupvalue(value);
-                                 homeController.cancelreson(cancelreasons[index]);
-        
+                                  homeController
+                                      .cancelreson(cancelreasons[index]);
                                 },
                               ),
                               const SizedBox(
@@ -166,15 +171,15 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                               ),
                             ],
                           );
-                        }
-                      );
-                    }, separatorBuilder: (BuildContext context, int index) {
-                     return const SizedBox(
-                        height: 10,
-                      );
-                    }, itemCount: cancelreasons.length,),
-        
-        
+                        });
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return const SizedBox(
+                          height: 10,
+                        );
+                      },
+                      itemCount: cancelreasons.length,
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -192,8 +197,8 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                           color: AppColors.appBackgroundColor,
                           boxShadow: [
                             BoxShadow(
-                              color:
-                                  AppColors.greyShadeSix.withValues(alpha: 0.24),
+                              color: AppColors.greyShadeSix
+                                  .withValues(alpha: 0.24),
                               blurRadius: 2,
                               offset: const Offset(0, 1),
                             ),
@@ -225,14 +230,14 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                     Center(
                       child: CustomButton(
                         onPressed: () {
-                          if(homeController.cancelreson.value=="")
-                            {
-                              CustomSnackBar.errorSnackBar(message: "cancelReasonValidation".tr,backgroundColor: AppColors.primaryColor,textcolor: AppColors.appBackgroundColor);
-                            }
-                          else{
+                          if (homeController.cancelreson.value == "") {
+                            CustomSnackBar.errorSnackBar(
+                                message: "cancelReasonValidation".tr,
+                                backgroundColor: AppColors.primaryColor,
+                                textcolor: AppColors.appBackgroundColor);
+                          } else {
                             homeController.cancelbooking();
                           }
-        
                         },
                         height: 50,
                         width: kWidth * 0.9,
@@ -240,8 +245,8 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                         bgColor: AppColors.redColor,
                         childWidget: Center(
                             child: Text("cancel".tr,
-                                style:
-                                    sfProMediumTextstyle.copyWith(fontSize: 16))),
+                                style: sfProMediumTextstyle.copyWith(
+                                    fontSize: 16))),
                       ),
                     ),
                     const SizedBox(
@@ -251,11 +256,12 @@ class _CancelBookingViewState extends State<CancelBookingView> {
                 ),
               ),
             ),
-            if (navBarHeight > 0&&isKeyboardOpen==false)
+            if (navBarHeight > 0 && isKeyboardOpen == false)
               Container(
                 height: navBarHeight,
                 width: double.infinity,
-                color: AppColors.appBackgroundColor, // or any color you want behind nav bar
+                color: AppColors
+                    .appBackgroundColor, // or any color you want behind nav bar
               ),
           ],
         ),
