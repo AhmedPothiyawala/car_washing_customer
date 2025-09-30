@@ -112,8 +112,7 @@ class MyAppState extends State<MyApp> {
         // }
       } else if (uri.toString().contains('token=')) {
         final authController = Get.put(AuthController());
-        authController.validateAPI(
-            token: uri.toString().split('token=').last.split('&').first);
+
       }
     });
   }

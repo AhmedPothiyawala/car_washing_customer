@@ -88,6 +88,44 @@ class HomeControllers extends GetxController {
   // GoogleMapController fields
   GoogleMapController? mapController1; // For the current location map
   GoogleMapController? mapController2; // For the route map
+  final globalFormKey = GlobalKey<FormState>();
+
+  final nameController = TextEditingController();
+
+  final surNameController = TextEditingController();
+
+  final emailController = TextEditingController();
+
+  final phoneController = TextEditingController();
+
+  final remarkController = TextEditingController();
+
+  final companyName = TextEditingController();
+
+  final supplementController = TextEditingController();
+
+  final streetNumberController = TextEditingController();
+
+  final placeController = TextEditingController();
+
+  final addressController = TextEditingController();
+
+  final cantonController = TextEditingController();
+
+  final postalCodeController = TextEditingController();
+
+  final landController = TextEditingController();
+
+  final dispatcherNameController = TextEditingController();
+
+  final dispatcherPhoneController = TextEditingController();
+
+  final orderNumberController = TextEditingController();
+
+  final customerNameController = TextEditingController();
+
+  final customerPhoneController = TextEditingController();
+  final double _LATITUDE_UPWARD_SHIFT = 0.005;
 
   // New methods to be called from GoogleMap's onMapCreated in the views
   void onMapCreated1(GoogleMapController controller) {
@@ -131,21 +169,27 @@ class HomeControllers extends GetxController {
     };
   }
 
+  // home_controllers.dart - Locate and replace your existing updateCamerapost method
+
+  // home_controllers.dart - Locate and replace your existing updateCamerapost method
+
   Future<void> updateCamerapost(double lat, double long) async {
     if (mapController1 != null) {
+      final LatLng center = LatLng(lat, long);
+
       await mapController1!.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
             bearing: 192.8334901395799,
-            target: LatLng(lat, long),
+            target: center,
             tilt: 59.440717697143555,
-            zoom: 19.151926040649414,
+            // Use a simple, stable zoom level
+            zoom: 18.5,
           ),
         ),
       );
     }
   }
-
   Future<void> updateRouteMarkers() async {
     if (_pickup.isEmpty) return;
 
@@ -244,7 +288,7 @@ class HomeControllers extends GetxController {
         LatLng(_pickup[0]["lat"]!, _pickup[0]["long"]!);
 
     // Define the specific high-zoom, bearing, and tilt used on the first map page
-    const double targetZoom = 19.151926040649414;
+    const double targetZoom = 18.5;
     const double targetBearing = 192.8334901395799;
     const double targetTilt = 59.440717697143555;
 
@@ -308,7 +352,7 @@ class HomeControllers extends GetxController {
               _currentPosition.value!.longitude,
             ),
             tilt: 59.440717697143555,
-            zoom: 19.151926040649414,
+            zoom: 18.5,
           ),
         ),
       );
@@ -416,6 +460,12 @@ class HomeControllers extends GetxController {
   ) async {
     loading(show: true, title: "Sending...");
     try {
+      print(transferType);
+      print(_isselectedDate.value);
+      print(_isselectedTime.value);
+      print(_pickup);
+      print(_drop);
+
       var data = _drop.length > 1
           ? {
               'user_id': await _storageService.readString(StorageKey.userId),
@@ -548,24 +598,7 @@ class HomeControllers extends GetxController {
       bookingTime,
       List<Map<String, double>> pickup,
       List<Map<String, double>> drop,
-      String customerName,
-      customerSurname,
-      customerEmail,
-      customerPhone,
-      customerRemarks,
-      dispatcherName,
-      customerName2,
-      customerPhone2,
-      billingCompanyName,
-      billingSupplement,
-      billingStreetNo,
-      billingPlace,
-      billingAddress,
-      billingCanton,
-      billingPostalCode,
-      billingLand,
-      dispatcherPhone,
-      dispatcherOrderNumber) async {
+   ) async {
     loading(show: true, title: "Sending...");
     try {
       var data = drop.length > 1
@@ -587,25 +620,25 @@ class HomeControllers extends GetxController {
                   .value.data![_isselectedCar.value].vatValue,
               'our_fees': _getCalculatedPriceData
                   .value.data![_isselectedCar.value].ourFees,
-              'customer_name': customerName,
-              'customer_surname': customerSurname,
-              'customer_email': customerEmail,
-              'customer_phone': customerPhone,
-              'customer_remarks': customerRemarks,
+              'customer_name': nameController.text,
+              'customer_surname': surNameController.text,
+              'customer_email': emailController.text,
+              'customer_phone': phoneController.text,
+              'customer_remarks': remarkController.text,
               'billing_address_flag': 1,
-              'dispatcher_name': dispatcherName,
-              'customer_name2': customerName2,
-              'customer_phone2': customerPhone2,
-              'billing_company_name': billingCompanyName,
-              'billing_supplement': billingSupplement,
-              'billing_street_no': billingStreetNo,
-              'billing_place': billingPlace,
-              'billing_address': billingAddress,
-              'billing_canton': billingCanton,
-              'billing_postal_code': billingPostalCode,
-              'billing_land': billingLand,
-              'dispatcher_phone': dispatcherPhone,
-              'dispatcher_order_number': dispatcherOrderNumber,
+              'dispatcher_name': dispatcherNameController.text,
+              'customer_name2': customerNameController.text,
+              'customer_phone2': customerPhoneController.text,
+              'billing_company_name': companyName.text,
+              'billing_supplement': supplementController.text,
+              'billing_street_no': streetNumberController.text,
+              'billing_place': placeController.text,
+              'billing_address': addressController.text,
+              'billing_canton': cantonController.text,
+              'billing_postal_code': postalCodeController.text,
+              'billing_land': landController.text,
+              'dispatcher_phone': dispatcherPhoneController.text,
+              'dispatcher_order_number': orderNumberController.text,
             }
           : {
               'user_id': await _storageService.readString(StorageKey.userId),
@@ -625,25 +658,25 @@ class HomeControllers extends GetxController {
                   .value.data![_isselectedCar.value].vatValue,
               'our_fees': _getCalculatedPriceData
                   .value.data![_isselectedCar.value].ourFees,
-              'customer_name': customerName,
-              'customer_surname': customerSurname,
-              'customer_email': customerEmail,
-              'customer_phone': customerPhone,
-              'customer_remarks': customerRemarks,
-              'billing_address_flag': 1,
-              'dispatcher_name': dispatcherName,
-              'customer_name2': customerName2,
-              'customer_phone2': customerPhone2,
-              'billing_company_name': billingCompanyName,
-              'billing_supplement': billingSupplement,
-              'billing_street_no': billingStreetNo,
-              'billing_place': billingPlace,
-              'billing_address': billingAddress,
-              'billing_canton': billingCanton,
-              'billing_postal_code': billingPostalCode,
-              'billing_land': billingLand,
-              'dispatcher_phone': dispatcherPhone,
-              'dispatcher_order_number': dispatcherOrderNumber,
+        'customer_name': nameController.text,
+        'customer_surname': surNameController.text,
+        'customer_email': emailController.text,
+        'customer_phone': phoneController.text,
+        'customer_remarks': remarkController.text,
+        'billing_address_flag': 1,
+        'dispatcher_name': dispatcherNameController.text,
+        'customer_name2': customerNameController.text,
+        'customer_phone2': customerPhoneController.text,
+        'billing_company_name': companyName.text,
+        'billing_supplement': supplementController.text,
+        'billing_street_no': streetNumberController.text,
+        'billing_place': placeController.text,
+        'billing_address': addressController.text,
+        'billing_canton': cantonController.text,
+        'billing_postal_code': postalCodeController.text,
+        'billing_land': landController.text,
+        'dispatcher_phone': dispatcherPhoneController.text,
+        'dispatcher_order_number': orderNumberController.text,
             };
 
       final response = await _apiService.post(

@@ -292,106 +292,116 @@ class _HomeViewState extends State<HomeView> {
                                         color: AppColors.blackColor,
                                         fontSize: 16)),
                               )
-                            : SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Wrap(
-                                  children: List.generate(
-                                      homeController.bookingData.value.bookings!
-                                          .length, (val) {
-                                    return Center(
-                                      child: Container(
-                                        width: kWidth * 0.9,
-                                        decoration: BoxDecoration(
-                                            color: AppColors.appBackgroundColor,
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            border: Border.all(
-                                                color:
-                                                    AppColors.secondaryColor)),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Container(
-                                              height: 56,
-                                              width: 56,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: AppColors
-                                                          .secondaryColor)),
-                                              child: Center(
-                                                  child: Image.asset(
-                                                      AppImages.carImage2)),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Column(
+                            : Center(
+                              child: Container(
+                                                        width: kWidth*0.9,
+                                child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Wrap(
+                                      crossAxisAlignment: WrapCrossAlignment.center,
+
+                                      children: List.generate(
+                                          homeController.bookingData.value.bookings!
+                                              .length, (val) {
+                                        return Center(
+                                          child: Container(
+                                            width: kWidth * 0.9,
+                                            decoration: BoxDecoration(
+                                                color: AppColors.appBackgroundColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                border: Border.all(
+                                                    color:
+                                                        AppColors.secondaryColor)),
+                                            child: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                                  MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                    homeController
-                                                        .bookingData
-                                                        .value
-                                                        .bookings![val]
-                                                        .carClassTitleEn
-                                                        .toString(),
-                                                    style: sfProSemiBoldTextstyle
-                                                        .copyWith(
-                                                            color: AppColors
-                                                                .splashHeadingColor,
-                                                            fontSize: 14)),
                                                 const SizedBox(
-                                                  height: 5,
+                                                  width: 10,
                                                 ),
-                                                Text(
-                                                    homeController
-                                                        .bookingData
-                                                        .value
-                                                        .bookings![val]
-                                                        .remainingTime
-                                                        .toString(),
-                                                    style: sfProRegularTextstyle
-                                                        .copyWith(
+                                                Padding(
+                                                  padding: const EdgeInsets.only(top: 10.0,bottom: 10),
+                                                  child: Container(
+                                                    height: 56,
+                                                    width: 56,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
                                                             color: AppColors
-                                                                .appWhiteGreyColor3,
-                                                            fontSize: 12)),
+                                                                .secondaryColor)),
+                                                    child: Center(
+                                                        child: Image.asset(
+                                                            AppImages.carImage2)),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                        homeController
+                                                            .bookingData
+                                                            .value
+                                                            .bookings![val]
+                                                            .carClassTitleEn
+                                                            .toString(),
+                                                        style: sfProSemiBoldTextstyle
+                                                            .copyWith(
+                                                                color: AppColors
+                                                                    .splashHeadingColor,
+                                                                fontSize: 14)),
+                                                    const SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                        homeController
+                                                            .bookingData
+                                                            .value
+                                                            .bookings![val]
+                                                            .remainingTime
+                                                            .toString(),
+                                                        style: sfProRegularTextstyle
+                                                            .copyWith(
+                                                                color: AppColors
+                                                                    .appWhiteGreyColor3,
+                                                                fontSize: 12)),
+                                                  ],
+                                                ),
+                                                const Spacer(),
+                                                Container(
+                                                  height: 28,
+                                                  width: 28,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                          color: AppColors
+                                                              .blackColor)),
+                                                  child: const Center(
+                                                    child: Icon(
+                                                      Icons.arrow_forward,
+                                                      color: AppColors.blackColor,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 20,
+                                                ),
                                               ],
                                             ),
-                                            const Spacer(),
-                                            Container(
-                                              height: 28,
-                                              width: 28,
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(
-                                                      color: AppColors
-                                                          .blackColor)),
-                                              child: const Center(
-                                                child: Icon(
-                                                  Icons.arrow_forward,
-                                                  color: AppColors.blackColor,
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 20,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }),
-                                ),
+                                          ),
+                                        );
+                                      }),
+                                    ),
+                                  ),
                               ),
+                            ),
                         const SizedBox(
                           height: 20,
                         ),

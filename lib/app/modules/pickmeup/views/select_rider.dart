@@ -60,57 +60,61 @@ class SelectRiderView extends StatelessWidget {
         surfaceTintColor: AppColors.appBackgroundColor,
       ),
       // The HomeControllers dependency is already set up via GetBuilder
-      body: GetBuilder<HomeControllers>(
-        builder: (controller) {
-          // Safely access the RxLists
-          final pickupList = controller.pickup.value;
-          final dropList = controller.drop.value;
+      body: SizedBox(
+        height: kHeight*0.55,
+        width: kWidth,
+        child: GetBuilder<HomeControllers>(
+          builder: (controller) {
+            // Safely access the RxLists
+            final pickupList = controller.pickup.value;
+            final dropList = controller.drop.value;
 
-          // --- Pickup Location Data ---
-          final String pickupAddress =
-              controller.pickupLocationController.text.isNotEmpty
-                  ? controller.pickupLocationController.text
-                  : "Pickup location address loading...";
+            // --- Pickup Location Data ---
+            final String pickupAddress =
+                controller.pickupLocationController.text.isNotEmpty
+                    ? controller.pickupLocationController.text
+                    : "Pickup location address loading...";
 
-          final LatLng initialTarget = pickupList.isNotEmpty
-              ? LatLng(
-                  pickupList[0]['lat']!,
-                  pickupList[0]['long']!,
-                )
-              : const LatLng(0, 0);
+            final LatLng initialTarget = pickupList.isNotEmpty
+                ? LatLng(
+                    pickupList[0]['lat']!,
+                    pickupList[0]['long']!,
+                  )
+                : const LatLng(0, 0);
 
-          // --- Drop Location Data (using the FIRST drop point for display) ---
-          final String dropAddress =
-              dropList.isNotEmpty && controller.dropController.value.isNotEmpty
-                  ? controller.dropController.value[0].text
-                  : "Drop location address loading...";
+            // --- Drop Location Data (using the FIRST drop point for display) ---
+            final String dropAddress =
+                dropList.isNotEmpty && controller.dropController.value.isNotEmpty
+                    ? controller.dropController.value[0].text
+                    : "Drop location address loading...";
 
-          final bool showDropContainer = dropList.isNotEmpty;
+            final bool showDropContainer = dropList.isNotEmpty;
 
-          return SizedBox(
-            height: kHeight,
-            width: kWidth,
-            child: Stack(
-              children: [
-                // 1. Google Map
-                GoogleMap(
-                  initialCameraPosition: CameraPosition(target: initialTarget),
-                  onMapCreated: (GoogleMapController mapController) {
-                    controller.onMapCreated2(mapController);
-                    Future.delayed(const Duration(milliseconds: 300), () {
-                      controller.fitMapToAllPoints();
-                    });
-                  },
-                  markers: controller.routeMarkers.value,
-                  polylines: controller.routePolylines.value,
-                  circles: controller.circles2.value,
-                  myLocationEnabled: true,
-                  myLocationButtonEnabled: true,
-                ),
-              ],
-            ),
-          );
-        },
+            return SizedBox(
+              height: kHeight,
+              width: kWidth,
+              child: Stack(
+                children: [
+                  // 1. Google Map
+                  GoogleMap(
+                    initialCameraPosition: CameraPosition(target: initialTarget),
+                    onMapCreated: (GoogleMapController mapController) {
+                      controller.onMapCreated2(mapController);
+                      Future.delayed(const Duration(milliseconds: 300), () {
+                        controller.fitMapToAllPoints();
+                      });
+                    },
+                    markers: controller.routeMarkers.value,
+                    polylines: controller.routePolylines.value,
+                    circles: controller.circles2.value,
+                    myLocationEnabled: true,
+                    myLocationButtonEnabled: true,
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
 
       bottomNavigationBar: Obx(() {

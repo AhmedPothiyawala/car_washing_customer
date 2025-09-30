@@ -11,25 +11,12 @@ import 'package:pinput/pinput.dart';
 
 import '../../../../widgets/custom_snackbar.dart';
 
-class OtpView extends StatefulWidget {
-  const OtpView({super.key});
+class OtpView extends StatelessWidget {
+   OtpView({super.key});
 
-  @override
-  State<OtpView> createState() => _OtpViewState();
-}
-
-class _OtpViewState extends State<OtpView> {
   final authController = Get.find<AuthController>();
 
-  final otpFocusNode = FocusNode();
-  final otpFormKey = GlobalKey<FormState>();
-  final FocusNode _pinFocusNode = FocusNode();
-  final otpController = TextEditingController();
   final args = Get.arguments as Map;
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +109,7 @@ class _OtpViewState extends State<OtpView> {
                           color: AppColors.appBackgroundColor,
                           borderRadius: BorderRadius.circular(10)),
                       child: Form(
-                        key: otpFormKey,
+                        key: authController.otpFormKey,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -165,7 +152,7 @@ class _OtpViewState extends State<OtpView> {
                                     horizontal: 20.0),
                                 child: Pinput(
                                   length: 6,
-                                  controller: otpController,
+                                  controller: authController.otpController,
                                   keyboardType: TextInputType.number,
                                   // The main style for all pin fields
                                   defaultPinTheme: PinTheme(
@@ -214,7 +201,7 @@ class _OtpViewState extends State<OtpView> {
                                   ),
                                   closeKeyboardWhenCompleted: false,
                                   // Other properties you can set
-
+                                    textInputAction: TextInputAction.done,
                                   cursor: const Text(
                                     '|',
                                     style: TextStyle(
@@ -224,7 +211,12 @@ class _OtpViewState extends State<OtpView> {
                                   ),
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  onCompleted: (value) {},
+                                  onCompleted: (value) {
+                                    OtpSubmit();
+                                  },
+                                  onSubmitted: (value){
+                                    OtpSubmit();
+                                  },
                                   onChanged: (value) {
                                     // You can add your onChanged logic here
                                   },
@@ -352,28 +344,23 @@ class _OtpViewState extends State<OtpView> {
   }
 
   Future<void> OtpSubmit() async {
-    if (otpController.text.isEmpty) {
+    if (authController.otpController.text.isEmpty) {
       CustomSnackBar.errorSnackBar(message: "otpRequired".tr);
-    } else if (otpController.text.length < 6) {
+    } else if (authController.otpController.text.length < 6) {
       CustomSnackBar.errorSnackBar(message: "otpLength".tr);
     } else {
       authController
           .validate_otp(
               username: args['username'],
-              otp: otpController.text,
+
               forgotpassword: args['forgotpassword'])
           .then((value) {
-        otpController.clear();
+
       });
     }
   }
 
   void updateWidget() {
     authController.update();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

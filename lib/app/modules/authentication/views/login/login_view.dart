@@ -11,36 +11,12 @@ import '../../../../data/utils.dart';
 import '../../../../widgets/custom_button.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import '../../controllers/auth_controller.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter/services.dart';
 
-class LoginView extends StatefulWidget {
-  final bool? isNotLogged;
-  const LoginView({super.key, this.isNotLogged});
+class LoginView extends StatelessWidget {
 
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
 
-class _LoginViewState extends State<LoginView> {
   final authController = Get.find<AuthController>();
-  final userNameController = TextEditingController();
-  final passwordController = TextEditingController();
-  final userFocusNode = FocusNode();
-  final passwordFocusNode = FocusNode();
-  final usernmaeFormKey = GlobalKey<FormState>();
-  final passwordFormKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    FlutterNativeSplash.remove();
-
-    // if (widget.isNotLogged == null) {
-    //   authController.normalLogout();
-    // }
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -261,6 +237,7 @@ class _LoginViewState extends State<LoginView> {
                                   textInputAction: TextInputAction.next,
                                   width: kWidth * 0.8,
                                   hintText: "email".tr,
+
                                   inputFormatters: [
                                     FilteringTextInputFormatter.allow(
                                       RegExp(r'[a-zA-Z0-9@._\-+]'),
@@ -268,15 +245,15 @@ class _LoginViewState extends State<LoginView> {
                                   ],
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(12)),
-                                  focusNode: userFocusNode,
-                                  controller: userNameController,
+                                  focusNode: authController.userFocusNode,
+                                  controller: authController.userNameController,
                                   fillColor: AppColors.appBackgroundColor,
-                                  borderColor: userFocusNode.hasFocus
+                                  borderColor: authController.userFocusNode.hasFocus
                                       ? AppColors.primaryColor
                                       : AppColors.appWhiteGreyColor,
                                   validator: validateEmail,
                                   onFieldSubmitted: (value) {
-                                    usernmaeFormKey.currentState!.validate();
+
                                   },
                                 ),
                               ),
@@ -287,15 +264,19 @@ class _LoginViewState extends State<LoginView> {
                                 child: CustomTextFormField(
                                   hintText: "password".tr,
                                   width: kWidth * 0.8,
-                                  focusNode: passwordFocusNode,
+                                  focusNode: authController.passwordFocusNode,
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(12)),
-                                  controller: passwordController,
+                                  controller:authController. passwordController,
                                   fillColor: AppColors.appBackgroundColor,
-                                  borderColor: passwordFocusNode.hasFocus
+                                  borderColor: authController.passwordFocusNode.hasFocus
                                       ? AppColors.primaryColor
                                       : AppColors.appWhiteGreyColor,
                                   validator: validatePassword,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (val){
+                                    loginSubmit();
+                                  },
                                   suffixIcon: GestureDetector(
                                     onTap: () async {
                                       authController.isLoginPasswordObscureText
@@ -412,25 +393,13 @@ class _LoginViewState extends State<LoginView> {
     //       .then((val) {});
     // }
 
-    userFocusNode.unfocus();
-    passwordFocusNode.unfocus();
+    authController.userFocusNode.unfocus();
+    authController.passwordFocusNode.unfocus();
 
     await authController
         .loginWithEmailPassword(
-          username: userNameController.text.trim(),
-          password: passwordController.text,
+
         )
         .then((val) {});
-  }
-
-  @override
-  void dispose() {
-    userNameController.dispose();
-    passwordController.dispose();
-    userFocusNode.dispose();
-    passwordFocusNode.dispose();
-    usernmaeFormKey.currentState?.dispose();
-    passwordFormKey.currentState?.dispose();
-    super.dispose();
   }
 }

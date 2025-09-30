@@ -19,43 +19,7 @@ class CustomerDetailView extends StatelessWidget {
 
   bool isChecked = false;
 
-  final globalFormKey = GlobalKey<FormState>();
 
-  final nameController = TextEditingController();
-
-  final surNameController = TextEditingController();
-
-  final emailController = TextEditingController();
-
-  final phoneController = TextEditingController();
-
-  final remarkController = TextEditingController();
-
-  final companyName = TextEditingController();
-
-  final supplementController = TextEditingController();
-
-  final streetNumberController = TextEditingController();
-
-  final placeController = TextEditingController();
-
-  final addressController = TextEditingController();
-
-  final cantonController = TextEditingController();
-
-  final postalCodeController = TextEditingController();
-
-  final landController = TextEditingController();
-
-  final dispatcherNameController = TextEditingController();
-
-  final dispatcherPhoneController = TextEditingController();
-
-  final orderNumberController = TextEditingController();
-
-  final customerNameController = TextEditingController();
-
-  final customerPhoneController = TextEditingController();
 
   final homeController = Get.find<HomeControllers>();
   final args = Get.arguments as Map;
@@ -331,7 +295,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: nameController,
+                            controller: homeController.nameController,
+                            textInputAction: TextInputAction.next,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -365,7 +330,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: surNameController,
+                            controller: homeController.surNameController,
+                            textInputAction: TextInputAction.next,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -414,7 +380,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: emailController,
+                            controller: homeController.emailController,
+                            textInputAction: TextInputAction.next,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -494,7 +461,8 @@ class CustomerDetailView extends StatelessWidget {
                                           color: AppColors.blackColor),
                                       borderRadiusAll: const BorderRadius.all(
                                           Radius.circular(0)),
-                                      controller: phoneController,
+                                      controller: homeController.phoneController,
+                                      textInputAction: TextInputAction.next,
                                       fillColor: AppColors.appBackgroundColor,
                                       borderColor: AppColors.appBackgroundColor,
                                       validator: (string) {
@@ -551,7 +519,8 @@ class CustomerDetailView extends StatelessWidget {
                         maxLines: 2,
                         borderRadiusAll:
                             const BorderRadius.all(Radius.circular(12)),
-                        controller: remarkController,
+                        controller: homeController.remarkController,
+                        textInputAction: TextInputAction.next,
                         fillColor: AppColors.appBackgroundColor,
                         borderColor: AppColors.appWhiteGreyColor,
                         validator: (string) {
@@ -623,7 +592,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: companyName,
+                            controller: homeController.companyName,
+                            textInputAction: TextInputAction.next,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -657,7 +627,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: supplementController,
+                            controller: homeController.supplementController,
+                            textInputAction: TextInputAction.next,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -712,7 +683,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: streetNumberController,
+                            controller: homeController.streetNumberController,
+                            textInputAction: TextInputAction.next,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -746,7 +718,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: placeController,
+                            controller: homeController.placeController,
+                            textInputAction: TextInputAction.next,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -785,7 +758,8 @@ class CustomerDetailView extends StatelessWidget {
                       width: kWidth * 0.9,
                       borderRadiusAll:
                           const BorderRadius.all(Radius.circular(12)),
-                      controller: addressController,
+                      controller: homeController.addressController,
+                      textInputAction: TextInputAction.next,
                       fillColor: AppColors.appBackgroundColor,
                       borderColor: AppColors.appWhiteGreyColor,
                       suffixIcon: Padding(
@@ -849,7 +823,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: cantonController,
+                            controller: homeController.cantonController,
+                            textInputAction: TextInputAction.next,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -883,7 +858,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: postalCodeController,
+                            controller: homeController.postalCodeController,
+                            textInputAction: TextInputAction.next,
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
                                 RegExp(r'\+?[0-9\s\-()]*'),
@@ -949,10 +925,11 @@ class CustomerDetailView extends StatelessWidget {
                                 ))
                             .toList(),
                         onChanged: (value) {
-                          landController.text = value.toString();
+                          homeController.landController.text = value.toString();
                         },
                         borderColor: AppColors.appWhiteGreyColor,
-                        controller: landController,
+                        controller: homeController.landController,
+
                         validator: (string) {
                           if (string == null) {
                             return "genderIsRequired".tr;
@@ -996,7 +973,8 @@ class CustomerDetailView extends StatelessWidget {
                       width: kWidth * 0.9,
                       borderRadiusAll:
                           const BorderRadius.all(Radius.circular(12)),
-                      controller: dispatcherNameController,
+                      controller: homeController.dispatcherNameController,
+                      textInputAction: TextInputAction.next,
                       fillColor: AppColors.appBackgroundColor,
                       borderColor: AppColors.appWhiteGreyColor,
                       validator: (string) {
@@ -1079,7 +1057,8 @@ class CustomerDetailView extends StatelessWidget {
                                           color: AppColors.blackColor),
                                       borderRadiusAll: const BorderRadius.all(
                                           Radius.circular(0)),
-                                      controller: dispatcherPhoneController,
+                                      controller: homeController.dispatcherPhoneController,
+                                      textInputAction: TextInputAction.next,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.allow(
                                           RegExp(r'\+?[0-9\s\-()]*'),
@@ -1124,7 +1103,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: orderNumberController,
+                            controller: homeController.orderNumberController,
+                            textInputAction: TextInputAction.next,
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
                                 RegExp(r'\+?[0-9\s\-()]*'),
@@ -1190,7 +1170,8 @@ class CustomerDetailView extends StatelessWidget {
                             width: kWidth * 0.45,
                             borderRadiusAll:
                                 const BorderRadius.all(Radius.circular(12)),
-                            controller: customerNameController,
+                            controller: homeController.customerNameController,
+                            textInputAction: TextInputAction.next,
                             fillColor: AppColors.appBackgroundColor,
                             borderColor: AppColors.appWhiteGreyColor,
                             validator: (string) {
@@ -1268,7 +1249,12 @@ class CustomerDetailView extends StatelessWidget {
                                       color: AppColors.blackColor),
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(0)),
-                                  controller: customerPhoneController,
+                                  controller: homeController.customerPhoneController,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (val){
+                                    confirmbooking();
+
+                                  },
                                   fillColor: AppColors.appBackgroundColor,
                                   borderColor: AppColors.appBackgroundColor,
                                   validator: (string) {
@@ -1294,123 +1280,7 @@ class CustomerDetailView extends StatelessWidget {
                   Center(
                     child: CustomButton(
                       onPressed: () {
-                        if (nameController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "nameValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (surNameController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "surNameValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (emailController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "emailValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (phoneController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "phoneValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (remarkController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "remarkValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (companyName.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "companyNameValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (supplementController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "supplementValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (streetNumberController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "streetNoValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (placeController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "placeValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (addressController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "addressValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (cantonController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "cantonValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (postalCodeController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "postalCodeValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (landController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "landValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (dispatcherNameController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "dispatcherNameValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (dispatcherPhoneController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "dispatcherPhoneValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (orderNumberController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "orderNumberValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (customerNameController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "customerNameValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else if (customerPhoneController.text.isEmpty) {
-                          CustomSnackBar.errorSnackBar(
-                              message: "customerPhoneValidation".tr,
-                              backgroundColor: AppColors.primaryColor,
-                              textcolor: AppColors.appBackgroundColor);
-                        } else {
-                          homeController.confirmbooking(
-                              args['service'],
-                              args['transfer_type'],
-                              args['booking_date'],
-                              args['booking_time'],
-                              args['pickuplat'],
-                              args['droplat'],
-                              nameController.text,
-                              surNameController.text,
-                              emailController.text,
-                              phoneController.text,
-                              remarkController.text,
-                              dispatcherNameController.text,
-                              customerNameController.text,
-                              customerPhoneController.text,
-                              companyName.text,
-                              supplementController.text,
-                              streetNumberController.text,
-                              placeController.text,
-                              addressController.text,
-                              cantonController.text,
-                              postalCodeController.text,
-                              landController.text,
-                              dispatcherPhoneController.text,
-                              orderNumberController.text);
-                        }
+                       confirmbooking();
                       },
                       height: 50,
                       width: kWidth * 0.9,
@@ -1431,6 +1301,112 @@ class CustomerDetailView extends StatelessWidget {
           ],
         ),
       ),
+
+
     );
+
+
+  }
+  void confirmbooking(){
+    if (homeController.nameController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "nameValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.surNameController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "surNameValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.emailController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "emailValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.phoneController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "phoneValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.remarkController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "remarkValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.companyName.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "companyNameValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.supplementController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "supplementValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.streetNumberController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "streetNoValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.placeController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "placeValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.addressController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "addressValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.cantonController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "cantonValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.postalCodeController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "postalCodeValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.landController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "landValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.dispatcherNameController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "dispatcherNameValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.dispatcherPhoneController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "dispatcherPhoneValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.orderNumberController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "orderNumberValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.customerNameController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "customerNameValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else if (homeController.customerPhoneController.text.isEmpty) {
+      CustomSnackBar.errorSnackBar(
+          message: "customerPhoneValidation".tr,
+          backgroundColor: AppColors.primaryColor,
+          textcolor: AppColors.appBackgroundColor);
+    } else {
+      homeController.confirmbooking(
+        args['service'],
+        args['transfer_type'],
+        args['booking_date'],
+        args['booking_time'],
+        args['pickuplat'],
+        args['droplat'],
+      );
+    }
   }
 }

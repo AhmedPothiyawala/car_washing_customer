@@ -20,20 +20,8 @@ class ChangePasswordView extends StatefulWidget {
 
 class _ChangePasswordViewState extends State<ChangePasswordView> {
   final authController = Get.find<AuthController>();
-  final _emailController = TextEditingController();
-  final emailFormKey = GlobalKey<FormState>();
-  final userFocusNode = FocusNode();
-  final globalFormKey = GlobalKey<FormState>();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-  final passwordFocusNode = FocusNode();
-  final confirmPasswordFocusNode = FocusNode();
+
   final args = Get.arguments as Map;
-  @override
-  void initState() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +138,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                               color: AppColors.appBackgroundColor,
                               borderRadius: BorderRadius.circular(10)),
                           child: Form(
-                            key: globalFormKey,
+                            key: authController.changeglobalFormKey,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,12 +160,12 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                     child: CustomTextFormField(
                                   hintText: "password".tr,
                                   width: kWidth * 0.8,
-                                  focusNode: passwordFocusNode,
+                                  focusNode: authController.changepasswordFocusNode,
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(12)),
-                                  controller: passwordController,
+                                  controller: authController.changepasswordController,
                                   fillColor: AppColors.appBackgroundColor,
-                                  borderColor: passwordFocusNode.hasFocus
+                                  borderColor: authController.changepasswordFocusNode.hasFocus
                                       ? AppColors.primaryColor
                                       : AppColors.appWhiteGreyColor,
                                   validator: validatePassword,
@@ -215,17 +203,20 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                 Center(
                                     child: CustomTextFormField(
                                   hintText: "confirmPassword".tr,
+                                  onFieldSubmitted: (val){
+                                    submit();
+                                  },
                                   width: kWidth * 0.8,
-                                  focusNode: confirmPasswordFocusNode,
+                                  focusNode: authController.changeconfirmPasswordFocusNode,
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(12)),
-                                  controller: confirmPasswordController,
+                                  controller: authController.changeconfirmPasswordController,
                                   fillColor: AppColors.appBackgroundColor,
-                                  borderColor: confirmPasswordFocusNode.hasFocus
+                                  borderColor: authController.changeconfirmPasswordFocusNode.hasFocus
                                       ? AppColors.primaryColor
                                       : AppColors.appWhiteGreyColor,
                                   validator: (value) => validateConfirmPassword(
-                                      value, passwordController.text),
+                                      value, authController.changepasswordController.text),
                                   suffixIcon: GestureDetector(
                                     onTap: () async {
                                       authController
@@ -283,13 +274,12 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   }
 
   Future<void> submit() async {
-    bool formkey = globalFormKey.currentState!.validate();
+    bool formkey = authController.changeglobalFormKey.currentState!.validate();
 
     if (formkey) {
       authController.change_password(
           username: args['username'],
-          password: passwordController.text,
-          confirm_password: confirmPasswordController.text);
+        );
     }
   }
 }

@@ -39,17 +39,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () => const LoginView(),
+      page: () =>  LoginView(),
       binding: AuthBinding(),
     ),
     GetPage(
       name: _Paths.REGISTER,
-      page: () => const RegisterView(),
+      page: () =>  RegisterView(),
       binding: AuthBinding(),
     ),
     GetPage(
       name: _Paths.FORGOT_PASSWORD,
-      page: () => const ForgotPasswordView(),
+      page: () =>  ForgotPasswordView(),
       binding: AuthBinding(),
     ),
     GetPage(
@@ -59,7 +59,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.OTP_VIEW,
-      page: () => const OtpView(),
+      page: () =>  OtpView(),
       binding: AuthBinding(),
     ),
     GetPage(

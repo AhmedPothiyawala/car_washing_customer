@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/models/change_password_model.dart';
 import 'package:go_burble_new/app/models/forgot_password_model.dart';
@@ -11,11 +11,10 @@ import 'package:go_burble_new/app/models/register_model.dart';
 import 'package:go_burble_new/app/models/resend_otp_model.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import '../../../data/global_constant.dart';
 import '../../../data/storage_key.dart';
 import '../../../data/utils.dart';
-import '../../../models/check_subscription_model.dart';
+import 'package:flutter/material.dart';
 import '../../../models/login_model.dart' as loginmodel;
 import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
@@ -23,6 +22,7 @@ import '../../../services/api_services/api_services.dart';
 import '../../../services/storage_services/storage_services.dart';
 import '../../../widgets/custom_snackbar.dart';
 import 'dart:async';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 class AuthController extends GetxController {
   final _apiService = Get.find<ApiServices>();
@@ -36,8 +36,7 @@ class AuthController extends GetxController {
   final Rx<ResendOtpModel> _resendData = ResendOtpModel().obs;
   final Rx<ForgotPasswordModel> _forgotPasswordData = ForgotPasswordModel().obs;
   final Rx<ChangePasswordModel> _changePasswordData = ChangePasswordModel().obs;
-  final Rx<CheckSubscriptionModel> _checkSubscriptionModel =
-      CheckSubscriptionModel().obs;
+
 
   Rx<UserModel> get userData => _userData;
   Rx<loginmodel.LoginModel> get loginData => _loginData;
@@ -47,8 +46,6 @@ class AuthController extends GetxController {
   Rx<ForgotPasswordModel> get forgotPasswordData => _forgotPasswordData;
   Rx<ChangePasswordModel> get changePasswordData => _changePasswordData;
 
-  Rx<CheckSubscriptionModel> get checkSubscriptionModel =>
-      _checkSubscriptionModel;
 
   final RxBool _isRegisterPasswordObscureText = true.obs;
 
@@ -71,6 +68,62 @@ class AuthController extends GetxController {
 
   RxInt get resendOtpTimer => _resendOtpTimer;
   RxBool get isResendOtpDisabled => _isResendOtpDisabled;
+
+
+  final userNameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final userFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+  final usernmaeFormKey = GlobalKey<FormState>();
+  final passwordFormKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final genderController = TextEditingController();
+  final phoneController = TextEditingController();
+  final emailController = TextEditingController();
+  // final usernameController = TextEditingController();
+  final registerpasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final nameFocusNode = FocusNode();
+  final genderFocusNode = FocusNode();
+  final emailFocusNode = FocusNode();
+  final phoneFocusNode = FocusNode();
+  final registerpasswordFocusNode = FocusNode();
+  final globalFormKey = GlobalKey<FormState>();
+  final forgotphoneController = TextEditingController();
+  final forgotglobalFormKey = GlobalKey<FormState>();
+  final forgotphoneFocusNode = FocusNode();
+  final otpFocusNode = FocusNode();
+  final otpFormKey = GlobalKey<FormState>();
+  final FocusNode _pinFocusNode = FocusNode();
+  final otpController = TextEditingController();
+  final changeglobalFormKey = GlobalKey<FormState>();
+  final changepasswordController = TextEditingController();
+  final changeconfirmPasswordController = TextEditingController();
+  final changepasswordFocusNode = FocusNode();
+  final changeconfirmPasswordFocusNode = FocusNode();
+  @override
+  void dispose() {
+    userNameController.dispose();
+    passwordController.dispose();
+    userFocusNode.dispose();
+    passwordFocusNode.dispose();
+    usernmaeFormKey.currentState?.dispose();
+    passwordFormKey.currentState?.dispose();
+    confirmPasswordController.dispose();
+    registerpasswordController.dispose();
+  }
+
+  @override
+  void onInit() {
+
+    FlutterNativeSplash.remove();
+
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    super.onInit();
+  }
+
   void startOtpTimer() {
     _resendOtpTimer.value = 30;
     _isResendOtpDisabled.value = true;
@@ -91,24 +144,20 @@ class AuthController extends GetxController {
     _isResendOtpDisabled.value = false;
   }
 
-  Future<void> clearWebViewCache() async {
-    final WebViewCookieManager cookieManager = WebViewCookieManager();
-    await cookieManager.clearCookies();
-  }
 
   Future<void> loginWithEmailPassword(
-      {required String username, String? password, String? logintype}) async {
+      { String? logintype}) async {
     loading(show: true, title: "Authenticating...");
     try {
       var data = logintype != null
           ? {
-              'username': username,
+              'username': userNameController.text,
               'usertype': "customer",
               'login_type': logintype
             }
           : {
-              'username': username,
-              'password': password,
+              'username': userNameController.text,
+              'password': passwordController.text,
               'usertype': "customer"
             };
 
@@ -152,67 +201,18 @@ class AuthController extends GetxController {
     }
   }
 
-  // app_developer3
-  // 12345678
 
-  Future thrivePopupStatusUpdate() async {
-    loading(show: true, title: "Loading...");
-    var data = dio.FormData.fromMap({
-      'user_id': userData.value.userData!.id,
-    });
 
-    try {
-      final response = await _apiService.postWithoutToken(
-          endPoint: ApiEndpoints.thrivePopupStatusUpdate, reqData: data);
-      if (response != null) {
-        if (response.statusCode == 200) {
-          userData.value.userData!.thrivePopupStatus = 0;
-          update();
-          setUserData(data: '');
-
-          return true;
-        }
-      } else {
-        loading(show: false);
-        return false;
-      }
-    } on dio.DioException catch (ex) {
-      loading(show: false);
-      if (ex.response != null) {
-        final data = ex.response!.data;
-        CustomSnackBar.errorSnackBar(
-            message: data['message'] ?? "somethingWentWrong".tr);
-      } else {
-        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      }
-      return false;
-    } catch (e) {
-      loading(show: false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      appLogger.e(e.toString());
-      return false;
-    } finally {
-      loading(show: false);
-    }
-  }
-
-  Future<void> register_new_account({
-    required String name,
-    required String gender,
-    required String email,
-    // required String username,
-    required String phone,
-    required String password,
-  }) async {
+  Future<void> register_new_account() async {
     loading(show: true, title: "Sending Otp");
     try {
       var data = {
-        'name': name,
-        'gender': gender.toString().toLowerCase(),
-        'email': email,
-        'phone': phone,
-        'password': password,
-        'confirm_password': password,
+        'name': nameController.text,
+        'gender': genderController.text.toLowerCase(),
+        'email': emailController.text,
+        'phone': phoneController.text,
+        'password': registerpasswordController.text,
+        'confirm_password': registerpasswordController.text,
         'usertype': "1"
       };
       final response = await _apiService.post(
@@ -223,7 +223,7 @@ class AuthController extends GetxController {
           if (jsonMap['status'] == true) {
             _registerData.value = RegisterModel.fromJson(jsonMap);
             Get.toNamed(Routes.OTP_VIEW,
-                arguments: {'username': phone, 'forgotpassword': false});
+                arguments: {'username': phoneController.text, 'forgotpassword': false});
             startOtpTimer();
             CustomSnackBar.successSnackBar(message: "Otp Send Successfully");
           } else {
@@ -249,12 +249,12 @@ class AuthController extends GetxController {
 
   Future<void> validate_otp({
     required String username,
-    required String otp,
+
     required bool forgotpassword,
   }) async {
     loading(show: true, title: "Verifying");
     try {
-      var data = {'username': username, 'otp': otp};
+      var data = {'username': username, 'otp': otpController.text};
       final response = await _apiService.post(
           endPoint: ApiEndpoints.validateOtp, reqData: data);
       if (response != null) {
@@ -342,55 +342,15 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> forgotUsername({
-    required String email,
-  }) async {
-    loading(show: true, title: "Loading...");
-    try {
-      var data = dio.FormData.fromMap({'email': email});
-
-      final response = await _apiService.postWithoutToken(
-          endPoint: ApiEndpoints.forgotUsername, reqData: data);
-      if (response != null) {
-        if (response.statusCode == 200) {
-          String jsonString = response.data;
-          Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-
-          if (jsonMap['status'] == 200) {
-            Get.offAllNamed(Routes.LOGIN);
-            CustomSnackBar.successSnackBar(message: jsonMap['message']);
-          } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message']);
-          }
-          loading(show: false);
-        }
-      }
-    } on dio.DioException catch (ex) {
-      loading(show: false);
-      if (ex.response != null) {
-        final data = ex.response!.data;
-        CustomSnackBar.errorSnackBar(
-            message: data['message'] ?? "somethingWentWrong".tr);
-      } else {
-        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      }
-    } catch (e) {
-      loading(show: false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      appLogger.e(e.toString());
-    } finally {
-      loading(show: false);
-    }
-  }
 
   Future<void> forgot_password({
-    required String username,
+
     required bool forgotpassword,
   }) async {
     loading(show: true, title: "Loding...");
     try {
       var data = {
-        'username': username,
+        'username': forgotphoneController.text,
       };
       final response = await _apiService.post(
           endPoint: ApiEndpoints.forgotPassword, reqData: data);
@@ -401,7 +361,7 @@ class AuthController extends GetxController {
             _forgotPasswordData.value = ForgotPasswordModel.fromJson(jsonMap);
 
             Get.toNamed(Routes.OTP_VIEW,
-                arguments: {'username': username, 'forgotpassword': true});
+                arguments: {'username': forgotphoneController.text, 'forgotpassword': true});
             startOtpTimer();
 
             CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
@@ -425,109 +385,16 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> validateAPI({
-    required String token,
-  }) async {
-    loading(show: true, title: "Loading...");
-    try {
-      var data = dio.FormData.fromMap({'token': token});
-
-      final response = await _apiService.postWithoutToken(
-          endPoint: ApiEndpoints.validateEmailLinks, reqData: data);
-      if (response != null) {
-        if (response.statusCode == 200) {
-          String jsonString = response.data;
-          Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-
-          if (jsonMap['status'] == 200) {
-            if (jsonMap['email_link_type'] == 1 ||
-                jsonMap['email_link_type'] == 3) {
-              loading(show: false);
-              activateAccount(
-                  user_id: jsonMap['user_id'].toString(), token: token);
-            } else if (jsonMap['email_link_type'] == 2) {
-              // showDialog(
-              //   context: Get.context!,
-              //   builder: (context) => DeeplinkpasswordCustomDialogBox(
-              //     userId: jsonMap['user_id'].toString(),
-              //   ),
-              // );
-            }
-          } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message']);
-          }
-          loading(show: false);
-        }
-      }
-    } on dio.DioException catch (ex) {
-      loading(show: false);
-      if (ex.response != null) {
-        final data = ex.response!.data;
-        CustomSnackBar.errorSnackBar(
-            message: data['message'] ?? "somethingWentWrong".tr);
-      } else {
-        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      }
-    } catch (e) {
-      loading(show: false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      appLogger.e(e.toString());
-    } finally {
-      loading(show: false);
-    }
-  }
-
-  Future<void> activateAccount({
-    required String user_id,
-    required String token,
-  }) async {
-    loading(show: true, title: "Loading...");
-    try {
-      var data = dio.FormData.fromMap({'user_id': user_id, 'token': token});
-
-      final response = await _apiService.postWithoutToken(
-          endPoint: ApiEndpoints.activateAccount, reqData: data);
-      if (response != null) {
-        if (response.statusCode == 200) {
-          String jsonString = response.data;
-          Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-          if (jsonMap['status'] == 200) {
-            CustomSnackBar.successSnackBar(message: jsonMap['message']);
-          } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message']);
-          }
-          loading(show: false);
-        }
-      }
-    } on dio.DioException catch (ex) {
-      loading(show: false);
-      if (ex.response != null) {
-        final data = ex.response!.data;
-        CustomSnackBar.errorSnackBar(
-            message: data['message'] ?? "somethingWentWrong".tr);
-      } else {
-        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      }
-    } catch (e) {
-      loading(show: false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      appLogger.e(e.toString());
-    } finally {
-      loading(show: false);
-    }
-  }
-
   Future<void> change_password({
     required String username,
-    required String password,
-    required String confirm_password,
+
   }) async {
     loading(show: true, title: "Loding...");
     try {
       var data = {
         'username': username,
-        'password': password,
-        'confirm_password': confirm_password
+        'password': changepasswordController.text,
+        'confirm_password': changeconfirmPasswordController.text
       };
       final response = await _apiService.post(
           endPoint: ApiEndpoints.Changepassword, reqData: data);
@@ -560,46 +427,7 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> resendActivationLink({
-    required String email,
-  }) async {
-    loading(show: true, title: "Loading...");
-    try {
-      var data = dio.FormData.fromMap({'email': email});
 
-      final response = await _apiService.postWithoutToken(
-          endPoint: ApiEndpoints.resendActivationLink, reqData: data);
-      if (response != null) {
-        if (response.statusCode == 200) {
-          String jsonString = response.data;
-          Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-
-          if (jsonMap['status'] == 200) {
-            Get.offAllNamed(Routes.LOGIN);
-            CustomSnackBar.successSnackBar(message: jsonMap['message']);
-          } else {
-            CustomSnackBar.errorSnackBar(message: jsonMap['message']);
-          }
-          loading(show: false);
-        }
-      }
-    } on dio.DioException catch (ex) {
-      loading(show: false);
-      if (ex.response != null) {
-        final data = ex.response!.data;
-        CustomSnackBar.errorSnackBar(
-            message: data['message'] ?? "somethingWentWrong".tr);
-      } else {
-        CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      }
-    } catch (e) {
-      loading(show: false);
-      CustomSnackBar.errorSnackBar(message: "somethingWentWrong".tr);
-      appLogger.e(e.toString());
-    } finally {
-      loading(show: false);
-    }
-  }
 
   Future<bool> setUserData({
     required data,
@@ -613,47 +441,6 @@ class AuthController extends GetxController {
     return true;
   }
 
-  Future<void> logout({bool? forceLogout = false}) async {
-    loading(show: true, title: "Logging out...");
-    Future.delayed(const Duration(milliseconds: 2000));
-    _storageService.writeBool(key: StorageKey.isLogin, value: false);
-    List<String> clearStorageList = [];
-    await clearWebViewCache();
-    await FirebaseMessaging.instance.deleteToken();
-    clearStorageList = [];
-    clearStorageList.addAll([
-      StorageKey.token,
-      StorageKey.chatHistory,
-      StorageKey.chatSession,
-      StorageKey.userData,
-      StorageKey.isLogin
-    ]);
-    await _storageService.removeFromStorageKeys(listKey: clearStorageList);
-    await _storageService.clearStorage();
-    await _storageService.clearStorage();
-    _apiService.cancelToken = dio.CancelToken();
-    _googleSignIn.signOut();
-    Get.offAllNamed(Routes.LOGIN);
-    loading(show: false);
-  }
-
-  Future<void> normalLogout({bool? forceLogout = false}) async {
-    _googleSignIn.signOut();
-    List<String> clearStorageList = [];
-    await clearWebViewCache();
-    await FirebaseMessaging.instance.deleteToken();
-    clearStorageList = [];
-    clearStorageList.addAll([
-      StorageKey.token,
-      StorageKey.chatHistory,
-      StorageKey.chatSession,
-      StorageKey.userData,
-      StorageKey.isLogin
-    ]);
-    await _storageService.removeFromStorageKeys(listKey: clearStorageList);
-    await _storageService.clearStorage();
-    await _storageService.clearStorage();
-  }
 
   Future<User?> signInWithGoogle() async {
     try {
@@ -676,8 +463,9 @@ class AuthController extends GetxController {
 
       final user = userCredential.user;
       if (user != null) {
+        userNameController.text=user.email!;
         await loginWithEmailPassword(
-          username: user.email!,
+
           logintype: "google",
         );
 
@@ -740,3 +528,5 @@ class AuthController extends GetxController {
     if (result.user!.email!.isNotEmpty) {}
   }
 }
+
+

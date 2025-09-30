@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/text_styles.dart';
 import 'package:go_burble_new/app/data/utils.dart';
@@ -20,18 +21,22 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   void initState() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) async {
         await Future.delayed(const Duration(milliseconds: 1500), () async {
           bool isAutologin = await authController.checkAutoLogin();
           if (isAutologin) {
+
             Get.offAllNamed(Routes.BOTTOM_APP_BAR_VIEW);
+
             // if (!authController.userData.value.userData!.membershipActive!) {
             //   await Future.delayed(const Duration(milliseconds: 500), () async {
             //     // Get.to(() => const SubscribeView1());
             //   });
             // }
           } else {
+            SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
             Get.offAllNamed(Routes.LOGIN);
           }
         });

@@ -13,39 +13,10 @@ import '../../../../widgets/custom_snackbar.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import 'package:flutter/services.dart';
 
-class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+class RegisterView extends StatelessWidget {
+   RegisterView({super.key});
 
-  @override
-  State<RegisterView> createState() => _RegisterViewState();
-}
-
-class _RegisterViewState extends State<RegisterView> {
   final authController = Get.find<AuthController>();
-  final nameController = TextEditingController();
-  final genderController = TextEditingController();
-  final phoneController = TextEditingController();
-  final emailController = TextEditingController();
-  // final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-  final phoneNumberController = TextEditingController();
-  final nameFocusNode = FocusNode();
-  final genderFocusNode = FocusNode();
-  final emailFocusNode = FocusNode();
-  final phoneFocusNode = FocusNode();
-  final passwordFocusNode = FocusNode();
-  final usernmaeFormKey = GlobalKey<FormState>();
-  final passwordFormKey = GlobalKey<FormState>();
-  final globalFormKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    passwordController.addListener(updateWidget);
-    confirmPasswordController.addListener(updateWidget);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +118,7 @@ class _RegisterViewState extends State<RegisterView> {
                                     color: AppColors.appBackgroundColor,
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Form(
-                                  key: globalFormKey,
+                                  key:     authController.globalFormKey,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
@@ -177,11 +148,11 @@ class _RegisterViewState extends State<RegisterView> {
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
-                                          focusNode: nameFocusNode,
-                                          controller: nameController,
+                                          focusNode: authController.nameFocusNode,
+                                          controller: authController.nameController,
                                           fillColor:
                                               AppColors.appBackgroundColor,
-                                          borderColor: nameFocusNode.hasFocus
+                                          borderColor: authController.nameFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
                                           validator: (string) {
@@ -192,8 +163,7 @@ class _RegisterViewState extends State<RegisterView> {
                                             return null;
                                           },
                                           onFieldSubmitted: (value) {
-                                            usernmaeFormKey.currentState!
-                                                .validate();
+
                                           },
                                         ),
                                       ),
@@ -221,8 +191,8 @@ class _RegisterViewState extends State<RegisterView> {
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
-                                          focusNode: genderFocusNode,
-                                          controller: genderController,
+                                          focusNode: authController.genderFocusNode,
+                                          controller: authController.genderController,
                                           fillColor:
                                               AppColors.appBackgroundColor,
                                           items: ['Male', 'Female']
@@ -232,10 +202,10 @@ class _RegisterViewState extends State<RegisterView> {
                                                   ))
                                               .toList(),
                                           onChanged: (value) {
-                                            genderController.text =
+                                            authController.genderController.text =
                                                 value.toString();
                                           },
-                                          borderColor: genderFocusNode.hasFocus
+                                          borderColor: authController.genderFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
                                           validator: (string) {
@@ -245,8 +215,7 @@ class _RegisterViewState extends State<RegisterView> {
                                             return null;
                                           },
                                           onFieldSubmitted: (value) {
-                                            usernmaeFormKey.currentState!
-                                                .validate();
+
                                           },
                                         ),
                                       ),
@@ -279,17 +248,16 @@ class _RegisterViewState extends State<RegisterView> {
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
-                                          focusNode: emailFocusNode,
-                                          controller: emailController,
+                                          focusNode: authController.emailFocusNode,
+                                          controller: authController.emailController,
                                           fillColor:
                                               AppColors.appBackgroundColor,
-                                          borderColor: emailFocusNode.hasFocus
+                                          borderColor: authController.emailFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
                                           validator: validateEmail,
                                           onFieldSubmitted: (value) {
-                                            usernmaeFormKey.currentState!
-                                                .validate();
+
                                           },
                                         ),
                                       ),
@@ -324,17 +292,16 @@ class _RegisterViewState extends State<RegisterView> {
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
-                                          focusNode: phoneFocusNode,
-                                          controller: phoneController,
+                                          focusNode: authController.phoneFocusNode,
+                                          controller: authController.phoneController,
                                           fillColor:
                                               AppColors.appBackgroundColor,
-                                          borderColor: phoneFocusNode.hasFocus
+                                          borderColor: authController.phoneFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
                                           validator: validatePhone,
                                           onFieldSubmitted: (value) {
-                                            usernmaeFormKey.currentState!
-                                                .validate();
+
                                           },
                                         ),
                                       ),
@@ -358,14 +325,17 @@ class _RegisterViewState extends State<RegisterView> {
                                           child: CustomTextFormField(
                                         hintText: "password".tr,
                                         width: kWidth * 0.8,
-                                        focusNode: passwordFocusNode,
+                                        focusNode: authController.registerpasswordFocusNode,
                                         borderRadiusAll: const BorderRadius.all(
                                             Radius.circular(12)),
-                                        controller: passwordController,
+                                        controller: authController.registerpasswordController,
                                         fillColor: AppColors.appBackgroundColor,
-                                        borderColor: passwordFocusNode.hasFocus
+                                        borderColor: authController.registerpasswordFocusNode.hasFocus
                                             ? AppColors.primaryColor
                                             : AppColors.appWhiteGreyColor,
+                                     onFieldSubmitted: (val){
+                                       RegisterSubmit();
+                                     },
                                         validator: validatePassword,
                                         suffixIcon: GestureDetector(
                                           onTap: () async {
@@ -413,6 +383,11 @@ class _RegisterViewState extends State<RegisterView> {
                                                 onChanged: (value) {
                                                   authController
                                                       .isTermsCondition(value);
+                                                if(value==true)
+                                                  {
+                                                    RegisterSubmit();
+                                                  }
+
                                                 }),
                                           ),
                                           const SizedBox(
@@ -571,7 +546,7 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   Future<void> RegisterSubmit() async {
-    bool formkey = globalFormKey.currentState!.validate();
+    bool formkey = authController.globalFormKey.currentState!.validate();
 
     if (formkey) {
       ///login endpoint
@@ -581,27 +556,9 @@ class _RegisterViewState extends State<RegisterView> {
       } else {
         await authController
             .register_new_account(
-                name: nameController.text,
-                gender: genderController.text,
-                email: emailController.text,
-                phone: phoneController.text,
-                password: passwordController.text)
+               )
             .then((val) {});
       }
     }
-  }
-
-  void updateWidget() {
-    buildValidationList(passwordController);
-    buildValidationList(confirmPasswordController);
-    authController.update();
-  }
-
-  @override
-  void dispose() {
-    // passwordFocusNode.dispose();
-    confirmPasswordController.dispose();
-    passwordController.dispose();
-    super.dispose();
   }
 }

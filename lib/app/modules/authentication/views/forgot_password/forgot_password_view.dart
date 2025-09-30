@@ -12,23 +12,10 @@ import '../../../../widgets/custom_text_form_field.dart';
 import '../../controllers/auth_controller.dart';
 import 'package:flutter/services.dart';
 
-class ForgotPasswordView extends StatefulWidget {
-  const ForgotPasswordView({super.key});
+class ForgotPasswordView extends StatelessWidget {
+   ForgotPasswordView({super.key});
 
-  @override
-  State<ForgotPasswordView> createState() => _ForgotPasswordViewState();
-}
-
-class _ForgotPasswordViewState extends State<ForgotPasswordView> {
-  final phoneController = TextEditingController();
   final authController = Get.find<AuthController>();
-  final globalFormKey = GlobalKey<FormState>();
-  final phoneFocusNode = FocusNode();
-  @override
-  void initState() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +124,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                           color: AppColors.appBackgroundColor,
                           borderRadius: BorderRadius.circular(10)),
                       child: Form(
-                        key: globalFormKey,
+                        key: authController.forgotglobalFormKey,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,10 +150,10 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                 hintText: "phone".tr,
                                 borderRadiusAll:
                                     const BorderRadius.all(Radius.circular(12)),
-                                focusNode: phoneFocusNode,
-                                controller: phoneController,
+                                focusNode: authController.forgotphoneFocusNode,
+                                controller: authController.forgotphoneController,
                                 fillColor: AppColors.appBackgroundColor,
-                                borderColor: phoneFocusNode.hasFocus
+                                borderColor: authController.forgotphoneFocusNode.hasFocus
                                     ? AppColors.primaryColor
                                     : AppColors.appWhiteGreyColor,
                                 inputFormatters: [
@@ -175,7 +162,9 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                   ),
                                 ],
                                 validator: validatePhone,
-                                onFieldSubmitted: (value) {},
+                                onFieldSubmitted: (value) {
+                                  submit();
+                                },
                               ),
                             ),
                             const SizedBox(
@@ -210,11 +199,11 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   }
 
   Future<void> submit() async {
-    bool isMobileValid = globalFormKey.currentState!.validate();
+    bool isMobileValid = authController.forgotglobalFormKey.currentState!.validate();
 
     if (isMobileValid) {
       authController.forgot_password(
-          username: phoneController.text, forgotpassword: true);
+          forgotpassword: true);
     }
   }
 }
