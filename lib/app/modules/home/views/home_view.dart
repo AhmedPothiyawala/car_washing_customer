@@ -293,26 +293,27 @@ class _HomeViewState extends State<HomeView> {
                                         fontSize: 16)),
                               )
                             : Center(
-                              child: Container(
-                                                        width: kWidth*0.9,
-                                child: SingleChildScrollView(
+                                child: SizedBox(
+                                  width: kWidth * 0.9,
+                                  child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Wrap(
-                                      crossAxisAlignment: WrapCrossAlignment.center,
-
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
                                       children: List.generate(
-                                          homeController.bookingData.value.bookings!
-                                              .length, (val) {
+                                          homeController.bookingData.value
+                                              .bookings!.length, (val) {
                                         return Center(
                                           child: Container(
                                             width: kWidth * 0.9,
                                             decoration: BoxDecoration(
-                                                color: AppColors.appBackgroundColor,
+                                                color: AppColors
+                                                    .appBackgroundColor,
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                                 border: Border.all(
-                                                    color:
-                                                        AppColors.secondaryColor)),
+                                                    color: AppColors
+                                                        .secondaryColor)),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
@@ -323,7 +324,10 @@ class _HomeViewState extends State<HomeView> {
                                                   width: 10,
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(top: 10.0,bottom: 10),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10.0,
+                                                          bottom: 10),
                                                   child: Container(
                                                     height: 56,
                                                     width: 56,
@@ -333,7 +337,8 @@ class _HomeViewState extends State<HomeView> {
                                                                 .secondaryColor)),
                                                     child: Center(
                                                         child: Image.asset(
-                                                            AppImages.carImage2)),
+                                                            AppImages
+                                                                .carImage2)),
                                                   ),
                                                 ),
                                                 const SizedBox(
@@ -386,7 +391,8 @@ class _HomeViewState extends State<HomeView> {
                                                   child: const Center(
                                                     child: Icon(
                                                       Icons.arrow_forward,
-                                                      color: AppColors.blackColor,
+                                                      color:
+                                                          AppColors.blackColor,
                                                     ),
                                                   ),
                                                 ),
@@ -400,8 +406,8 @@ class _HomeViewState extends State<HomeView> {
                                       }),
                                     ),
                                   ),
+                                ),
                               ),
-                            ),
                         const SizedBox(
                           height: 20,
                         ),

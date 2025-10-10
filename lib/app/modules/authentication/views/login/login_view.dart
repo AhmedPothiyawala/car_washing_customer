@@ -14,8 +14,6 @@ import '../../controllers/auth_controller.dart';
 import 'package:flutter/services.dart';
 
 class LoginView extends StatelessWidget {
-
-
   final authController = Get.find<AuthController>();
 
   @override
@@ -237,7 +235,6 @@ class LoginView extends StatelessWidget {
                                   textInputAction: TextInputAction.next,
                                   width: kWidth * 0.8,
                                   hintText: "email".tr,
-
                                   inputFormatters: [
                                     FilteringTextInputFormatter.allow(
                                       RegExp(r'[a-zA-Z0-9@._\-+]'),
@@ -248,13 +245,12 @@ class LoginView extends StatelessWidget {
                                   focusNode: authController.userFocusNode,
                                   controller: authController.userNameController,
                                   fillColor: AppColors.appBackgroundColor,
-                                  borderColor: authController.userFocusNode.hasFocus
-                                      ? AppColors.primaryColor
-                                      : AppColors.appWhiteGreyColor,
+                                  borderColor:
+                                      authController.userFocusNode.hasFocus
+                                          ? AppColors.primaryColor
+                                          : AppColors.appWhiteGreyColor,
                                   validator: validateEmail,
-                                  onFieldSubmitted: (value) {
-
-                                  },
+                                  onFieldSubmitted: (value) {},
                                 ),
                               ),
                               const SizedBox(
@@ -267,14 +263,15 @@ class LoginView extends StatelessWidget {
                                   focusNode: authController.passwordFocusNode,
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(12)),
-                                  controller:authController. passwordController,
+                                  controller: authController.passwordController,
                                   fillColor: AppColors.appBackgroundColor,
-                                  borderColor: authController.passwordFocusNode.hasFocus
-                                      ? AppColors.primaryColor
-                                      : AppColors.appWhiteGreyColor,
+                                  borderColor:
+                                      authController.passwordFocusNode.hasFocus
+                                          ? AppColors.primaryColor
+                                          : AppColors.appWhiteGreyColor,
                                   validator: validatePassword,
                                   textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (val){
+                                  onFieldSubmitted: (val) {
                                     loginSubmit();
                                   },
                                   suffixIcon: GestureDetector(
@@ -396,10 +393,6 @@ class LoginView extends StatelessWidget {
     authController.userFocusNode.unfocus();
     authController.passwordFocusNode.unfocus();
 
-    await authController
-        .loginWithEmailPassword(
-
-        )
-        .then((val) {});
+    await authController.loginWithEmailPassword().then((val) {});
   }
 }

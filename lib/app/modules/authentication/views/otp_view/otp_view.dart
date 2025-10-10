@@ -12,7 +12,7 @@ import 'package:pinput/pinput.dart';
 import '../../../../widgets/custom_snackbar.dart';
 
 class OtpView extends StatelessWidget {
-   OtpView({super.key});
+  OtpView({super.key});
 
   final authController = Get.find<AuthController>();
 
@@ -201,7 +201,7 @@ class OtpView extends StatelessWidget {
                                   ),
                                   closeKeyboardWhenCompleted: false,
                                   // Other properties you can set
-                                    textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.done,
                                   cursor: const Text(
                                     '|',
                                     style: TextStyle(
@@ -214,7 +214,7 @@ class OtpView extends StatelessWidget {
                                   onCompleted: (value) {
                                     OtpSubmit();
                                   },
-                                  onSubmitted: (value){
+                                  onSubmitted: (value) {
                                     OtpSubmit();
                                   },
                                   onChanged: (value) {
@@ -352,11 +352,8 @@ class OtpView extends StatelessWidget {
       authController
           .validate_otp(
               username: args['username'],
-
               forgotpassword: args['forgotpassword'])
-          .then((value) {
-
-      });
+          .then((value) {});
     }
   }
 

@@ -19,8 +19,6 @@ class CustomerDetailView extends StatelessWidget {
 
   bool isChecked = false;
 
-
-
   final homeController = Get.find<HomeControllers>();
   final args = Get.arguments as Map;
 
@@ -461,7 +459,8 @@ class CustomerDetailView extends StatelessWidget {
                                           color: AppColors.blackColor),
                                       borderRadiusAll: const BorderRadius.all(
                                           Radius.circular(0)),
-                                      controller: homeController.phoneController,
+                                      controller:
+                                          homeController.phoneController,
                                       textInputAction: TextInputAction.next,
                                       fillColor: AppColors.appBackgroundColor,
                                       borderColor: AppColors.appBackgroundColor,
@@ -929,7 +928,6 @@ class CustomerDetailView extends StatelessWidget {
                         },
                         borderColor: AppColors.appWhiteGreyColor,
                         controller: homeController.landController,
-
                         validator: (string) {
                           if (string == null) {
                             return "genderIsRequired".tr;
@@ -1057,7 +1055,8 @@ class CustomerDetailView extends StatelessWidget {
                                           color: AppColors.blackColor),
                                       borderRadiusAll: const BorderRadius.all(
                                           Radius.circular(0)),
-                                      controller: homeController.dispatcherPhoneController,
+                                      controller: homeController
+                                          .dispatcherPhoneController,
                                       textInputAction: TextInputAction.next,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.allow(
@@ -1249,11 +1248,11 @@ class CustomerDetailView extends StatelessWidget {
                                       color: AppColors.blackColor),
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(0)),
-                                  controller: homeController.customerPhoneController,
+                                  controller:
+                                      homeController.customerPhoneController,
                                   textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (val){
+                                  onFieldSubmitted: (val) {
                                     confirmbooking();
-
                                   },
                                   fillColor: AppColors.appBackgroundColor,
                                   borderColor: AppColors.appBackgroundColor,
@@ -1280,7 +1279,7 @@ class CustomerDetailView extends StatelessWidget {
                   Center(
                     child: CustomButton(
                       onPressed: () {
-                       confirmbooking();
+                        confirmbooking();
                       },
                       height: 50,
                       width: kWidth * 0.9,
@@ -1301,13 +1300,10 @@ class CustomerDetailView extends StatelessWidget {
           ],
         ),
       ),
-
-
     );
-
-
   }
-  void confirmbooking(){
+
+  void confirmbooking() {
     if (homeController.nameController.text.isEmpty) {
       CustomSnackBar.errorSnackBar(
           message: "nameValidation".tr,

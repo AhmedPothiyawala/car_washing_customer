@@ -61,7 +61,6 @@ class MyDioException implements Exception {
           /// That means token is invalid or expired
           /// Call logout method
           final controller = Get.find<AuthController>();
-
         }
       }
 

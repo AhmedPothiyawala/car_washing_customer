@@ -44,12 +44,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.REGISTER,
-      page: () =>  RegisterView(),
+      page: () => RegisterView(),
       binding: AuthBinding(),
     ),
     GetPage(
       name: _Paths.FORGOT_PASSWORD,
-      page: () =>  ForgotPasswordView(),
+      page: () => ForgotPasswordView(),
       binding: AuthBinding(),
     ),
     GetPage(
@@ -59,7 +59,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.OTP_VIEW,
-      page: () =>  OtpView(),
+      page: () => OtpView(),
       binding: AuthBinding(),
     ),
     GetPage(

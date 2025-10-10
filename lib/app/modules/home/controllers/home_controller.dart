@@ -190,6 +190,7 @@ class HomeControllers extends GetxController {
       );
     }
   }
+
   Future<void> updateRouteMarkers() async {
     if (_pickup.isEmpty) return;
 
@@ -592,13 +593,13 @@ class HomeControllers extends GetxController {
   }
 
   Future<void> confirmbooking(
-      String service,
-      transferType,
-      bookingDate,
-      bookingTime,
-      List<Map<String, double>> pickup,
-      List<Map<String, double>> drop,
-   ) async {
+    String service,
+    transferType,
+    bookingDate,
+    bookingTime,
+    List<Map<String, double>> pickup,
+    List<Map<String, double>> drop,
+  ) async {
     loading(show: true, title: "Sending...");
     try {
       var data = drop.length > 1
@@ -658,25 +659,25 @@ class HomeControllers extends GetxController {
                   .value.data![_isselectedCar.value].vatValue,
               'our_fees': _getCalculatedPriceData
                   .value.data![_isselectedCar.value].ourFees,
-        'customer_name': nameController.text,
-        'customer_surname': surNameController.text,
-        'customer_email': emailController.text,
-        'customer_phone': phoneController.text,
-        'customer_remarks': remarkController.text,
-        'billing_address_flag': 1,
-        'dispatcher_name': dispatcherNameController.text,
-        'customer_name2': customerNameController.text,
-        'customer_phone2': customerPhoneController.text,
-        'billing_company_name': companyName.text,
-        'billing_supplement': supplementController.text,
-        'billing_street_no': streetNumberController.text,
-        'billing_place': placeController.text,
-        'billing_address': addressController.text,
-        'billing_canton': cantonController.text,
-        'billing_postal_code': postalCodeController.text,
-        'billing_land': landController.text,
-        'dispatcher_phone': dispatcherPhoneController.text,
-        'dispatcher_order_number': orderNumberController.text,
+              'customer_name': nameController.text,
+              'customer_surname': surNameController.text,
+              'customer_email': emailController.text,
+              'customer_phone': phoneController.text,
+              'customer_remarks': remarkController.text,
+              'billing_address_flag': 1,
+              'dispatcher_name': dispatcherNameController.text,
+              'customer_name2': customerNameController.text,
+              'customer_phone2': customerPhoneController.text,
+              'billing_company_name': companyName.text,
+              'billing_supplement': supplementController.text,
+              'billing_street_no': streetNumberController.text,
+              'billing_place': placeController.text,
+              'billing_address': addressController.text,
+              'billing_canton': cantonController.text,
+              'billing_postal_code': postalCodeController.text,
+              'billing_land': landController.text,
+              'dispatcher_phone': dispatcherPhoneController.text,
+              'dispatcher_order_number': orderNumberController.text,
             };
 
       final response = await _apiService.post(

@@ -27,7 +27,6 @@ class _SplashViewState extends State<SplashView> {
         await Future.delayed(const Duration(milliseconds: 1500), () async {
           bool isAutologin = await authController.checkAutoLogin();
           if (isAutologin) {
-
             Get.offAllNamed(Routes.BOTTOM_APP_BAR_VIEW);
 
             // if (!authController.userData.value.userData!.membershipActive!) {

@@ -14,7 +14,7 @@ import '../../../../widgets/custom_text_form_field.dart';
 import 'package:flutter/services.dart';
 
 class RegisterView extends StatelessWidget {
-   RegisterView({super.key});
+  RegisterView({super.key});
 
   final authController = Get.find<AuthController>();
 
@@ -118,7 +118,7 @@ class RegisterView extends StatelessWidget {
                                     color: AppColors.appBackgroundColor,
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Form(
-                                  key:     authController.globalFormKey,
+                                  key: authController.globalFormKey,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
@@ -148,11 +148,14 @@ class RegisterView extends StatelessWidget {
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
-                                          focusNode: authController.nameFocusNode,
-                                          controller: authController.nameController,
+                                          focusNode:
+                                              authController.nameFocusNode,
+                                          controller:
+                                              authController.nameController,
                                           fillColor:
                                               AppColors.appBackgroundColor,
-                                          borderColor: authController.nameFocusNode.hasFocus
+                                          borderColor: authController
+                                                  .nameFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
                                           validator: (string) {
@@ -162,9 +165,7 @@ class RegisterView extends StatelessWidget {
                                             }
                                             return null;
                                           },
-                                          onFieldSubmitted: (value) {
-
-                                          },
+                                          onFieldSubmitted: (value) {},
                                         ),
                                       ),
                                       const SizedBox(
@@ -191,8 +192,10 @@ class RegisterView extends StatelessWidget {
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
-                                          focusNode: authController.genderFocusNode,
-                                          controller: authController.genderController,
+                                          focusNode:
+                                              authController.genderFocusNode,
+                                          controller:
+                                              authController.genderController,
                                           fillColor:
                                               AppColors.appBackgroundColor,
                                           items: ['Male', 'Female']
@@ -202,10 +205,11 @@ class RegisterView extends StatelessWidget {
                                                   ))
                                               .toList(),
                                           onChanged: (value) {
-                                            authController.genderController.text =
-                                                value.toString();
+                                            authController.genderController
+                                                .text = value.toString();
                                           },
-                                          borderColor: authController.genderFocusNode.hasFocus
+                                          borderColor: authController
+                                                  .genderFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
                                           validator: (string) {
@@ -214,9 +218,7 @@ class RegisterView extends StatelessWidget {
                                             }
                                             return null;
                                           },
-                                          onFieldSubmitted: (value) {
-
-                                          },
+                                          onFieldSubmitted: (value) {},
                                         ),
                                       ),
                                       const SizedBox(
@@ -248,17 +250,18 @@ class RegisterView extends StatelessWidget {
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
-                                          focusNode: authController.emailFocusNode,
-                                          controller: authController.emailController,
+                                          focusNode:
+                                              authController.emailFocusNode,
+                                          controller:
+                                              authController.emailController,
                                           fillColor:
                                               AppColors.appBackgroundColor,
-                                          borderColor: authController.emailFocusNode.hasFocus
+                                          borderColor: authController
+                                                  .emailFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
                                           validator: validateEmail,
-                                          onFieldSubmitted: (value) {
-
-                                          },
+                                          onFieldSubmitted: (value) {},
                                         ),
                                       ),
                                       const SizedBox(
@@ -292,17 +295,18 @@ class RegisterView extends StatelessWidget {
                                           borderRadiusAll:
                                               const BorderRadius.all(
                                                   Radius.circular(12)),
-                                          focusNode: authController.phoneFocusNode,
-                                          controller: authController.phoneController,
+                                          focusNode:
+                                              authController.phoneFocusNode,
+                                          controller:
+                                              authController.phoneController,
                                           fillColor:
                                               AppColors.appBackgroundColor,
-                                          borderColor: authController.phoneFocusNode.hasFocus
+                                          borderColor: authController
+                                                  .phoneFocusNode.hasFocus
                                               ? AppColors.primaryColor
                                               : AppColors.appWhiteGreyColor,
                                           validator: validatePhone,
-                                          onFieldSubmitted: (value) {
-
-                                          },
+                                          onFieldSubmitted: (value) {},
                                         ),
                                       ),
                                       const SizedBox(
@@ -325,17 +329,21 @@ class RegisterView extends StatelessWidget {
                                           child: CustomTextFormField(
                                         hintText: "password".tr,
                                         width: kWidth * 0.8,
-                                        focusNode: authController.registerpasswordFocusNode,
+                                        focusNode: authController
+                                            .registerpasswordFocusNode,
                                         borderRadiusAll: const BorderRadius.all(
                                             Radius.circular(12)),
-                                        controller: authController.registerpasswordController,
+                                        controller: authController
+                                            .registerpasswordController,
                                         fillColor: AppColors.appBackgroundColor,
-                                        borderColor: authController.registerpasswordFocusNode.hasFocus
+                                        borderColor: authController
+                                                .registerpasswordFocusNode
+                                                .hasFocus
                                             ? AppColors.primaryColor
                                             : AppColors.appWhiteGreyColor,
-                                     onFieldSubmitted: (val){
-                                       RegisterSubmit();
-                                     },
+                                        onFieldSubmitted: (val) {
+                                          RegisterSubmit();
+                                        },
                                         validator: validatePassword,
                                         suffixIcon: GestureDetector(
                                           onTap: () async {
@@ -383,11 +391,9 @@ class RegisterView extends StatelessWidget {
                                                 onChanged: (value) {
                                                   authController
                                                       .isTermsCondition(value);
-                                                if(value==true)
-                                                  {
+                                                  if (value == true) {
                                                     RegisterSubmit();
                                                   }
-
                                                 }),
                                           ),
                                           const SizedBox(
@@ -554,10 +560,7 @@ class RegisterView extends StatelessWidget {
       if (authController.isTermsCondition.value != true) {
         CustomSnackBar.errorSnackBar(message: "termsRequired".tr);
       } else {
-        await authController
-            .register_new_account(
-               )
-            .then((val) {});
+        await authController.register_new_account().then((val) {});
       }
     }
   }

@@ -142,7 +142,7 @@ class PickMeUpView extends StatelessWidget {
             ),
           ),
           body: SizedBox(
-              height: kHeight*0.55,
+              height: kHeight * 0.55,
               width: kWidth,
               child: GoogleMap(
                 mapType: MapType.normal,

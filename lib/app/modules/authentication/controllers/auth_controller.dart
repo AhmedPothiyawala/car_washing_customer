@@ -37,7 +37,6 @@ class AuthController extends GetxController {
   final Rx<ForgotPasswordModel> _forgotPasswordData = ForgotPasswordModel().obs;
   final Rx<ChangePasswordModel> _changePasswordData = ChangePasswordModel().obs;
 
-
   Rx<UserModel> get userData => _userData;
   Rx<loginmodel.LoginModel> get loginData => _loginData;
   Rx<RegisterModel> get registerData => _registerData;
@@ -45,7 +44,6 @@ class AuthController extends GetxController {
   Rx<ResendOtpModel> get resendData => _resendData;
   Rx<ForgotPasswordModel> get forgotPasswordData => _forgotPasswordData;
   Rx<ChangePasswordModel> get changePasswordData => _changePasswordData;
-
 
   final RxBool _isRegisterPasswordObscureText = true.obs;
 
@@ -68,7 +66,6 @@ class AuthController extends GetxController {
 
   RxInt get resendOtpTimer => _resendOtpTimer;
   RxBool get isResendOtpDisabled => _isResendOtpDisabled;
-
 
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -116,9 +113,7 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
-
     FlutterNativeSplash.remove();
-
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
@@ -144,9 +139,7 @@ class AuthController extends GetxController {
     _isResendOtpDisabled.value = false;
   }
 
-
-  Future<void> loginWithEmailPassword(
-      { String? logintype}) async {
+  Future<void> loginWithEmailPassword({String? logintype}) async {
     loading(show: true, title: "Authenticating...");
     try {
       var data = logintype != null
@@ -201,8 +194,6 @@ class AuthController extends GetxController {
     }
   }
 
-
-
   Future<void> register_new_account() async {
     loading(show: true, title: "Sending Otp");
     try {
@@ -222,8 +213,10 @@ class AuthController extends GetxController {
           Map<String, dynamic> jsonMap = response.data;
           if (jsonMap['status'] == true) {
             _registerData.value = RegisterModel.fromJson(jsonMap);
-            Get.toNamed(Routes.OTP_VIEW,
-                arguments: {'username': phoneController.text, 'forgotpassword': false});
+            Get.toNamed(Routes.OTP_VIEW, arguments: {
+              'username': phoneController.text,
+              'forgotpassword': false
+            });
             startOtpTimer();
             CustomSnackBar.successSnackBar(message: "Otp Send Successfully");
           } else {
@@ -249,7 +242,6 @@ class AuthController extends GetxController {
 
   Future<void> validate_otp({
     required String username,
-
     required bool forgotpassword,
   }) async {
     loading(show: true, title: "Verifying");
@@ -342,9 +334,7 @@ class AuthController extends GetxController {
     }
   }
 
-
   Future<void> forgot_password({
-
     required bool forgotpassword,
   }) async {
     loading(show: true, title: "Loding...");
@@ -360,8 +350,10 @@ class AuthController extends GetxController {
           if (jsonMap['status'] == true) {
             _forgotPasswordData.value = ForgotPasswordModel.fromJson(jsonMap);
 
-            Get.toNamed(Routes.OTP_VIEW,
-                arguments: {'username': forgotphoneController.text, 'forgotpassword': true});
+            Get.toNamed(Routes.OTP_VIEW, arguments: {
+              'username': forgotphoneController.text,
+              'forgotpassword': true
+            });
             startOtpTimer();
 
             CustomSnackBar.successSnackBar(message: jsonMap['message_en']);
@@ -387,7 +379,6 @@ class AuthController extends GetxController {
 
   Future<void> change_password({
     required String username,
-
   }) async {
     loading(show: true, title: "Loding...");
     try {
@@ -427,8 +418,6 @@ class AuthController extends GetxController {
     }
   }
 
-
-
   Future<bool> setUserData({
     required data,
   }) async {
@@ -440,7 +429,6 @@ class AuthController extends GetxController {
 
     return true;
   }
-
 
   Future<User?> signInWithGoogle() async {
     try {
@@ -463,9 +451,8 @@ class AuthController extends GetxController {
 
       final user = userCredential.user;
       if (user != null) {
-        userNameController.text=user.email!;
+        userNameController.text = user.email!;
         await loginWithEmailPassword(
-
           logintype: "google",
         );
 
@@ -528,5 +515,3 @@ class AuthController extends GetxController {
     if (result.user!.email!.isNotEmpty) {}
   }
 }
-
-

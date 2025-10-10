@@ -9,7 +9,6 @@ import '../../../../routes/app_pages.dart';
 import '../../../../widgets/custom_button.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import '../../controllers/auth_controller.dart';
-import 'package:flutter/services.dart';
 
 class ChangePasswordView extends StatefulWidget {
   const ChangePasswordView({super.key});
@@ -160,12 +159,15 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                     child: CustomTextFormField(
                                   hintText: "password".tr,
                                   width: kWidth * 0.8,
-                                  focusNode: authController.changepasswordFocusNode,
+                                  focusNode:
+                                      authController.changepasswordFocusNode,
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(12)),
-                                  controller: authController.changepasswordController,
+                                  controller:
+                                      authController.changepasswordController,
                                   fillColor: AppColors.appBackgroundColor,
-                                  borderColor: authController.changepasswordFocusNode.hasFocus
+                                  borderColor: authController
+                                          .changepasswordFocusNode.hasFocus
                                       ? AppColors.primaryColor
                                       : AppColors.appWhiteGreyColor,
                                   validator: validatePassword,
@@ -203,20 +205,26 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                 Center(
                                     child: CustomTextFormField(
                                   hintText: "confirmPassword".tr,
-                                  onFieldSubmitted: (val){
+                                  onFieldSubmitted: (val) {
                                     submit();
                                   },
                                   width: kWidth * 0.8,
-                                  focusNode: authController.changeconfirmPasswordFocusNode,
+                                  focusNode: authController
+                                      .changeconfirmPasswordFocusNode,
                                   borderRadiusAll: const BorderRadius.all(
                                       Radius.circular(12)),
-                                  controller: authController.changeconfirmPasswordController,
+                                  controller: authController
+                                      .changeconfirmPasswordController,
                                   fillColor: AppColors.appBackgroundColor,
-                                  borderColor: authController.changeconfirmPasswordFocusNode.hasFocus
+                                  borderColor: authController
+                                          .changeconfirmPasswordFocusNode
+                                          .hasFocus
                                       ? AppColors.primaryColor
                                       : AppColors.appWhiteGreyColor,
                                   validator: (value) => validateConfirmPassword(
-                                      value, authController.changepasswordController.text),
+                                      value,
+                                      authController
+                                          .changepasswordController.text),
                                   suffixIcon: GestureDetector(
                                     onTap: () async {
                                       authController
@@ -278,8 +286,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
 
     if (formkey) {
       authController.change_password(
-          username: args['username'],
-        );
+        username: args['username'],
+      );
     }
   }
 }

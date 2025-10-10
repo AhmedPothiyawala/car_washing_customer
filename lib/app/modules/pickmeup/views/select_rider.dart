@@ -61,7 +61,7 @@ class SelectRiderView extends StatelessWidget {
       ),
       // The HomeControllers dependency is already set up via GetBuilder
       body: SizedBox(
-        height: kHeight*0.55,
+        height: kHeight * 0.55,
         width: kWidth,
         child: GetBuilder<HomeControllers>(
           builder: (controller) {
@@ -83,10 +83,10 @@ class SelectRiderView extends StatelessWidget {
                 : const LatLng(0, 0);
 
             // --- Drop Location Data (using the FIRST drop point for display) ---
-            final String dropAddress =
-                dropList.isNotEmpty && controller.dropController.value.isNotEmpty
-                    ? controller.dropController.value[0].text
-                    : "Drop location address loading...";
+            final String dropAddress = dropList.isNotEmpty &&
+                    controller.dropController.value.isNotEmpty
+                ? controller.dropController.value[0].text
+                : "Drop location address loading...";
 
             final bool showDropContainer = dropList.isNotEmpty;
 
@@ -97,7 +97,8 @@ class SelectRiderView extends StatelessWidget {
                 children: [
                   // 1. Google Map
                   GoogleMap(
-                    initialCameraPosition: CameraPosition(target: initialTarget),
+                    initialCameraPosition:
+                        CameraPosition(target: initialTarget),
                     onMapCreated: (GoogleMapController mapController) {
                       controller.onMapCreated2(mapController);
                       Future.delayed(const Duration(milliseconds: 300), () {

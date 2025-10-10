@@ -13,7 +13,7 @@ import '../../controllers/auth_controller.dart';
 import 'package:flutter/services.dart';
 
 class ForgotPasswordView extends StatelessWidget {
-   ForgotPasswordView({super.key});
+  ForgotPasswordView({super.key});
 
   final authController = Get.find<AuthController>();
 
@@ -151,11 +151,13 @@ class ForgotPasswordView extends StatelessWidget {
                                 borderRadiusAll:
                                     const BorderRadius.all(Radius.circular(12)),
                                 focusNode: authController.forgotphoneFocusNode,
-                                controller: authController.forgotphoneController,
+                                controller:
+                                    authController.forgotphoneController,
                                 fillColor: AppColors.appBackgroundColor,
-                                borderColor: authController.forgotphoneFocusNode.hasFocus
-                                    ? AppColors.primaryColor
-                                    : AppColors.appWhiteGreyColor,
+                                borderColor:
+                                    authController.forgotphoneFocusNode.hasFocus
+                                        ? AppColors.primaryColor
+                                        : AppColors.appWhiteGreyColor,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
                                     RegExp(r'\+?[0-9]*'),
@@ -199,11 +201,11 @@ class ForgotPasswordView extends StatelessWidget {
   }
 
   Future<void> submit() async {
-    bool isMobileValid = authController.forgotglobalFormKey.currentState!.validate();
+    bool isMobileValid =
+        authController.forgotglobalFormKey.currentState!.validate();
 
     if (isMobileValid) {
-      authController.forgot_password(
-          forgotpassword: true);
+      authController.forgot_password(forgotpassword: true);
     }
   }
 }
