@@ -56,4 +56,15 @@ class AppColors {
   static const skyColorShadeThree = Color(0xFFE0F3E1);
   static const pinkColorShadeOne = Color(0xFFFDF0FD);
   static const pinkColorShadeTwo = Color(0xFFFFDBFF);
+  static const blackShadeOne = Color(0XFF040404);
+  static const blackShadeFive = Color(0XFF141B34);
+
+
+  static const shadowColor = Color(0XFFAEABBB);
+  static const purpleColorShadeOne = Color(0XFFA213E4);
+  static const shadowWhiteColor = Color(0x1C77758D);
+  static const teenColorShadeOne = Color(0xff31D3A4);
+  static const blueColorShadeOne = Color(0xFF2853AF);
+  static const sabrinColorShadeOne = Color(0xFFA83434);
+  static const greyShadeNine = Color(0xFF607080);
 }

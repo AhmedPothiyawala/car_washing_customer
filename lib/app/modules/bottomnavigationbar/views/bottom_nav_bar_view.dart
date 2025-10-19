@@ -8,7 +8,9 @@ import 'package:go_burble_new/app/modules/bottomnavigationbar/controllers/bottom
 import '../../../data/text_styles.dart';
 import 'package:flutter/services.dart';
 
+import '../../favorite/views/favourite_drive.dart';
 import '../../home/views/home_view.dart';
+import '../../rider/views/rides_view.dart';
 
 class BottomNavBarView extends StatefulWidget {
   const BottomNavBarView({super.key});
@@ -28,8 +30,8 @@ class _BottomNavBarViewState extends State<BottomNavBarView> {
   final List _navbarlable = ["home".tr, "rides".tr, "fav".tr, "myAccount".tr];
   final List _pages = [
     const HomeView(),
-    const HomeView(),
-    const HomeView(),
+    const RidesView(),
+     FavouriteDrive(),
     const HomeView()
   ];
 

@@ -22,6 +22,11 @@ abstract class Routes {
   static const CANCEL_BOOKING_VIEW = _Paths.CANCEL_BOOKING_VIEW;
   static const RIDE_SUCCESS_VIEW = _Paths.RIDE_SUCCESS_VIEW;
   static const NOTIFICATION_VIEW = _Paths.NOTIFICATION_VIEW;
+  static const SEACH_VIEW = _Paths.SEARCH_VIEW;
+  static const GET_STARTED_ONE = _Paths.GET_STARTED_ONE;
+  static const GET_STARTED_TWO = _Paths.GET_STARTED_TWO;
+  static const GET_STARTED_THREE =_Paths.GET_STARTED_THREE;
+  static const RIDE_DRIVER_DETAIL = _Paths.RIDE_DRIVER_DETAIL;
 }
 
 abstract class _Paths {
@@ -45,4 +50,10 @@ abstract class _Paths {
   static const CANCEL_BOOKING_VIEW = "/cancel-booking-view";
   static const RIDE_SUCCESS_VIEW = "/ride-success-view";
   static const NOTIFICATION_VIEW = "/notification-view";
+  static const SEARCH_VIEW = "/search-view";
+  static const GET_STARTED_ONE = "/get-started-one";
+  static const GET_STARTED_TWO = "/get-started-two";
+  static const GET_STARTED_THREE = "/get-started-three";
+  static const RIDE_DRIVER_DETAIL = "/favourite-drive-view";
+
 }

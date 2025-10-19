@@ -4,6 +4,7 @@ class StorageKey {
   static const String token = "token";
   static const String isBiometric = "isBiometric";
   static const String isLogin = "isLogin";
+  static const String isIntro = "isIntro";
   static const String chatHistory = "chatHistory";
   static const String chatSession = "chatSession";
   static const String isSubscription = "isSubscription";

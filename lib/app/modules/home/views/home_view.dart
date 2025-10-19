@@ -87,6 +87,14 @@ class _HomeViewState extends State<HomeView> {
           actions: [
             InkWell(
                 onTap: () {
+                  Get.toNamed(Routes.SEACH_VIEW);
+                },
+                child: SvgPicture.asset(AppImages.homeSearchIcon)),
+            const SizedBox(
+              width: 10,
+            ),
+            InkWell(
+                onTap: () {
                   Get.toNamed(Routes.NOTIFICATION_VIEW);
                 },
                 child: SvgPicture.asset(AppImages.notificationIcon)),

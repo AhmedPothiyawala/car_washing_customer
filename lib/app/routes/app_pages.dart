@@ -8,11 +8,16 @@ import 'package:go_burble_new/app/modules/bottomnavigationbar/bindings/bottom_na
 import 'package:go_burble_new/app/modules/bottomnavigationbar/views/bottom_nav_bar_view.dart';
 import 'package:go_burble_new/app/modules/home/bindings/home_binding.dart';
 
+import '../modules/authentication/views/Intro_view/get_started_one.dart';
+import '../modules/authentication/views/Intro_view/get_started_three.dart';
+import '../modules/authentication/views/Intro_view/get_started_two.dart';
 import '../modules/authentication/views/change_password_view/change_password_view.dart';
 import '../modules/authentication/views/location_view/location_view.dart';
 import '../modules/authentication/views/otp_view/otp_view.dart';
+import '../modules/favorite/views/ride_driver_detail.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home/views/notification_view.dart';
+import '../modules/home/views/search_view.dart';
 import '../modules/pickmeup/views/cancel_booking_view.dart';
 import '../modules/pickmeup/views/customer_detail_view.dart';
 import '../modules/pickmeup/views/driver_detail_view.dart';
@@ -112,6 +117,29 @@ class AppPages {
     GetPage(
       name: _Paths.NOTIFICATION_VIEW,
       page: () => NotificationView(),
+    ),
+
+    GetPage(
+      name: _Paths.SEARCH_VIEW,
+      page: () =>  SearchView(),
+    ),
+
+    GetPage(
+      name: _Paths.GET_STARTED_ONE,
+      page: () =>  GetStartedOne(),
+    ),
+
+    GetPage(
+      name: _Paths.GET_STARTED_TWO,
+      page: () =>  GetStartedTwo(),
+    ),
+    GetPage(
+      name: _Paths.GET_STARTED_THREE,
+      page: () =>  GetStartedThree(),
+    ),
+    GetPage(
+      name: _Paths.RIDE_DRIVER_DETAIL,
+      page: () => RideDriverDetail(),
     ),
   ];
 }

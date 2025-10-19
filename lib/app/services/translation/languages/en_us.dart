@@ -346,6 +346,88 @@ Map<String, String> enUS = {
   "driveReviewRequest": "Driver 1 Review Request",
   "carCancelledSuccessfully": "Car Cancelled Successfully",
 
+
+  //******************************
+  //SEARCH_VIEW
+  //******************************
+  "search": "Search",
+  "recentSearch": "Recent search",
+  "upcomingBookings": "upcoming booking",
+  "myDriver": "mydriver",
+  "cancelBookings": "cancel booking",
+  "recentView": "Recent View",
+  "upcoming": "Upcoming",
+  "misterRichardMendoza": "Mr Richard Mendoza",
+  "driver": "Driver. Black BMW.ZH.445 789",
+  "reBookRide": "Re-book Ride",
+  "bsfr": "BS,FR",
+  "50+": "50+",
+  "151Km": "151 km",
+  "cities": "Cities",
+  "completeTrip": "Complete Trip",
+  "drivingKm": "Driving KM",
+
+  //******************************
+  //RIDES_VIEW
+  //******************************
+  "completed": "Completed",
+  "cancelled": "Cancelled",
+
+
+//******************************
+//GET_STARTED_ONE
+//******************************
+"gettingStartedWithPickUpMyCarAndPickMe": "Getting Started With PickUpMyCar"
+" & PickMeUp",
+"loremIpsumDolorParagraph" : "Lorem ispum dolor sit amet, consectuer "
+"adipiscing elit, sed do eiusmod tempor incididunt",
+
+//******************************
+//GET_STARTED_TWO
+//******************************
+"addToSetYourFavouriteDriver" : "Add to Favorites : Set Your Favorites "
+"Driver",
+
+//******************************
+//GET_STARTED_THREE
+//******************************
+"trackYourService" : "Track Your Service : Stay In Control Of Your Service",
+
+  //******************************
+  //MY_FAVOURITE_RIDE_VIEW
+  //******************************
+  "myFavouriteRideView" : "My Favorite Driver",
+
+  //******************************
+  //RIDE_DRIVER_DETAIL
+  //******************************
+  "vehicleClass" : "Vehicle Class",
+  "inviteDriverToYourFavouriteDrivers" : "Invite the driver to Your Favorite "
+      "Drivers network.",
+  "inviteDriver" : "Invite Driver",
+  //headingOneAllTexes
+  "firstClass" : "First Class",
+  "businessClass" : "Business Class",
+  "suvClass" : "SUV Class",
+  "vanClass" : "VAN Class",
+  //eadingTwoAllTaxes
+  "bmw7":"BMW 7",
+  "mercedes":"Mercedes",
+  "escalade":"Escalade",
+  //zhAllNumber
+  "zhNumberOne":"ZH 111 111",
+  "zhNumberTwo":"ZH 111 111",
+  "zhNumberThree":"ZH 111 333",
+  "zhNumberFour":"ZH 111 333",
+
+  "personalInfo":"Personal Info",
+  "mobileNumber":"Mobile Number",
+  "+41xx":"+41 xxxx xxxx xxxx",
+  ":":":",
+  "emergencyNumber":"Emergency Number",
+  "richard@demo.com":"richard@demo.com",
+  "reBookRide":"Re-book Ride",
+
   //******************************************************************************************
   //PROFILE_VIEW
   //******************************************************************************************

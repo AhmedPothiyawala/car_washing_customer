@@ -30,6 +30,23 @@ class AppImages {
   static const String cancelBookingImage = "assets/images/cancel_booking.png";
   static const String dropCarImage = "assets/images/drop_car_image.png";
 
+  static const String getStartedOne = "assets/images/get_started_one.png";
+  static const String getStartedOneNavigation = "assets/images/get_started_one_navigation_image.svg";
+  static const String getStartedOneArrowImage = "assets/images/get_started_one_arrow.png";
+
+  static const String getStartedTwo = "assets/images/get_started_two.png";
+  static const String getStartedNavigationTwo = "assets/images/get_started_navigation_two.svg";
+  static const String getStartedTwoArrowImage = "assets/images/get_started_two_arrow_image.png";
+
+
+  static const String getStartedThree = "assets/images/get_started_three.png";
+  static const String getStartedNavigationThree = "assets/images/get_started_three_navigation.svg";
+  static const String getStartedThreeArrowImage = "assets/images/get_started_three_arrow_image.png";
+  static const String mainBgRides = "assets/images/main_bg_rides.png";
+  static const String richardMendozaSmallBorder = "assets/images/richard_mendoza_small_border.png";
+  static const String selectLine = "assets/images/select_line.png";
+
+
   //Icons
   static const String errorInfo = "assets/icons/error_info.svg";
   static const String successIcon = "assets/icons/success_Icon.svg";
@@ -66,4 +83,10 @@ class AppImages {
       "con.svg";
   static const String markerIcon = "assets/icons/marker_icon.png";
   static const String markerIcon2 = "assets/icons/marker_icon2.png";
+  static const String homeSearchIcon = "assets/icons/home_search_icon.svg";
+  static const String shapeStarIcon = "assets/icons/shape_star_icon.svg";
+  static const String whiteStartIcon = "assets/icons/whit_star_icon.svg";
+  static const String moreVertHorizontal = "assets/icons/more_vert_horizontal.svg";
+  static const String contactIcon = "assets/icons/contact_icon.svg";
+  static const String whiteCarIcon = "assets/icons/white_car_icon.svg";
 }

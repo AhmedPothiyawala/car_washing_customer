@@ -6,6 +6,8 @@ import 'package:go_burble_new/app/data/utils.dart';
 import 'package:go_burble_new/app/routes/app_pages.dart';
 import '../../../data/app_colors.dart';
 import '../../../data/app_images.dart';
+import '../../../data/storage_key.dart';
+import '../../../services/storage_services/storage_services.dart';
 import '../controllers/auth_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,6 +20,7 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   final authController = Get.find<AuthController>();
+  final _storageService = Get.find<StorageService>();
 
   @override
   void initState() {
@@ -26,6 +29,7 @@ class _SplashViewState extends State<SplashView> {
       (timeStamp) async {
         await Future.delayed(const Duration(milliseconds: 1500), () async {
           bool isAutologin = await authController.checkAutoLogin();
+          bool? isintro=await _storageService.readBool(StorageKey.isIntro);
           if (isAutologin) {
             Get.offAllNamed(Routes.BOTTOM_APP_BAR_VIEW);
 
@@ -35,8 +39,19 @@ class _SplashViewState extends State<SplashView> {
             //   });
             // }
           } else {
-            SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-            Get.offAllNamed(Routes.LOGIN);
+
+            if(isintro==null||isintro==true)
+              {
+                SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+
+                Get.offAllNamed(Routes.GET_STARTED_ONE);
+              }
+            else{
+              SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+
+              Get.offAllNamed(Routes.LOGIN);
+            }
+
           }
         });
       },
