@@ -67,4 +67,16 @@ class AppColors {
   static const blueColorShadeOne = Color(0xFF2853AF);
   static const sabrinColorShadeOne = Color(0xFFA83434);
   static const greyShadeNine = Color(0xFF607080);
+
+  static const whiteShadeThree = Color(0xFFE9E9ED);
+  static const whiteShadeFour = Color(0xFFC5C9D1);
+  static const greyShadeTen = Color(0xff3C3C43);
+  static const whiteShadeFive = Color(0xffEFF1FF);
+  static const lightTomato = Color(0xffFFE9E9);
+  static const darkTomato = Color(0xffFF4A4A);
+  static const shadowColorShadeTwo = Color(0xff77758D);
+  static const greyShadeEleven = Color(0xffEFEFEF);
+  static const whiteShadeSix = Color(0xffF2F2F2);
+
+
 }

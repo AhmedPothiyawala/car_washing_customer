@@ -89,4 +89,21 @@ class AppImages {
   static const String moreVertHorizontal = "assets/icons/more_vert_horizontal.svg";
   static const String contactIcon = "assets/icons/contact_icon.svg";
   static const String whiteCarIcon = "assets/icons/white_car_icon.svg";
+
+  static const String myProfileBackgroundImage = "assets/images/my_profile_background_image.png";
+  static const String profileIcon = "assets/icons/profile_icon.svg";
+  static const String profileCarIcon = "assets/icons/profile_car_icon.svg";
+  static const String myBookingPickMeUpProfileIcon = "assets/icons/my_booking_pick_me_up_profile_icon.svg";
+  static const String favouriteDriverIcon = "assets/icons/favourite_driver.svg";
+  static const String profileWalletIcon = "assets/icons/profile_wallet_icon.svg";
+  static const String profileLoyaltyPointsIcon = "assets/icons/profile_loyalty_points.svg";
+  static const String changePasswordIcon = "assets/icons/change_password_icon.svg";
+  static const String profileNotificationIcon = "assets/icons/profile_notification_icon.svg";
+  static const String profileHelpCenterIcon = "assets/icons/profile_help_center_icon.svg";
+  static const String profilePrivacyPolicyIcon = "assets/icons/profile_privacy_policy.svg";
+  static const String profileLanguageIcon = "assets/icons/profile_language_icon.svg";
+  static const String profileLogOutIcon = "assets/icons/profile_logout_icon.svg";
+  static const String editProfileAccountIcon = "assets/icons/edit_profile_account_icon.svg";
+  static const String editProfileEditIcon = "assets/icons/edit_profile_edit_icon.svg";
+
 }

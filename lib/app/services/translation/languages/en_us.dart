@@ -133,7 +133,7 @@ Map<String, String> enUS = {
   "remindMeLetter": "Remind me later",
 
   //******************************************************************************************
-  //BOTTOMNAVBAR
+  //BOTTOMNAVBA
   //******************************************************************************************
 
   "home": "Home",
@@ -514,4 +514,94 @@ Map<String, String> enUS = {
   "connectionStatus": "Connection Status",
   "youAreOffline": "You are offline",
   "unableToLoadEditor": "Unable to load video in editor!",
+
+  //******************************************************************************************
+  //CHOOSE DIALOG BOX
+  //******************************************************************************************
+  "shareProfile":"Share Profile",
+
+  //******************************************************************************************
+  //BOTTOM SHIT
+  //******************************************************************************************
+  "invite":"Invite",
+
+  //******************************************************************************************
+  //MY PROFILE
+  //******************************************************************************************
+  "myProfile":"My Profile",
+  "editProfile":"Edit Profile",
+  "myBookingPickUpMyCar":"My Booking PickUpMyCar",
+  "myBookingPickMeUp":"My Booking PickMeUp",
+  "myFavouriteDriver":"My Favorite Driver",
+  "myWallet":"My Wallet",
+  "loyaltyPoints":"Loyalty Points",
+  "settings":"Settings",
+  "changePassword":"Change Password",
+  "helpCenter":"Help Center",
+  "privacyPolicy":"Privacy Policy",
+  "language":"Language",
+
+  //******************************************************************************************
+  //EDIT PROFILE
+  //******************************************************************************************
+  "richard":"Richard",
+  "mendoza":"Mendoza",
+  "dob":"Dob",
+  "dd/mm/yy":"DD/MM/YY",
+  "male":"male",
+  "updateProfile":"Update Profile",
+
+  //******************************************************************************************
+  //CHANGE PASSWORD
+  //******************************************************************************************
+  "oldPassword":"Old Password",
+  "newPassword":"New Password",
+  "conformPassword":"Confirm Password",
+  "updatePassword":"Update Password",
+
+  //******************************************************************************************
+  //CHANGE PASSWORD
+  //******************************************************************************************
+  "notificationSetting":"Notification Setting",
+  "mobileNotification":"Mobile Notification",
+  "enableTextMessageNotification":"Enable text message notification",
+  "PushNotification":"Push notification",
+  "rideCancelNotification":"Ride Cancel Notification",
+  "emailNotification":"Email Notification",
+  "promotionsAndAnnouncements":"Promotions and announcements",
+  "rideCancelNotifications":"Ride Cancel Notification",
+
+  //******************************************************************************************
+  //HELP CENTER
+  //******************************************************************************************
+  "faq":"FAQ",
+  "contactUs":"Contact Us",
+  "canITrackMyBookedDeliverStatus?":"Can I track my booked deliver status?",
+  "plus":"+",
+  "isThereAReturnPolicy?":"IS there a return policy?",
+  "minus":"-",
+  "theCustomerCanOrderTheTransportServiceOnlineViaTheWebsiteParagraph":"The customer can order the transport service online via the website www.pickupmycar.ch . By submitting the order, the customer submits a binding offer to conclude a contract. The contract is concluded when PickUpMyCar GmbH confirms the customer's order by email.",
+  "canISaveMyFavoriteItemForLater?":"Can I save my favorite item for later?",
+  "canIShareTheProductsWithMyFriends":"Can I share the products with my friends?",
+  "howDoIContactCustomerSupport?":"How do I contact customer Support?",
+  "whatPaymentMethodsAreAccepted?":"What payment methods are accepted?",
+  "howToAddReview?":"How to add review?",
+  "contactInformation":"Contact Information",
+  "saySomethingToStartALiveChat":"Say something to start a live chat!",
+  "+41798783311":"+41 79 878 33 11",
+  "staldenbachstrasse":"Staldenbachstrasse 30",
+  "8808PfäffikonSZ":"8808 Pfäffikon SZ",
+  "message":"Message",
+  "ourTeamIsArrangingTheDriverAndVehicleAsPerYourRequirement":"Our team is arranging the driver and vehicle as per your requirement",
+
+  //******************************************************************************************
+  //LOG OUT DIALOG BOX
+  //******************************************************************************************
+  "logOut":"Log out",
+  "youWillBeReturnedToTheLoginScreen":"You will be returned to the login screen.",
+  "don'tAllow":"Don't Allow",
+
+
+
+
 };

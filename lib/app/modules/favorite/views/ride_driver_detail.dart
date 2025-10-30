@@ -8,6 +8,7 @@ import '../../../data/app_colors.dart';
 import '../../../data/app_images.dart';
 import '../../../data/text_styles.dart';
 import '../../../data/utils.dart';
+import '../../../widgets/choose_dialog.dart';
 class RideDriverDetail extends StatelessWidget {
     RideDriverDetail({super.key});
 
@@ -71,7 +72,7 @@ class RideDriverDetail extends StatelessWidget {
                         fit: BoxFit.fill,
                       ),
                     ),
-                    child:   Column(
+                    child: Column(
                       children: [
                         const SizedBox(
                           height: 60,
@@ -87,7 +88,7 @@ class RideDriverDetail extends StatelessWidget {
                                 onTap: () {
                                   Get.back();
                                 },
-                                child: Icon(Icons.arrow_back,color: AppColors.appBackgroundColor,size: 24,)),
+                                child: const Icon(Icons.arrow_back,color: AppColors.appBackgroundColor,size: 24,)),
                             const Spacer(),
                             Text(
                               "myFavouriteRideView".tr,
@@ -308,9 +309,6 @@ class RideDriverDetail extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20,),
-
-
-
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -394,29 +392,33 @@ class RideDriverDetail extends StatelessWidget {
                       ),),
                   ],
                 )
-
               ],
             ),
             const SizedBox(height: 20,),
             Center(
-              child: Container(
-                height: 50 ,
-                width: kWidth * 0.9,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: AppColors.primaryColor,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(AppImages.whiteCarIcon,height: 18,width: 23,color: AppColors.appBackgroundColor,),
-                    const SizedBox(width: 10,),
-                    Text(
-                      "reBookRide".tr,
-                      style: sfProMediumTextstyle.copyWith(fontSize: 16,color: AppColors.appBackgroundColor),
-                    ),
-                  ],
+              child: InkWell(
+                onTap: () {
+                  chooseDialog(context);
+                },
+                child: Container(
+                  height: 50 ,
+                  width: kWidth * 0.9,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: AppColors.primaryColor,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(AppImages.whiteCarIcon,height: 18,width: 23,color: AppColors.appBackgroundColor,),
+                      const SizedBox(width: 10,),
+                      Text(
+                        "reBookRide".tr,
+                        style: sfProMediumTextstyle.copyWith(fontSize: 16,color: AppColors.appBackgroundColor),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

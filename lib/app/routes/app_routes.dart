@@ -27,6 +27,10 @@ abstract class Routes {
   static const GET_STARTED_TWO = _Paths.GET_STARTED_TWO;
   static const GET_STARTED_THREE =_Paths.GET_STARTED_THREE;
   static const RIDE_DRIVER_DETAIL = _Paths.RIDE_DRIVER_DETAIL;
+
+  static const MY_PROFILE = _Paths.MY_PROFILE;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+  static const ACCOUNT_CHANGE_PASSWORD = _Paths.ACCOUNT_CHANGE_PASSWORD;
 }
 
 abstract class _Paths {
@@ -55,5 +59,9 @@ abstract class _Paths {
   static const GET_STARTED_TWO = "/get-started-two";
   static const GET_STARTED_THREE = "/get-started-three";
   static const RIDE_DRIVER_DETAIL = "/favourite-drive-view";
+
+  static const MY_PROFILE = "/my-profile-view";
+  static const EDIT_PROFILE = "/edit-profile-view";
+  static const ACCOUNT_CHANGE_PASSWORD = "/change-password-view";
 
 }

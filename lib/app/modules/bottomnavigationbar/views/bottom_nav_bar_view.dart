@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 
 import '../../favorite/views/favourite_drive.dart';
 import '../../home/views/home_view.dart';
+import '../../myaccount/my_profile.dart';
 import '../../rider/views/rides_view.dart';
 
 class BottomNavBarView extends StatefulWidget {
@@ -32,7 +33,7 @@ class _BottomNavBarViewState extends State<BottomNavBarView> {
     const HomeView(),
     const RidesView(),
      FavouriteDrive(),
-    const HomeView()
+    const MyProfile()
   ];
 
   final bottomNavBarController = Get.find<BottomNavBarControllers>();

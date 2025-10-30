@@ -18,6 +18,9 @@ import '../modules/favorite/views/ride_driver_detail.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home/views/notification_view.dart';
 import '../modules/home/views/search_view.dart';
+import '../modules/myaccount/change_password.dart';
+import '../modules/myaccount/edit_profile.dart';
+import '../modules/myaccount/my_profile.dart';
 import '../modules/pickmeup/views/cancel_booking_view.dart';
 import '../modules/pickmeup/views/customer_detail_view.dart';
 import '../modules/pickmeup/views/driver_detail_view.dart';
@@ -140,6 +143,19 @@ class AppPages {
     GetPage(
       name: _Paths.RIDE_DRIVER_DETAIL,
       page: () => RideDriverDetail(),
+    ),
+
+    GetPage(
+      name: _Paths.MY_PROFILE,
+      page: () => MyProfile(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => EditProfile(),
+    ),
+    GetPage(
+      name: _Paths.ACCOUNT_CHANGE_PASSWORD,
+      page: () => ChangePassword(),
     ),
   ];
 }
