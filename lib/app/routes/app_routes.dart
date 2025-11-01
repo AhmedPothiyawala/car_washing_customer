@@ -31,6 +31,7 @@ abstract class Routes {
   static const MY_PROFILE = _Paths.MY_PROFILE;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
   static const ACCOUNT_CHANGE_PASSWORD = _Paths.ACCOUNT_CHANGE_PASSWORD;
+  static const ACCOUNT_NOTIFICATION_SETTING = _Paths.ACCOUNT_NOTIFICATION_SETTING;
 }
 
 abstract class _Paths {
@@ -63,5 +64,6 @@ abstract class _Paths {
   static const MY_PROFILE = "/my-profile-view";
   static const EDIT_PROFILE = "/edit-profile-view";
   static const ACCOUNT_CHANGE_PASSWORD = "/change-password-view";
+  static const ACCOUNT_NOTIFICATION_SETTING = "/notification-setting-view";
 
 }

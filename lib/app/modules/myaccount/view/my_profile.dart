@@ -5,9 +5,12 @@ import 'package:get/get.dart';
 import 'package:go_burble_new/app/data/app_images.dart';
 import 'package:go_burble_new/app/data/utils.dart';
 
-import '../../data/app_colors.dart';
-import '../../data/text_styles.dart';
+import '../../../data/app_colors.dart';
+import '../../../data/text_styles.dart';
+import 'change_password.dart';
 import 'edit_profile.dart';
+import 'help_center.dart';
+import 'notification_setting.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
@@ -317,15 +320,23 @@ class MyProfile extends StatelessWidget {
                         child: SvgPicture.asset(AppImages.changePasswordIcon,height: 20,width: 20 ,fit: BoxFit.scaleDown,),
                       ),
                       const SizedBox(width: 20,),
-                      Row(
-                        children: [
-                          Text(
-                            "changePassword".tr,
-                            style: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor
-                            ),),
-                          const Spacer(),
-                          const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.blackColor,),
-                        ],
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(ChangePassword());
+                          },
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "changePassword".tr,
+                                  style: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor
+                                  ),),
+                              ),
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.blackColor,),
+                            ],
+                          ),
+                        ),
                       )
                     ],
                   ),
@@ -349,12 +360,24 @@ class MyProfile extends StatelessWidget {
                         child: SvgPicture.asset(AppImages.profileNotificationIcon,height: 20,width: 20 ,fit: BoxFit.scaleDown,),
                       ),
                       const SizedBox(width: 20,),
-                      Text(
-                        "notification".tr,
-                        style: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor
-                        ),),
-                      const Spacer(),
-                      const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.blackColor,),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(NotificationScreen());
+                          },
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "notification".tr,
+                                  style: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor
+                                  ),),
+                              ),
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.blackColor,),
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   const SizedBox(height: 8,),
@@ -377,12 +400,25 @@ class MyProfile extends StatelessWidget {
                         child: SvgPicture.asset(AppImages.profileHelpCenterIcon,height: 20,width: 20 ,fit: BoxFit.scaleDown,),
                       ),
                       const SizedBox(width: 20,),
-                      Text(
-                        "helpCenter".tr,
-                        style: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor
-                        ),),
-                      const Spacer(),
-                      const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.blackColor,),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(HelpCenter());
+                          },
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "helpCenter".tr,
+                                  style: sfProMediumTextstyle.copyWith(fontSize: 14,color: AppColors.blackColor
+                                  ),),
+                              ),
+
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.blackColor,),
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   const SizedBox(height: 8,),

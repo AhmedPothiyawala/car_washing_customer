@@ -27,7 +27,7 @@ class _SplashViewState extends State<SplashView> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) async {
-        await Future.delayed(const Duration(milliseconds: 1500), () async {
+        await Future.delayed(const Duration(milliseconds: 1500), () async {//
           bool isAutologin = await authController.checkAutoLogin();
           bool? isintro=await _storageService.readBool(StorageKey.isIntro);
           if (isAutologin) {
@@ -125,7 +125,7 @@ class _SplashViewState extends State<SplashView> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                  height: 348,
+                  height: 300,
                   width: kWidth * 0.8,
                   decoration: const BoxDecoration(
                       image: DecorationImage(

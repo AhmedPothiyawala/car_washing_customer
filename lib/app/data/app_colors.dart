@@ -77,6 +77,7 @@ class AppColors {
   static const shadowColorShadeTwo = Color(0xff77758D);
   static const greyShadeEleven = Color(0xffEFEFEF);
   static const whiteShadeSix = Color(0xffF2F2F2);
+  static const whiteShadeSeven = Color(0xffF6F6F6);
 
 
 }

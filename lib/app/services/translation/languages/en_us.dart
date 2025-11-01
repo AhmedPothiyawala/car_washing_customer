@@ -560,7 +560,7 @@ Map<String, String> enUS = {
   "updatePassword":"Update Password",
 
   //******************************************************************************************
-  //CHANGE PASSWORD
+  //NOTIFICATION SETTINGS
   //******************************************************************************************
   "notificationSetting":"Notification Setting",
   "mobileNotification":"Mobile Notification",
@@ -576,16 +576,16 @@ Map<String, String> enUS = {
   //******************************************************************************************
   "faq":"FAQ",
   "contactUs":"Contact Us",
-  "canITrackMyBookedDeliverStatus?":"Can I track my booked deliver status?",
+  "canITrackMyBookedDeliverStatus":"Can I track my booked deliver status?",
   "plus":"+",
-  "isThereAReturnPolicy?":"IS there a return policy?",
+  "isThereAReturnPolicy":"IS there a return policy?",
   "minus":"-",
   "theCustomerCanOrderTheTransportServiceOnlineViaTheWebsiteParagraph":"The customer can order the transport service online via the website www.pickupmycar.ch . By submitting the order, the customer submits a binding offer to conclude a contract. The contract is concluded when PickUpMyCar GmbH confirms the customer's order by email.",
-  "canISaveMyFavoriteItemForLater?":"Can I save my favorite item for later?",
+  "canISaveMyFavoriteItemForLater":"Can I save my favorite item for later?",
   "canIShareTheProductsWithMyFriends":"Can I share the products with my friends?",
-  "howDoIContactCustomerSupport?":"How do I contact customer Support?",
-  "whatPaymentMethodsAreAccepted?":"What payment methods are accepted?",
-  "howToAddReview?":"How to add review?",
+  "howDoIContactCustomerSupport":"How do I contact customer Support?",
+  "whatPaymentMethodsAreAccepted":"What payment methods are accepted?",
+  "howToAddReview":"How to add review?",
   "contactInformation":"Contact Information",
   "saySomethingToStartALiveChat":"Say something to start a live chat!",
   "+41798783311":"+41 79 878 33 11",

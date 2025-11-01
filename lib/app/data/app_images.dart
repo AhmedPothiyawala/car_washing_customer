@@ -105,5 +105,6 @@ class AppImages {
   static const String profileLogOutIcon = "assets/icons/profile_logout_icon.svg";
   static const String editProfileAccountIcon = "assets/icons/edit_profile_account_icon.svg";
   static const String editProfileEditIcon = "assets/icons/edit_profile_edit_icon.svg";
+  static const String searchIcon = "assets/icons/search_icon.svg";
 
 }
